@@ -25,7 +25,13 @@ enum AppRoute {
   addHba1c('/hba1c/add', 'add_hba1c'),
 
   /// Route to edit an existing HbA1c reading with path parameter id.
-  editHba1c('/hba1c/edit/:id', 'edit_hba1c');
+  editHba1c('/hba1c/edit/:id', 'edit_hba1c'),
+
+  /// Route to add a new blood pressure reading.
+  addBloodPressure('/blood-pressure/add', 'add_blood_pressure'),
+
+  /// Route to edit an existing blood pressure reading with path parameter id.
+  editBloodPressure('/blood-pressure/edit/:id', 'edit_blood_pressure');
 
   const AppRoute(this.path, this.name);
 

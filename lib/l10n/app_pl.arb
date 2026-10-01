@@ -118,6 +118,16 @@
   "bloodPressure": "Ciśnienie krwi",
   "bpStatusNormal": "W normie (<120/80)",
   "bpStatusElevated": "Podwyższone (120-129/<80)",
-  "bpStatusHigh": "Wysokie (≥130/80)"
+  "bpStatusHigh": "Wysokie (≥130/80)",
+  "addBloodPressure": "Dodaj ciśnienie",
+  "editBloodPressure": "Edytuj ciśnienie",
+  "deleteBloodPressure": "Usuń ciśnienie",
+  "deleteBloodPressureConfirm": "Czy na pewno chcesz usunąć ten wynik ciśnienia?",
+  "systolicLabel": "Skurczowe",
+  "diastolicLabel": "Rozkurczowe",
+  "systolicHint": "np. 120",
+  "diastolicHint": "np. 80",
+  "bpSavedSuccess": "Wynik ciśnienia został pomyślnie zapisany",
+  "bpDeletedSuccess": "Wynik ciśnienia został usunięty"
 }
 

@@ -72,6 +72,10 @@ void main() {
       expect(AppRoute.addGlucose.name, 'add_glucose');
       expect(AppRoute.editGlucose.path, '/glucose/edit/:id');
       expect(AppRoute.editGlucose.name, 'edit_glucose');
+      expect(AppRoute.addBloodPressure.path, '/blood-pressure/add');
+      expect(AppRoute.addBloodPressure.name, 'add_blood_pressure');
+      expect(AppRoute.editBloodPressure.path, '/blood-pressure/edit/:id');
+      expect(AppRoute.editBloodPressure.name, 'edit_blood_pressure');
     });
 
     testWidgets('Renders OverviewScreen on initial "/" route', (tester) async {
@@ -161,6 +165,30 @@ void main() {
 
       expect(find.text('Edit HbA1c'), findsOneWidget);
     });
+
+    testWidgets(
+      'Navigates to AddEditBloodPressureReadingScreen on "/blood-pressure/add"',
+      (tester) async {
+        await tester.pumpWidget(
+          createTestApp(initialLocation: '/blood-pressure/add'),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.text('Log Blood Pressure'), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'Navigates to AddEditBloodPressureReadingScreen on "/blood-pressure/edit/1"',
+      (tester) async {
+        await tester.pumpWidget(
+          createTestApp(initialLocation: '/blood-pressure/edit/1'),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.text('Edit Blood Pressure'), findsOneWidget);
+      },
+    );
 
     testWidgets('Renders error screen on unknown route', (tester) async {
       await tester.pumpWidget(

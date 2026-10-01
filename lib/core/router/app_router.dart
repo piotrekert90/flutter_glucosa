@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../features/blood_pressure/presentation/screens/add_edit_blood_pressure_reading_screen.dart';
 import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import '../../features/hba1c/presentation/screens/add_edit_hba1c_reading_screen.dart';
 import '../../features/history/presentation/screens/history_screen.dart';
@@ -132,6 +133,21 @@ GoRouter appRouter(Ref ref) {
           final idString = state.pathParameters['id'];
           final id = int.tryParse(idString ?? '');
           return AddEditHbA1cReadingScreen(readingId: id);
+        },
+      ),
+      GoRoute(
+        path: AppRoute.addBloodPressure.path,
+        name: AppRoute.addBloodPressure.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const AddEditBloodPressureReadingScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.editBloodPressure.path,
+        name: AppRoute.editBloodPressure.name,
+        builder: (BuildContext context, GoRouterState state) {
+          final idString = state.pathParameters['id'];
+          final id = int.tryParse(idString ?? '');
+          return AddEditBloodPressureReadingScreen(readingId: id);
         },
       ),
     ],

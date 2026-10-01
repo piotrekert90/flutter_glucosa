@@ -458,5 +458,45 @@
   "bpStatusHigh": "High (≥130/80)",
   "@bpStatusHigh": {
     "description": "Status badge label for high blood pressure level"
+  },
+  "addBloodPressure": "Log Blood Pressure",
+  "@addBloodPressure": {
+    "description": "Title for screen adding a new blood pressure reading"
+  },
+  "editBloodPressure": "Edit Blood Pressure",
+  "@editBloodPressure": {
+    "description": "Title for screen editing an existing blood pressure reading"
+  },
+  "deleteBloodPressure": "Delete Blood Pressure",
+  "@deleteBloodPressure": {
+    "description": "Delete button label for blood pressure reading"
+  },
+  "deleteBloodPressureConfirm": "Are you sure you want to delete this blood pressure reading?",
+  "@deleteBloodPressureConfirm": {
+    "description": "Confirmation prompt when deleting a blood pressure reading"
+  },
+  "systolicLabel": "Systolic",
+  "@systolicLabel": {
+    "description": "Label for systolic pressure input field"
+  },
+  "diastolicLabel": "Diastolic",
+  "@diastolicLabel": {
+    "description": "Label for diastolic pressure input field"
+  },
+  "systolicHint": "e.g. 120",
+  "@systolicHint": {
+    "description": "Hint text for systolic pressure input"
+  },
+  "diastolicHint": "e.g. 80",
+  "@diastolicHint": {
+    "description": "Hint text for diastolic pressure input"
+  },
+  "bpSavedSuccess": "Blood pressure measurement saved successfully",
+  "@bpSavedSuccess": {
+    "description": "Snackbar message when blood pressure reading is saved"
+  },
+  "bpDeletedSuccess": "Blood pressure measurement deleted successfully",
+  "@bpDeletedSuccess": {
+    "description": "Snackbar message when blood pressure reading is deleted"
   }
 }
