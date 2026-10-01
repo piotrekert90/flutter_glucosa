@@ -3,63 +3,30 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_glucosa/app.dart';
+import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
+import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
-import 'package:flutter_glucosa/features/todos/data/providers/todo_repository_provider.dart';
-import 'package:flutter_glucosa/features/todos/presentation/screens/todo_screen_detail.dart';
+import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
 
-import 'helpers/fake_todo_repository.dart';
 import 'helpers/fake_user_preferences_repository.dart';
 
 void main() {
-  late FakeTodoRepository repository;
   late FakeUserPreferencesRepository userPreferencesRepository;
 
   setUp(() {
-    repository = FakeTodoRepository();
     userPreferencesRepository = FakeUserPreferencesRepository();
   });
 
   tearDown(() {
-    repository.dispose();
     userPreferencesRepository.dispose();
   });
 
-  testWidgets('Todo screen loads and allows adding a task', (tester) async {
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          todoRepositoryProvider.overrideWithValue(repository),
-          userPreferencesRepositoryProvider.overrideWithValue(
-            userPreferencesRepository,
-          ),
-        ],
-        child: const App(),
-      ),
-    );
-
-    await tester.tap(find.byType(FloatingActionButton));
-    await tester.pumpAndSettle();
-
-    expect(find.text('New Task'), findsOneWidget);
-
-    await tester.enterText(find.byType(TextFormField), 'Finish boilerplate');
-
-    await tester.tap(find.widgetWithText(FilledButton, 'Add'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Finish boilerplate'), findsOneWidget);
-    expect(find.text('New Task'), findsNothing);
-  });
-
-  testWidgets('Navigates to TodoDetailScreen when a task is tapped', (
+  testWidgets('App loads and allows navigating between bottom tabs', (
     tester,
   ) async {
-    await repository.add(title: 'Zadanie testowe');
-
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          todoRepositoryProvider.overrideWithValue(repository),
           userPreferencesRepositoryProvider.overrideWithValue(
             userPreferencesRepository,
           ),
@@ -67,24 +34,27 @@ void main() {
         child: const App(),
       ),
     );
-
     await tester.pumpAndSettle();
 
-    // Tap on the task
-    await tester.tap(find.text('Zadanie testowe'));
+    // Verify initial screen is Overview
+    expect(find.byType(OverviewScreen), findsOneWidget);
+
+    // Tap on Settings tab
+    await tester.tap(find.byIcon(Icons.settings_outlined));
     await tester.pumpAndSettle();
 
-    // Verify that we are on the details screen
-    expect(find.byType(TodoDetailScreen), findsOneWidget);
-    expect(find.text('Task Details'), findsOneWidget);
-    expect(find.text('Status'), findsOneWidget);
+    expect(find.byType(SettingsScreen), findsOneWidget);
 
-    // Simulate tapping the back button
-    await tester.pageBack();
+    // Tap on History tab
+    await tester.tap(find.byIcon(Icons.history_outlined));
     await tester.pumpAndSettle();
 
-    // Verify that we returned to the list screen
-    expect(find.byType(TodoDetailScreen), findsNothing);
-    expect(find.text('Zadanie testowe'), findsOneWidget);
+    expect(find.byType(HistoryScreen), findsOneWidget);
+
+    // Tap on Overview tab
+    await tester.tap(find.byIcon(Icons.dashboard_outlined));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(OverviewScreen), findsOneWidget);
   });
 }

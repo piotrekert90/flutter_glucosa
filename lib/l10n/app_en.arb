@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "Todo Flow",
+  "appTitle": "Glucosa",
   "@appTitle": {
     "description": "The title of the application displayed in the top appBar"
   },
@@ -74,178 +74,49 @@
   "@settingsTooltip": {
     "description": "Accessibility tooltip for settings button in app bar"
   },
-  "failedToLoadTasks": "Failed to load tasks",
-  "@failedToLoadTasks": {
-    "description": "Error message when task list cannot be loaded"
+  "navOverview": "Overview",
+  "@navOverview": {
+    "description": "Label for overview dashboard bottom navigation tab"
   },
-  "noTasksFound": "No tasks found",
-  "@noTasksFound": {
-    "description": "Header message displayed when the task list is empty"
+  "navHistory": "History",
+  "@navHistory": {
+    "description": "Label for measurement history bottom navigation tab"
   },
-  "noTodos": "No todos yet",
-  "@noTodos": {
-    "description": "Header message when no tasks exist"
+  "navSettings": "Settings",
+  "@navSettings": {
+    "description": "Label for settings bottom navigation tab"
   },
-  "noTodosDescription": "Add a new task using the button below",
-  "@noTodosDescription": {
-    "description": "Subtitle encouraging user to create a task"
+  "overviewComingSoon": "Overview dashboard coming soon",
+  "@overviewComingSoon": {
+    "description": "Placeholder text for overview dashboard"
   },
-  "addFirstTaskDescription": "Add your first task using the button below",
-  "@addFirstTaskDescription": {
-    "description": "Subtext prompting user to add their first task"
-  },
-  "failedToToggleTask": "Failed to toggle task",
-  "@failedToToggleTask": {
-    "description": "Snackbar message when task completion toggle fails"
-  },
-  "failedToDeleteTask": "Failed to delete task",
-  "@failedToDeleteTask": {
-    "description": "Snackbar message when task deletion fails"
-  },
-  "taskDeleted": "Task deleted",
-  "@taskDeleted": {
-    "description": "Snackbar confirmation message after a task is deleted"
-  },
-  "todoDeleted": "Deleted \"{title}\"",
-  "@todoDeleted": {
-    "description": "Snackbar notification after deleting a task with title",
-    "placeholders": {
-      "title": {
-        "type": "String"
-      }
-    }
-  },
-  "undo": "Undo",
-  "@undo": {
-    "description": "Label for undo action"
+  "historyComingSoon": "History log coming soon",
+  "@historyComingSoon": {
+    "description": "Placeholder text for history log"
   },
   "delete": "Delete",
   "@delete": {
     "description": "Label for delete action"
   },
-  "failedToAddTask": "Failed to add task",
-  "@failedToAddTask": {
-    "description": "Snackbar message when creating a new task fails"
-  },
-  "taskDetails": "Task Details",
-  "@taskDetails": {
-    "description": "Title displayed on the task details screen"
-  },
-  "taskDetailsTitle": "Task Details",
-  "@taskDetailsTitle": {
-    "description": "Title displayed on the task details screen app bar"
-  },
-  "todoNotFound": "Todo not found",
-  "@todoNotFound": {
-    "description": "Message displayed when the requested task does not exist"
-  },
-  "todoDeletedNotice": "Todo was deleted",
-  "@todoDeletedNotice": {
-    "description": "Notice shown when a task is deleted from details screen"
-  },
-  "completed": "Completed",
-  "@completed": {
-    "description": "Completed status toggle label"
-  },
-  "created": "Created",
-  "@created": {
-    "description": "Creation timestamp label"
-  },
-  "genericError": "An error occurred",
-  "@genericError": {
-    "description": "Generic error header message"
-  },
-  "taskNotFound": "Task not found.",
-  "@taskNotFound": {
-    "description": "Message displayed when the requested task does not exist"
-  },
-  "statusLabel": "Status",
-  "@statusLabel": {
-    "description": "Label for task completion status field"
-  },
-  "statusCompleted": "Completed",
-  "@statusCompleted": {
-    "description": "Status value indicating a task is finished"
-  },
-  "statusInProgress": "In progress",
-  "@statusInProgress": {
-    "description": "Status value indicating a task is not finished"
-  },
-  "createdAtLabel": "Created at",
-  "@createdAtLabel": {
-    "description": "Label for task creation timestamp field"
-  },
-  "addTaskButton": "Add Task",
-  "@addTaskButton": {
-    "description": "Label for floating action button to create a task"
-  },
-  "newTask": "New Task",
-  "@newTask": {
-    "description": "Header for new task dialog"
-  },
-  "newTaskDialogTitle": "New Task",
-  "@newTaskDialogTitle": {
-    "description": "Title displayed on new task dialog"
-  },
-  "title": "Title",
-  "@title": {
-    "description": "Field label for title"
-  },
-  "titleHint": "E.g. Buy milk",
-  "@titleHint": {
-    "description": "Hint text for title input"
-  },
-  "titleEmptyError": "Title cannot be empty",
-  "@titleEmptyError": {
-    "description": "Error message when title is empty"
-  },
-  "taskTitleLabel": "Title",
-  "@taskTitleLabel": {
-    "description": "Input field label for task title"
-  },
-  "taskTitleHint": "E.g. Buy milk",
-  "@taskTitleHint": {
-    "description": "Input field hint text for task title"
-  },
-  "titleCannotBeEmpty": "Title cannot be empty",
-  "@titleCannotBeEmpty": {
-    "description": "Validation error message when task title is empty"
+  "undo": "Undo",
+  "@undo": {
+    "description": "Label for undo action"
   },
   "cancel": "Cancel",
   "@cancel": {
     "description": "Cancel button label"
   },
-  "cancelButton": "Cancel",
-  "@cancelButton": {
-    "description": "Button label to cancel dialog action"
-  },
   "add": "Add",
   "@add": {
     "description": "Add button label"
   },
-  "addButton": "Add",
-  "@addButton": {
-    "description": "Button label to submit dialog action"
+  "save": "Save",
+  "@save": {
+    "description": "Save button label"
   },
-  "markAsNotDone": "Mark \"{title}\" as not done",
-  "@markAsNotDone": {
-    "description": "Semantic accessibility label for unchecking a task",
-    "placeholders": {
-      "title": {
-        "type": "String",
-        "example": "Buy milk"
-      }
-    }
-  },
-  "markAsDone": "Mark \"{title}\" as done",
-  "@markAsDone": {
-    "description": "Semantic accessibility label for checking a task",
-    "placeholders": {
-      "title": {
-        "type": "String",
-        "example": "Buy milk"
-      }
-    }
+  "genericError": "An error occurred",
+  "@genericError": {
+    "description": "Generic error header message"
   },
   "errorPrefix": "Error: {message}",
   "@errorPrefix": {

@@ -3,7 +3,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../features/settings/data/models/user_preferences_model.dart';
-import '../../features/todos/data/models/todo_model.dart';
 
 part 'isar_provider.g.dart';
 
@@ -13,10 +12,7 @@ Future<Isar> isarDb(Ref ref) async {
   final directory = await getApplicationDocumentsDirectory();
   final isar =
       Isar.getInstance() ??
-      await Isar.open([
-        TodoModelSchema,
-        UserPreferencesModelSchema,
-      ], directory: directory.path);
+      await Isar.open([UserPreferencesModelSchema], directory: directory.path);
   ref.onDispose(() {
     if (isar.isOpen) {
       isar.close();

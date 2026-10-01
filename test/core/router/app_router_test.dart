@@ -2,36 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_glucosa/core/router/app_router.dart';
 import 'package:flutter_glucosa/core/router/app_routes.dart';
+import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
+import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/licenses_screen.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/privacy_policy_screen.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
-import 'package:flutter_glucosa/features/todos/data/providers/todo_repository_provider.dart';
-import 'package:flutter_glucosa/features/todos/presentation/screens/todo_screen.dart';
-import 'package:flutter_glucosa/features/todos/presentation/screens/todo_screen_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../helpers/fake_todo_repository.dart';
 import '../../helpers/fake_user_preferences_repository.dart';
 
 void main() {
-  late FakeTodoRepository fakeTodoRepository;
   late FakeUserPreferencesRepository fakeUserPreferencesRepository;
 
   setUp(() {
-    fakeTodoRepository = FakeTodoRepository();
     fakeUserPreferencesRepository = FakeUserPreferencesRepository();
   });
 
   tearDown(() {
-    fakeTodoRepository.dispose();
     fakeUserPreferencesRepository.dispose();
   });
 
   Widget createTestApp({String? initialLocation}) {
     return ProviderScope(
       overrides: [
-        todoRepositoryProvider.overrideWithValue(fakeTodoRepository),
         userPreferencesRepositoryProvider.overrideWithValue(
           fakeUserPreferencesRepository,
         ),
@@ -50,19 +44,32 @@ void main() {
 
   group('AppRouter Tests', () {
     test('AppRoute enum definitions have correct paths and names', () {
-      expect(AppRoute.todos.path, '/');
-      expect(AppRoute.todos.name, 'todos');
-      expect(AppRoute.todoDetail.path, 'todos/:id');
-      expect(AppRoute.todoDetail.name, 'todo_detail');
+      expect(AppRoute.overview.path, '/');
+      expect(AppRoute.overview.name, 'overview');
+      expect(AppRoute.history.path, '/history');
+      expect(AppRoute.history.name, 'history');
       expect(AppRoute.settings.path, '/settings');
       expect(AppRoute.settings.name, 'settings');
+      expect(AppRoute.licenses.path, 'licenses');
+      expect(AppRoute.licenses.name, 'licenses');
+      expect(AppRoute.privacyPolicy.path, 'privacy-policy');
+      expect(AppRoute.privacyPolicy.name, 'privacy_policy');
     });
 
-    testWidgets('Renders TodoScreen on initial "/" route', (tester) async {
+    testWidgets('Renders OverviewScreen on initial "/" route', (tester) async {
       await tester.pumpWidget(createTestApp());
       await tester.pumpAndSettle();
 
-      expect(find.byType(TodoScreen), findsOneWidget);
+      expect(find.byType(OverviewScreen), findsOneWidget);
+    });
+
+    testWidgets('Navigates to HistoryScreen on "/history" route', (
+      tester,
+    ) async {
+      await tester.pumpWidget(createTestApp(initialLocation: '/history'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(HistoryScreen), findsOneWidget);
     });
 
     testWidgets('Navigates to SettingsScreen on "/settings" route', (
@@ -96,21 +103,6 @@ void main() {
         expect(find.byType(PrivacyPolicyScreen), findsOneWidget);
       },
     );
-
-    testWidgets('Navigates to TodoDetailScreen on "/todos/:id" route', (
-      tester,
-    ) async {
-      final created = await fakeTodoRepository.add(title: 'Router Todo');
-      expect(created.$1, isTrue);
-
-      final todos = await fakeTodoRepository.watchAll().first;
-      final todoId = todos.first.id;
-
-      await tester.pumpWidget(createTestApp(initialLocation: '/todos/$todoId'));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(TodoDetailScreen), findsOneWidget);
-    });
 
     testWidgets('Renders error screen on unknown route', (tester) async {
       await tester.pumpWidget(

@@ -1,6 +1,6 @@
 {
   "@@locale": "pl",
-  "appTitle": "Todo Flow",
+  "appTitle": "Glucosa",
   "initializationFailed": "Błąd Inicjalizacji",
   "tryAgain": "Spróbuj ponownie",
   "retry": "Ponów",
@@ -17,66 +17,17 @@
   "failedToUpdatePreferences": "Nie udało się zaktualizować preferencji",
   "failedToUpdateThemeMode": "Nie udało się zaktualizować motywu",
   "settingsTooltip": "Ustawienia",
-  "failedToLoadTasks": "Nie udało się załadować zadań",
-  "noTasksFound": "Brak zadań",
-  "noTodos": "Brak zadań",
-  "noTodosDescription": "Dodaj nowe zadanie za pomocą przycisku poniżej",
-  "addFirstTaskDescription": "Dodaj swoje pierwsze zadanie za pomocą poniższego przycisku",
-  "failedToToggleTask": "Nie udało się zmienić statusu zadania",
-  "failedToDeleteTask": "Nie udało się usunąć zadania",
-  "taskDeleted": "Zadanie usunięte",
-  "todoDeleted": "Usunięto \"{title}\"",
-  "@todoDeleted": {
-    "placeholders": {
-      "title": {
-        "type": "String"
-      }
-    }
-  },
-  "undo": "Cofnij",
+  "navOverview": "Przegląd",
+  "navHistory": "Historia",
+  "navSettings": "Ustawienia",
+  "overviewComingSoon": "Panel główny wkrótce",
+  "historyComingSoon": "Historia pomiarów wkrótce",
   "delete": "Usuń",
-  "failedToAddTask": "Nie udało się dodać zadania",
-  "taskDetails": "Szczegóły zadania",
-  "taskDetailsTitle": "Szczegóły zadania",
-  "todoNotFound": "Nie znaleziono zadania",
-  "todoDeletedNotice": "Zadanie zostało usunięte",
-  "completed": "Ukończone",
-  "created": "Utworzono",
-  "genericError": "Wystąpił błąd",
-  "taskNotFound": "Nie znaleziono zadania.",
-  "statusLabel": "Status",
-  "statusCompleted": "Ukończone",
-  "statusInProgress": "W trakcie",
-  "createdAtLabel": "Utworzono",
-  "addTaskButton": "Dodaj zadanie",
-  "newTask": "Nowe zadanie",
-  "newTaskDialogTitle": "Nowe Zadanie",
-  "title": "Tytuł",
-  "titleHint": "Np. Kupić mleko",
-  "titleEmptyError": "Tytuł nie może być pusty",
-  "taskTitleLabel": "Tytuł",
-  "taskTitleHint": "Np. Kupić mleko",
-  "titleCannotBeEmpty": "Tytuł nie może być pusty",
+  "undo": "Cofnij",
   "cancel": "Anuluj",
-  "cancelButton": "Anuluj",
   "add": "Dodaj",
-  "addButton": "Dodaj",
-  "markAsNotDone": "Oznacz \"{title}\" jako niewykonane",
-  "@markAsNotDone": {
-    "placeholders": {
-      "title": {
-        "type": "String"
-      }
-    }
-  },
-  "markAsDone": "Oznacz \"{title}\" jako wykonane",
-  "@markAsDone": {
-    "placeholders": {
-      "title": {
-        "type": "String"
-      }
-    }
-  },
+  "save": "Zapisz",
+  "genericError": "Wystąpił błąd",
   "errorPrefix": "Błąd: {message}",
   "@errorPrefix": {
     "placeholders": {

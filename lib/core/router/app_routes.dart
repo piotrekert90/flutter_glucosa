@@ -1,12 +1,12 @@
 /// Defines all application navigation routes, paths, and names for GoRouter.
 enum AppRoute {
-  /// Main todos overview screen route.
-  todos('/', 'todos'),
+  /// Main dashboard overview screen route.
+  overview('/', 'overview'),
 
-  /// Todo details screen route with dynamic id parameter.
-  todoDetail('todos/:id', 'todo_detail'),
+  /// Health measurements history list route.
+  history('/history', 'history'),
 
-  /// User preferences and settings screen route.
+  /// User profile and application settings route.
   settings('/settings', 'settings'),
 
   /// Open-source licenses screen route.
