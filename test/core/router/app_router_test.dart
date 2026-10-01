@@ -80,6 +80,10 @@ void main() {
       expect(AppRoute.addKetones.name, 'add_ketones');
       expect(AppRoute.editKetones.path, '/ketones/edit/:id');
       expect(AppRoute.editKetones.name, 'edit_ketones');
+      expect(AppRoute.addCholesterol.path, '/cholesterol/add');
+      expect(AppRoute.addCholesterol.name, 'add_cholesterol');
+      expect(AppRoute.editCholesterol.path, '/cholesterol/edit/:id');
+      expect(AppRoute.editCholesterol.name, 'edit_cholesterol');
     });
 
     testWidgets('Renders OverviewScreen on initial "/" route', (tester) async {
@@ -212,6 +216,30 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.text('Edit Ketones'), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'Navigates to AddEditCholesterolReadingScreen on "/cholesterol/add"',
+      (tester) async {
+        await tester.pumpWidget(
+          createTestApp(initialLocation: '/cholesterol/add'),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.text('Log Cholesterol'), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'Navigates to AddEditCholesterolReadingScreen on "/cholesterol/edit/1"',
+      (tester) async {
+        await tester.pumpWidget(
+          createTestApp(initialLocation: '/cholesterol/edit/1'),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.text('Edit Cholesterol'), findsOneWidget);
       },
     );
 

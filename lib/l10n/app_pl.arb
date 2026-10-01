@@ -143,6 +143,16 @@
   "cholesterol": "Cholesterol",
   "cholesterolStatusNormal": "W normie (<200)",
   "cholesterolStatusElevated": "Graniczny (200-239)",
-  "cholesterolStatusHigh": "Wysoki (≥240)"
+  "cholesterolStatusHigh": "Wysoki (≥240)",
+  "addCholesterol": "Dodaj cholesterol",
+  "editCholesterol": "Edytuj cholesterol",
+  "deleteCholesterol": "Usuń cholesterol",
+  "deleteCholesterolConfirm": "Czy na pewno chcesz usunąć ten wynik cholesterolu?",
+  "totalCholesterolLabel": "Całkowity",
+  "ldlLabel": "LDL",
+  "hdlLabel": "HDL",
+  "cholesterolValueHint": "np. 190",
+  "cholesterolSavedSuccess": "Wynik cholesterolu został pomyślnie zapisany",
+  "cholesterolDeletedSuccess": "Wynik cholesterolu został usunięty"
 }
 

@@ -558,5 +558,45 @@
   "cholesterolStatusHigh": "High (≥240)",
   "@cholesterolStatusHigh": {
     "description": "Status badge label for high total cholesterol level"
+  },
+  "addCholesterol": "Log Cholesterol",
+  "@addCholesterol": {
+    "description": "Title for screen adding a new cholesterol reading"
+  },
+  "editCholesterol": "Edit Cholesterol",
+  "@editCholesterol": {
+    "description": "Title for screen editing an existing cholesterol reading"
+  },
+  "deleteCholesterol": "Delete Cholesterol",
+  "@deleteCholesterol": {
+    "description": "Delete button label for cholesterol reading"
+  },
+  "deleteCholesterolConfirm": "Are you sure you want to delete this cholesterol reading?",
+  "@deleteCholesterolConfirm": {
+    "description": "Confirmation prompt when deleting a cholesterol reading"
+  },
+  "totalCholesterolLabel": "Total",
+  "@totalCholesterolLabel": {
+    "description": "Label for total cholesterol input field"
+  },
+  "ldlLabel": "LDL",
+  "@ldlLabel": {
+    "description": "Label for LDL cholesterol input field"
+  },
+  "hdlLabel": "HDL",
+  "@hdlLabel": {
+    "description": "Label for HDL cholesterol input field"
+  },
+  "cholesterolValueHint": "e.g. 190",
+  "@cholesterolValueHint": {
+    "description": "Hint text for cholesterol value input"
+  },
+  "cholesterolSavedSuccess": "Cholesterol measurement saved successfully",
+  "@cholesterolSavedSuccess": {
+    "description": "Snackbar message when cholesterol reading is saved"
+  },
+  "cholesterolDeletedSuccess": "Cholesterol measurement deleted successfully",
+  "@cholesterolDeletedSuccess": {
+    "description": "Snackbar message when cholesterol reading is deleted"
   }
 }

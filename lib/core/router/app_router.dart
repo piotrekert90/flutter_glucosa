@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../features/blood_pressure/presentation/screens/add_edit_blood_pressure_reading_screen.dart';
+import '../../features/cholesterol/presentation/screens/add_edit_cholesterol_reading_screen.dart';
 import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import '../../features/hba1c/presentation/screens/add_edit_hba1c_reading_screen.dart';
 import '../../features/ketones/presentation/screens/add_edit_ketone_reading_screen.dart';
@@ -164,6 +165,21 @@ GoRouter appRouter(Ref ref) {
           final idString = state.pathParameters['id'];
           final id = int.tryParse(idString ?? '');
           return AddEditKetoneReadingScreen(readingId: id);
+        },
+      ),
+      GoRoute(
+        path: AppRoute.addCholesterol.path,
+        name: AppRoute.addCholesterol.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const AddEditCholesterolReadingScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.editCholesterol.path,
+        name: AppRoute.editCholesterol.name,
+        builder: (BuildContext context, GoRouterState state) {
+          final idString = state.pathParameters['id'];
+          final id = int.tryParse(idString ?? '');
+          return AddEditCholesterolReadingScreen(readingId: id);
         },
       ),
     ],
