@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/presentation/widgets/add_reading_bottom_sheet.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../core/router/app_routes.dart';
@@ -27,8 +28,8 @@ class OverviewScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navOverview)),
       floatingActionButton: FloatingActionButton(
-        tooltip: l10n.addGlucoseReading,
-        onPressed: () => context.push(AppRoute.addGlucose.path),
+        tooltip: l10n.addReading,
+        onPressed: () => showAddReadingBottomSheet(context),
         child: const Icon(Icons.add_rounded),
       ),
       body: ClampedLayout(

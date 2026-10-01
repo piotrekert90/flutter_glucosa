@@ -88,4 +88,20 @@ void main() {
     expect(find.text('Estimated HbA1c'), findsOneWidget);
     expect(find.text('Target Range'), findsOneWidget);
   });
+
+  testWidgets('FAB opens the metric selection bottom sheet', (tester) async {
+    await tester.pumpWidget(createWidget(latestReading: null));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Add reading'), findsOneWidget);
+    expect(find.text('Blood Glucose'), findsOneWidget);
+    expect(find.text('HbA1c'), findsOneWidget);
+    expect(find.text('Blood Pressure'), findsOneWidget);
+    expect(find.text('Ketones'), findsOneWidget);
+    expect(find.text('Cholesterol'), findsOneWidget);
+    expect(find.text('Weight'), findsOneWidget);
+  });
 }

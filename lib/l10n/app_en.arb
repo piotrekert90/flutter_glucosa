@@ -630,5 +630,13 @@
   "weightDeletedSuccess": "Weight measurement deleted successfully",
   "@weightDeletedSuccess": {
     "description": "Snackbar message when weight reading is deleted"
+  },
+  "addReading": "Add reading",
+  "@addReading": {
+    "description": "Title for the metric selection bottom sheet and add-button tooltip"
+  },
+  "filterAll": "All",
+  "@filterAll": {
+    "description": "Label for the 'show all metrics' history filter chip"
   }
 }
