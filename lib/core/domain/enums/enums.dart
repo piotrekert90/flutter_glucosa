@@ -5,4 +5,5 @@ export 'glucose_unit.dart';
 export 'hba1c_unit.dart';
 export 'meal_context.dart';
 export 'metric_type.dart';
+export 'user_theme_mode.dart';
 export 'weight_unit.dart';
