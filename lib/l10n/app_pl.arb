@@ -103,5 +103,17 @@
   "mealContextNight": "W nocy",
   "mealContextFasting": "Na czczo",
   "mealContextRecheck": "Ponowne sprawdzenie",
-  "mealContextOther": "Inny"
+  "mealContextOther": "Inny",
+  "hba1c": "HbA1c",
+  "hba1cStatusNormal": "W normie (<5.7%)",
+  "hba1cStatusElevated": "Podwyższone (5.7-6.4%)",
+  "hba1cStatusHigh": "Wysokie (≥6.5%)",
+  "addHba1c": "Dodaj HbA1c",
+  "editHba1c": "Edytuj HbA1c",
+  "deleteHba1c": "Usuń HbA1c",
+  "deleteHba1cConfirm": "Czy na pewno chcesz usunąć ten wynik HbA1c?",
+  "hba1cValueHint": "np. 6.5",
+  "hba1cSavedSuccess": "Wynik HbA1c został pomyślnie zapisany",
+  "hba1cDeletedSuccess": "Wynik HbA1c został usunięty"
 }
+

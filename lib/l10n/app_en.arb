@@ -398,5 +398,49 @@
   "mealContextOther": "Other",
   "@mealContextOther": {
     "description": "Meal context label for other"
+  },
+  "hba1c": "HbA1c",
+  "@hba1c": {
+    "description": "Title label for HbA1c glycated hemoglobin"
+  },
+  "hba1cStatusNormal": "Normal (<5.7%)",
+  "@hba1cStatusNormal": {
+    "description": "Status badge label for normal HbA1c level"
+  },
+  "hba1cStatusElevated": "Elevated (5.7-6.4%)",
+  "@hba1cStatusElevated": {
+    "description": "Status badge label for elevated prediabetes HbA1c level"
+  },
+  "hba1cStatusHigh": "High (≥6.5%)",
+  "@hba1cStatusHigh": {
+    "description": "Status badge label for high diabetes threshold HbA1c level"
+  },
+  "addHba1c": "Log HbA1c",
+  "@addHba1c": {
+    "description": "Title for screen adding a new HbA1c reading"
+  },
+  "editHba1c": "Edit HbA1c",
+  "@editHba1c": {
+    "description": "Title for screen editing an existing HbA1c reading"
+  },
+  "deleteHba1c": "Delete HbA1c",
+  "@deleteHba1c": {
+    "description": "Delete button label for HbA1c reading"
+  },
+  "deleteHba1cConfirm": "Are you sure you want to delete this HbA1c reading?",
+  "@deleteHba1cConfirm": {
+    "description": "Confirmation prompt when deleting an HbA1c reading"
+  },
+  "hba1cValueHint": "e.g. 6.5",
+  "@hba1cValueHint": {
+    "description": "Hint text for HbA1c input"
+  },
+  "hba1cSavedSuccess": "HbA1c measurement saved successfully",
+  "@hba1cSavedSuccess": {
+    "description": "Snackbar message when HbA1c reading is saved"
+  },
+  "hba1cDeletedSuccess": "HbA1c measurement deleted successfully",
+  "@hba1cDeletedSuccess": {
+    "description": "Snackbar message when HbA1c reading is deleted"
   }
 }
