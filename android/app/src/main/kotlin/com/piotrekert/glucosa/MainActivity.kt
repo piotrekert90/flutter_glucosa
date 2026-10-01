@@ -1,4 +1,4 @@
-package com.ekerstudio.flutter_blueprint
+package com.piotrekert.glucosa
 
 import io.flutter.embedding.android.FlutterActivity
 

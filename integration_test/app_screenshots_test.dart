@@ -2,12 +2,12 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/data/providers/user_preferences_repository_provider.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/domain/entities/user_preferences.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/presentation/screens/settings_screen.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/data/providers/todo_repository_provider.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/domain/entities/todo.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/presentation/screens/todo_screen.dart';
+import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
+import 'package:flutter_glucosa/features/settings/domain/entities/user_preferences.dart';
+import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
+import 'package:flutter_glucosa/features/todos/data/providers/todo_repository_provider.dart';
+import 'package:flutter_glucosa/features/todos/domain/entities/todo.dart';
+import 'package:flutter_glucosa/features/todos/presentation/screens/todo_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 

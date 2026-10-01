@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:flutter_riverpod_boilerplate/core/utils/field_cipher.dart';
+import 'package:flutter_glucosa/core/utils/field_cipher.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_riverpod_boilerplate/core/errors/failure.dart';
+import 'package:flutter_glucosa/core/errors/failure.dart';
 
 void main() {
   group('Failure classes', () {

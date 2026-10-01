@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/presentation/screens/licenses_screen.dart';
-import 'package:flutter_riverpod_boilerplate/l10n/app_localizations.dart';
+import 'package:flutter_glucosa/features/settings/presentation/screens/licenses_screen.dart';
+import 'package:flutter_glucosa/l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

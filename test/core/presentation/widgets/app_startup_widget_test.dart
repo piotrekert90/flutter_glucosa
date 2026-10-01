@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod_boilerplate/core/presentation/widgets/app_startup_widget.dart';
-import 'package:flutter_riverpod_boilerplate/core/providers/app_startup_provider.dart';
+import 'package:flutter_glucosa/core/presentation/widgets/app_startup_widget.dart';
+import 'package:flutter_glucosa/core/providers/app_startup_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

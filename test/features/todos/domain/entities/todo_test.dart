@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod_boilerplate/features/todos/domain/entities/todo.dart';
+import 'package:flutter_glucosa/features/todos/domain/entities/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

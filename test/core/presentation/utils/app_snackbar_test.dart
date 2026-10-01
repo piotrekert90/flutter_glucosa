@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod_boilerplate/core/presentation/utils/app_snackbar.dart';
+import 'package:flutter_glucosa/core/presentation/utils/app_snackbar.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

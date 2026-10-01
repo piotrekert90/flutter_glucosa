@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_riverpod_boilerplate/features/settings/domain/entities/user_preferences.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/data/providers/user_preferences_repository_provider.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/presentation/screens/settings_screen.dart';
-import 'package:flutter_riverpod_boilerplate/l10n/app_localizations.dart';
-import 'package:flutter_riverpod_boilerplate/core/presentation/theme/app_theme.dart';
+import 'package:flutter_glucosa/features/settings/domain/entities/user_preferences.dart';
+import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
+import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
+import 'package:flutter_glucosa/l10n/app_localizations.dart';
+import 'package:flutter_glucosa/core/presentation/theme/app_theme.dart';
 
 import '../../../../helpers/fake_user_preferences_repository.dart';
 

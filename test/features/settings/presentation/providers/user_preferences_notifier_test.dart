@@ -4,11 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:flutter_riverpod_boilerplate/core/errors/failure.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/domain/entities/user_preferences.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/domain/repositories/user_preferences_repository.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/presentation/providers/user_preferences_notifier.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/data/providers/user_preferences_repository_provider.dart';
+import 'package:flutter_glucosa/core/errors/failure.dart';
+import 'package:flutter_glucosa/features/settings/domain/entities/user_preferences.dart';
+import 'package:flutter_glucosa/features/settings/domain/repositories/user_preferences_repository.dart';
+import 'package:flutter_glucosa/features/settings/presentation/providers/user_preferences_notifier.dart';
+import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
 
 class MockUserPreferencesRepository extends Mock
     implements UserPreferencesRepository {}

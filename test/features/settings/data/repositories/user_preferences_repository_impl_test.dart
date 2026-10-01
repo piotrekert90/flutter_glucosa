@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter_riverpod_boilerplate/core/errors/failure.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/data/models/user_preferences_model.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/data/repositories/user_preferences_repository_impl.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/domain/entities/user_preferences.dart';
+import 'package:flutter_glucosa/core/errors/failure.dart';
+import 'package:flutter_glucosa/features/settings/data/models/user_preferences_model.dart';
+import 'package:flutter_glucosa/features/settings/data/repositories/user_preferences_repository_impl.dart';
+import 'package:flutter_glucosa/features/settings/domain/entities/user_preferences.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:isar_community/isar.dart';
 import 'package:mocktail/mocktail.dart';

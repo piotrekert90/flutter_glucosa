@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter_riverpod_boilerplate/core/errors/failure.dart';
-import 'package:flutter_riverpod_boilerplate/core/errors/result.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/domain/entities/todo.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/domain/repositories/todo_repository.dart';
+import 'package:flutter_glucosa/core/errors/failure.dart';
+import 'package:flutter_glucosa/core/errors/result.dart';
+import 'package:flutter_glucosa/features/todos/domain/entities/todo.dart';
+import 'package:flutter_glucosa/features/todos/domain/repositories/todo_repository.dart';
 
 /// In-memory implementation of [TodoRepository] for use in tests.
 ///

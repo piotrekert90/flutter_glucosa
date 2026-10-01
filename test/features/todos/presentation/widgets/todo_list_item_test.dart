@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/domain/entities/todo.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/presentation/widgets/todo_list_item.dart';
-import 'package:flutter_riverpod_boilerplate/l10n/app_localizations.dart';
+import 'package:flutter_glucosa/features/todos/domain/entities/todo.dart';
+import 'package:flutter_glucosa/features/todos/presentation/widgets/todo_list_item.dart';
+import 'package:flutter_glucosa/l10n/app_localizations.dart';
 
 void main() {
   final tDate = DateTime(2024, 1, 1, 12, 0);

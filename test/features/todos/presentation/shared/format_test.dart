@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/presentation/shared/format.dart';
+import 'package:flutter_glucosa/features/todos/presentation/shared/format.dart';
 
 void main() {
   group('formatTodoDate', () {

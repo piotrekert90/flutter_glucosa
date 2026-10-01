@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod_boilerplate/core/presentation/widgets/clamped_layout.dart';
+import 'package:flutter_glucosa/core/presentation/widgets/clamped_layout.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

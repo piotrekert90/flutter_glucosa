@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod_boilerplate/core/utils/string_capitalize.dart';
+import 'package:flutter_glucosa/core/utils/string_capitalize.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

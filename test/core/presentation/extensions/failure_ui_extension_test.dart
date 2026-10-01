@@ -1,6 +1,6 @@
-import 'package:flutter_riverpod_boilerplate/core/errors/failure.dart';
-import 'package:flutter_riverpod_boilerplate/core/presentation/extensions/failure_ui_extension.dart';
-import 'package:flutter_riverpod_boilerplate/l10n/app_localizations_en.dart';
+import 'package:flutter_glucosa/core/errors/failure.dart';
+import 'package:flutter_glucosa/core/presentation/extensions/failure_ui_extension.dart';
+import 'package:flutter_glucosa/l10n/app_localizations_en.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

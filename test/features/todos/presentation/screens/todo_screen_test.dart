@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod_boilerplate/core/errors/failure.dart';
-import 'package:flutter_riverpod_boilerplate/core/router/app_routes.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/data/providers/todo_repository_provider.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/domain/entities/todo.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/presentation/providers/todo_notifier.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/presentation/screens/todo_screen.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/presentation/widgets/todo_list_item.dart';
-import 'package:flutter_riverpod_boilerplate/l10n/app_localizations.dart';
+import 'package:flutter_glucosa/core/errors/failure.dart';
+import 'package:flutter_glucosa/core/router/app_routes.dart';
+import 'package:flutter_glucosa/features/todos/data/providers/todo_repository_provider.dart';
+import 'package:flutter_glucosa/features/todos/domain/entities/todo.dart';
+import 'package:flutter_glucosa/features/todos/presentation/providers/todo_notifier.dart';
+import 'package:flutter_glucosa/features/todos/presentation/screens/todo_screen.dart';
+import 'package:flutter_glucosa/features/todos/presentation/widgets/todo_list_item.dart';
+import 'package:flutter_glucosa/l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 

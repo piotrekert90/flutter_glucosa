@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:integration_test/integration_test.dart';
 
-import 'package:flutter_riverpod_boilerplate/core/presentation/theme/app_theme.dart';
-import 'package:flutter_riverpod_boilerplate/l10n/app_localizations.dart';
+import 'package:flutter_glucosa/core/presentation/theme/app_theme.dart';
+import 'package:flutter_glucosa/l10n/app_localizations.dart';
 
 /// Supported localization languages for screenshot generation.
 const List<String> supportedScreenshotLocales = <String>['en', 'pl'];

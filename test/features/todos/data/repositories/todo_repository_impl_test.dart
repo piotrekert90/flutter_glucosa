@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter_riverpod_boilerplate/core/errors/failure.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/data/models/todo_model.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/data/repositories/todo_repository_impl.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/domain/entities/todo.dart';
+import 'package:flutter_glucosa/core/errors/failure.dart';
+import 'package:flutter_glucosa/features/todos/data/models/todo_model.dart';
+import 'package:flutter_glucosa/features/todos/data/repositories/todo_repository_impl.dart';
+import 'package:flutter_glucosa/features/todos/domain/entities/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:isar_community/isar.dart';
 import 'package:mocktail/mocktail.dart';

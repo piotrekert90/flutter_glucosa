@@ -14,7 +14,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.ekerstudio.flutter_blueprint"
+    namespace = "com.piotrekert.glucosa"
     // Ensures compatibility with plugins and AndroidX dependencies requiring compileSdk 37+
     compileSdk = maxOf(flutter.compileSdkVersion, 37)
     ndkVersion = flutter.ndkVersion
@@ -27,14 +27,14 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.ekerstudio.flutter_blueprint"
+        applicationId = "com.piotrekert.glucosa"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        manifestPlaceholders["appName"] = "Flutter Blueprint"
+        manifestPlaceholders["appName"] = "Glucosa"
     }
 
     signingConfigs {

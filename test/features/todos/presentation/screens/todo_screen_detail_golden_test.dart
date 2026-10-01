@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_riverpod_boilerplate/features/todos/domain/entities/todo.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/presentation/providers/todo_detail_notifier.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/data/providers/todo_repository_provider.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/presentation/screens/todo_screen_detail.dart';
-import 'package:flutter_riverpod_boilerplate/l10n/app_localizations.dart';
+import 'package:flutter_glucosa/features/todos/domain/entities/todo.dart';
+import 'package:flutter_glucosa/features/todos/presentation/providers/todo_detail_notifier.dart';
+import 'package:flutter_glucosa/features/todos/data/providers/todo_repository_provider.dart';
+import 'package:flutter_glucosa/features/todos/presentation/screens/todo_screen_detail.dart';
+import 'package:flutter_glucosa/l10n/app_localizations.dart';
 
 import '../../../../helpers/fake_todo_repository.dart';
 

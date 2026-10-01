@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod_boilerplate/core/utils/app_logger.dart';
+import 'package:flutter_glucosa/core/utils/app_logger.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

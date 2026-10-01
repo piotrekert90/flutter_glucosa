@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod_boilerplate/core/presentation/theme/app_layout_tokens.dart';
+import 'package:flutter_glucosa/core/presentation/theme/app_layout_tokens.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

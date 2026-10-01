@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod_boilerplate/features/settings/domain/entities/user_preferences.dart';
+import 'package:flutter_glucosa/features/settings/domain/entities/user_preferences.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

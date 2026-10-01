@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_riverpod_boilerplate/app.dart';
-import 'package:flutter_riverpod_boilerplate/features/settings/data/providers/user_preferences_repository_provider.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/data/providers/todo_repository_provider.dart';
-import 'package:flutter_riverpod_boilerplate/features/todos/presentation/screens/todo_screen_detail.dart';
+import 'package:flutter_glucosa/app.dart';
+import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
+import 'package:flutter_glucosa/features/todos/data/providers/todo_repository_provider.dart';
+import 'package:flutter_glucosa/features/todos/presentation/screens/todo_screen_detail.dart';
 
 import 'helpers/fake_todo_repository.dart';
 import 'helpers/fake_user_preferences_repository.dart';
