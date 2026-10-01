@@ -43,7 +43,13 @@ enum AppRoute {
   addCholesterol('/cholesterol/add', 'add_cholesterol'),
 
   /// Route to edit an existing cholesterol reading with path parameter id.
-  editCholesterol('/cholesterol/edit/:id', 'edit_cholesterol');
+  editCholesterol('/cholesterol/edit/:id', 'edit_cholesterol'),
+
+  /// Route to add a new weight reading.
+  addWeight('/weight/add', 'add_weight'),
+
+  /// Route to edit an existing weight reading with path parameter id.
+  editWeight('/weight/edit/:id', 'edit_weight');
 
   const AppRoute(this.path, this.name);
 

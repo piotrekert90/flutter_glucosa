@@ -602,5 +602,33 @@
   "weight": "Weight",
   "@weight": {
     "description": "Title label for body weight metric"
+  },
+  "addWeight": "Log Weight",
+  "@addWeight": {
+    "description": "Title for screen adding a new weight reading"
+  },
+  "editWeight": "Edit Weight",
+  "@editWeight": {
+    "description": "Title for screen editing an existing weight reading"
+  },
+  "deleteWeight": "Delete Weight",
+  "@deleteWeight": {
+    "description": "Delete button label for weight reading"
+  },
+  "deleteWeightConfirm": "Are you sure you want to delete this weight reading?",
+  "@deleteWeightConfirm": {
+    "description": "Confirmation prompt when deleting a weight reading"
+  },
+  "weightValueHint": "e.g. 75.5",
+  "@weightValueHint": {
+    "description": "Hint text for weight value input"
+  },
+  "weightSavedSuccess": "Weight measurement saved successfully",
+  "@weightSavedSuccess": {
+    "description": "Snackbar message when weight reading is saved"
+  },
+  "weightDeletedSuccess": "Weight measurement deleted successfully",
+  "@weightDeletedSuccess": {
+    "description": "Snackbar message when weight reading is deleted"
   }
 }

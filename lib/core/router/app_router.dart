@@ -8,6 +8,7 @@ import '../../features/cholesterol/presentation/screens/add_edit_cholesterol_rea
 import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import '../../features/hba1c/presentation/screens/add_edit_hba1c_reading_screen.dart';
 import '../../features/ketones/presentation/screens/add_edit_ketone_reading_screen.dart';
+import '../../features/weight/presentation/screens/add_edit_weight_reading_screen.dart';
 import '../../features/history/presentation/screens/history_screen.dart';
 import '../../features/overview/presentation/screens/overview_screen.dart';
 import '../../features/settings/presentation/screens/licenses_screen.dart';
@@ -180,6 +181,21 @@ GoRouter appRouter(Ref ref) {
           final idString = state.pathParameters['id'];
           final id = int.tryParse(idString ?? '');
           return AddEditCholesterolReadingScreen(readingId: id);
+        },
+      ),
+      GoRoute(
+        path: AppRoute.addWeight.path,
+        name: AppRoute.addWeight.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const AddEditWeightReadingScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.editWeight.path,
+        name: AppRoute.editWeight.name,
+        builder: (BuildContext context, GoRouterState state) {
+          final idString = state.pathParameters['id'];
+          final id = int.tryParse(idString ?? '');
+          return AddEditWeightReadingScreen(readingId: id);
         },
       ),
     ],

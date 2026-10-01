@@ -84,6 +84,10 @@ void main() {
       expect(AppRoute.addCholesterol.name, 'add_cholesterol');
       expect(AppRoute.editCholesterol.path, '/cholesterol/edit/:id');
       expect(AppRoute.editCholesterol.name, 'edit_cholesterol');
+      expect(AppRoute.addWeight.path, '/weight/add');
+      expect(AppRoute.addWeight.name, 'add_weight');
+      expect(AppRoute.editWeight.path, '/weight/edit/:id');
+      expect(AppRoute.editWeight.name, 'edit_weight');
     });
 
     testWidgets('Renders OverviewScreen on initial "/" route', (tester) async {
@@ -242,6 +246,24 @@ void main() {
         expect(find.text('Edit Cholesterol'), findsOneWidget);
       },
     );
+
+    testWidgets('Navigates to AddEditWeightReadingScreen on "/weight/add"', (
+      tester,
+    ) async {
+      await tester.pumpWidget(createTestApp(initialLocation: '/weight/add'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Log Weight'), findsOneWidget);
+    });
+
+    testWidgets('Navigates to AddEditWeightReadingScreen on "/weight/edit/1"', (
+      tester,
+    ) async {
+      await tester.pumpWidget(createTestApp(initialLocation: '/weight/edit/1'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit Weight'), findsOneWidget);
+    });
 
     testWidgets('Renders error screen on unknown route', (tester) async {
       await tester.pumpWidget(

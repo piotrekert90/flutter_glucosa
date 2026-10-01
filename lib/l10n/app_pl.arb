@@ -154,6 +154,13 @@
   "cholesterolValueHint": "np. 190",
   "cholesterolSavedSuccess": "Wynik cholesterolu został pomyślnie zapisany",
   "cholesterolDeletedSuccess": "Wynik cholesterolu został usunięty",
-  "weight": "Waga"
+  "weight": "Waga",
+  "addWeight": "Dodaj wagę",
+  "editWeight": "Edytuj wagę",
+  "deleteWeight": "Usuń wagę",
+  "deleteWeightConfirm": "Czy na pewno chcesz usunąć ten wynik wagi?",
+  "weightValueHint": "np. 75.5",
+  "weightSavedSuccess": "Wynik wagi został pomyślnie zapisany",
+  "weightDeletedSuccess": "Wynik wagi został usunięty"
 }
 
