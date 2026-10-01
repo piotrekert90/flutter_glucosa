@@ -139,6 +139,10 @@
   "deleteKetonesConfirm": "Czy na pewno chcesz usunąć ten wynik ketonów?",
   "ketonesValueHint": "np. 0.5",
   "ketonesSavedSuccess": "Wynik ketonów został pomyślnie zapisany",
-  "ketonesDeletedSuccess": "Wynik ketonów został usunięty"
+  "ketonesDeletedSuccess": "Wynik ketonów został usunięty",
+  "cholesterol": "Cholesterol",
+  "cholesterolStatusNormal": "W normie (<200)",
+  "cholesterolStatusElevated": "Graniczny (200-239)",
+  "cholesterolStatusHigh": "Wysoki (≥240)"
 }
 

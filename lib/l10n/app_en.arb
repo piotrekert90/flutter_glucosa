@@ -542,5 +542,21 @@
   "ketonesDeletedSuccess": "Ketone measurement deleted successfully",
   "@ketonesDeletedSuccess": {
     "description": "Snackbar message when ketone reading is deleted"
+  },
+  "cholesterol": "Cholesterol",
+  "@cholesterol": {
+    "description": "Title label for cholesterol panel metric"
+  },
+  "cholesterolStatusNormal": "Normal (<200)",
+  "@cholesterolStatusNormal": {
+    "description": "Status badge label for normal total cholesterol level"
+  },
+  "cholesterolStatusElevated": "Borderline (200-239)",
+  "@cholesterolStatusElevated": {
+    "description": "Status badge label for borderline total cholesterol level"
+  },
+  "cholesterolStatusHigh": "High (≥240)",
+  "@cholesterolStatusHigh": {
+    "description": "Status badge label for high total cholesterol level"
   }
 }
