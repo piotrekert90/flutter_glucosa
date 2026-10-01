@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../features/blood_pressure/data/models/blood_pressure_reading_model.dart';
 import '../../features/glucose/data/models/glucose_reading_model.dart';
 import '../../features/hba1c/data/models/hba1c_reading_model.dart';
+import '../../features/ketones/data/models/ketone_reading_model.dart';
 import '../../features/settings/data/models/user_profile_model.dart';
 
 part 'isar_provider.g.dart';
@@ -20,6 +21,7 @@ Future<Isar> isarDb(Ref ref) async {
         GlucoseReadingModelSchema,
         HbA1cReadingModelSchema,
         BloodPressureReadingModelSchema,
+        KetoneReadingModelSchema,
       ], directory: directory.path);
   ref.onDispose(() {
     if (isar.isOpen) {
