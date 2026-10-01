@@ -1,0 +1,375 @@
+{
+  "@@locale": "en",
+  "appTitle": "Todo Flow",
+  "@appTitle": {
+    "description": "The title of the application displayed in the top appBar"
+  },
+  "initializationFailed": "Initialization Failed",
+  "@initializationFailed": {
+    "description": "Header text displayed when startup initialization fails"
+  },
+  "tryAgain": "Try again",
+  "@tryAgain": {
+    "description": "Button label to retry a failed operation"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Button label to retry an operation"
+  },
+  "pageNotFound": "Page not found: {uri}",
+  "@pageNotFound": {
+    "description": "Error message displayed for unrecognized routes",
+    "placeholders": {
+      "uri": {
+        "type": "String",
+        "example": "/unknown"
+      }
+    }
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings label"
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title displayed on the settings screen app bar"
+  },
+  "failedToLoadSettings": "Failed to load settings",
+  "@failedToLoadSettings": {
+    "description": "Error message when settings cannot be retrieved"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme label"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "Label for system default theme option"
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Label for light theme option"
+  },
+  "themeDark": "Dark Mode",
+  "@themeDark": {
+    "description": "Label for dark theme option"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Label for notifications toggle switch"
+  },
+  "receivePushNotifications": "Receive push notifications",
+  "@receivePushNotifications": {
+    "description": "Subtitle for notifications toggle switch"
+  },
+  "failedToUpdatePreferences": "Failed to update preferences",
+  "@failedToUpdatePreferences": {
+    "description": "Snackbar message when updating notification preference fails"
+  },
+  "failedToUpdateThemeMode": "Failed to update theme mode",
+  "@failedToUpdateThemeMode": {
+    "description": "Snackbar message when updating theme mode fails"
+  },
+  "settingsTooltip": "Settings",
+  "@settingsTooltip": {
+    "description": "Accessibility tooltip for settings button in app bar"
+  },
+  "failedToLoadTasks": "Failed to load tasks",
+  "@failedToLoadTasks": {
+    "description": "Error message when task list cannot be loaded"
+  },
+  "noTasksFound": "No tasks found",
+  "@noTasksFound": {
+    "description": "Header message displayed when the task list is empty"
+  },
+  "noTodos": "No todos yet",
+  "@noTodos": {
+    "description": "Header message when no tasks exist"
+  },
+  "noTodosDescription": "Add a new task using the button below",
+  "@noTodosDescription": {
+    "description": "Subtitle encouraging user to create a task"
+  },
+  "addFirstTaskDescription": "Add your first task using the button below",
+  "@addFirstTaskDescription": {
+    "description": "Subtext prompting user to add their first task"
+  },
+  "failedToToggleTask": "Failed to toggle task",
+  "@failedToToggleTask": {
+    "description": "Snackbar message when task completion toggle fails"
+  },
+  "failedToDeleteTask": "Failed to delete task",
+  "@failedToDeleteTask": {
+    "description": "Snackbar message when task deletion fails"
+  },
+  "taskDeleted": "Task deleted",
+  "@taskDeleted": {
+    "description": "Snackbar confirmation message after a task is deleted"
+  },
+  "todoDeleted": "Deleted \"{title}\"",
+  "@todoDeleted": {
+    "description": "Snackbar notification after deleting a task with title",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "undo": "Undo",
+  "@undo": {
+    "description": "Label for undo action"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Label for delete action"
+  },
+  "failedToAddTask": "Failed to add task",
+  "@failedToAddTask": {
+    "description": "Snackbar message when creating a new task fails"
+  },
+  "taskDetails": "Task Details",
+  "@taskDetails": {
+    "description": "Title displayed on the task details screen"
+  },
+  "taskDetailsTitle": "Task Details",
+  "@taskDetailsTitle": {
+    "description": "Title displayed on the task details screen app bar"
+  },
+  "todoNotFound": "Todo not found",
+  "@todoNotFound": {
+    "description": "Message displayed when the requested task does not exist"
+  },
+  "todoDeletedNotice": "Todo was deleted",
+  "@todoDeletedNotice": {
+    "description": "Notice shown when a task is deleted from details screen"
+  },
+  "completed": "Completed",
+  "@completed": {
+    "description": "Completed status toggle label"
+  },
+  "created": "Created",
+  "@created": {
+    "description": "Creation timestamp label"
+  },
+  "genericError": "An error occurred",
+  "@genericError": {
+    "description": "Generic error header message"
+  },
+  "taskNotFound": "Task not found.",
+  "@taskNotFound": {
+    "description": "Message displayed when the requested task does not exist"
+  },
+  "statusLabel": "Status",
+  "@statusLabel": {
+    "description": "Label for task completion status field"
+  },
+  "statusCompleted": "Completed",
+  "@statusCompleted": {
+    "description": "Status value indicating a task is finished"
+  },
+  "statusInProgress": "In progress",
+  "@statusInProgress": {
+    "description": "Status value indicating a task is not finished"
+  },
+  "createdAtLabel": "Created at",
+  "@createdAtLabel": {
+    "description": "Label for task creation timestamp field"
+  },
+  "addTaskButton": "Add Task",
+  "@addTaskButton": {
+    "description": "Label for floating action button to create a task"
+  },
+  "newTask": "New Task",
+  "@newTask": {
+    "description": "Header for new task dialog"
+  },
+  "newTaskDialogTitle": "New Task",
+  "@newTaskDialogTitle": {
+    "description": "Title displayed on new task dialog"
+  },
+  "title": "Title",
+  "@title": {
+    "description": "Field label for title"
+  },
+  "titleHint": "E.g. Buy milk",
+  "@titleHint": {
+    "description": "Hint text for title input"
+  },
+  "titleEmptyError": "Title cannot be empty",
+  "@titleEmptyError": {
+    "description": "Error message when title is empty"
+  },
+  "taskTitleLabel": "Title",
+  "@taskTitleLabel": {
+    "description": "Input field label for task title"
+  },
+  "taskTitleHint": "E.g. Buy milk",
+  "@taskTitleHint": {
+    "description": "Input field hint text for task title"
+  },
+  "titleCannotBeEmpty": "Title cannot be empty",
+  "@titleCannotBeEmpty": {
+    "description": "Validation error message when task title is empty"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button label"
+  },
+  "cancelButton": "Cancel",
+  "@cancelButton": {
+    "description": "Button label to cancel dialog action"
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Add button label"
+  },
+  "addButton": "Add",
+  "@addButton": {
+    "description": "Button label to submit dialog action"
+  },
+  "markAsNotDone": "Mark \"{title}\" as not done",
+  "@markAsNotDone": {
+    "description": "Semantic accessibility label for unchecking a task",
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "Buy milk"
+      }
+    }
+  },
+  "markAsDone": "Mark \"{title}\" as done",
+  "@markAsDone": {
+    "description": "Semantic accessibility label for checking a task",
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "Buy milk"
+      }
+    }
+  },
+  "errorPrefix": "Error: {message}",
+  "@errorPrefix": {
+    "description": "Prefix for formatted error messages",
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "errorNotFound": "This item no longer exists.",
+  "@errorNotFound": {
+    "description": "Failure message for not found"
+  },
+  "errorDatabase": "Something went wrong while saving your data. Please try again.",
+  "@errorDatabase": {
+    "description": "Failure message for database error"
+  },
+  "errorNetwork": "A network error occurred. Please check your connection and try again.",
+  "@errorNetwork": {
+    "description": "Failure message for network error"
+  },
+  "errorUnauthorized": "Your session has expired. Please sign in again.",
+  "@errorUnauthorized": {
+    "description": "Failure message for unauthorized"
+  },
+  "errorValidation": "Some fields contain invalid values.",
+  "@errorValidation": {
+    "description": "Failure message for validation error"
+  },
+  "appearance": "Appearance",
+  "@appearance": {
+    "description": "Appearance section header"
+  },
+  "about": "About",
+  "@about": {
+    "description": "About section header"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "App version label"
+  },
+  "licenses": "Licenses",
+  "@licenses": {
+    "description": "Licenses tile label"
+  },
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Privacy policy tile label"
+  },
+  "poweredByFlutter": "Built with Flutter",
+  "@poweredByFlutter": {
+    "description": "Footer label on licenses screen"
+  },
+  "privacyPolicyHeaderSubtitle": "Offline & Privacy-First",
+  "@privacyPolicyHeaderSubtitle": {
+    "description": "Subtitle in privacy policy screen header"
+  },
+  "privacyPolicyIntro": "This application stores your data locally on your device. We respect your privacy and do not sell or collect your personal records.",
+  "@privacyPolicyIntro": {
+    "description": "Introduction text in privacy policy screen"
+  },
+  "privacyPolicySection1Title": "Local-First Storage",
+  "@privacyPolicySection1Title": {
+    "description": "Title of section 1 in privacy policy"
+  },
+  "privacyPolicySection1Body": "All tasks and settings remain on your physical device.",
+  "@privacyPolicySection1Body": {
+    "description": "Body of section 1 in privacy policy"
+  },
+  "privacyPolicySection2Title": "Diagnostics & Crash Reports",
+  "@privacyPolicySection2Title": {
+    "description": "Title of section 2 in privacy policy"
+  },
+  "privacyPolicySection2Body": "Anonymous crash logs may be collected to help improve application reliability without containing personal information.",
+  "@privacyPolicySection2Body": {
+    "description": "Body of section 2 in privacy policy"
+  },
+  "privacyPolicySection3Title": "Hardware Key Security",
+  "@privacyPolicySection3Title": {
+    "description": "Title of section 3 in privacy policy"
+  },
+  "privacyPolicySection3Body": "Sensitive device states utilize system-native sandboxing and keychain facilities.",
+  "@privacyPolicySection3Body": {
+    "description": "Body of section 3 in privacy policy"
+  },
+  "privacyPolicySection4Title": "Complete Data Control",
+  "@privacyPolicySection4Title": {
+    "description": "Title of section 4 in privacy policy"
+  },
+  "privacyPolicySection4Body": "You retain full control over your data. You can delete or reset application data at any time from device settings.",
+  "@privacyPolicySection4Body": {
+    "description": "Body of section 4 in privacy policy"
+  },
+  "privacyPolicyContactTitle": "Contact & Support",
+  "@privacyPolicyContactTitle": {
+    "description": "Contact title in privacy policy"
+  },
+  "privacyPolicyContactBody": "For inquiries or privacy feedback, reach out to our team:",
+  "@privacyPolicyContactBody": {
+    "description": "Contact body in privacy policy"
+  },
+  "initErrorTitle": "Initialization Error",
+  "@initErrorTitle": {
+    "description": "Title for app initialization error"
+  },
+  "initErrorSubtitle": "Failed to initialize application storage or services. Please try restarting or retry.",
+  "@initErrorSubtitle": {
+    "description": "Subtitle for app initialization error"
+  },
+  "retryStartup": "Retry Startup",
+  "@retryStartup": {
+    "description": "Retry button on startup error screen"
+  },
+  "initErrorSemantics": "Startup initialization error screen",
+  "@initErrorSemantics": {
+    "description": "Semantics label for initialization error screen"
+  },
+  "rateApp": "Rate App",
+  "@rateApp": {
+    "description": "Label for rate app tile in settings"
+  },
+  "couldNotOpenStore": "Could not open app store",
+  "@couldNotOpenStore": {
+    "description": "Error message when opening app store fails"
+  }
+}
