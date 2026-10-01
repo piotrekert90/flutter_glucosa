@@ -20,12 +20,12 @@ minimal l10n blueprint.*
 | `bash scripts/before_push.sh` | Full pre-push verification pipeline |
 
 ### Architecture & Layer Boundaries
-Feature-First Clean Architecture under `lib/features/<feature>/`. Two features currently exist: `todos`
-(CRUD with streams) and `settings` (singleton Isar collection, id=0). Global providers live under
+Feature-First Clean Architecture under `lib/features/<feature>/`. Features include: `glucose`, `history`,
+`overview`, and `settings` (singleton Isar collection, id=0). Global providers live under
 `lib/core/providers/`, and declarative routing is configured under `lib/core/router/` using `GoRouter`.
 
-- **Domain** (`lib/features/<feature>/domain/`): Pure Dart — entities, repository interfaces, use cases. NO
-  Flutter or Riverpod imports allowed here.
+- **Domain** (`lib/features/<feature>/domain/`): Pure Dart — entities, repository interfaces, use cases,
+  enums, and value objects. NO Flutter or Riverpod imports allowed here.
 - **Data** (`lib/features/<feature>/data/`): Repository implementations, Isar models, and **synchronous**
   mappers (extensions).
 - **Presentation** (`lib/features/<feature>/presentation/`): UI (`ConsumerWidget`) and state management via
@@ -38,8 +38,8 @@ Feature-First Clean Architecture under `lib/features/<feature>/`. Two features c
 
 #### Strict Dependency Rules
 - **No data-model leakage into presentation:** Presentation files (`notifier`, widgets) must never import
-  `TodoModel`, `UserPreferencesModel`, or any file from `lib/features/*/data/models/`. Only domain entities
-  (`Todo`, `UserPreferences`) and failure types may be referenced.
+  `UserProfileModel`, `GlucoseReadingModel`, or any file from `lib/features/*/data/models/`. Only domain entities
+  (`UserProfile`, `GlucoseReading`) and failure types may be referenced.
 - **No Isar annotations in presentation:** `@collection`, `@property`, `@Index`, `Isar.autoIncrement`, and
   any other Isar-specific annotations or types must not appear in presentation-layer code.
 - **Mappers must be stateless:** Mapper functions (e.g. `toDomain()`, `toModel()`) must be synchronous,
@@ -82,7 +82,7 @@ Feature-First Clean Architecture under `lib/features/<feature>/`. Two features c
 - **Widget tests:** fake repositories injected via `ProviderScope(overrides: [...])`.
 - **Golden tests:** tagged `golden` in `dart_test.yaml`. Run with `flutter test --tags=golden`.
 - **Screenshot tests:** integration test harness in `integration_test/app_screenshots_test.dart` tagged `screenshot`.
-- **Fixtures:** `test/helpers/fake_todo_repository.dart`, `test/helpers/fake_user_preferences_repository.dart`.
+- **Fixtures:** `test/helpers/fake_user_profile_repository.dart`.
   Always call `.dispose()` in `tearDown()` to close stream controllers.
 
 ### Generated Files

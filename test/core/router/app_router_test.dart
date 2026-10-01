@@ -4,30 +4,30 @@ import 'package:flutter_glucosa/core/router/app_router.dart';
 import 'package:flutter_glucosa/core/router/app_routes.dart';
 import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
 import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
-import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
+import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/licenses_screen.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/privacy_policy_screen.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../helpers/fake_user_preferences_repository.dart';
+import '../../helpers/fake_user_profile_repository.dart';
 
 void main() {
-  late FakeUserPreferencesRepository fakeUserPreferencesRepository;
+  late FakeUserProfileRepository fakeUserProfileRepository;
 
   setUp(() {
-    fakeUserPreferencesRepository = FakeUserPreferencesRepository();
+    fakeUserProfileRepository = FakeUserProfileRepository();
   });
 
   tearDown(() {
-    fakeUserPreferencesRepository.dispose();
+    fakeUserProfileRepository.dispose();
   });
 
   Widget createTestApp({String? initialLocation}) {
     return ProviderScope(
       overrides: [
-        userPreferencesRepositoryProvider.overrideWithValue(
-          fakeUserPreferencesRepository,
+        userProfileRepositoryProvider.overrideWithValue(
+          fakeUserProfileRepository,
         ),
       ],
       child: Consumer(

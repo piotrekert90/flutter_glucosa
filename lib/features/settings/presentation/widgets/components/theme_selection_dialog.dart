@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../l10n/app_localizations.dart';
-import '../../../domain/entities/user_preferences.dart';
+import '../../../../../core/domain/enums/user_theme_mode.dart';
 
 /// A dialog for choosing the app theme mode (system, light, dark).
 class ThemeSelectionDialog extends StatelessWidget {

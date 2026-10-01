@@ -4,19 +4,19 @@ library;
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_glucosa/core/domain/enums/enums.dart';
+import 'package:flutter_glucosa/core/presentation/theme/app_theme.dart';
+import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
+import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
+import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
+import 'package:flutter_glucosa/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_glucosa/features/settings/domain/entities/user_preferences.dart';
-import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
-import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
-import 'package:flutter_glucosa/l10n/app_localizations.dart';
-import 'package:flutter_glucosa/core/presentation/theme/app_theme.dart';
-
-import '../../../../helpers/fake_user_preferences_repository.dart';
+import '../../../../helpers/fake_user_profile_repository.dart';
 
 void main() {
-  late FakeUserPreferencesRepository repository;
+  late FakeUserProfileRepository repository;
 
   tearDown(() {
     repository.dispose();
@@ -26,8 +26,8 @@ void main() {
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 3.0;
 
-    repository = FakeUserPreferencesRepository(
-      initialPreferences: const UserPreferences(
+    repository = FakeUserProfileRepository(
+      initialProfile: const UserProfile(
         themeMode: UserThemeMode.dark,
         isNotificationsEnabled: false,
       ),
@@ -36,7 +36,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          userPreferencesRepositoryProvider.overrideWithValue(repository),
+          userProfileRepositoryProvider.overrideWithValue(repository),
         ],
         child: MaterialApp(
           locale: const Locale('en'),

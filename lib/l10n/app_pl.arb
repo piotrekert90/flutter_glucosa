@@ -41,6 +41,7 @@
   "errorNetwork": "Wystąpił błąd sieci. Sprawdź połączenie i spróbuj ponownie.",
   "errorUnauthorized": "Twoja sesja wygasła. Zaloguj się ponownie.",
   "errorValidation": "Niektóre pola zawierają nieprawidłowe wartości.",
+  "userProfile": "Profil",
   "appearance": "Wygląd",
   "about": "O aplikacji",
   "version": "Wersja",

@@ -5,20 +5,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_glucosa/app.dart';
 import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
 import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
-import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
+import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
 
-import 'helpers/fake_user_preferences_repository.dart';
+import 'helpers/fake_user_profile_repository.dart';
 
 void main() {
-  late FakeUserPreferencesRepository userPreferencesRepository;
+  late FakeUserProfileRepository userProfileRepository;
 
   setUp(() {
-    userPreferencesRepository = FakeUserPreferencesRepository();
+    userProfileRepository = FakeUserProfileRepository();
   });
 
   tearDown(() {
-    userPreferencesRepository.dispose();
+    userProfileRepository.dispose();
   });
 
   testWidgets('App loads and allows navigating between bottom tabs', (
@@ -27,8 +27,8 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          userPreferencesRepositoryProvider.overrideWithValue(
-            userPreferencesRepository,
+          userProfileRepositoryProvider.overrideWithValue(
+            userProfileRepository,
           ),
         ],
         child: const App(),

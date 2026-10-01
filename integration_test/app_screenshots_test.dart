@@ -2,14 +2,15 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_glucosa/core/domain/enums/enums.dart';
 import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
-import 'package:flutter_glucosa/features/settings/data/providers/user_preferences_repository_provider.dart';
-import 'package:flutter_glucosa/features/settings/domain/entities/user_preferences.dart';
+import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
+import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import '../test/helpers/fake_user_preferences_repository.dart';
+import '../test/helpers/fake_user_profile_repository.dart';
 import 'helpers/screenshot_test_helper.dart';
 
 void main() {
@@ -29,15 +30,15 @@ void main() {
       testWidgets('Capture Overview and Settings screens ($localeStr)', (
         tester,
       ) async {
-        final prefsRepo = FakeUserPreferencesRepository(
-          initialPreferences: const UserPreferences(
+        final profileRepo = FakeUserProfileRepository(
+          initialProfile: const UserProfile(
             themeMode: UserThemeMode.system,
             isNotificationsEnabled: true,
           ),
         );
 
         final overrides = [
-          userPreferencesRepositoryProvider.overrideWithValue(prefsRepo),
+          userProfileRepositoryProvider.overrideWithValue(profileRepo),
         ];
 
         try {
@@ -65,7 +66,7 @@ void main() {
           await tester.pumpAndSettle();
           await binding.takeScreenshot('${prefix}02_settings_dark_$localeStr');
         } finally {
-          prefsRepo.dispose();
+          profileRepo.dispose();
         }
       });
     }

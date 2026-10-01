@@ -44,7 +44,7 @@ final class IsarDbProvider
   }
 }
 
-String _$isarDbHash() => r'5b264737202294ef49fcd5d9db21f4165f8074f1';
+String _$isarDbHash() => r'f7845e23a35b0b546f8b6ec5f1e08cc33007b09e';
 
 /// Provides the synchronous [Isar] database instance for repositories.
 ///

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_glucosa/l10n/app_localizations.dart';
 
-import 'features/settings/domain/entities/user_preferences.dart';
-import 'features/settings/presentation/providers/user_preferences_notifier.dart';
+import 'core/domain/enums/enums.dart';
 import 'core/presentation/theme/app_theme.dart';
 import 'core/router/app_router.dart';
+import 'features/settings/presentation/providers/user_profile_notifier.dart';
 
 /// Root application widget configuring themes, navigation, and core Material3 setup.
 ///
-/// Reactively subscribes to [userPreferencesProvider] to apply dark, light, or system
+/// Reactively subscribes to [userProfileProvider] to apply dark, light, or system
 /// theme modes dynamically, and uses [appRouterProvider] for declarative routing.
 class App extends ConsumerWidget {
   /// Creates a new root [App] widget instance.
@@ -18,13 +18,13 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final preferences = ref.watch(userPreferencesProvider).value;
+    final profile = ref.watch(userProfileProvider).value;
     final router = ref.watch(appRouterProvider);
 
     return MaterialApp.router(
       routerConfig: router,
       onGenerateTitle: (context) {
-        final title = AppLocalizations.of(context)?.appTitle ?? 'Todo Flow';
+        final title = AppLocalizations.of(context)?.appTitle ?? 'Glucosa';
         return kDebugMode ? '$title (Dev)' : title;
       },
       localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -32,7 +32,7 @@ class App extends ConsumerWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: _toFlutterThemeMode(
-        preferences?.themeMode ?? UserThemeMode.system,
+        profile?.themeMode ?? UserThemeMode.system,
       ),
     );
   }

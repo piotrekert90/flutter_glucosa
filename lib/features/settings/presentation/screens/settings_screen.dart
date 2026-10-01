@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../core/domain/enums/enums.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/presentation/extensions/failure_ui_extension.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
@@ -11,50 +12,76 @@ import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/utils/crash_reporter.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../domain/entities/user_preferences.dart';
-import '../providers/user_preferences_notifier.dart';
+import '../providers/user_profile_notifier.dart';
 import '../widgets/components/custom_settings_tile.dart';
 import '../widgets/components/custom_settings_toggle.dart';
 import '../widgets/components/section_header.dart';
 import '../widgets/components/theme_selection_dialog.dart';
 
-/// Presentation widget rendering the user preferences and settings screen.
+/// Presentation widget rendering the user profile and application settings screen.
 ///
-/// Displays theme mode selectors, notification switches, and application information,
-/// backed by [userPreferencesProvider].
+/// Displays clinical preferences (units, target ranges, diabetes type), appearance,
+/// notification switches, and application information backed by [userProfileProvider].
 class SettingsScreen extends ConsumerWidget {
   /// Creates a settings screen widget instance.
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final preferencesAsync = ref.watch(userPreferencesProvider);
+    final profileAsync = ref.watch(userProfileProvider);
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n?.settingsTitle ?? 'Settings')),
-      body: preferencesAsync.when(
+      body: profileAsync.when(
         loading: () => const AppLoadingIndicator(),
         error: (error, _) => AppErrorView(
           message: error is Failure && l10n != null
               ? error.toUserMessage(l10n)
               : error.toString(),
           retryLabel: l10n?.tryAgain ?? 'Try again',
-          onRetry: () => ref.invalidate(userPreferencesProvider),
+          onRetry: () => ref.invalidate(userProfileProvider),
         ),
-        data: (preferences) => Center(
+        data: (profile) => Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 800),
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               children: [
+                SectionHeader(
+                  label: profile.name.isNotEmpty
+                      ? profile.name
+                      : (l10n?.userProfile ?? 'Profile'),
+                ),
+                CustomSettingsTile(
+                  icon: Icons.person_outline,
+                  title: 'Diabetes Type',
+                  valueText: _diabetesTypeLabel(profile.diabetesType),
+                  showChevron: false,
+                ),
+                CustomSettingsTile(
+                  icon: Icons.speed_outlined,
+                  title: 'Glucose Unit',
+                  valueText: profile.preferredGlucoseUnit == GlucoseUnit.mgDl
+                      ? 'mg/dL'
+                      : 'mmol/L',
+                  showChevron: false,
+                ),
+                CustomSettingsTile(
+                  icon: Icons.track_changes_outlined,
+                  title: 'Target Range',
+                  valueText:
+                      '${profile.targetRange.minMgDl}–${profile.targetRange.maxMgDl} mg/dL (${profile.targetRange.preset.name.toUpperCase()})',
+                  showChevron: false,
+                ),
+                const SizedBox(height: 12),
                 SectionHeader(label: l10n?.appearance ?? 'Appearance'),
                 CustomSettingsTile(
                   icon: Icons.palette_outlined,
                   title: l10n?.theme ?? 'Theme',
-                  valueText: _themeLabel(l10n, preferences.themeMode),
+                  valueText: _themeLabel(l10n, profile.themeMode),
                   onTap: () =>
-                      _showThemePicker(context, ref, preferences.themeMode),
+                      _showThemePicker(context, ref, profile.themeMode),
                 ),
                 const SizedBox(height: 12),
                 CustomSettingsToggle(
@@ -63,10 +90,10 @@ class SettingsScreen extends ConsumerWidget {
                   subtitle:
                       l10n?.receivePushNotifications ??
                       'Receive push notifications',
-                  value: preferences.isNotificationsEnabled,
+                  value: profile.isNotificationsEnabled,
                   onChanged: (value) async {
                     final (success, failure) = await ref
-                        .read(userPreferencesProvider.notifier)
+                        .read(userProfileProvider.notifier)
                         .updateNotificationsEnabled(value);
                     if (!success && context.mounted) {
                       AppSnackBar.show(
@@ -116,6 +143,15 @@ class SettingsScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  String _diabetesTypeLabel(DiabetesType type) {
+    return switch (type) {
+      DiabetesType.type1 => 'Type 1',
+      DiabetesType.type2 => 'Type 2',
+      DiabetesType.gestational => 'Gestational',
+      DiabetesType.lada => 'LADA',
+    };
   }
 
   Future<void> _rateApp(BuildContext context) async {
@@ -172,7 +208,7 @@ class SettingsScreen extends ConsumerWidget {
       currentMode: current,
       onSelected: (mode) async {
         final (success, failure) = await ref
-            .read(userPreferencesProvider.notifier)
+            .read(userProfileProvider.notifier)
             .updateThemeMode(mode);
         if (!success && context.mounted) {
           final l10n = AppLocalizations.of(context);

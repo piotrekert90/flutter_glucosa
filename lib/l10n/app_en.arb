@@ -34,6 +34,10 @@
   "@settingsTitle": {
     "description": "Title displayed on the settings screen app bar"
   },
+  "userProfile": "Profile",
+  "@userProfile": {
+    "description": "Section header for user profile"
+  },
   "failedToLoadSettings": "Failed to load settings",
   "@failedToLoadSettings": {
     "description": "Error message when settings cannot be retrieved"
