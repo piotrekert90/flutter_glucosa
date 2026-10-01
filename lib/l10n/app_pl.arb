@@ -132,6 +132,13 @@
   "ketones": "Ketony",
   "ketoneStatusNormal": "W normie (<0.6)",
   "ketoneStatusElevated": "Podwyższone (0.6-1.5)",
-  "ketoneStatusHigh": "Wysokie (>1.5)"
+  "ketoneStatusHigh": "Wysokie (>1.5)",
+  "addKetones": "Dodaj ketony",
+  "editKetones": "Edytuj ketony",
+  "deleteKetones": "Usuń ketony",
+  "deleteKetonesConfirm": "Czy na pewno chcesz usunąć ten wynik ketonów?",
+  "ketonesValueHint": "np. 0.5",
+  "ketonesSavedSuccess": "Wynik ketonów został pomyślnie zapisany",
+  "ketonesDeletedSuccess": "Wynik ketonów został usunięty"
 }
 

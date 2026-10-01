@@ -76,6 +76,10 @@ void main() {
       expect(AppRoute.addBloodPressure.name, 'add_blood_pressure');
       expect(AppRoute.editBloodPressure.path, '/blood-pressure/edit/:id');
       expect(AppRoute.editBloodPressure.name, 'edit_blood_pressure');
+      expect(AppRoute.addKetones.path, '/ketones/add');
+      expect(AppRoute.addKetones.name, 'add_ketones');
+      expect(AppRoute.editKetones.path, '/ketones/edit/:id');
+      expect(AppRoute.editKetones.name, 'edit_ketones');
     });
 
     testWidgets('Renders OverviewScreen on initial "/" route', (tester) async {
@@ -187,6 +191,27 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.text('Edit Blood Pressure'), findsOneWidget);
+      },
+    );
+
+    testWidgets('Navigates to AddEditKetoneReadingScreen on "/ketones/add"', (
+      tester,
+    ) async {
+      await tester.pumpWidget(createTestApp(initialLocation: '/ketones/add'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Log Ketones'), findsOneWidget);
+    });
+
+    testWidgets(
+      'Navigates to AddEditKetoneReadingScreen on "/ketones/edit/1"',
+      (tester) async {
+        await tester.pumpWidget(
+          createTestApp(initialLocation: '/ketones/edit/1'),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.text('Edit Ketones'), findsOneWidget);
       },
     );
 

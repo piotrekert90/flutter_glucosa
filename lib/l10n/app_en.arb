@@ -514,5 +514,33 @@
   "ketoneStatusHigh": "High (>1.5)",
   "@ketoneStatusHigh": {
     "description": "Status badge label for high ketone level"
+  },
+  "addKetones": "Log Ketones",
+  "@addKetones": {
+    "description": "Title for screen adding a new ketone reading"
+  },
+  "editKetones": "Edit Ketones",
+  "@editKetones": {
+    "description": "Title for screen editing an existing ketone reading"
+  },
+  "deleteKetones": "Delete Ketones",
+  "@deleteKetones": {
+    "description": "Delete button label for ketone reading"
+  },
+  "deleteKetonesConfirm": "Are you sure you want to delete this ketone reading?",
+  "@deleteKetonesConfirm": {
+    "description": "Confirmation prompt when deleting a ketone reading"
+  },
+  "ketonesValueHint": "e.g. 0.5",
+  "@ketonesValueHint": {
+    "description": "Hint text for ketone value input"
+  },
+  "ketonesSavedSuccess": "Ketone measurement saved successfully",
+  "@ketonesSavedSuccess": {
+    "description": "Snackbar message when ketone reading is saved"
+  },
+  "ketonesDeletedSuccess": "Ketone measurement deleted successfully",
+  "@ketonesDeletedSuccess": {
+    "description": "Snackbar message when ketone reading is deleted"
   }
 }

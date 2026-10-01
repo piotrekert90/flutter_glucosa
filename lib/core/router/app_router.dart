@@ -6,6 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../features/blood_pressure/presentation/screens/add_edit_blood_pressure_reading_screen.dart';
 import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import '../../features/hba1c/presentation/screens/add_edit_hba1c_reading_screen.dart';
+import '../../features/ketones/presentation/screens/add_edit_ketone_reading_screen.dart';
 import '../../features/history/presentation/screens/history_screen.dart';
 import '../../features/overview/presentation/screens/overview_screen.dart';
 import '../../features/settings/presentation/screens/licenses_screen.dart';
@@ -148,6 +149,21 @@ GoRouter appRouter(Ref ref) {
           final idString = state.pathParameters['id'];
           final id = int.tryParse(idString ?? '');
           return AddEditBloodPressureReadingScreen(readingId: id);
+        },
+      ),
+      GoRoute(
+        path: AppRoute.addKetones.path,
+        name: AppRoute.addKetones.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const AddEditKetoneReadingScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.editKetones.path,
+        name: AppRoute.editKetones.name,
+        builder: (BuildContext context, GoRouterState state) {
+          final idString = state.pathParameters['id'];
+          final id = int.tryParse(idString ?? '');
+          return AddEditKetoneReadingScreen(readingId: id);
         },
       ),
     ],
