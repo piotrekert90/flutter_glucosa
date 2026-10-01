@@ -246,5 +246,157 @@
   "couldNotOpenStore": "Could not open app store",
   "@couldNotOpenStore": {
     "description": "Error message when opening app store fails"
+  },
+  "glucose": "Blood Glucose",
+  "@glucose": {
+    "description": "Blood glucose metric label"
+  },
+  "addGlucoseReading": "Add Glucose Reading",
+  "@addGlucoseReading": {
+    "description": "Screen title and action for adding a new glucose reading"
+  },
+  "editGlucoseReading": "Edit Glucose Reading",
+  "@editGlucoseReading": {
+    "description": "Screen title for editing an existing glucose reading"
+  },
+  "glucoseReadingValue": "Glucose Value",
+  "@glucoseReadingValue": {
+    "description": "Label for glucose value input field"
+  },
+  "glucoseValueHint": "Enter value",
+  "@glucoseValueHint": {
+    "description": "Hint text for glucose value input field"
+  },
+  "glucoseReadingAdded": "Glucose reading added successfully",
+  "@glucoseReadingAdded": {
+    "description": "Snackbar message when a glucose reading is successfully added"
+  },
+  "glucoseReadingUpdated": "Glucose reading updated successfully",
+  "@glucoseReadingUpdated": {
+    "description": "Snackbar message when a glucose reading is successfully updated"
+  },
+  "glucoseReadingDeleted": "Glucose reading deleted",
+  "@glucoseReadingDeleted": {
+    "description": "Snackbar message when a glucose reading is successfully deleted"
+  },
+  "failedToAddGlucoseReading": "Failed to add glucose reading",
+  "@failedToAddGlucoseReading": {
+    "description": "Snackbar message when adding a glucose reading fails"
+  },
+  "failedToUpdateGlucoseReading": "Failed to update glucose reading",
+  "@failedToUpdateGlucoseReading": {
+    "description": "Snackbar message when updating a glucose reading fails"
+  },
+  "failedToDeleteGlucoseReading": "Failed to delete glucose reading",
+  "@failedToDeleteGlucoseReading": {
+    "description": "Snackbar message when deleting a glucose reading fails"
+  },
+  "mealContext": "Meal Context",
+  "@mealContext": {
+    "description": "Label for meal context selector"
+  },
+  "dateTime": "Date & Time",
+  "@dateTime": {
+    "description": "Label for date and time picker"
+  },
+  "notes": "Notes",
+  "@notes": {
+    "description": "Label for notes text field"
+  },
+  "notesHint": "Optional notes or comments",
+  "@notesHint": {
+    "description": "Hint text for notes input field"
+  },
+  "deleteReadingConfirmationTitle": "Delete Reading",
+  "@deleteReadingConfirmationTitle": {
+    "description": "Title of deletion confirmation dialog"
+  },
+  "deleteReadingConfirmationMessage": "Are you sure you want to delete this glucose reading? This action cannot be undone.",
+  "@deleteReadingConfirmationMessage": {
+    "description": "Message of deletion confirmation dialog"
+  },
+  "noReadingsYet": "No glucose readings recorded yet",
+  "@noReadingsYet": {
+    "description": "Empty state label when no readings exist"
+  },
+  "latestReading": "Latest Reading",
+  "@latestReading": {
+    "description": "Header for latest reading card"
+  },
+  "estimatedHbA1c": "Estimated HbA1c",
+  "@estimatedHbA1c": {
+    "description": "Header for estimated HbA1c card"
+  },
+  "targetRange": "Target Range",
+  "@targetRange": {
+    "description": "Label for clinical target range"
+  },
+  "statusHypoglycemia": "Hypoglycemia",
+  "@statusHypoglycemia": {
+    "description": "Clinical status label for very low blood glucose"
+  },
+  "statusLow": "Low",
+  "@statusLow": {
+    "description": "Clinical status label for low blood glucose"
+  },
+  "statusInRange": "In Range",
+  "@statusInRange": {
+    "description": "Clinical status label for target blood glucose"
+  },
+  "statusHigh": "High",
+  "@statusHigh": {
+    "description": "Clinical status label for high blood glucose"
+  },
+  "statusHyperglycemia": "Hyperglycemia",
+  "@statusHyperglycemia": {
+    "description": "Clinical status label for very high blood glucose"
+  },
+  "mealContextBeforeBreakfast": "Before Breakfast",
+  "@mealContextBeforeBreakfast": {
+    "description": "Meal context label for before breakfast"
+  },
+  "mealContextAfterBreakfast": "After Breakfast",
+  "@mealContextAfterBreakfast": {
+    "description": "Meal context label for after breakfast"
+  },
+  "mealContextBeforeLunch": "Before Lunch",
+  "@mealContextBeforeLunch": {
+    "description": "Meal context label for before lunch"
+  },
+  "mealContextAfterLunch": "After Lunch",
+  "@mealContextAfterLunch": {
+    "description": "Meal context label for after lunch"
+  },
+  "mealContextBeforeDinner": "Before Dinner",
+  "@mealContextBeforeDinner": {
+    "description": "Meal context label for before dinner"
+  },
+  "mealContextAfterDinner": "After Dinner",
+  "@mealContextAfterDinner": {
+    "description": "Meal context label for after dinner"
+  },
+  "mealContextSnack": "Snack",
+  "@mealContextSnack": {
+    "description": "Meal context label for snack"
+  },
+  "mealContextBedtime": "Bedtime",
+  "@mealContextBedtime": {
+    "description": "Meal context label for bedtime"
+  },
+  "mealContextNight": "Night",
+  "@mealContextNight": {
+    "description": "Meal context label for night"
+  },
+  "mealContextFasting": "Fasting",
+  "@mealContextFasting": {
+    "description": "Meal context label for fasting"
+  },
+  "mealContextRecheck": "Recheck",
+  "@mealContextRecheck": {
+    "description": "Meal context label for recheck"
+  },
+  "mealContextOther": "Other",
+  "@mealContextOther": {
+    "description": "Meal context label for other"
   }
 }
