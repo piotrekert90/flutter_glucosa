@@ -1,0 +1,110 @@
+# Environment & secret files
+.env
+*.env
+.env.local
+!.env.example
+
+# Firebase configuration files (injected via CI secrets)
+# NOTE: lib/firebase_options.dart contains Firebase client API keys which are
+# safe to commit per https://firebase.google.com/docs/projects/api-keys
+# (restricted via Firebase Security Rules + App Check). Keys are tracked in VCS.
+android/app/google-services.json
+android/app/src/*/google-services.json
+ios/Runner/GoogleService-Info*.plist
+ios/config/**/*.plist
+
+# Miscellaneous
+*.class
+*.log
+log.txt
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code settings
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+/screenshots/
+
+# Generated localization files
+lib/l10n/app_localizations*.dart
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio build artifacts
+/android/app/debug
+/android/app/profile
+/android/app/release
+/android/build/
+
+# Flutter generated platform files
+**/Flutter/ephemeral/
+**/Flutter/GeneratedPluginRegistrant.*
+**/generated_plugin_registrant.*
+**/generated_plugins.cmake
+**/generated_plugins.dart
+
+# Native dynamic libraries downloaded during testing
+*.dylib
+*.so
+*.dll
+
+# Golden test failure output artifacts
+**/failures/
+
+# Isar local database & testing artifacts
+*.isar
+*.isar.lock
+*.isar.bak
+*.bak
+default.isar
+
+# Security & diagnostic artifacts
+*.key
+*.keystore
+*.jks
+android/key.properties
+android/app/release.keystore
+crash_log.txt
+
+# Agent artifacts
+.ai*
+LOG_*.md
+.audit-*/
+
+# Generated screenshot output (not curated README assets)
+# Note: .github/assets/ contains curated README screenshots and IS tracked
+/screenshots/
+.screenshots/
+
+# Fastlane local reports & test artifacts
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/

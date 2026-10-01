@@ -1,0 +1,117 @@
+{
+  "@@locale": "pl",
+  "appTitle": "Todo Flow",
+  "initializationFailed": "Błąd Inicjalizacji",
+  "tryAgain": "Spróbuj ponownie",
+  "retry": "Ponów",
+  "pageNotFound": "Nie znaleziono strony: {uri}",
+  "settings": "Ustawienia",
+  "settingsTitle": "Ustawienia",
+  "failedToLoadSettings": "Nie udało się załadować ustawień",
+  "theme": "Motyw",
+  "themeSystem": "Systemowy",
+  "themeLight": "Jasny",
+  "themeDark": "Ciemny",
+  "notifications": "Powiadomienia",
+  "receivePushNotifications": "Otrzymuj powiadomienia push",
+  "failedToUpdatePreferences": "Nie udało się zaktualizować preferencji",
+  "failedToUpdateThemeMode": "Nie udało się zaktualizować motywu",
+  "settingsTooltip": "Ustawienia",
+  "failedToLoadTasks": "Nie udało się załadować zadań",
+  "noTasksFound": "Brak zadań",
+  "noTodos": "Brak zadań",
+  "noTodosDescription": "Dodaj nowe zadanie za pomocą przycisku poniżej",
+  "addFirstTaskDescription": "Dodaj swoje pierwsze zadanie za pomocą poniższego przycisku",
+  "failedToToggleTask": "Nie udało się zmienić statusu zadania",
+  "failedToDeleteTask": "Nie udało się usunąć zadania",
+  "taskDeleted": "Zadanie usunięte",
+  "todoDeleted": "Usunięto \"{title}\"",
+  "@todoDeleted": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "undo": "Cofnij",
+  "delete": "Usuń",
+  "failedToAddTask": "Nie udało się dodać zadania",
+  "taskDetails": "Szczegóły zadania",
+  "taskDetailsTitle": "Szczegóły zadania",
+  "todoNotFound": "Nie znaleziono zadania",
+  "todoDeletedNotice": "Zadanie zostało usunięte",
+  "completed": "Ukończone",
+  "created": "Utworzono",
+  "genericError": "Wystąpił błąd",
+  "taskNotFound": "Nie znaleziono zadania.",
+  "statusLabel": "Status",
+  "statusCompleted": "Ukończone",
+  "statusInProgress": "W trakcie",
+  "createdAtLabel": "Utworzono",
+  "addTaskButton": "Dodaj zadanie",
+  "newTask": "Nowe zadanie",
+  "newTaskDialogTitle": "Nowe Zadanie",
+  "title": "Tytuł",
+  "titleHint": "Np. Kupić mleko",
+  "titleEmptyError": "Tytuł nie może być pusty",
+  "taskTitleLabel": "Tytuł",
+  "taskTitleHint": "Np. Kupić mleko",
+  "titleCannotBeEmpty": "Tytuł nie może być pusty",
+  "cancel": "Anuluj",
+  "cancelButton": "Anuluj",
+  "add": "Dodaj",
+  "addButton": "Dodaj",
+  "markAsNotDone": "Oznacz \"{title}\" jako niewykonane",
+  "@markAsNotDone": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "markAsDone": "Oznacz \"{title}\" jako wykonane",
+  "@markAsDone": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "errorPrefix": "Błąd: {message}",
+  "@errorPrefix": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "errorNotFound": "Ten element już nie istnieje.",
+  "errorDatabase": "Wystąpił błąd podczas zapisywania danych. Spróbuj ponownie.",
+  "errorNetwork": "Wystąpił błąd sieci. Sprawdź połączenie i spróbuj ponownie.",
+  "errorUnauthorized": "Twoja sesja wygasła. Zaloguj się ponownie.",
+  "errorValidation": "Niektóre pola zawierają nieprawidłowe wartości.",
+  "appearance": "Wygląd",
+  "about": "O aplikacji",
+  "version": "Wersja",
+  "licenses": "Licencje",
+  "privacyPolicy": "Polityka prywatności",
+  "poweredByFlutter": "Zbudowano we Flutterze",
+  "privacyPolicyHeaderSubtitle": "Prywatność i działanie offline",
+  "privacyPolicyIntro": "Ta aplikacja przechowuje Twoje dane lokalnie na Twoim urządzeniu. Szanujemy Twoją prywatność i nie gromadzimy ani nie sprzedajemy Twoich danych.",
+  "privacyPolicySection1Title": "Przechowywanie lokalne",
+  "privacyPolicySection1Body": "Wszystkie zadania i preferencje pozostają na Twoim fizycznym urządzeniu.",
+  "privacyPolicySection2Title": "Diagnostyka i raporty awarii",
+  "privacyPolicySection2Body": "Anonimowe raporty błędów mogą być zbierane w celu poprawy stabilności bez zawartości danych osobowych.",
+  "privacyPolicySection3Title": "Ochrona sprzętowa",
+  "privacyPolicySection3Body": "Kluczowe dane korzystają z systemowej piaskownicy oraz bezpiecznego magazynu kluczy.",
+  "privacyPolicySection4Title": "Pełna kontrola nad danymi",
+  "privacyPolicySection4Body": "Masz pełną kontrolę nad swoimi danymi. Możesz w każdej chwili usunąć lub zresetować dane z poziomu ustawień urządzenia.",
+  "privacyPolicyContactTitle": "Kontakt i wsparcie",
+  "privacyPolicyContactBody": "W przypadku pytań lub uwag dotyczących prywatności napisz do nas:",
+  "initErrorTitle": "Błąd inicjalizacji",
+  "initErrorSubtitle": "Nie udało się zainicjalizować pamięci lub usług aplikacji. Spróbuj uruchomić aplikację ponownie lub kliknij ponów.",
+  "retryStartup": "Ponów uruchamianie",
+  "initErrorSemantics": "Ekran błędu inicjalizacji startowej",
+  "rateApp": "Oceń aplikację",
+  "couldNotOpenStore": "Nie udało się otworzyć sklepu z aplikacjami"
+}
