@@ -128,6 +128,10 @@
   "systolicHint": "np. 120",
   "diastolicHint": "np. 80",
   "bpSavedSuccess": "Wynik ciśnienia został pomyślnie zapisany",
-  "bpDeletedSuccess": "Wynik ciśnienia został usunięty"
+  "bpDeletedSuccess": "Wynik ciśnienia został usunięty",
+  "ketones": "Ketony",
+  "ketoneStatusNormal": "W normie (<0.6)",
+  "ketoneStatusElevated": "Podwyższone (0.6-1.5)",
+  "ketoneStatusHigh": "Wysokie (>1.5)"
 }
 

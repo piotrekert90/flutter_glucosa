@@ -498,5 +498,21 @@
   "bpDeletedSuccess": "Blood pressure measurement deleted successfully",
   "@bpDeletedSuccess": {
     "description": "Snackbar message when blood pressure reading is deleted"
+  },
+  "ketones": "Ketones",
+  "@ketones": {
+    "description": "Title label for blood ketones metric"
+  },
+  "ketoneStatusNormal": "Normal (<0.6)",
+  "@ketoneStatusNormal": {
+    "description": "Status badge label for normal ketone level"
+  },
+  "ketoneStatusElevated": "Elevated (0.6-1.5)",
+  "@ketoneStatusElevated": {
+    "description": "Status badge label for elevated ketone level"
+  },
+  "ketoneStatusHigh": "High (>1.5)",
+  "@ketoneStatusHigh": {
+    "description": "Status badge label for high ketone level"
   }
 }
