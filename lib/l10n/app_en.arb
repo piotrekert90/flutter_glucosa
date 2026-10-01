@@ -598,5 +598,9 @@
   "cholesterolDeletedSuccess": "Cholesterol measurement deleted successfully",
   "@cholesterolDeletedSuccess": {
     "description": "Snackbar message when cholesterol reading is deleted"
+  },
+  "weight": "Weight",
+  "@weight": {
+    "description": "Title label for body weight metric"
   }
 }

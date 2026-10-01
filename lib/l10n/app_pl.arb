@@ -153,6 +153,7 @@
   "hdlLabel": "HDL",
   "cholesterolValueHint": "np. 190",
   "cholesterolSavedSuccess": "Wynik cholesterolu został pomyślnie zapisany",
-  "cholesterolDeletedSuccess": "Wynik cholesterolu został usunięty"
+  "cholesterolDeletedSuccess": "Wynik cholesterolu został usunięty",
+  "weight": "Waga"
 }
 
