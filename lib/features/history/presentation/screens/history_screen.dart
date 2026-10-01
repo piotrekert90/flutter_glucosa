@@ -2,24 +2,72 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/domain/enums/metric_type.dart';
 import '../../../../core/presentation/widgets/add_reading_bottom_sheet.dart';
 import '../../../../core/presentation/widgets/app_empty_view.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../blood_pressure/domain/entities/blood_pressure_reading.dart';
+import '../../../blood_pressure/presentation/providers/blood_pressure_reading_list_notifier.dart';
+import '../../../blood_pressure/presentation/widgets/blood_pressure_reading_card.dart';
+import '../../../cholesterol/domain/entities/cholesterol_reading.dart';
+import '../../../cholesterol/presentation/providers/cholesterol_reading_list_notifier.dart';
+import '../../../cholesterol/presentation/widgets/cholesterol_reading_card.dart';
+import '../../../glucose/domain/entities/glucose_reading.dart';
 import '../../../glucose/presentation/providers/glucose_reading_list_notifier.dart';
 import '../../../glucose/presentation/widgets/glucose_reading_card.dart';
+import '../../../hba1c/domain/entities/hba1c_reading.dart';
+import '../../../hba1c/presentation/providers/hba1c_reading_list_notifier.dart';
+import '../../../hba1c/presentation/widgets/hba1c_reading_card.dart';
+import '../../../ketones/domain/entities/ketone_reading.dart';
+import '../../../ketones/presentation/providers/ketone_reading_list_notifier.dart';
+import '../../../ketones/presentation/widgets/ketone_reading_card.dart';
+import '../../../weight/domain/entities/weight_reading.dart';
+import '../../../weight/presentation/providers/weight_reading_list_notifier.dart';
+import '../../../weight/presentation/widgets/weight_reading_card.dart';
 
-/// Screen presenting chronological history of logged glucose readings and health measurements.
-class HistoryScreen extends ConsumerWidget {
+/// Screen presenting chronological history of all logged health measurements with metric filtering.
+class HistoryScreen extends ConsumerStatefulWidget {
   /// Creates the history log screen.
   const HistoryScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HistoryScreen> createState() => _HistoryScreenState();
+}
+
+class _HistoryScreenState extends ConsumerState<HistoryScreen> {
+  /// Currently selected metric filter, or `null` to show all metrics.
+  MetricType? _filter;
+
+  void _refreshAll() {
+    ref.invalidate(glucoseReadingListProvider);
+    ref.invalidate(hbA1cReadingListProvider);
+    ref.invalidate(bloodPressureReadingListProvider);
+    ref.invalidate(ketoneReadingListProvider);
+    ref.invalidate(cholesterolReadingListProvider);
+    ref.invalidate(weightReadingListProvider);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final readingsAsync = ref.watch(glucoseReadingListProvider);
+    final glucoseAsync = ref.watch(glucoseReadingListProvider);
+    final hba1cAsync = ref.watch(hbA1cReadingListProvider);
+    final bloodPressureAsync = ref.watch(bloodPressureReadingListProvider);
+    final ketonesAsync = ref.watch(ketoneReadingListProvider);
+    final cholesterolAsync = ref.watch(cholesterolReadingListProvider);
+    final weightAsync = ref.watch(weightReadingListProvider);
+
+    final states = [
+      glucoseAsync,
+      hba1cAsync,
+      bloodPressureAsync,
+      ketonesAsync,
+      cholesterolAsync,
+      weightAsync,
+    ];
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navHistory)),
@@ -29,36 +77,212 @@ class HistoryScreen extends ConsumerWidget {
         child: const Icon(Icons.add_rounded),
       ),
       body: ClampedLayout(
-        child: readingsAsync.when(
-          data: (readings) {
-            if (readings.isEmpty) {
-              return AppEmptyView(
-                title: l10n.noReadingsYet,
-                icon: Icons.water_drop_outlined,
-              );
-            }
-
-            return ListView.separated(
-              padding: const EdgeInsets.all(16),
-              itemCount: readings.length,
-              separatorBuilder: (_, _) => const SizedBox(height: 8),
-              itemBuilder: (context, index) {
-                final reading = readings[index];
-                return GlucoseReadingCard(
-                  reading: reading,
-                  onTap: () => context.push('/glucose/edit/${reading.id}'),
-                );
-              },
-            );
-          },
-          loading: () => const Center(child: AppLoadingIndicator()),
-          error: (error, _) => Center(
-            child: AppErrorView(
-              message: l10n.genericError,
-              onRetry: () => ref.refresh(glucoseReadingListProvider),
+        child: Column(
+          children: [
+            _FilterChips(
+              selected: _filter,
+              onSelected: (filter) => setState(() => _filter = filter),
             ),
-          ),
+            Expanded(
+              child: Builder(
+                builder: (context) {
+                  if (states.any((s) => s.hasError)) {
+                    return Center(
+                      child: AppErrorView(
+                        message: l10n.genericError,
+                        onRetry: _refreshAll,
+                      ),
+                    );
+                  }
+                  if (states.any((s) => s.isLoading)) {
+                    return const Center(child: AppLoadingIndicator());
+                  }
+
+                  final entries = _mergeEntries(
+                    glucoseAsync.value ?? const [],
+                    hba1cAsync.value ?? const [],
+                    bloodPressureAsync.value ?? const [],
+                    ketonesAsync.value ?? const [],
+                    cholesterolAsync.value ?? const [],
+                    weightAsync.value ?? const [],
+                  );
+                  final visible = _filter == null
+                      ? entries
+                      : entries.where((e) => e.type == _filter).toList();
+
+                  if (visible.isEmpty) {
+                    return AppEmptyView(
+                      title: l10n.noReadingsYet,
+                      icon: Icons.water_drop_outlined,
+                    );
+                  }
+
+                  return ListView.separated(
+                    padding: const EdgeInsets.all(16),
+                    itemCount: visible.length,
+                    separatorBuilder: (_, _) => const SizedBox(height: 8),
+                    itemBuilder: (context, index) =>
+                        _buildCard(context, visible[index]),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  /// Merges all metric readings into a single chronological list (newest first).
+  List<_HistoryEntry> _mergeEntries(
+    List<GlucoseReading> glucose,
+    List<HbA1cReading> hba1c,
+    List<BloodPressureReading> bloodPressure,
+    List<KetoneReading> ketones,
+    List<CholesterolReading> cholesterol,
+    List<WeightReading> weight,
+  ) {
+    final entries = <_HistoryEntry>[
+      for (final r in glucose)
+        _HistoryEntry(
+          type: MetricType.glucose,
+          createdAt: r.createdAt,
+          reading: r,
+        ),
+      for (final r in hba1c)
+        _HistoryEntry(
+          type: MetricType.hba1c,
+          createdAt: r.createdAt,
+          reading: r,
+        ),
+      for (final r in bloodPressure)
+        _HistoryEntry(
+          type: MetricType.bloodPressure,
+          createdAt: r.createdAt,
+          reading: r,
+        ),
+      for (final r in ketones)
+        _HistoryEntry(
+          type: MetricType.ketones,
+          createdAt: r.createdAt,
+          reading: r,
+        ),
+      for (final r in cholesterol)
+        _HistoryEntry(
+          type: MetricType.cholesterol,
+          createdAt: r.createdAt,
+          reading: r,
+        ),
+      for (final r in weight)
+        _HistoryEntry(
+          type: MetricType.weight,
+          createdAt: r.createdAt,
+          reading: r,
+        ),
+    ]..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    return entries;
+  }
+
+  /// Builds the reading card matching the entry's metric type.
+  Widget _buildCard(BuildContext context, _HistoryEntry entry) {
+    switch (entry.type) {
+      case MetricType.glucose:
+        final reading = entry.reading as GlucoseReading;
+        return GlucoseReadingCard(
+          reading: reading,
+          onTap: () => context.push('/glucose/edit/${reading.id}'),
+        );
+      case MetricType.hba1c:
+        final reading = entry.reading as HbA1cReading;
+        return HbA1cReadingCard(
+          reading: reading,
+          onTap: () => context.push('/hba1c/edit/${reading.id}'),
+        );
+      case MetricType.bloodPressure:
+        final reading = entry.reading as BloodPressureReading;
+        return BloodPressureReadingCard(
+          reading: reading,
+          onTap: () => context.push('/blood-pressure/edit/${reading.id}'),
+        );
+      case MetricType.ketones:
+        final reading = entry.reading as KetoneReading;
+        return KetoneReadingCard(
+          reading: reading,
+          onTap: () => context.push('/ketones/edit/${reading.id}'),
+        );
+      case MetricType.cholesterol:
+        final reading = entry.reading as CholesterolReading;
+        return CholesterolReadingCard(
+          reading: reading,
+          onTap: () => context.push('/cholesterol/edit/${reading.id}'),
+        );
+      case MetricType.weight:
+        final reading = entry.reading as WeightReading;
+        return WeightReadingCard(
+          reading: reading,
+          onTap: () => context.push('/weight/edit/${reading.id}'),
+        );
+    }
+  }
+}
+
+/// Single entry in the merged chronological history list.
+class _HistoryEntry {
+  /// Metric type of the reading.
+  final MetricType type;
+
+  /// Timestamp used for chronological sorting.
+  final DateTime createdAt;
+
+  /// The domain entity rendered by [_HistoryScreenState._buildCard].
+  final Object reading;
+
+  const _HistoryEntry({
+    required this.type,
+    required this.createdAt,
+    required this.reading,
+  });
+}
+
+/// Horizontal row of metric filter chips above the history list.
+class _FilterChips extends StatelessWidget {
+  /// Currently selected filter, or `null` for all metrics.
+  final MetricType? selected;
+
+  /// Callback invoked when a chip is selected.
+  final ValueChanged<MetricType?> onSelected;
+
+  const _FilterChips({required this.selected, required this.onSelected});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    final chips = <({String label, MetricType? type})>[
+      (label: l10n.filterAll, type: null),
+      (label: l10n.glucose, type: MetricType.glucose),
+      (label: l10n.hba1c, type: MetricType.hba1c),
+      (label: l10n.bloodPressure, type: MetricType.bloodPressure),
+      (label: l10n.ketones, type: MetricType.ketones),
+      (label: l10n.cholesterol, type: MetricType.cholesterol),
+      (label: l10n.weight, type: MetricType.weight),
+    ];
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+      child: Row(
+        children: [
+          for (final chip in chips)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: ChoiceChip(
+                label: Text(chip.label),
+                selected: selected == chip.type,
+                onSelected: (_) => onSelected(chip.type),
+              ),
+            ),
+        ],
       ),
     );
   }
