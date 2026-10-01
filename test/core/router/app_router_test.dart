@@ -144,6 +144,24 @@ void main() {
       },
     );
 
+    testWidgets('Navigates to AddEditHbA1cReadingScreen on "/hba1c/add"', (
+      tester,
+    ) async {
+      await tester.pumpWidget(createTestApp(initialLocation: '/hba1c/add'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Log HbA1c'), findsOneWidget);
+    });
+
+    testWidgets('Navigates to AddEditHbA1cReadingScreen on "/hba1c/edit/1"', (
+      tester,
+    ) async {
+      await tester.pumpWidget(createTestApp(initialLocation: '/hba1c/edit/1'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit HbA1c'), findsOneWidget);
+    });
+
     testWidgets('Renders error screen on unknown route', (tester) async {
       await tester.pumpWidget(
         createTestApp(initialLocation: '/unknown-route-404'),

@@ -1,0 +1,371 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+
+import '../../../../core/domain/enums/hba1c_unit.dart';
+import '../../../../core/domain/utils/glucose_converter.dart';
+import '../../../../core/domain/utils/reading_validator.dart';
+import '../../../../core/presentation/utils/app_snackbar.dart';
+import '../../../../core/presentation/widgets/app_loading_indicator.dart';
+import '../../../../core/presentation/widgets/clamped_layout.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../settings/presentation/providers/user_profile_notifier.dart';
+import '../../domain/entities/hba1c_reading.dart';
+import '../providers/hba1c_reading_detail_notifier.dart';
+import '../providers/hba1c_reading_list_notifier.dart';
+
+/// Screen allowing users to create a new HbA1c reading or update/delete an existing one.
+class AddEditHbA1cReadingScreen extends ConsumerStatefulWidget {
+  /// The reading identifier when editing an existing reading; `null` when adding a new reading.
+  final int? readingId;
+
+  /// Creates an [AddEditHbA1cReadingScreen].
+  const AddEditHbA1cReadingScreen({super.key, this.readingId});
+
+  @override
+  ConsumerState<AddEditHbA1cReadingScreen> createState() =>
+      _AddEditHbA1cReadingScreenState();
+}
+
+class _AddEditHbA1cReadingScreenState
+    extends ConsumerState<AddEditHbA1cReadingScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _valueController = TextEditingController();
+  final _notesController = TextEditingController();
+
+  late DateTime _selectedDateTime;
+  bool _isInitialized = false;
+  bool _isSaving = false;
+
+  bool get isEditMode => widget.readingId != null;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedDateTime = DateTime.now();
+  }
+
+  @override
+  void dispose() {
+    _valueController.dispose();
+    _notesController.dispose();
+    super.dispose();
+  }
+
+  void _populateFromReading(HbA1cReading reading, HbA1cUnit unit) {
+    if (_isInitialized) return;
+    _isInitialized = true;
+
+    final String valueText;
+    if (unit == HbA1cUnit.mmolMol) {
+      valueText = GlucoseConverter.percentageToMmolMol(
+        reading.readingPercentage,
+      ).round().toString();
+    } else {
+      valueText = reading.readingPercentage.toString();
+    }
+
+    _valueController.text = valueText;
+    _notesController.text = reading.notes ?? '';
+    _selectedDateTime = reading.createdAt;
+  }
+
+  Future<void> _pickDate() async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDateTime,
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now().add(const Duration(days: 1)),
+    );
+    if (picked != null) {
+      setState(() {
+        _selectedDateTime = DateTime(
+          picked.year,
+          picked.month,
+          picked.day,
+          _selectedDateTime.hour,
+          _selectedDateTime.minute,
+        );
+      });
+    }
+  }
+
+  Future<void> _pickTime() async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
+    );
+    if (picked != null) {
+      setState(() {
+        _selectedDateTime = DateTime(
+          _selectedDateTime.year,
+          _selectedDateTime.month,
+          _selectedDateTime.day,
+          picked.hour,
+          picked.minute,
+        );
+      });
+    }
+  }
+
+  Future<void> _save(HbA1cUnit unit) async {
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _isSaving = true);
+
+    final rawValue = double.tryParse(_valueController.text.trim()) ?? 0.0;
+    final double percentage;
+    if (unit == HbA1cUnit.mmolMol) {
+      percentage = GlucoseConverter.mmolMolToPercentage(rawValue);
+    } else {
+      percentage = rawValue;
+    }
+
+    final notes = _notesController.text.trim().isEmpty
+        ? null
+        : _notesController.text.trim();
+
+    final reading = HbA1cReading(
+      id: widget.readingId ?? 0,
+      readingPercentage: percentage,
+      notes: notes,
+      createdAt: _selectedDateTime,
+    );
+
+    final notifier = ref.read(hbA1cReadingListProvider.notifier);
+    final (success, failure) = isEditMode
+        ? await notifier.updateReading(reading)
+        : await notifier.addReading(reading);
+
+    if (!mounted) return;
+    setState(() => _isSaving = false);
+
+    if (success) {
+      final l10n = AppLocalizations.of(context);
+      AppSnackBar.show(
+        context,
+        message:
+            l10n?.hba1cSavedSuccess ?? 'HbA1c measurement saved successfully',
+        type: SnackBarType.success,
+      );
+      Navigator.of(context).pop();
+    } else {
+      AppSnackBar.show(
+        context,
+        message: failure?.message ?? 'Failed to save measurement',
+        type: SnackBarType.error,
+      );
+    }
+  }
+
+  Future<void> _delete() async {
+    final l10n = AppLocalizations.of(context);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n?.deleteHba1c ?? 'Delete HbA1c'),
+        content: Text(
+          l10n?.deleteHba1cConfirm ??
+              'Are you sure you want to delete this HbA1c reading?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(l10n?.cancel ?? 'Cancel'),
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(ctx).colorScheme.error,
+              foregroundColor: Theme.of(ctx).colorScheme.onError,
+            ),
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(l10n?.delete ?? 'Delete'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !mounted) return;
+
+    setState(() => _isSaving = true);
+    final notifier = ref.read(hbA1cReadingListProvider.notifier);
+    final (success, failure) = await notifier.deleteReading(widget.readingId!);
+
+    if (!mounted) return;
+    setState(() => _isSaving = false);
+
+    if (success) {
+      AppSnackBar.show(
+        context,
+        message:
+            l10n?.hba1cDeletedSuccess ??
+            'HbA1c measurement deleted successfully',
+        type: SnackBarType.success,
+      );
+      Navigator.of(context).pop();
+    } else {
+      AppSnackBar.show(
+        context,
+        message: failure?.message ?? 'Failed to delete measurement',
+        type: SnackBarType.error,
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
+    final profileAsync = ref.watch(userProfileProvider);
+    final preferredUnit =
+        profileAsync.value?.preferredHbA1cUnit ?? HbA1cUnit.percentage;
+
+    final title = isEditMode
+        ? (l10n?.editHba1c ?? 'Edit HbA1c')
+        : (l10n?.addHba1c ?? 'Log HbA1c');
+
+    if (isEditMode) {
+      final detailAsync = ref.watch(
+        hbA1cReadingDetailProvider(widget.readingId!),
+      );
+      return detailAsync.when(
+        loading: () => Scaffold(
+          appBar: AppBar(title: Text(title)),
+          body: const AppLoadingIndicator(),
+        ),
+        error: (err, _) => Scaffold(
+          appBar: AppBar(title: Text(title)),
+          body: Center(child: Text('Error loading reading: $err')),
+        ),
+        data: (reading) {
+          if (reading == null) {
+            return Scaffold(
+              appBar: AppBar(title: Text(title)),
+              body: const Center(child: Text('Reading not found')),
+            );
+          }
+          _populateFromReading(reading, preferredUnit);
+          return _buildScaffold(context, theme, l10n, preferredUnit, title);
+        },
+      );
+    }
+
+    return _buildScaffold(context, theme, l10n, preferredUnit, title);
+  }
+
+  Widget _buildScaffold(
+    BuildContext context,
+    ThemeData theme,
+    AppLocalizations? l10n,
+    HbA1cUnit unit,
+    String title,
+  ) {
+    final dateFormat = DateFormat.yMMMd();
+    final timeFormat = DateFormat.jm();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        actions: [
+          if (isEditMode)
+            IconButton(
+              icon: const Icon(Icons.delete_outline),
+              tooltip: l10n?.deleteHba1c ?? 'Delete HbA1c',
+              onPressed: _isSaving ? null : _delete,
+            ),
+        ],
+      ),
+      body: ClampedLayout(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Value Input
+                TextFormField(
+                  controller: _valueController,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: l10n?.hba1c ?? 'HbA1c',
+                    hintText: l10n?.hba1cValueHint ?? 'e.g. 6.5',
+                    suffixText: unit.displayName,
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.biotech_outlined),
+                  ),
+                  validator: (val) {
+                    if (val == null || val.trim().isEmpty) {
+                      return l10n?.errorValidation ?? 'Invalid value';
+                    }
+                    final numVal = double.tryParse(
+                      val.trim().replaceAll(',', '.'),
+                    );
+                    if (numVal == null || numVal <= 0) {
+                      return l10n?.errorValidation ?? 'Invalid value';
+                    }
+                    if (unit == HbA1cUnit.mmolMol) {
+                      return ReadingValidator.validateHbA1cMmolMol(numVal);
+                    }
+                    return ReadingValidator.validateHbA1cPercentage(numVal);
+                  },
+                ),
+                const SizedBox(height: 16),
+
+                // Date & Time Row
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        icon: const Icon(Icons.calendar_today_outlined),
+                        label: Text(dateFormat.format(_selectedDateTime)),
+                        onPressed: _pickDate,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        icon: const Icon(Icons.access_time_outlined),
+                        label: Text(timeFormat.format(_selectedDateTime)),
+                        onPressed: _pickTime,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+
+                // Notes Input
+                TextFormField(
+                  controller: _notesController,
+                  maxLines: 3,
+                  decoration: InputDecoration(
+                    labelText: l10n?.notes ?? 'Notes',
+                    hintText: l10n?.notesHint ?? 'Optional clinical comments',
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.notes_outlined),
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Save Button
+                FilledButton.icon(
+                  onPressed: _isSaving ? null : () => _save(unit),
+                  icon: _isSaving
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Icon(Icons.save_outlined),
+                  label: Text(l10n?.save ?? 'Save'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
+import '../../features/hba1c/presentation/screens/add_edit_hba1c_reading_screen.dart';
 import '../../features/history/presentation/screens/history_screen.dart';
 import '../../features/overview/presentation/screens/overview_screen.dart';
 import '../../features/settings/presentation/screens/licenses_screen.dart';
@@ -116,6 +117,21 @@ GoRouter appRouter(Ref ref) {
           final idString = state.pathParameters['id'];
           final id = int.tryParse(idString ?? '');
           return AddEditGlucoseReadingScreen(readingId: id);
+        },
+      ),
+      GoRoute(
+        path: AppRoute.addHba1c.path,
+        name: AppRoute.addHba1c.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const AddEditHbA1cReadingScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.editHba1c.path,
+        name: AppRoute.editHba1c.name,
+        builder: (BuildContext context, GoRouterState state) {
+          final idString = state.pathParameters['id'];
+          final id = int.tryParse(idString ?? '');
+          return AddEditHbA1cReadingScreen(readingId: id);
         },
       ),
     ],

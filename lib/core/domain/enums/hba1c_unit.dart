@@ -11,4 +11,3 @@ enum HbA1cUnit {
   /// Human-readable unit symbol.
   final String displayName;
 }
-
