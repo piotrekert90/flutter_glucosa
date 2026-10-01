@@ -50,4 +50,4 @@ final class EstimatedHbA1cProvider
   }
 }
 
-String _$estimatedHbA1cHash() => r'5a929c29713080c63c64e308546e888cc0897f17';
+String _$estimatedHbA1cHash() => r'6881ebb6aa8c1c33a952b08575a6430552ec0aa3';

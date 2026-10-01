@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import '../../features/history/presentation/screens/history_screen.dart';
 import '../../features/overview/presentation/screens/overview_screen.dart';
 import '../../features/settings/presentation/screens/licenses_screen.dart';
@@ -101,6 +102,21 @@ GoRouter appRouter(Ref ref) {
             ],
           ),
         ],
+      ),
+      GoRoute(
+        path: AppRoute.addGlucose.path,
+        name: AppRoute.addGlucose.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const AddEditGlucoseReadingScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.editGlucose.path,
+        name: AppRoute.editGlucose.name,
+        builder: (BuildContext context, GoRouterState state) {
+          final idString = state.pathParameters['id'];
+          final id = int.tryParse(idString ?? '');
+          return AddEditGlucoseReadingScreen(readingId: id);
+        },
       ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) {

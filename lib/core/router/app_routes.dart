@@ -13,7 +13,13 @@ enum AppRoute {
   licenses('licenses', 'licenses'),
 
   /// Privacy policy screen route.
-  privacyPolicy('privacy-policy', 'privacy_policy');
+  privacyPolicy('privacy-policy', 'privacy_policy'),
+
+  /// Route to add a new blood glucose reading.
+  addGlucose('/glucose/add', 'add_glucose'),
+
+  /// Route to edit an existing blood glucose reading with path parameter id.
+  editGlucose('/glucose/edit/:id', 'edit_glucose');
 
   const AppRoute(this.path, this.name);
 
