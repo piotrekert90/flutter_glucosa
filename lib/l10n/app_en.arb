@@ -638,5 +638,33 @@
   "filterAll": "All",
   "@filterAll": {
     "description": "Label for the 'show all metrics' history filter chip"
+  },
+  "chartTitle": "Trends",
+  "@chartTitle": {
+    "description": "Title for the overview metric trend chart card"
+  },
+  "timeRangeDay": "Day",
+  "@timeRangeDay": {
+    "description": "Label for the day time range chart selector"
+  },
+  "timeRangeWeek": "Week",
+  "@timeRangeWeek": {
+    "description": "Label for the week time range chart selector"
+  },
+  "timeRangeMonth": "Month",
+  "@timeRangeMonth": {
+    "description": "Label for the month time range chart selector"
+  },
+  "statAverage": "Avg",
+  "@statAverage": {
+    "description": "Label for average statistic under the trend chart"
+  },
+  "statMin": "Min",
+  "@statMin": {
+    "description": "Label for minimum statistic under the trend chart"
+  },
+  "statMax": "Max",
+  "@statMax": {
+    "description": "Label for maximum statistic under the trend chart"
   }
 }

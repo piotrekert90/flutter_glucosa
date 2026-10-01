@@ -163,6 +163,13 @@
   "weightSavedSuccess": "Wynik wagi został pomyślnie zapisany",
   "weightDeletedSuccess": "Wynik wagi został usunięty",
   "addReading": "Dodaj wpis",
-  "filterAll": "Wszystkie"
+  "filterAll": "Wszystkie",
+  "chartTitle": "Trendy",
+  "timeRangeDay": "Dzień",
+  "timeRangeWeek": "Tydzień",
+  "timeRangeMonth": "Miesiąc",
+  "statAverage": "Śr.",
+  "statMin": "Min",
+  "statMax": "Maks"
 }
 

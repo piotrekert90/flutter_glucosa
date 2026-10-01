@@ -11,6 +11,7 @@ import '../../../glucose/presentation/providers/estimated_hba1c_provider.dart';
 import '../../../glucose/presentation/providers/latest_glucose_reading_provider.dart';
 import '../../../glucose/presentation/widgets/glucose_reading_card.dart';
 import '../../../settings/presentation/providers/user_profile_notifier.dart';
+import '../widgets/metric_trend_card.dart';
 
 /// Main dashboard overview screen displaying latest readings, health summaries, and quick actions.
 class OverviewScreen extends ConsumerWidget {
@@ -170,6 +171,18 @@ class OverviewScreen extends ConsumerWidget {
                 loading: () => const SizedBox.shrink(),
                 error: (_, _) => const SizedBox.shrink(),
               ),
+
+              // Metric Trend Chart
+              Text(
+                l10n.chartTitle,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: theme.colorScheme.onSurface,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const MetricTrendCard(),
+              const SizedBox(height: 20),
 
               // Target Range Summary
               Text(

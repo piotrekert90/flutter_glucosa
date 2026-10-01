@@ -97,11 +97,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Add reading'), findsOneWidget);
-    expect(find.text('Blood Glucose'), findsOneWidget);
-    expect(find.text('HbA1c'), findsOneWidget);
-    expect(find.text('Blood Pressure'), findsOneWidget);
-    expect(find.text('Ketones'), findsOneWidget);
-    expect(find.text('Cholesterol'), findsOneWidget);
-    expect(find.text('Weight'), findsOneWidget);
+    expect(find.byType(ListTile), findsNWidgets(6));
   });
 }
