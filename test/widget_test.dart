@@ -3,22 +3,27 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_glucosa/app.dart';
+import 'package:flutter_glucosa/features/glucose/data/providers/glucose_reading_repository_provider.dart';
 import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
 import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
 
+import 'helpers/fake_glucose_reading_repository.dart';
 import 'helpers/fake_user_profile_repository.dart';
 
 void main() {
   late FakeUserProfileRepository userProfileRepository;
+  late FakeGlucoseReadingRepository glucoseReadingRepository;
 
   setUp(() {
     userProfileRepository = FakeUserProfileRepository();
+    glucoseReadingRepository = FakeGlucoseReadingRepository();
   });
 
   tearDown(() {
     userProfileRepository.dispose();
+    glucoseReadingRepository.dispose();
   });
 
   testWidgets('App loads and allows navigating between bottom tabs', (
@@ -29,6 +34,9 @@ void main() {
         overrides: [
           userProfileRepositoryProvider.overrideWithValue(
             userProfileRepository,
+          ),
+          glucoseReadingRepositoryProvider.overrideWithValue(
+            glucoseReadingRepository,
           ),
         ],
         child: const App(),
