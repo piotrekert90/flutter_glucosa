@@ -442,5 +442,21 @@
   "hba1cDeletedSuccess": "HbA1c measurement deleted successfully",
   "@hba1cDeletedSuccess": {
     "description": "Snackbar message when HbA1c reading is deleted"
+  },
+  "bloodPressure": "Blood Pressure",
+  "@bloodPressure": {
+    "description": "Title label for blood pressure metric"
+  },
+  "bpStatusNormal": "Normal (<120/80)",
+  "@bpStatusNormal": {
+    "description": "Status badge label for normal blood pressure level"
+  },
+  "bpStatusElevated": "Elevated (120-129/<80)",
+  "@bpStatusElevated": {
+    "description": "Status badge label for elevated blood pressure level"
+  },
+  "bpStatusHigh": "High (≥130/80)",
+  "@bpStatusHigh": {
+    "description": "Status badge label for high blood pressure level"
   }
 }

@@ -114,6 +114,10 @@
   "deleteHba1cConfirm": "Czy na pewno chcesz usunąć ten wynik HbA1c?",
   "hba1cValueHint": "np. 6.5",
   "hba1cSavedSuccess": "Wynik HbA1c został pomyślnie zapisany",
-  "hba1cDeletedSuccess": "Wynik HbA1c został usunięty"
+  "hba1cDeletedSuccess": "Wynik HbA1c został usunięty",
+  "bloodPressure": "Ciśnienie krwi",
+  "bpStatusNormal": "W normie (<120/80)",
+  "bpStatusElevated": "Podwyższone (120-129/<80)",
+  "bpStatusHigh": "Wysokie (≥130/80)"
 }
 
