@@ -2,6 +2,7 @@ import 'package:isar_community/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../features/blood_pressure/data/models/blood_pressure_reading_model.dart';
 import '../../features/glucose/data/models/glucose_reading_model.dart';
 import '../../features/hba1c/data/models/hba1c_reading_model.dart';
 import '../../features/settings/data/models/user_profile_model.dart';
@@ -18,6 +19,7 @@ Future<Isar> isarDb(Ref ref) async {
         UserProfileModelSchema,
         GlucoseReadingModelSchema,
         HbA1cReadingModelSchema,
+        BloodPressureReadingModelSchema,
       ], directory: directory.path);
   ref.onDispose(() {
     if (isar.isOpen) {
