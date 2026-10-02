@@ -100,3 +100,9 @@ Matches `scripts/before_push.sh` and CI:
 
 Once all 7 steps are green and the Resource Lifecycle checklist above is verified, commit per `AGENTS.md` →
 Git & Version Control (autonomous commit is enabled for this repo, since this file exists).
+
+### Atomic Commit Discipline
+- One feature = stack of layer commits (`domain` → `data` → `presentation` → `l10n/wiring` → `test`), each pipeline-green, instead of a single whole-feature commit.
+- Soft cap: ~500 lines of hand-written code per commit; above that, split by layer or concern.
+- Generated `*.g.dart` (build_runner / Isar) always land in a separate `chore(gen)` commit adjacent to the hand-written change — never bundled into `feat`/`fix` diffs.
+- Single-concern commits below the cap (one screen, one repository, one dialog) stay as-is; do not over-split.
