@@ -666,5 +666,77 @@
   "statMax": "Max",
   "@statMax": {
     "description": "Label for maximum statistic under the trend chart"
+  },
+  "onboardingWelcomeTitle": "Welcome to Glucosa",
+  "@onboardingWelcomeTitle": {
+    "description": "Title of the onboarding welcome step"
+  },
+  "onboardingWelcomeSubtitle": "Let's set up your profile in a few quick steps.",
+  "@onboardingWelcomeSubtitle": {
+    "description": "Subtitle of the onboarding welcome step"
+  },
+  "onboardingNameLabel": "Your name",
+  "@onboardingNameLabel": {
+    "description": "Label for the name input during onboarding"
+  },
+  "onboardingNameHint": "e.g. Alex",
+  "@onboardingNameHint": {
+    "description": "Hint text for the name input during onboarding"
+  },
+  "onboardingDiabetesTypeTitle": "Which type of diabetes do you have?",
+  "@onboardingDiabetesTypeTitle": {
+    "description": "Title of the onboarding diabetes type step"
+  },
+  "diabetesType1": "Type 1",
+  "@diabetesType1": {
+    "description": "Label for type 1 diabetes"
+  },
+  "diabetesType2": "Type 2",
+  "@diabetesType2": {
+    "description": "Label for type 2 diabetes"
+  },
+  "diabetesTypeGestational": "Gestational",
+  "@diabetesTypeGestational": {
+    "description": "Label for gestational diabetes"
+  },
+  "diabetesTypeLada": "LADA",
+  "@diabetesTypeLada": {
+    "description": "Label for LADA diabetes"
+  },
+  "onboardingUnitsTitle": "Preferred units and target range",
+  "@onboardingUnitsTitle": {
+    "description": "Title of the onboarding units and range step"
+  },
+  "onboardingGlucoseUnitLabel": "Glucose unit",
+  "@onboardingGlucoseUnitLabel": {
+    "description": "Label for the glucose unit selector during onboarding"
+  },
+  "onboardingRangeLabel": "Target range",
+  "@onboardingRangeLabel": {
+    "description": "Label for the target range selector during onboarding"
+  },
+  "onboardingConfirmTitle": "You're all set!",
+  "@onboardingConfirmTitle": {
+    "description": "Title of the onboarding confirmation step"
+  },
+  "onboardingGetStarted": "Get Started",
+  "@onboardingGetStarted": {
+    "description": "Label for the button completing onboarding"
+  },
+  "onboardingNext": "Next",
+  "@onboardingNext": {
+    "description": "Label for the button advancing the onboarding wizard"
+  },
+  "onboardingBack": "Back",
+  "@onboardingBack": {
+    "description": "Label for the button going back in the onboarding wizard"
+  },
+  "onboardingStepOf": "Step {step} of {total}",
+  "@onboardingStepOf": {
+    "description": "Progress indicator of the onboarding wizard",
+    "placeholders": {
+      "step": {"type": "int"},
+      "total": {"type": "int"}
+    }
   }
 }

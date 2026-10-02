@@ -170,6 +170,23 @@
   "timeRangeMonth": "Miesiąc",
   "statAverage": "Śr.",
   "statMin": "Min",
-  "statMax": "Maks"
+  "statMax": "Maks",
+  "onboardingWelcomeTitle": "Witaj w Glucosa",
+  "onboardingWelcomeSubtitle": "Skonfigurujmy Twój profil w kilku szybkich krokach.",
+  "onboardingNameLabel": "Twoje imię",
+  "onboardingNameHint": "np. Alex",
+  "onboardingDiabetesTypeTitle": "Jaki typ cukrzycy masz?",
+  "diabetesType1": "Typ 1",
+  "diabetesType2": "Typ 2",
+  "diabetesTypeGestational": "Ciążowa",
+  "diabetesTypeLada": "LADA",
+  "onboardingUnitsTitle": "Preferowane jednostki i zakres docelowy",
+  "onboardingGlucoseUnitLabel": "Jednostka glukozy",
+  "onboardingRangeLabel": "Zakres docelowy",
+  "onboardingConfirmTitle": "Wszystko gotowe!",
+  "onboardingGetStarted": "Rozpocznij",
+  "onboardingNext": "Dalej",
+  "onboardingBack": "Wstecz",
+  "onboardingStepOf": "Krok {step} z {total}"
 }
 
