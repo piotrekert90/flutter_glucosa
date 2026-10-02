@@ -70,6 +70,12 @@ void main() {
       expect(find.text('Blood Glucose'), findsOneWidget);
       expect(find.text('24 records selected'), findsOneWidget);
       expect(find.text('Export & Share'), findsOneWidget);
+      expect(find.text('Import Data'), findsOneWidget);
+      expect(
+        find.text('Restore glucose measurements from a CSV file'),
+        findsOneWidget,
+      );
+      expect(find.text('Select CSV File'), findsOneWidget);
     });
 
     testWidgets('toggling metric checkbox updates selection', (tester) async {
