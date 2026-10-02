@@ -964,5 +964,9 @@
   "notSet": "Not set",
   "@notSet": {
     "description": "Placeholder text when a setting or property is not set"
+  },
+  "tools": "Tools",
+  "@tools": {
+    "description": "Section header for utility tools in settings"
   }
 }

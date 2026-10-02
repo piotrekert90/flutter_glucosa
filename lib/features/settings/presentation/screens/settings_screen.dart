@@ -5,6 +5,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/domain/enums/enums.dart';
+import '../../../../core/domain/utils/glucose_converter.dart';
+import '../../../../core/domain/value_objects/glucose_target_range.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/presentation/extensions/failure_ui_extension.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
@@ -12,16 +14,20 @@ import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/utils/crash_reporter.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../onboarding/presentation/extensions/diabetes_type_l10n.dart';
 import '../providers/user_profile_notifier.dart';
 import '../widgets/components/custom_settings_tile.dart';
 import '../widgets/components/custom_settings_toggle.dart';
+import '../widgets/components/edit_name_dialog.dart';
 import '../widgets/components/section_header.dart';
+import '../widgets/components/selection_dialog.dart';
+import '../widgets/components/target_range_dialog.dart';
 import '../widgets/components/theme_selection_dialog.dart';
 
 /// Presentation widget rendering the user profile and application settings screen.
 ///
 /// Displays clinical preferences (units, target ranges, diabetes type), appearance,
-/// notification switches, and application information backed by [userProfileProvider].
+/// notification switches, utility tools, and application info backed by [userProfileProvider].
 class SettingsScreen extends ConsumerWidget {
   /// Creates a settings screen widget instance.
   const SettingsScreen({super.key});
@@ -48,31 +54,72 @@ class SettingsScreen extends ConsumerWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               children: [
-                SectionHeader(
-                  label: profile.name.isNotEmpty
-                      ? profile.name
-                      : (l10n?.userProfile ?? 'Profile'),
-                ),
+                SectionHeader(label: l10n?.userProfile ?? 'Profile'),
                 CustomSettingsTile(
                   icon: Icons.person_outline,
-                  title: 'Diabetes Type',
-                  valueText: _diabetesTypeLabel(profile.diabetesType),
-                  showChevron: false,
+                  title: l10n?.name ?? 'Name',
+                  valueText: profile.name.isNotEmpty
+                      ? profile.name
+                      : (l10n?.notSet ?? 'Not set'),
+                  onTap: () => _showEditNameDialog(context, ref, profile.name),
                 ),
+                CustomSettingsTile(
+                  icon: Icons.medical_services_outlined,
+                  title: l10n?.diabetesType ?? 'Diabetes Type',
+                  valueText: profile.diabetesType.label(l10n),
+                  onTap: () => _showDiabetesTypePicker(
+                    context,
+                    ref,
+                    profile.diabetesType,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SectionHeader(label: l10n?.units ?? 'Units'),
                 CustomSettingsTile(
                   icon: Icons.speed_outlined,
-                  title: 'Glucose Unit',
-                  valueText: profile.preferredGlucoseUnit == GlucoseUnit.mgDl
-                      ? 'mg/dL'
-                      : 'mmol/L',
-                  showChevron: false,
+                  title: l10n?.glucoseUnit ?? 'Glucose Unit',
+                  valueText: profile.preferredGlucoseUnit.displayName,
+                  onTap: () => _showGlucoseUnitPicker(
+                    context,
+                    ref,
+                    profile.preferredGlucoseUnit,
+                  ),
                 ),
                 CustomSettingsTile(
+                  icon: Icons.percent_outlined,
+                  title: l10n?.hba1cUnit ?? 'HbA1c Unit',
+                  valueText: profile.preferredHbA1cUnit.displayName,
+                  onTap: () => _showHbA1cUnitPicker(
+                    context,
+                    ref,
+                    profile.preferredHbA1cUnit,
+                  ),
+                ),
+                CustomSettingsTile(
+                  icon: Icons.monitor_weight_outlined,
+                  title: l10n?.weightUnit ?? 'Weight Unit',
+                  valueText: profile.preferredWeightUnit.displayName,
+                  onTap: () => _showWeightUnitPicker(
+                    context,
+                    ref,
+                    profile.preferredWeightUnit,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SectionHeader(label: l10n?.targetRange ?? 'Target Range'),
+                CustomSettingsTile(
                   icon: Icons.track_changes_outlined,
-                  title: 'Target Range',
-                  valueText:
-                      '${profile.targetRange.minMgDl}–${profile.targetRange.maxMgDl} mg/dL (${profile.targetRange.preset.name.toUpperCase()})',
-                  showChevron: false,
+                  title: l10n?.targetRange ?? 'Target Range',
+                  valueText: _targetRangeLabel(
+                    profile.targetRange,
+                    profile.preferredGlucoseUnit,
+                  ),
+                  onTap: () => _showTargetRangeDialog(
+                    context,
+                    ref,
+                    profile.targetRange,
+                    profile.preferredGlucoseUnit,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 SectionHeader(label: l10n?.appearance ?? 'Appearance'),
@@ -108,6 +155,7 @@ class SettingsScreen extends ConsumerWidget {
                   },
                 ),
                 const SizedBox(height: 12),
+                SectionHeader(label: l10n?.tools ?? 'Tools'),
                 CustomSettingsTile(
                   icon: Icons.alarm_outlined,
                   title: l10n?.reminders ?? 'Reminders',
@@ -169,13 +217,201 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  String _diabetesTypeLabel(DiabetesType type) {
-    return switch (type) {
-      DiabetesType.type1 => 'Type 1',
-      DiabetesType.type2 => 'Type 2',
-      DiabetesType.gestational => 'Gestational',
-      DiabetesType.lada => 'LADA',
-    };
+  String _targetRangeLabel(GlucoseTargetRange range, GlucoseUnit unit) {
+    final presetName = range.preset.displayName;
+    if (unit == GlucoseUnit.mmolL) {
+      final minMmol = GlucoseConverter.mgDlToMmolL(
+        range.minMgDl,
+      ).toStringAsFixed(1);
+      final maxMmol = GlucoseConverter.mgDlToMmolL(
+        range.maxMgDl,
+      ).toStringAsFixed(1);
+      return '$minMmol–$maxMmol mmol/L ($presetName)';
+    }
+    return '${range.minMgDl}–${range.maxMgDl} mg/dL ($presetName)';
+  }
+
+  void _showEditNameDialog(
+    BuildContext context,
+    WidgetRef ref,
+    String currentName,
+  ) {
+    EditNameDialog.show(
+      context,
+      currentName: currentName,
+      onSaved: (newName) async {
+        final (success, failure) = await ref
+            .read(userProfileProvider.notifier)
+            .updateName(newName);
+        if (!success && context.mounted) {
+          final l10n = AppLocalizations.of(context);
+          AppSnackBar.show(
+            context,
+            message: failure != null && l10n != null
+                ? failure.toUserMessage(l10n)
+                : (l10n?.failedToUpdatePreferences ??
+                      'Failed to update preferences'),
+            type: SnackBarType.error,
+          );
+        }
+      },
+    );
+  }
+
+  void _showDiabetesTypePicker(
+    BuildContext context,
+    WidgetRef ref,
+    DiabetesType currentType,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    SelectionDialog.show<DiabetesType>(
+      context,
+      title: l10n?.selectDiabetesType ?? 'Select Diabetes Type',
+      currentValue: currentType,
+      items: DiabetesType.values,
+      itemLabel: (type) => type.label(l10n),
+      onSelected: (selected) async {
+        final (success, failure) = await ref
+            .read(userProfileProvider.notifier)
+            .updateDiabetesType(selected);
+        if (!success && context.mounted) {
+          AppSnackBar.show(
+            context,
+            message: failure != null && l10n != null
+                ? failure.toUserMessage(l10n)
+                : (l10n?.failedToUpdatePreferences ??
+                      'Failed to update preferences'),
+            type: SnackBarType.error,
+          );
+        }
+      },
+    );
+  }
+
+  void _showGlucoseUnitPicker(
+    BuildContext context,
+    WidgetRef ref,
+    GlucoseUnit currentUnit,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    SelectionDialog.show<GlucoseUnit>(
+      context,
+      title: l10n?.selectGlucoseUnit ?? 'Select Glucose Unit',
+      currentValue: currentUnit,
+      items: GlucoseUnit.values,
+      itemLabel: (unit) => unit.displayName,
+      itemSubtitle: (unit) => unit == GlucoseUnit.mgDl
+          ? 'Milligrams per deciliter'
+          : 'Millimoles per liter',
+      onSelected: (selected) async {
+        final (success, failure) = await ref
+            .read(userProfileProvider.notifier)
+            .updateGlucoseUnit(selected);
+        if (!success && context.mounted) {
+          AppSnackBar.show(
+            context,
+            message: failure != null && l10n != null
+                ? failure.toUserMessage(l10n)
+                : (l10n?.failedToUpdatePreferences ??
+                      'Failed to update preferences'),
+            type: SnackBarType.error,
+          );
+        }
+      },
+    );
+  }
+
+  void _showHbA1cUnitPicker(
+    BuildContext context,
+    WidgetRef ref,
+    HbA1cUnit currentUnit,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    SelectionDialog.show<HbA1cUnit>(
+      context,
+      title: l10n?.selectHbA1cUnit ?? 'Select HbA1c Unit',
+      currentValue: currentUnit,
+      items: HbA1cUnit.values,
+      itemLabel: (unit) => unit.displayName,
+      itemSubtitle: (unit) =>
+          unit == HbA1cUnit.percentage ? 'NGSP (%)' : 'IFCC (mmol/mol)',
+      onSelected: (selected) async {
+        final (success, failure) = await ref
+            .read(userProfileProvider.notifier)
+            .updateHbA1cUnit(selected);
+        if (!success && context.mounted) {
+          AppSnackBar.show(
+            context,
+            message: failure != null && l10n != null
+                ? failure.toUserMessage(l10n)
+                : (l10n?.failedToUpdatePreferences ??
+                      'Failed to update preferences'),
+            type: SnackBarType.error,
+          );
+        }
+      },
+    );
+  }
+
+  void _showWeightUnitPicker(
+    BuildContext context,
+    WidgetRef ref,
+    WeightUnit currentUnit,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    SelectionDialog.show<WeightUnit>(
+      context,
+      title: l10n?.selectWeightUnit ?? 'Select Weight Unit',
+      currentValue: currentUnit,
+      items: WeightUnit.values,
+      itemLabel: (unit) => unit.displayName,
+      itemSubtitle: (unit) =>
+          unit == WeightUnit.kilograms ? 'Kilograms (kg)' : 'Pounds (lbs)',
+      onSelected: (selected) async {
+        final (success, failure) = await ref
+            .read(userProfileProvider.notifier)
+            .updateWeightUnit(selected);
+        if (!success && context.mounted) {
+          AppSnackBar.show(
+            context,
+            message: failure != null && l10n != null
+                ? failure.toUserMessage(l10n)
+                : (l10n?.failedToUpdatePreferences ??
+                      'Failed to update preferences'),
+            type: SnackBarType.error,
+          );
+        }
+      },
+    );
+  }
+
+  void _showTargetRangeDialog(
+    BuildContext context,
+    WidgetRef ref,
+    GlucoseTargetRange currentRange,
+    GlucoseUnit preferredUnit,
+  ) {
+    TargetRangeDialog.show(
+      context,
+      currentRange: currentRange,
+      preferredUnit: preferredUnit,
+      onSaved: (newRange) async {
+        final (success, failure) = await ref
+            .read(userProfileProvider.notifier)
+            .updateTargetRange(newRange);
+        if (!success && context.mounted) {
+          final l10n = AppLocalizations.of(context);
+          AppSnackBar.show(
+            context,
+            message: failure != null && l10n != null
+                ? failure.toUserMessage(l10n)
+                : (l10n?.failedToUpdatePreferences ??
+                      'Failed to update preferences'),
+            type: SnackBarType.error,
+          );
+        }
+      },
+    );
   }
 
   Future<void> _rateApp(BuildContext context) async {

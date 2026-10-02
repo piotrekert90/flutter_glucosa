@@ -242,6 +242,7 @@
   "targetRangeCustom": "Własny",
   "editTargetRange": "Docelowy zakres glukozy",
   "targetRangeInvalid": "Wartość minimalna musi być mniejsza od maksymalnej i większa od zera",
-  "notSet": "Nie ustawiono"
+  "notSet": "Nie ustawiono",
+  "tools": "Narzędzia"
 }
 
