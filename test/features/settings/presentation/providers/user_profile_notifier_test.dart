@@ -140,6 +140,40 @@ void main() {
       verify(() => mockRepo.updateNotificationsEnabled(false)).called(1);
     });
 
+    test('calls repository.updateBiometricLockEnabled with value', () async {
+      when(
+        () => mockRepo.updateBiometricLockEnabled(true),
+      ).thenAnswer((_) async => (true, null));
+
+      container = _makeContainer(mockRepo);
+      container.listen(userProfileProvider, (_, _) {});
+      await container.read(userProfileProvider.future);
+
+      final (success, failure) = await container
+          .read(userProfileProvider.notifier)
+          .updateBiometricLockEnabled(true);
+
+      expect(success, isTrue);
+      expect(failure, isNull);
+      verify(() => mockRepo.updateBiometricLockEnabled(true)).called(1);
+    });
+
+    test('calls repository.wipeAllData', () async {
+      when(() => mockRepo.wipeAllData()).thenAnswer((_) async => (true, null));
+
+      container = _makeContainer(mockRepo);
+      container.listen(userProfileProvider, (_, _) {});
+      await container.read(userProfileProvider.future);
+
+      final (success, failure) = await container
+          .read(userProfileProvider.notifier)
+          .wipeAllData();
+
+      expect(success, isTrue);
+      expect(failure, isNull);
+      verify(() => mockRepo.wipeAllData()).called(1);
+    });
+
     test('calls repository.updateGlucoseUnit with unit', () async {
       when(
         () => mockRepo.updateGlucoseUnit(GlucoseUnit.mmolL),

@@ -46,4 +46,7 @@ class UserProfileModel {
 
   /// Active display theme preference stored by enum name ('system', 'light', 'dark').
   String themeMode = 'system';
+
+  /// Flag indicating if biometric authentication lock is enabled.
+  bool isBiometricLockEnabled = false;
 }

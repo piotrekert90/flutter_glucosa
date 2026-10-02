@@ -22,49 +22,54 @@ const UserProfileModelSchema = CollectionSchema(
       name: r'diabetesType',
       type: IsarType.string,
     ),
-    r'isNotificationsEnabled': PropertySchema(
+    r'isBiometricLockEnabled': PropertySchema(
       id: 1,
+      name: r'isBiometricLockEnabled',
+      type: IsarType.bool,
+    ),
+    r'isNotificationsEnabled': PropertySchema(
+      id: 2,
       name: r'isNotificationsEnabled',
       type: IsarType.bool,
     ),
     r'isOnboardingCompleted': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'isOnboardingCompleted',
       type: IsarType.bool,
     ),
-    r'name': PropertySchema(id: 3, name: r'name', type: IsarType.string),
+    r'name': PropertySchema(id: 4, name: r'name', type: IsarType.string),
     r'preferredGlucoseUnit': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'preferredGlucoseUnit',
       type: IsarType.string,
     ),
     r'preferredHbA1cUnit': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'preferredHbA1cUnit',
       type: IsarType.string,
     ),
     r'preferredWeightUnit': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'preferredWeightUnit',
       type: IsarType.string,
     ),
     r'targetRangeMaxMgDl': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'targetRangeMaxMgDl',
       type: IsarType.long,
     ),
     r'targetRangeMinMgDl': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'targetRangeMinMgDl',
       type: IsarType.long,
     ),
     r'targetRangePreset': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'targetRangePreset',
       type: IsarType.string,
     ),
     r'themeMode': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'themeMode',
       type: IsarType.string,
     ),
@@ -108,16 +113,17 @@ void _userProfileModelSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.diabetesType);
-  writer.writeBool(offsets[1], object.isNotificationsEnabled);
-  writer.writeBool(offsets[2], object.isOnboardingCompleted);
-  writer.writeString(offsets[3], object.name);
-  writer.writeString(offsets[4], object.preferredGlucoseUnit);
-  writer.writeString(offsets[5], object.preferredHbA1cUnit);
-  writer.writeString(offsets[6], object.preferredWeightUnit);
-  writer.writeLong(offsets[7], object.targetRangeMaxMgDl);
-  writer.writeLong(offsets[8], object.targetRangeMinMgDl);
-  writer.writeString(offsets[9], object.targetRangePreset);
-  writer.writeString(offsets[10], object.themeMode);
+  writer.writeBool(offsets[1], object.isBiometricLockEnabled);
+  writer.writeBool(offsets[2], object.isNotificationsEnabled);
+  writer.writeBool(offsets[3], object.isOnboardingCompleted);
+  writer.writeString(offsets[4], object.name);
+  writer.writeString(offsets[5], object.preferredGlucoseUnit);
+  writer.writeString(offsets[6], object.preferredHbA1cUnit);
+  writer.writeString(offsets[7], object.preferredWeightUnit);
+  writer.writeLong(offsets[8], object.targetRangeMaxMgDl);
+  writer.writeLong(offsets[9], object.targetRangeMinMgDl);
+  writer.writeString(offsets[10], object.targetRangePreset);
+  writer.writeString(offsets[11], object.themeMode);
 }
 
 UserProfileModel _userProfileModelDeserialize(
@@ -129,16 +135,17 @@ UserProfileModel _userProfileModelDeserialize(
   final object = UserProfileModel();
   object.diabetesType = reader.readString(offsets[0]);
   object.id = id;
-  object.isNotificationsEnabled = reader.readBool(offsets[1]);
-  object.isOnboardingCompleted = reader.readBool(offsets[2]);
-  object.name = reader.readString(offsets[3]);
-  object.preferredGlucoseUnit = reader.readString(offsets[4]);
-  object.preferredHbA1cUnit = reader.readString(offsets[5]);
-  object.preferredWeightUnit = reader.readString(offsets[6]);
-  object.targetRangeMaxMgDl = reader.readLong(offsets[7]);
-  object.targetRangeMinMgDl = reader.readLong(offsets[8]);
-  object.targetRangePreset = reader.readString(offsets[9]);
-  object.themeMode = reader.readString(offsets[10]);
+  object.isBiometricLockEnabled = reader.readBool(offsets[1]);
+  object.isNotificationsEnabled = reader.readBool(offsets[2]);
+  object.isOnboardingCompleted = reader.readBool(offsets[3]);
+  object.name = reader.readString(offsets[4]);
+  object.preferredGlucoseUnit = reader.readString(offsets[5]);
+  object.preferredHbA1cUnit = reader.readString(offsets[6]);
+  object.preferredWeightUnit = reader.readString(offsets[7]);
+  object.targetRangeMaxMgDl = reader.readLong(offsets[8]);
+  object.targetRangeMinMgDl = reader.readLong(offsets[9]);
+  object.targetRangePreset = reader.readString(offsets[10]);
+  object.themeMode = reader.readString(offsets[11]);
   return object;
 }
 
@@ -156,7 +163,7 @@ P _userProfileModelDeserializeProp<P>(
     case 2:
       return (reader.readBool(offset)) as P;
     case 3:
-      return (reader.readString(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 4:
       return (reader.readString(offset)) as P;
     case 5:
@@ -164,12 +171,14 @@ P _userProfileModelDeserializeProp<P>(
     case 6:
       return (reader.readString(offset)) as P;
     case 7:
-      return (reader.readLong(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 8:
       return (reader.readLong(offset)) as P;
     case 9:
-      return (reader.readString(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 10:
+      return (reader.readString(offset)) as P;
+    case 11:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -464,6 +473,18 @@ extension UserProfileModelQueryFilter
           includeLower: includeLower,
           upper: upper,
           includeUpper: includeUpper,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterFilterCondition>
+  isBiometricLockEnabledEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.equalTo(
+          property: r'isBiometricLockEnabled',
+          value: value,
         ),
       );
     });
@@ -1479,6 +1500,20 @@ extension UserProfileModelQuerySortBy
   }
 
   QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  sortByIsBiometricLockEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isBiometricLockEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  sortByIsBiometricLockEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isBiometricLockEnabled', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
   sortByIsNotificationsEnabled() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isNotificationsEnabled', Sort.asc);
@@ -1648,6 +1683,20 @@ extension UserProfileModelQuerySortThenBy
   }
 
   QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  thenByIsBiometricLockEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isBiometricLockEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  thenByIsBiometricLockEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isBiometricLockEnabled', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
   thenByIsNotificationsEnabled() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isNotificationsEnabled', Sort.asc);
@@ -1797,6 +1846,13 @@ extension UserProfileModelQueryWhereDistinct
   }
 
   QueryBuilder<UserProfileModel, UserProfileModel, QDistinct>
+  distinctByIsBiometricLockEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isBiometricLockEnabled');
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QDistinct>
   distinctByIsNotificationsEnabled() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isNotificationsEnabled');
@@ -1892,6 +1948,13 @@ extension UserProfileModelQueryProperty
   diabetesTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'diabetesType');
+    });
+  }
+
+  QueryBuilder<UserProfileModel, bool, QQueryOperations>
+  isBiometricLockEnabledProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isBiometricLockEnabled');
     });
   }
 

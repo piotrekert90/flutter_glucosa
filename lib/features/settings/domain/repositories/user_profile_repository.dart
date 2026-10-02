@@ -26,6 +26,9 @@ abstract class UserProfileRepository {
   /// Updates whether notifications are enabled to [isEnabled].
   Future<CommandResult> updateNotificationsEnabled(bool isEnabled);
 
+  /// Updates whether biometric lock is enabled to [isEnabled].
+  Future<CommandResult> updateBiometricLockEnabled(bool isEnabled);
+
   /// Updates the user's preferred glucose unit to [unit].
   Future<CommandResult> updateGlucoseUnit(GlucoseUnit unit);
 
@@ -34,4 +37,7 @@ abstract class UserProfileRepository {
 
   /// Marks the onboarding wizard as completed.
   Future<CommandResult> completeOnboarding();
+
+  /// Irreversibly erases all health records, reminders, and resets user profile to defaults.
+  Future<CommandResult> wipeAllData();
 }

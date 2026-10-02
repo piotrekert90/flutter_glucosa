@@ -57,6 +57,13 @@ class FakeUserProfileRepository implements UserProfileRepository {
   }
 
   @override
+  Future<CommandResult> updateBiometricLockEnabled(bool isEnabled) async {
+    _profile = _profile.copyWith(isBiometricLockEnabled: isEnabled);
+    _emit();
+    return (true, null);
+  }
+
+  @override
   Future<CommandResult> updateGlucoseUnit(GlucoseUnit unit) async {
     _profile = _profile.copyWith(preferredGlucoseUnit: unit);
     _emit();
@@ -73,6 +80,13 @@ class FakeUserProfileRepository implements UserProfileRepository {
   @override
   Future<CommandResult> completeOnboarding() async {
     _profile = _profile.copyWith(isOnboardingCompleted: true);
+    _emit();
+    return (true, null);
+  }
+
+  @override
+  Future<CommandResult> wipeAllData() async {
+    _profile = UserProfile.defaults();
     _emit();
     return (true, null);
   }

@@ -4,6 +4,13 @@ import '../../../../core/domain/enums/enums.dart';
 import '../../../../core/domain/value_objects/glucose_target_range.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/result.dart';
+import '../../../blood_pressure/data/models/blood_pressure_reading_model.dart';
+import '../../../cholesterol/data/models/cholesterol_reading_model.dart';
+import '../../../glucose/data/models/glucose_reading_model.dart';
+import '../../../hba1c/data/models/hba1c_reading_model.dart';
+import '../../../ketones/data/models/ketone_reading_model.dart';
+import '../../../reminders/data/models/reminder_model.dart';
+import '../../../weight/data/models/weight_reading_model.dart';
 import '../../domain/entities/user_profile.dart';
 import '../../domain/repositories/user_profile_repository.dart';
 import '../mappers/user_profile_mapper.dart';
@@ -102,6 +109,22 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   }
 
   @override
+  Future<CommandResult> updateBiometricLockEnabled(bool isEnabled) async {
+    try {
+      await _isar.writeTxn(() async {
+        final model = await _getOrCreateModel();
+        model.isBiometricLockEnabled = isEnabled;
+        await _isar.userProfileModels.put(model);
+      });
+      return (true, null);
+    } on IsarError catch (e) {
+      return (false, DatabaseFailure(e.message));
+    } catch (e) {
+      return (false, DatabaseFailure('Unexpected error: $e'));
+    }
+  }
+
+  @override
   Future<CommandResult> updateGlucoseUnit(GlucoseUnit unit) async {
     try {
       await _isar.writeTxn(() async {
@@ -142,6 +165,28 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
         final model = await _getOrCreateModel();
         model.isOnboardingCompleted = true;
         await _isar.userProfileModels.put(model);
+      });
+      return (true, null);
+    } on IsarError catch (e) {
+      return (false, DatabaseFailure(e.message));
+    } catch (e) {
+      return (false, DatabaseFailure('Unexpected error: $e'));
+    }
+  }
+
+  @override
+  Future<CommandResult> wipeAllData() async {
+    try {
+      await _isar.writeTxn(() async {
+        await _isar.glucoseReadingModels.clear();
+        await _isar.hbA1cReadingModels.clear();
+        await _isar.bloodPressureReadingModels.clear();
+        await _isar.ketoneReadingModels.clear();
+        await _isar.cholesterolReadingModels.clear();
+        await _isar.weightReadingModels.clear();
+        await _isar.reminderModels.clear();
+        await _isar.userProfileModels.clear();
+        await _isar.userProfileModels.put(UserProfile.defaults().toModel());
       });
       return (true, null);
     } on IsarError catch (e) {

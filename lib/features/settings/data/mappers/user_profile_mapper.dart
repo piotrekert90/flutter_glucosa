@@ -45,6 +45,7 @@ extension UserProfileModelMapper on UserProfileModel {
         themeMode,
         UserThemeMode.system,
       ),
+      isBiometricLockEnabled: isBiometricLockEnabled,
     );
   }
 }
@@ -65,7 +66,8 @@ extension UserProfileMapper on UserProfile {
       ..targetRangeMaxMgDl = targetRange.maxMgDl
       ..isOnboardingCompleted = isOnboardingCompleted
       ..isNotificationsEnabled = isNotificationsEnabled
-      ..themeMode = themeMode.name;
+      ..themeMode = themeMode.name
+      ..isBiometricLockEnabled = isBiometricLockEnabled;
   }
 }
 

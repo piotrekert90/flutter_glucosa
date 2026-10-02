@@ -34,6 +34,13 @@ class UserProfileNotifier extends _$UserProfileNotifier {
         .updateNotificationsEnabled(isEnabled);
   }
 
+  /// Updates whether biometric lock is enabled to [isEnabled].
+  Future<CommandResult> updateBiometricLockEnabled(bool isEnabled) {
+    return ref
+        .read(userProfileRepositoryProvider)
+        .updateBiometricLockEnabled(isEnabled);
+  }
+
   /// Updates the user's complete [profile].
   Future<CommandResult> updateProfile(UserProfile profile) {
     return ref.read(userProfileRepositoryProvider).save(profile);
@@ -84,5 +91,10 @@ class UserProfileNotifier extends _$UserProfileNotifier {
   /// Marks onboarding as completed.
   Future<CommandResult> completeOnboarding() {
     return ref.read(userProfileRepositoryProvider).completeOnboarding();
+  }
+
+  /// Wipes all health records, reminders, and resets user profile to defaults.
+  Future<CommandResult> wipeAllData() {
+    return ref.read(userProfileRepositoryProvider).wipeAllData();
   }
 }

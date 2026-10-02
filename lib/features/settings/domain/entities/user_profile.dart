@@ -30,6 +30,9 @@ class UserProfile {
   /// Active display theme preference (system, light, dark).
   final UserThemeMode themeMode;
 
+  /// Flag indicating whether biometric authentication is required to unlock the app.
+  final bool isBiometricLockEnabled;
+
   /// Creates a [UserProfile] instance with default clinical parameters.
   const UserProfile({
     this.name = '',
@@ -41,6 +44,7 @@ class UserProfile {
     this.isOnboardingCompleted = false,
     this.isNotificationsEnabled = true,
     this.themeMode = UserThemeMode.system,
+    this.isBiometricLockEnabled = false,
   });
 
   /// Factory constructor producing default baseline profile parameters.
@@ -57,6 +61,7 @@ class UserProfile {
     bool? isOnboardingCompleted,
     bool? isNotificationsEnabled,
     UserThemeMode? themeMode,
+    bool? isBiometricLockEnabled,
   }) {
     return UserProfile(
       name: name ?? this.name,
@@ -70,6 +75,8 @@ class UserProfile {
       isNotificationsEnabled:
           isNotificationsEnabled ?? this.isNotificationsEnabled,
       themeMode: themeMode ?? this.themeMode,
+      isBiometricLockEnabled:
+          isBiometricLockEnabled ?? this.isBiometricLockEnabled,
     );
   }
 
@@ -85,7 +92,8 @@ class UserProfile {
         other.targetRange == targetRange &&
         other.isOnboardingCompleted == isOnboardingCompleted &&
         other.isNotificationsEnabled == isNotificationsEnabled &&
-        other.themeMode == themeMode;
+        other.themeMode == themeMode &&
+        other.isBiometricLockEnabled == isBiometricLockEnabled;
   }
 
   @override
@@ -99,5 +107,6 @@ class UserProfile {
     isOnboardingCompleted,
     isNotificationsEnabled,
     themeMode,
+    isBiometricLockEnabled,
   );
 }
