@@ -1,0 +1,1829 @@
+{
+  "@@locale": "de",
+  "appTitle": "Glucosa",
+  "@appTitle": {
+    "description": "The title of the application displayed in the top appBar"
+  },
+  "initializationFailed": "Initialisierung fehlgeschlagen",
+  "@initializationFailed": {
+    "description": "Header text displayed when startup initialization fails"
+  },
+  "tryAgain": "Erneut versuchen",
+  "@tryAgain": {
+    "description": "Button label to retry a failed operation"
+  },
+  "retry": "Wiederholen",
+  "@retry": {
+    "description": "Button label to retry an operation"
+  },
+  "pageNotFound": "Seite nicht gefunden: {uri}",
+  "@pageNotFound": {
+    "description": "Error message displayed for unrecognized routes",
+    "placeholders": {
+      "uri": {
+        "type": "String",
+        "example": "/unknown"
+      }
+    }
+  },
+  "settings": "Einstellungen",
+  "@settings": {
+    "description": "Settings label"
+  },
+  "settingsTitle": "Einstellungen",
+  "@settingsTitle": {
+    "description": "Title displayed on the settings screen app bar"
+  },
+  "userProfile": "Profil",
+  "@userProfile": {
+    "description": "Section header for user profile"
+  },
+  "failedToLoadSettings": "Einstellungen konnten nicht geladen werden",
+  "@failedToLoadSettings": {
+    "description": "Error message when settings cannot be retrieved"
+  },
+  "theme": "Design",
+  "@theme": {
+    "description": "Theme label"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "Label for system default theme option"
+  },
+  "themeLight": "Hell",
+  "@themeLight": {
+    "description": "Label for light theme option"
+  },
+  "themeDark": "Dunkelmodus",
+  "@themeDark": {
+    "description": "Label for dark theme option"
+  },
+  "notifications": "Mitteilungen",
+  "@notifications": {
+    "description": "Label for notifications toggle switch"
+  },
+  "receivePushNotifications": "Push-Mitteilungen erhalten",
+  "@receivePushNotifications": {
+    "description": "Subtitle for notifications toggle switch"
+  },
+  "failedToUpdatePreferences": "Einstellungen konnten nicht aktualisiert werden",
+  "@failedToUpdatePreferences": {
+    "description": "Snackbar message when updating notification preference fails"
+  },
+  "failedToUpdateThemeMode": "Design konnte nicht aktualisiert werden",
+  "@failedToUpdateThemeMode": {
+    "description": "Snackbar message when updating theme mode fails"
+  },
+  "settingsTooltip": "Einstellungen",
+  "@settingsTooltip": {
+    "description": "Accessibility tooltip for settings button in app bar"
+  },
+  "navOverview": "Übersicht",
+  "@navOverview": {
+    "description": "Label for overview dashboard bottom navigation tab"
+  },
+  "navHistory": "Verlauf",
+  "@navHistory": {
+    "description": "Label for measurement history bottom navigation tab"
+  },
+  "navSettings": "Einstellungen",
+  "@navSettings": {
+    "description": "Label for settings bottom navigation tab"
+  },
+  "overviewComingSoon": "Übersichts-Dashboard folgt in Kürze",
+  "@overviewComingSoon": {
+    "description": "Placeholder text for overview dashboard"
+  },
+  "historyComingSoon": "Verlaufsprotokoll folgt in Kürze",
+  "@historyComingSoon": {
+    "description": "Placeholder text for history log"
+  },
+  "delete": "Löschen",
+  "@delete": {
+    "description": "Label for delete action"
+  },
+  "undo": "Rückgängig",
+  "@undo": {
+    "description": "Label for undo action"
+  },
+  "cancel": "Abbrechen",
+  "@cancel": {
+    "description": "Cancel button label"
+  },
+  "close": "Schließen",
+  "@close": {
+    "description": "Close button label"
+  },
+  "add": "Hinzufügen",
+  "@add": {
+    "description": "Add button label"
+  },
+  "save": "Speichern",
+  "@save": {
+    "description": "Save button label"
+  },
+  "genericError": "Ein Fehler ist aufgetreten",
+  "@genericError": {
+    "description": "Generic error header message"
+  },
+  "errorPrefix": "Fehler: {message}",
+  "@errorPrefix": {
+    "description": "Prefix for formatted error messages",
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "errorNotFound": "Dieser Eintrag existiert nicht mehr.",
+  "@errorNotFound": {
+    "description": "Failure message for not found"
+  },
+  "errorDatabase": "Beim Speichern deiner Daten ist etwas schiefgelaufen. Bitte versuche es erneut.",
+  "@errorDatabase": {
+    "description": "Failure message for database error"
+  },
+  "errorNetwork": "Ein Netzwerkfehler ist aufgetreten. Bitte prüfe deine Verbindung und versuche es erneut.",
+  "@errorNetwork": {
+    "description": "Failure message for network error"
+  },
+  "errorUnauthorized": "Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.",
+  "@errorUnauthorized": {
+    "description": "Failure message for unauthorized"
+  },
+  "errorValidation": "Einige Felder enthalten ungültige Werte.",
+  "@errorValidation": {
+    "description": "Failure message for validation error"
+  },
+  "appearance": "Darstellung",
+  "@appearance": {
+    "description": "Appearance section header"
+  },
+  "about": "Über",
+  "@about": {
+    "description": "About section header"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "App version label"
+  },
+  "licenses": "Lizenzen",
+  "@licenses": {
+    "description": "Licenses tile label"
+  },
+  "privacyPolicy": "Datenschutzerklärung",
+  "@privacyPolicy": {
+    "description": "Privacy policy tile label"
+  },
+  "poweredByFlutter": "Mit Flutter erstellt",
+  "@poweredByFlutter": {
+    "description": "Footer label on licenses screen"
+  },
+  "privacyPolicyHeaderSubtitle": "Offline & Datenschutz zuerst",
+  "@privacyPolicyHeaderSubtitle": {
+    "description": "Subtitle in privacy policy screen header"
+  },
+  "privacyPolicyIntro": "Diese App speichert deine Daten lokal auf deinem Gerät. Wir respektieren deine Privatsphäre und verkaufen oder sammeln deine persönlichen Daten nicht.",
+  "@privacyPolicyIntro": {
+    "description": "Introduction text in privacy policy screen"
+  },
+  "privacyPolicySection1Title": "Lokale Speicherung",
+  "@privacyPolicySection1Title": {
+    "description": "Title of section 1 in privacy policy"
+  },
+  "privacyPolicySection1Body": "Alle Aufgaben und Einstellungen bleiben auf deinem Gerät.",
+  "@privacyPolicySection1Body": {
+    "description": "Body of section 1 in privacy policy"
+  },
+  "privacyPolicySection2Title": "Diagnose & Absturzberichte",
+  "@privacyPolicySection2Title": {
+    "description": "Title of section 2 in privacy policy"
+  },
+  "privacyPolicySection2Body": "Anonyme Absturzprotokolle können gesammelt werden, um die Zuverlässigkeit der App zu verbessern, ohne persönliche Daten zu enthalten.",
+  "@privacyPolicySection2Body": {
+    "description": "Body of section 2 in privacy policy"
+  },
+  "privacyPolicySection3Title": "Hardware-Schlüsselsicherheit",
+  "@privacyPolicySection3Title": {
+    "description": "Title of section 3 in privacy policy"
+  },
+  "privacyPolicySection3Body": "Sensible Gerätezustände nutzen systemeigene Sandboxing- und Schlüsselbund-Funktionen.",
+  "@privacyPolicySection3Body": {
+    "description": "Body of section 3 in privacy policy"
+  },
+  "privacyPolicySection4Title": "Volle Datenkontrolle",
+  "@privacyPolicySection4Title": {
+    "description": "Title of section 4 in privacy policy"
+  },
+  "privacyPolicySection4Body": "Du behältst die volle Kontrolle über deine Daten. Du kannst App-Daten jederzeit in den Geräteeinstellungen löschen oder zurücksetzen.",
+  "@privacyPolicySection4Body": {
+    "description": "Body of section 4 in privacy policy"
+  },
+  "privacyPolicyContactTitle": "Kontakt & Support",
+  "@privacyPolicyContactTitle": {
+    "description": "Contact title in privacy policy"
+  },
+  "privacyPolicyContactBody": "Bei Fragen oder Feedback zum Datenschutz wende dich an unser Team:",
+  "@privacyPolicyContactBody": {
+    "description": "Contact body in privacy policy"
+  },
+  "initErrorTitle": "Initialisierungsfehler",
+  "@initErrorTitle": {
+    "description": "Title for app initialization error"
+  },
+  "initErrorSubtitle": "App-Speicher oder Dienste konnten nicht initialisiert werden. Bitte starte neu oder versuche es erneut.",
+  "@initErrorSubtitle": {
+    "description": "Subtitle for app initialization error"
+  },
+  "retryStartup": "Neustart wiederholen",
+  "@retryStartup": {
+    "description": "Retry button on startup error screen"
+  },
+  "initErrorSemantics": "Fehlerbildschirm der Startinitialisierung",
+  "@initErrorSemantics": {
+    "description": "Semantics label for initialization error screen"
+  },
+  "rateApp": "App bewerten",
+  "@rateApp": {
+    "description": "Label for rate app tile in settings"
+  },
+  "couldNotOpenStore": "App Store konnte nicht geöffnet werden",
+  "@couldNotOpenStore": {
+    "description": "Error message when opening app store fails"
+  },
+  "glucose": "Blutzucker",
+  "@glucose": {
+    "description": "Blood glucose metric label"
+  },
+  "addGlucoseReading": "Blutzuckerwert hinzufügen",
+  "@addGlucoseReading": {
+    "description": "Screen title and action for adding a new glucose reading"
+  },
+  "editGlucoseReading": "Blutzuckerwert bearbeiten",
+  "@editGlucoseReading": {
+    "description": "Screen title for editing an existing glucose reading"
+  },
+  "glucoseReadingValue": "Blutzuckerwert",
+  "@glucoseReadingValue": {
+    "description": "Label for glucose value input field"
+  },
+  "glucoseValueHint": "Wert eingeben",
+  "@glucoseValueHint": {
+    "description": "Hint text for glucose value input field"
+  },
+  "glucoseReadingAdded": "Blutzuckerwert erfolgreich hinzugefügt",
+  "@glucoseReadingAdded": {
+    "description": "Snackbar message when a glucose reading is successfully added"
+  },
+  "glucoseReadingUpdated": "Blutzuckerwert erfolgreich aktualisiert",
+  "@glucoseReadingUpdated": {
+    "description": "Snackbar message when a glucose reading is successfully updated"
+  },
+  "glucoseReadingDeleted": "Blutzuckerwert gelöscht",
+  "@glucoseReadingDeleted": {
+    "description": "Snackbar message when a glucose reading is successfully deleted"
+  },
+  "failedToAddGlucoseReading": "Blutzuckerwert konnte nicht hinzugefügt werden",
+  "@failedToAddGlucoseReading": {
+    "description": "Snackbar message when adding a glucose reading fails"
+  },
+  "failedToUpdateGlucoseReading": "Blutzuckerwert konnte nicht aktualisiert werden",
+  "@failedToUpdateGlucoseReading": {
+    "description": "Snackbar message when updating a glucose reading fails"
+  },
+  "failedToDeleteGlucoseReading": "Blutzuckerwert konnte nicht gelöscht werden",
+  "@failedToDeleteGlucoseReading": {
+    "description": "Snackbar message when deleting a glucose reading fails"
+  },
+  "mealContext": "Mahlzeitenkontext",
+  "@mealContext": {
+    "description": "Label for meal context selector"
+  },
+  "dateTime": "Datum & Uhrzeit",
+  "@dateTime": {
+    "description": "Label for date and time picker"
+  },
+  "notes": "Notizen",
+  "@notes": {
+    "description": "Label for notes text field"
+  },
+  "notesHint": "Optionale Notizen oder Kommentare",
+  "@notesHint": {
+    "description": "Hint text for notes input field"
+  },
+  "deleteReadingConfirmationTitle": "Wert löschen",
+  "@deleteReadingConfirmationTitle": {
+    "description": "Title of deletion confirmation dialog"
+  },
+  "deleteReadingConfirmationMessage": "Bist du sicher, dass du diesen Blutzuckerwert löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "@deleteReadingConfirmationMessage": {
+    "description": "Message of deletion confirmation dialog"
+  },
+  "noReadingsYet": "Noch keine Blutzuckerwerte erfasst",
+  "@noReadingsYet": {
+    "description": "Empty state label when no readings exist"
+  },
+  "latestReading": "Aktuellster Wert",
+  "@latestReading": {
+    "description": "Header for latest reading card"
+  },
+  "estimatedHbA1c": "Geschätztes HbA1c",
+  "@estimatedHbA1c": {
+    "description": "Header for estimated HbA1c card"
+  },
+  "targetRange": "Zielbereich",
+  "@targetRange": {
+    "description": "Label for clinical target range"
+  },
+  "statusHypoglycemia": "Hypoglykämie",
+  "@statusHypoglycemia": {
+    "description": "Clinical status label for very low blood glucose"
+  },
+  "statusLow": "Niedrig",
+  "@statusLow": {
+    "description": "Clinical status label for low blood glucose"
+  },
+  "statusInRange": "Im Bereich",
+  "@statusInRange": {
+    "description": "Clinical status label for target blood glucose"
+  },
+  "statusHigh": "Hoch",
+  "@statusHigh": {
+    "description": "Clinical status label for high blood glucose"
+  },
+  "statusHyperglycemia": "Hyperglykämie",
+  "@statusHyperglycemia": {
+    "description": "Clinical status label for very high blood glucose"
+  },
+  "mealContextBeforeBreakfast": "Vor dem Frühstück",
+  "@mealContextBeforeBreakfast": {
+    "description": "Meal context label for before breakfast"
+  },
+  "mealContextAfterBreakfast": "Nach dem Frühstück",
+  "@mealContextAfterBreakfast": {
+    "description": "Meal context label for after breakfast"
+  },
+  "mealContextBeforeLunch": "Vor dem Mittagessen",
+  "@mealContextBeforeLunch": {
+    "description": "Meal context label for before lunch"
+  },
+  "mealContextAfterLunch": "Nach dem Mittagessen",
+  "@mealContextAfterLunch": {
+    "description": "Meal context label for after lunch"
+  },
+  "mealContextBeforeDinner": "Vor dem Abendessen",
+  "@mealContextBeforeDinner": {
+    "description": "Meal context label for before dinner"
+  },
+  "mealContextAfterDinner": "Nach dem Abendessen",
+  "@mealContextAfterDinner": {
+    "description": "Meal context label for after dinner"
+  },
+  "mealContextSnack": "Snack",
+  "@mealContextSnack": {
+    "description": "Meal context label for snack"
+  },
+  "mealContextBedtime": "Schlafenszeit",
+  "@mealContextBedtime": {
+    "description": "Meal context label for bedtime"
+  },
+  "mealContextNight": "Nacht",
+  "@mealContextNight": {
+    "description": "Meal context label for night"
+  },
+  "mealContextFasting": "Nüchtern",
+  "@mealContextFasting": {
+    "description": "Meal context label for fasting"
+  },
+  "mealContextRecheck": "Kontrollmessung",
+  "@mealContextRecheck": {
+    "description": "Meal context label for recheck"
+  },
+  "mealContextOther": "Sonstiges",
+  "@mealContextOther": {
+    "description": "Meal context label for other"
+  },
+  "hba1c": "HbA1c",
+  "@hba1c": {
+    "description": "Title label for HbA1c glycated hemoglobin"
+  },
+  "hba1cStatusNormal": "Normal (<5,7 %)",
+  "@hba1cStatusNormal": {
+    "description": "Status badge label for normal HbA1c level"
+  },
+  "hba1cStatusElevated": "Erhöht (5,7–6,4 %)",
+  "@hba1cStatusElevated": {
+    "description": "Status badge label for elevated prediabetes HbA1c level"
+  },
+  "hba1cStatusHigh": "Hoch (≥6,5 %)",
+  "@hba1cStatusHigh": {
+    "description": "Status badge label for high diabetes threshold HbA1c level"
+  },
+  "addHba1c": "HbA1c erfassen",
+  "@addHba1c": {
+    "description": "Title for screen adding a new HbA1c reading"
+  },
+  "editHba1c": "HbA1c bearbeiten",
+  "@editHba1c": {
+    "description": "Title for screen editing an existing HbA1c reading"
+  },
+  "deleteHba1c": "HbA1c löschen",
+  "@deleteHba1c": {
+    "description": "Delete button label for HbA1c reading"
+  },
+  "deleteHba1cConfirm": "Bist du sicher, dass du diesen HbA1c-Wert löschen möchtest?",
+  "@deleteHba1cConfirm": {
+    "description": "Confirmation prompt when deleting an HbA1c reading"
+  },
+  "hba1cValueHint": "z. B. 6,5",
+  "@hba1cValueHint": {
+    "description": "Hint text for HbA1c input"
+  },
+  "hba1cSavedSuccess": "HbA1c-Wert erfolgreich gespeichert",
+  "@hba1cSavedSuccess": {
+    "description": "Snackbar message when HbA1c reading is saved"
+  },
+  "hba1cDeletedSuccess": "HbA1c-Wert erfolgreich gelöscht",
+  "@hba1cDeletedSuccess": {
+    "description": "Snackbar message when HbA1c reading is deleted"
+  },
+  "bloodPressure": "Blutdruck",
+  "@bloodPressure": {
+    "description": "Title label for blood pressure metric"
+  },
+  "bpStatusNormal": "Normal (<120/80)",
+  "@bpStatusNormal": {
+    "description": "Status badge label for normal blood pressure level"
+  },
+  "bpStatusElevated": "Erhöht (120–129/<80)",
+  "@bpStatusElevated": {
+    "description": "Status badge label for elevated blood pressure level"
+  },
+  "bpStatusHigh": "Hoch (≥130/80)",
+  "@bpStatusHigh": {
+    "description": "Status badge label for high blood pressure level"
+  },
+  "addBloodPressure": "Blutdruck erfassen",
+  "@addBloodPressure": {
+    "description": "Title for screen adding a new blood pressure reading"
+  },
+  "editBloodPressure": "Blutdruck bearbeiten",
+  "@editBloodPressure": {
+    "description": "Title for screen editing an existing blood pressure reading"
+  },
+  "deleteBloodPressure": "Blutdruck löschen",
+  "@deleteBloodPressure": {
+    "description": "Delete button label for blood pressure reading"
+  },
+  "deleteBloodPressureConfirm": "Bist du sicher, dass du diesen Blutdruckwert löschen möchtest?",
+  "@deleteBloodPressureConfirm": {
+    "description": "Confirmation prompt when deleting a blood pressure reading"
+  },
+  "systolicLabel": "Systolisch",
+  "@systolicLabel": {
+    "description": "Label for systolic pressure input field"
+  },
+  "diastolicLabel": "Diastolisch",
+  "@diastolicLabel": {
+    "description": "Label for diastolic pressure input field"
+  },
+  "systolicHint": "z. B. 120",
+  "@systolicHint": {
+    "description": "Hint text for systolic pressure input"
+  },
+  "diastolicHint": "z. B. 80",
+  "@diastolicHint": {
+    "description": "Hint text for diastolic pressure input"
+  },
+  "bpSavedSuccess": "Blutdruckwert erfolgreich gespeichert",
+  "@bpSavedSuccess": {
+    "description": "Snackbar message when blood pressure reading is saved"
+  },
+  "bpDeletedSuccess": "Blutdruckwert erfolgreich gelöscht",
+  "@bpDeletedSuccess": {
+    "description": "Snackbar message when blood pressure reading is deleted"
+  },
+  "ketones": "Ketone",
+  "@ketones": {
+    "description": "Title label for blood ketones metric"
+  },
+  "ketoneStatusNormal": "Normal (<0,6)",
+  "@ketoneStatusNormal": {
+    "description": "Status badge label for normal ketone level"
+  },
+  "ketoneStatusElevated": "Erhöht (0,6–1,5)",
+  "@ketoneStatusElevated": {
+    "description": "Status badge label for elevated ketone level"
+  },
+  "ketoneStatusHigh": "Hoch (>1,5)",
+  "@ketoneStatusHigh": {
+    "description": "Status badge label for high ketone level"
+  },
+  "addKetones": "Ketone erfassen",
+  "@addKetones": {
+    "description": "Title for screen adding a new ketone reading"
+  },
+  "editKetones": "Ketone bearbeiten",
+  "@editKetones": {
+    "description": "Title for screen editing an existing ketone reading"
+  },
+  "deleteKetones": "Ketone löschen",
+  "@deleteKetones": {
+    "description": "Delete button label for ketone reading"
+  },
+  "deleteKetonesConfirm": "Bist du sicher, dass du diesen Ketonwert löschen möchtest?",
+  "@deleteKetonesConfirm": {
+    "description": "Confirmation prompt when deleting a ketone reading"
+  },
+  "ketonesValueHint": "z. B. 0,5",
+  "@ketonesValueHint": {
+    "description": "Hint text for ketone value input"
+  },
+  "ketonesSavedSuccess": "Ketonwert erfolgreich gespeichert",
+  "@ketonesSavedSuccess": {
+    "description": "Snackbar message when ketone reading is saved"
+  },
+  "ketonesDeletedSuccess": "Ketonwert erfolgreich gelöscht",
+  "@ketonesDeletedSuccess": {
+    "description": "Snackbar message when ketone reading is deleted"
+  },
+  "cholesterol": "Cholesterin",
+  "@cholesterol": {
+    "description": "Title label for cholesterol panel metric"
+  },
+  "cholesterolStatusNormal": "Normal (<200)",
+  "@cholesterolStatusNormal": {
+    "description": "Status badge label for normal total cholesterol level"
+  },
+  "cholesterolStatusElevated": "Grenzwertig (200–239)",
+  "@cholesterolStatusElevated": {
+    "description": "Status badge label for borderline total cholesterol level"
+  },
+  "cholesterolStatusHigh": "Hoch (≥240)",
+  "@cholesterolStatusHigh": {
+    "description": "Status badge label for high total cholesterol level"
+  },
+  "addCholesterol": "Cholesterin erfassen",
+  "@addCholesterol": {
+    "description": "Title for screen adding a new cholesterol reading"
+  },
+  "editCholesterol": "Cholesterin bearbeiten",
+  "@editCholesterol": {
+    "description": "Title for screen editing an existing cholesterol reading"
+  },
+  "deleteCholesterol": "Cholesterin löschen",
+  "@deleteCholesterol": {
+    "description": "Delete button label for cholesterol reading"
+  },
+  "deleteCholesterolConfirm": "Bist du sicher, dass du diesen Cholesterinwert löschen möchtest?",
+  "@deleteCholesterolConfirm": {
+    "description": "Confirmation prompt when deleting a cholesterol reading"
+  },
+  "totalCholesterolLabel": "Gesamt",
+  "@totalCholesterolLabel": {
+    "description": "Label for total cholesterol input field"
+  },
+  "ldlLabel": "LDL",
+  "@ldlLabel": {
+    "description": "Label for LDL cholesterol input field"
+  },
+  "hdlLabel": "HDL",
+  "@hdlLabel": {
+    "description": "Label for HDL cholesterol input field"
+  },
+  "cholesterolValueHint": "z. B. 190",
+  "@cholesterolValueHint": {
+    "description": "Hint text for cholesterol value input"
+  },
+  "cholesterolSavedSuccess": "Cholesterinwert erfolgreich gespeichert",
+  "@cholesterolSavedSuccess": {
+    "description": "Snackbar message when cholesterol reading is saved"
+  },
+  "cholesterolDeletedSuccess": "Cholesterinwert erfolgreich gelöscht",
+  "@cholesterolDeletedSuccess": {
+    "description": "Snackbar message when cholesterol reading is deleted"
+  },
+  "weight": "Gewicht",
+  "@weight": {
+    "description": "Title label for body weight metric"
+  },
+  "addWeight": "Gewicht erfassen",
+  "@addWeight": {
+    "description": "Title for screen adding a new weight reading"
+  },
+  "editWeight": "Gewicht bearbeiten",
+  "@editWeight": {
+    "description": "Title for screen editing an existing weight reading"
+  },
+  "deleteWeight": "Gewicht löschen",
+  "@deleteWeight": {
+    "description": "Delete button label for weight reading"
+  },
+  "deleteWeightConfirm": "Bist du sicher, dass du diesen Gewichtswert löschen möchtest?",
+  "@deleteWeightConfirm": {
+    "description": "Confirmation prompt when deleting a weight reading"
+  },
+  "weightValueHint": "z. B. 75,5",
+  "@weightValueHint": {
+    "description": "Hint text for weight value input"
+  },
+  "weightSavedSuccess": "Gewichtswert erfolgreich gespeichert",
+  "@weightSavedSuccess": {
+    "description": "Snackbar message when weight reading is saved"
+  },
+  "weightDeletedSuccess": "Gewichtswert erfolgreich gelöscht",
+  "@weightDeletedSuccess": {
+    "description": "Snackbar message when weight reading is deleted"
+  },
+  "addReading": "Wert hinzufügen",
+  "@addReading": {
+    "description": "Title for the metric selection bottom sheet and add-button tooltip"
+  },
+  "filterAll": "Alle",
+  "@filterAll": {
+    "description": "Label for the 'show all metrics' history filter chip"
+  },
+  "chartTitle": "Trends",
+  "@chartTitle": {
+    "description": "Title for the overview metric trend chart card"
+  },
+  "timeRangeDay": "Tag",
+  "@timeRangeDay": {
+    "description": "Label for the day time range chart selector"
+  },
+  "timeRangeWeek": "Woche",
+  "@timeRangeWeek": {
+    "description": "Label for the week time range chart selector"
+  },
+  "timeRangeMonth": "Monat",
+  "@timeRangeMonth": {
+    "description": "Label for the month time range chart selector"
+  },
+  "statAverage": "Ø",
+  "@statAverage": {
+    "description": "Label for average statistic under the trend chart"
+  },
+  "statMin": "Min",
+  "@statMin": {
+    "description": "Label for minimum statistic under the trend chart"
+  },
+  "statMax": "Max",
+  "@statMax": {
+    "description": "Label for maximum statistic under the trend chart"
+  },
+  "onboardingWelcomeTitle": "Willkommen bei Glucosa",
+  "@onboardingWelcomeTitle": {
+    "description": "Title of the onboarding welcome step"
+  },
+  "onboardingWelcomeSubtitle": "Richten wir dein Profil in wenigen schnellen Schritten ein.",
+  "@onboardingWelcomeSubtitle": {
+    "description": "Subtitle of the onboarding welcome step"
+  },
+  "onboardingNameLabel": "Dein Name",
+  "@onboardingNameLabel": {
+    "description": "Label for the name input during onboarding"
+  },
+  "onboardingNameHint": "z. B. Alex",
+  "@onboardingNameHint": {
+    "description": "Hint text for the name input during onboarding"
+  },
+  "onboardingDiabetesTypeTitle": "Welche Diabetesform hast du?",
+  "@onboardingDiabetesTypeTitle": {
+    "description": "Title of the onboarding diabetes type step"
+  },
+  "diabetesType1": "Typ 1",
+  "@diabetesType1": {
+    "description": "Label for type 1 diabetes"
+  },
+  "diabetesType2": "Typ 2",
+  "@diabetesType2": {
+    "description": "Label for type 2 diabetes"
+  },
+  "diabetesTypeGestational": "Schwangerschaftsdiabetes",
+  "@diabetesTypeGestational": {
+    "description": "Label for gestational diabetes"
+  },
+  "diabetesTypeLada": "LADA",
+  "@diabetesTypeLada": {
+    "description": "Label for LADA diabetes"
+  },
+  "onboardingUnitsTitle": "Bevorzugte Blutzuckereinheit",
+  "@onboardingUnitsTitle": {
+    "description": "Title of the onboarding units and range step"
+  },
+  "onboardingGlucoseUnitLabel": "Blutzuckereinheit",
+  "@onboardingGlucoseUnitLabel": {
+    "description": "Label for the glucose unit selector during onboarding"
+  },
+  "onboardingRangeLabel": "Zielbereich",
+  "@onboardingRangeLabel": {
+    "description": "Label for the target range selector during onboarding"
+  },
+  "onboardingConfirmTitle": "Alles bereit!",
+  "@onboardingConfirmTitle": {
+    "description": "Title of the onboarding confirmation step"
+  },
+  "onboardingGetStarted": "Los geht's",
+  "@onboardingGetStarted": {
+    "description": "Final onboarding completion button"
+  },
+  "onboardingNext": "Weiter",
+  "@onboardingNext": {
+    "description": "Label for the button advancing the onboarding wizard"
+  },
+  "onboardingBack": "Zurück",
+  "@onboardingBack": {
+    "description": "Label for the button going back in the onboarding wizard"
+  },
+  "onboardingStepOf": "Schritt {step} von {total}",
+  "@onboardingStepOf": {
+    "description": "Progress indicator of the onboarding wizard",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "reminders": "Erinnerungen",
+  "@reminders": {
+    "description": "Title for reminders management screen"
+  },
+  "addReminder": "Erinnerung hinzufügen",
+  "@addReminder": {
+    "description": "Button label and dialog title to add a new reminder"
+  },
+  "editReminder": "Erinnerung bearbeiten",
+  "@editReminder": {
+    "description": "Dialog title to edit an existing reminder"
+  },
+  "deleteReminder": "Erinnerung löschen",
+  "@deleteReminder": {
+    "description": "Button label to delete a reminder"
+  },
+  "deleteReminderConfirm": "Bist du sicher, dass du diese Erinnerung löschen möchtest?",
+  "@deleteReminderConfirm": {
+    "description": "Confirmation prompt when deleting a reminder"
+  },
+  "noRemindersTitle": "Keine Erinnerungen geplant",
+  "@noRemindersTitle": {
+    "description": "Empty state title when no reminders are configured"
+  },
+  "noRemindersSubtitle": "Füge Erinnerungen hinzu, um das Erfassen deiner Werte nie zu vergessen.",
+  "@noRemindersSubtitle": {
+    "description": "Empty state subtitle encouraging user to add reminders"
+  },
+  "reminderLabel": "Bezeichnung",
+  "@reminderLabel": {
+    "description": "Form label for reminder description"
+  },
+  "reminderLabelHint": "z. B. Nüchternwert am Morgen",
+  "@reminderLabelHint": {
+    "description": "Hint text for reminder label input"
+  },
+  "reminderTime": "Uhrzeit",
+  "@reminderTime": {
+    "description": "Label for reminder time selection"
+  },
+  "reminderMetric": "Gesundheitswert",
+  "@reminderMetric": {
+    "description": "Label for reminder health metric type"
+  },
+  "reminderOneTime": "Einmalige Erinnerung",
+  "@reminderOneTime": {
+    "description": "Switch label for one-time reminder"
+  },
+  "reminderOneTimeSubtitle": "Deaktiviert sich nach dem Auslösen automatisch",
+  "@reminderOneTimeSubtitle": {
+    "description": "Subtitle describing one-time reminder behavior"
+  },
+  "reminderSavedSuccess": "Erinnerung erfolgreich gespeichert",
+  "@reminderSavedSuccess": {
+    "description": "Snackbar message when reminder is saved"
+  },
+  "reminderDeletedSuccess": "Erinnerung gelöscht",
+  "@reminderDeletedSuccess": {
+    "description": "Snackbar message when reminder is deleted"
+  },
+  "exportData": "Daten exportieren",
+  "@exportData": {
+    "description": "Title for the data export screen and menu tile"
+  },
+  "exportSubtitle": "Messwerte als CSV exportieren",
+  "@exportSubtitle": {
+    "description": "Subtitle describing the data export option"
+  },
+  "exportDateRange": "Zeitraum",
+  "@exportDateRange": {
+    "description": "Header for the date range filter in export screen"
+  },
+  "exportAllTime": "Gesamtzeitraum",
+  "@exportAllTime": {
+    "description": "Option to export data across all time"
+  },
+  "exportLast7Days": "Letzte 7 Tage",
+  "@exportLast7Days": {
+    "description": "Option to export data from the last 7 days"
+  },
+  "exportLast30Days": "Letzte 30 Tage",
+  "@exportLast30Days": {
+    "description": "Option to export data from the last 30 days"
+  },
+  "exportLast90Days": "Letzte 90 Tage",
+  "@exportLast90Days": {
+    "description": "Option to export data from the last 90 days"
+  },
+  "exportCustomRange": "Benutzerdefiniert",
+  "@exportCustomRange": {
+    "description": "Option to pick custom start and end dates"
+  },
+  "exportMetrics": "Zu exportierende Werte",
+  "@exportMetrics": {
+    "description": "Section title for metric selection in export screen"
+  },
+  "exportSelectAll": "Alle auswählen",
+  "@exportSelectAll": {
+    "description": "Button to select all metrics"
+  },
+  "exportDeselectAll": "Auswahl aufheben",
+  "@exportDeselectAll": {
+    "description": "Button to deselect all metrics"
+  },
+  "exportMatchingRecords": "{count, plural, =0{Keine Einträge gefunden} =1{1 Eintrag ausgewählt} other{{count} Einträge ausgewählt}}",
+  "@exportMatchingRecords": {
+    "description": "Label indicating number of matching records to be exported",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
+    }
+  },
+  "exportAndShare": "Exportieren & Teilen",
+  "@exportAndShare": {
+    "description": "Button label to trigger CSV export and open system share sheet"
+  },
+  "exportSuccess": "Export erfolgreich abgeschlossen",
+  "@exportSuccess": {
+    "description": "Feedback message when export finishes successfully"
+  },
+  "exportNoMetricsSelected": "Bitte wähle mindestens einen Wert",
+  "@exportNoMetricsSelected": {
+    "description": "Validation error when no metrics are selected"
+  },
+  "hba1cCalculator": "HbA1c-Rechner",
+  "@hba1cCalculator": {
+    "description": "Title for the HbA1c estimation calculator screen and tile"
+  },
+  "hba1cCalculatorSubtitle": "Geschätztes HbA1c aus dem Durchschnittszucker berechnen – oder umgekehrt.",
+  "@hba1cCalculatorSubtitle": {
+    "description": "Subtitle describing the HbA1c calculator screen"
+  },
+  "averageGlucose": "Durchschnittszucker",
+  "@averageGlucose": {
+    "description": "Label for average glucose input field"
+  },
+  "adagFormulaExplanation": "Berechnungen basieren auf der ADAG-Studienformel: eAG = 28,7 × HbA1c − 46,7.",
+  "@adagFormulaExplanation": {
+    "description": "Explanatory note describing the ADAG formula"
+  },
+  "saveAsHbA1cReading": "Als HbA1c-Wert speichern",
+  "@saveAsHbA1cReading": {
+    "description": "Button to save calculated HbA1c value into the log"
+  },
+  "hba1cReadingSaved": "HbA1c-Wert erfolgreich gespeichert",
+  "@hba1cReadingSaved": {
+    "description": "Feedback message when calculated HbA1c reading is persisted"
+  },
+  "name": "Name",
+  "@name": {
+    "description": "Label for user name"
+  },
+  "nameHint": "Deinen Namen eingeben",
+  "@nameHint": {
+    "description": "Hint text for name input field"
+  },
+  "editName": "Namen bearbeiten",
+  "@editName": {
+    "description": "Title of the edit name dialog"
+  },
+  "diabetesType": "Diabetesform",
+  "@diabetesType": {
+    "description": "Label for diabetes type"
+  },
+  "selectDiabetesType": "Diabetesform auswählen",
+  "@selectDiabetesType": {
+    "description": "Title for selecting diabetes type dialog"
+  },
+  "units": "Einheiten",
+  "@units": {
+    "description": "Section title for measurement units"
+  },
+  "glucoseUnit": "Blutzuckereinheit",
+  "@glucoseUnit": {
+    "description": "Label for glucose measurement unit"
+  },
+  "selectGlucoseUnit": "Blutzuckereinheit auswählen",
+  "@selectGlucoseUnit": {
+    "description": "Title for selecting glucose unit dialog"
+  },
+  "hba1cUnit": "HbA1c-Einheit",
+  "@hba1cUnit": {
+    "description": "Label for HbA1c measurement unit"
+  },
+  "selectHbA1cUnit": "HbA1c-Einheit auswählen",
+  "@selectHbA1cUnit": {
+    "description": "Title for selecting HbA1c unit dialog"
+  },
+  "weightUnit": "Gewichtseinheit",
+  "@weightUnit": {
+    "description": "Label for weight measurement unit"
+  },
+  "selectWeightUnit": "Gewichtseinheit auswählen",
+  "@selectWeightUnit": {
+    "description": "Title for selecting weight unit dialog"
+  },
+  "targetRangePreset": "Schema",
+  "@targetRangePreset": {
+    "description": "Label for target range preset"
+  },
+  "targetRangeMin": "Minimum",
+  "@targetRangeMin": {
+    "description": "Label for minimum target range field"
+  },
+  "targetRangeMax": "Maximum",
+  "@targetRangeMax": {
+    "description": "Label for maximum target range field"
+  },
+  "targetRangeCustom": "Benutzerdefiniert",
+  "@targetRangeCustom": {
+    "description": "Label for custom target range preset"
+  },
+  "editTargetRange": "Blutzucker-Zielbereich",
+  "@editTargetRange": {
+    "description": "Title for editing target glucose range dialog"
+  },
+  "targetRangeInvalid": "Das Minimum muss kleiner als das Maximum und größer als null sein",
+  "@targetRangeInvalid": {
+    "description": "Error message when custom target range inputs are invalid"
+  },
+  "notSet": "Nicht festgelegt",
+  "@notSet": {
+    "description": "Placeholder text when a setting or property is not set"
+  },
+  "tools": "Werkzeuge",
+  "@tools": {
+    "description": "Section header for utility tools in settings"
+  },
+  "biometricReason": "Bitte authentifiziere dich, um auf deine Gesundheitsdaten zuzugreifen",
+  "@biometricReason": {
+    "description": "System biometric prompt explanation message"
+  },
+  "biometricUnlockTitle": "Glucosa entsperren",
+  "@biometricUnlockTitle": {
+    "description": "Title displayed on biometric shield and sign in prompt"
+  },
+  "biometricUnlockDescription": "Zum Schutz deiner medizinischen Daten ist eine Authentifizierung erforderlich.",
+  "@biometricUnlockDescription": {
+    "description": "Subtitle on biometric shield screen"
+  },
+  "biometricUnlockButton": "Entsperren",
+  "@biometricUnlockButton": {
+    "description": "Button to trigger biometric authentication"
+  },
+  "biometricNotAvailable": "Biometrische Authentifizierung ist auf diesem Gerät nicht verfügbar",
+  "@biometricNotAvailable": {
+    "description": "Error message when biometrics cannot be used"
+  },
+  "biometricLockedOut": "Biometrie wegen zu vieler Versuche vorübergehend gesperrt. Bitte versuche es später erneut.",
+  "@biometricLockedOut": {
+    "description": "Error message when biometrics are temporarily locked out"
+  },
+  "biometricLockRecoveryTitle": "Biometrie nicht verfügbar",
+  "@biometricLockRecoveryTitle": {
+    "description": "Title for biometric lock recovery dialog"
+  },
+  "biometricLockRecoveryMessage": "Die biometrische Authentifizierung kann nicht abgeschlossen werden, weil keine Anmeldedaten eingerichtet oder deaktiviert wurden. Möchtest du die biometrische Sperre deaktivieren, um wieder Zugriff zu erhalten?",
+  "@biometricLockRecoveryMessage": {
+    "description": "Message for biometric lock recovery dialog"
+  },
+  "biometricLockRecoveryDisable": "Sperre deaktivieren",
+  "@biometricLockRecoveryDisable": {
+    "description": "Action button in lock recovery dialog"
+  },
+  "biometricSettingTitle": "Biometrische Sperre",
+  "@biometricSettingTitle": {
+    "description": "Title for biometric lock setting"
+  },
+  "biometricSettingSubtitle": "Face ID, Touch ID oder Fingerabdruck zum Öffnen der App erforderlich",
+  "@biometricSettingSubtitle": {
+    "description": "Subtitle for biometric lock setting"
+  },
+  "securitySection": "Sicherheit & Datenschutz",
+  "@securitySection": {
+    "description": "Section header in settings for security and privacy"
+  },
+  "wipeDataTitle": "Alle Daten löschen",
+  "@wipeDataTitle": {
+    "description": "Title for GDPR wipe data option"
+  },
+  "wipeDataDescription": "Alle Gesundheitsdaten, Erinnerungen und Einstellungen dauerhaft von diesem Gerät löschen.",
+  "@wipeDataDescription": {
+    "description": "Description for GDPR wipe data option"
+  },
+  "wipeDataConfirmTitle": "Bist du sicher?",
+  "@wipeDataConfirmTitle": {
+    "description": "Title for wipe data confirmation dialog"
+  },
+  "wipeDataConfirmMessage": "Diese Aktion kann nicht rückgängig gemacht werden. Alle deine Blutzuckerwerte und Einstellungen gehen dauerhaft verloren.",
+  "@wipeDataConfirmMessage": {
+    "description": "Warning message in wipe data confirmation dialog"
+  },
+  "wipeDataButton": "Alles löschen",
+  "@wipeDataButton": {
+    "description": "Destructive button in wipe data dialog"
+  },
+  "wipeDataSuccess": "Alle Daten wurden erfolgreich gelöscht.",
+  "@wipeDataSuccess": {
+    "description": "Snackbar notification after data wipe"
+  },
+  "firstDayOfWeek": "Erster Wochentag",
+  "@firstDayOfWeek": {
+    "description": "Label for setting preferred first day of the week"
+  },
+  "firstDayOfWeekSystem": "Systemstandard",
+  "@firstDayOfWeekSystem": {
+    "description": "Option for system default first day of the week"
+  },
+  "firstDayOfWeekMonday": "Montag",
+  "@firstDayOfWeekMonday": {
+    "description": "Option for Monday as first day of the week"
+  },
+  "firstDayOfWeekSunday": "Sonntag",
+  "@firstDayOfWeekSunday": {
+    "description": "Option for Sunday as first day of the week"
+  },
+  "selectFirstDayOfWeek": "Ersten Wochentag auswählen",
+  "@selectFirstDayOfWeek": {
+    "description": "Dialog title for picking first day of the week"
+  },
+  "tabCalendar": "Kalender",
+  "@tabCalendar": {
+    "description": "Title and tab label for interactive calendar screen"
+  },
+  "calendarTitle": "Kalender",
+  "@calendarTitle": {
+    "description": "Top bar title for calendar screen"
+  },
+  "previousMonth": "Voriger Monat",
+  "@previousMonth": {
+    "description": "Tooltip for previous month navigation button"
+  },
+  "nextMonth": "Nächster Monat",
+  "@nextMonth": {
+    "description": "Tooltip for next month navigation button"
+  },
+  "jumpToToday": "Heute",
+  "@jumpToToday": {
+    "description": "Button to jump back to current calendar month and day"
+  },
+  "noEntriesForDate": "Keine Werte an diesem Tag",
+  "@noEntriesForDate": {
+    "description": "Empty state title when selected calendar day has no readings"
+  },
+  "noEntriesForDateSubtitle": "Tippe auf die Schaltfläche unten, um deinen ersten Wert für dieses Datum hinzuzufügen.",
+  "@noEntriesForDateSubtitle": {
+    "description": "Empty state subtitle prompting the user to add a reading for the selected day"
+  },
+  "entriesFromDate": "Werte für {date}",
+  "@entriesFromDate": {
+    "description": "Header title displaying selected day readings",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "readingsCountPill": "{count, plural, =1{1 Wert} other{{count} Werte}}",
+  "@readingsCountPill": {
+    "description": "Badge showing total readings count for selected day",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarDaySemantics": "{date}, {count, plural, =0{keine Werte} =1{1 Wert} other{{count} Werte}}",
+  "@calendarDaySemantics": {
+    "description": "Accessibility label for a calendar day cell",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarDaySemanticsGoalAchieved": "{date}, {count, plural, =1{1 Wert, alle im Ziel} other{{count} Werte, alle im Ziel}}",
+  "@calendarDaySemanticsGoalAchieved": {
+    "description": "Accessibility label for a calendar day cell where all readings are within target range",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allReadingsInRangeBanner": "Alle Werte im Zielbereich",
+  "@allReadingsInRangeBanner": {
+    "description": "Banner displayed when all readings on selected day are within target range"
+  },
+  "addAnotherReading": "Weiteren Wert hinzufügen",
+  "@addAnotherReading": {
+    "description": "Button to log another measurement for the selected day"
+  },
+  "edit": "Bearbeiten",
+  "@edit": {
+    "description": "Generic edit action label"
+  },
+  "moreOptions": "Weitere Optionen",
+  "@moreOptions": {
+    "description": "Tooltip for more options popup menu button"
+  },
+  "habitsAndStreaks": "Gewohnheiten & Serien",
+  "@habitsAndStreaks": {
+    "description": "Section title for habit tracking and streaks"
+  },
+  "currentStreak": "Aktuelle Serie",
+  "@currentStreak": {
+    "description": "Label for current consecutive logging streak"
+  },
+  "bestStreak": "Beste Serie",
+  "@bestStreak": {
+    "description": "Label for longest historical logging streak"
+  },
+  "loggingStreak": "Erfassungsserie",
+  "@loggingStreak": {
+    "description": "Card title for daily logging streak"
+  },
+  "streakDays": "{count, plural, =1{1 Tag} other{{count} Tage}}",
+  "@streakDays": {
+    "description": "Pluralized streak duration in days",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "monthlyCompliance": "Monatliche Regelmäßigkeit",
+  "@monthlyCompliance": {
+    "description": "Label for logging compliance in the active month"
+  },
+  "totalCompliance": "Gesamtregelmäßigkeit",
+  "@totalCompliance": {
+    "description": "Label for total historical logging compliance"
+  },
+  "periodComparison": "Zeitraumvergleich",
+  "@periodComparison": {
+    "description": "Section header for comparing rolling time windows"
+  },
+  "rollingDays7": "7 Tage",
+  "@rollingDays7": {
+    "description": "Toggle chip for 7-day rolling period"
+  },
+  "rollingDays14": "14 Tage",
+  "@rollingDays14": {
+    "description": "Toggle chip for 14-day rolling period"
+  },
+  "rollingDays30": "30 Tage",
+  "@rollingDays30": {
+    "description": "Toggle chip for 30-day rolling period"
+  },
+  "meanGlucose": "Mittelwert",
+  "@meanGlucose": {
+    "description": "Label for average glucose level"
+  },
+  "glucoseVariabilitySd": "Variabilität (SD)",
+  "@glucoseVariabilitySd": {
+    "description": "Label for glucose standard deviation variability"
+  },
+  "timeInRangeShort": "Zeit im Bereich",
+  "@timeInRangeShort": {
+    "description": "Short label for Time in Range (TIR)"
+  },
+  "readingsCountLabel": "Werte gesamt",
+  "@readingsCountLabel": {
+    "description": "Label for total readings logged in period"
+  },
+  "hypoIncidentsLabel": "Hypo-Ereignisse",
+  "@hypoIncidentsLabel": {
+    "description": "Label for number of hypoglycemia events"
+  },
+  "insufficientComparisonData": "In beiden Zeiträumen sind mehr Daten zum Vergleich nötig",
+  "@insufficientComparisonData": {
+    "description": "Message shown when period comparison has insufficient readings"
+  },
+  "comparisonImproved": "Verbessert",
+  "@comparisonImproved": {
+    "description": "Status badge when comparative metrics show clinical improvement"
+  },
+  "comparisonStable": "Stabil",
+  "@comparisonStable": {
+    "description": "Status badge when comparative metrics remain stable"
+  },
+  "comparisonNeedsAttention": "Achtung nötig",
+  "@comparisonNeedsAttention": {
+    "description": "Status badge when comparative metrics worsen"
+  },
+  "milestones": "Meilensteine",
+  "@milestones": {
+    "description": "Section title for patient milestones"
+  },
+  "milestonesUnlocked": "{unlocked} von {total} freigeschaltet",
+  "@milestonesUnlocked": {
+    "description": "Subtitle showing ratio of unlocked milestones",
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "milestonesGallery": "Erfolgsgalerie",
+  "@milestonesGallery": {
+    "description": "Title of milestones modal gallery bottom sheet"
+  },
+  "milestoneCategoryGoals": "Klinische Ziele",
+  "@milestoneCategoryGoals": {
+    "description": "Milestone category header for target and TIR goals"
+  },
+  "milestoneCategoryStreaks": "Serien & Regelmäßigkeit",
+  "@milestoneCategoryStreaks": {
+    "description": "Milestone category header for consecutive logging streaks"
+  },
+  "milestoneCategoryRoutines": "Routinen & Tageszeit",
+  "@milestoneCategoryRoutines": {
+    "description": "Milestone category header for meal and time of day routines"
+  },
+  "milestoneCategorySpecial": "Besondere Tage",
+  "@milestoneCategorySpecial": {
+    "description": "Milestone category header for holidays and weekend tracking"
+  },
+  "milestoneFirstReadingTitle": "Erster Wert",
+  "@milestoneFirstReadingTitle": {
+    "description": "Title for first reading milestone"
+  },
+  "milestoneFirstReadingDesc": "Deine erste Blutzuckermessung erfasst.",
+  "@milestoneFirstReadingDesc": {
+    "description": "Description for first reading milestone"
+  },
+  "milestoneStreak7Title": "7-Tage-Serie",
+  "@milestoneStreak7Title": {
+    "description": "Title for 7-day streak milestone"
+  },
+  "milestoneStreak7Desc": "7 Tage in Folge Blutzuckerwerte erfasst.",
+  "@milestoneStreak7Desc": {
+    "description": "Description for 7-day streak milestone"
+  },
+  "milestoneStreak30Title": "30 Tage Ausdauer",
+  "@milestoneStreak30Title": {
+    "description": "Title for 30-day streak milestone"
+  },
+  "milestoneStreak30Desc": "30 Tage in Folge Blutzuckerwerte erfasst.",
+  "@milestoneStreak30Desc": {
+    "description": "Description for 30-day streak milestone"
+  },
+  "milestoneStreak100Title": "100-Tage-Club",
+  "@milestoneStreak100Title": {
+    "description": "Title for 100-day streak milestone"
+  },
+  "milestoneStreak100Desc": "100 Tage in Folge Blutzuckerwerte erfasst.",
+  "@milestoneStreak100Desc": {
+    "description": "Description for 100-day streak milestone"
+  },
+  "milestoneStreak365Title": "365-Tage-Meister",
+  "@milestoneStreak365Title": {
+    "description": "Title for 365-day streak milestone"
+  },
+  "milestoneStreak365Desc": "Ein ganzes Jahr lang jeden Tag erfasst.",
+  "@milestoneStreak365Desc": {
+    "description": "Description for 365-day streak milestone"
+  },
+  "milestoneComebackTitle": "Das Comeback",
+  "@milestoneComebackTitle": {
+    "description": "Title for comeback milestone"
+  },
+  "milestoneComebackDesc": "Nach über 14 Tagen Pause zur aktiven Erfassung zurückgekehrt.",
+  "@milestoneComebackDesc": {
+    "description": "Description for comeback milestone"
+  },
+  "milestoneTargetTirWeekTitle": "7-Tage-TIR-Champion",
+  "@milestoneTargetTirWeekTitle": {
+    "description": "Title for 7-day TIR milestone"
+  },
+  "milestoneTargetTirWeekDesc": "70 %+ Zeit im Bereich über 7 Tage gehalten (mind. 14 Werte).",
+  "@milestoneTargetTirWeekDesc": {
+    "description": "Description for 7-day TIR milestone"
+  },
+  "milestoneTargetTirMonthTitle": "Monats-TIR-Exzellenz",
+  "@milestoneTargetTirMonthTitle": {
+    "description": "Title for 30-day TIR milestone"
+  },
+  "milestoneTargetTirMonthDesc": "70 %+ Zeit im Bereich über 30 Tage gehalten (mind. 50 Werte).",
+  "@milestoneTargetTirMonthDesc": {
+    "description": "Description for 30-day TIR milestone"
+  },
+  "milestoneFastingChampionTitle": "Nüchtern-Champion",
+  "@milestoneFastingChampionTitle": {
+    "description": "Title for fasting milestone"
+  },
+  "milestoneFastingChampionDesc": "10 Nüchtern-Blutzuckerwerte erfasst.",
+  "@milestoneFastingChampionDesc": {
+    "description": "Description for fasting milestone"
+  },
+  "milestonePostMealMasterTitle": "Nach-Mahlzeit-Meister",
+  "@milestonePostMealMasterTitle": {
+    "description": "Title for post-meal milestone"
+  },
+  "milestonePostMealMasterDesc": "10 Blutzuckerwerte nach Mahlzeiten erfasst.",
+  "@milestonePostMealMasterDesc": {
+    "description": "Description for post-meal milestone"
+  },
+  "milestoneEarlyBirdTitle": "Frühaufsteher",
+  "@milestoneEarlyBirdTitle": {
+    "description": "Title for early morning milestone"
+  },
+  "milestoneEarlyBirdDesc": "Einen Morgenwert vor 7:00 Uhr erfasst.",
+  "@milestoneEarlyBirdDesc": {
+    "description": "Description for early morning milestone"
+  },
+  "milestoneNightOwlTitle": "Nachteule",
+  "@milestoneNightOwlTitle": {
+    "description": "Title for late night milestone"
+  },
+  "milestoneNightOwlDesc": "Einen späten Abendwert nach 23:00 Uhr erfasst.",
+  "@milestoneNightOwlDesc": {
+    "description": "Description for late night milestone"
+  },
+  "milestoneWeekendWarriorTitle": "Wochenend-Krieger",
+  "@milestoneWeekendWarriorTitle": {
+    "description": "Title for weekend milestone"
+  },
+  "milestoneWeekendWarriorDesc": "An einem Wochenende sowohl Samstag als auch Sonntag erfasst.",
+  "@milestoneWeekendWarriorDesc": {
+    "description": "Description for weekend milestone"
+  },
+  "milestoneNewYearTitle": "Neujahrs-Gesundheit",
+  "@milestoneNewYearTitle": {
+    "description": "Title for New Year milestone"
+  },
+  "milestoneNewYearDesc": "Einen Wert an Neujahr (1. Januar) erfasst.",
+  "@milestoneNewYearDesc": {
+    "description": "Description for New Year milestone"
+  },
+  "milestoneYearEndTitle": "Jahresend-Wächter",
+  "@milestoneYearEndTitle": {
+    "description": "Title for Year End milestone"
+  },
+  "milestoneYearEndDesc": "Einen Wert an Silvester (31. Dezember) erfasst.",
+  "@milestoneYearEndDesc": {
+    "description": "Description for Year End milestone"
+  },
+  "milestoneUnlockedDate": "Freigeschaltet am {date}",
+  "@milestoneUnlockedDate": {
+    "description": "Subtitle showing unlock date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "milestoneLocked": "Gesperrt",
+  "@milestoneLocked": {
+    "description": "Status badge for locked milestone"
+  },
+  "milestoneProgress": "{percent} % erreicht",
+  "@milestoneProgress": {
+    "description": "Progress percentage towards milestone completion",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "shareDoctorSummary": "Arztbericht teilen",
+  "@shareDoctorSummary": {
+    "description": "Button to format and share clinical summary with physician"
+  },
+  "shareDoctorSummaryTooltip": "Klinische Zusammenfassung mit deinem Arzt teilen",
+  "@shareDoctorSummaryTooltip": {
+    "description": "Tooltip for doctor summary share action"
+  },
+  "doctorSummaryTitle": "Glucosa — Klinische Gesundheitsübersicht",
+  "@doctorSummaryTitle": {
+    "description": "Header title of exported clinical text summary"
+  },
+  "doctorSummaryPatientName": "Patient",
+  "@doctorSummaryPatientName": {
+    "description": "Patient name label in doctor summary"
+  },
+  "doctorSummaryTargetRangeLabel": "Zielbereich",
+  "@doctorSummaryTargetRangeLabel": {
+    "description": "Target range label in doctor summary"
+  },
+  "doctorSummaryEstimatedHbA1c": "Geschätztes HbA1c",
+  "@doctorSummaryEstimatedHbA1c": {
+    "description": "Estimated HbA1c label in doctor summary"
+  },
+  "doctorSummaryTirBreakdown": "Zeit-im-Bereich-Aufschlüsselung (TIR)",
+  "@doctorSummaryTirBreakdown": {
+    "description": "TIR breakdown section title in doctor summary"
+  },
+  "doctorSummaryInTarget": "Im Bereich",
+  "@doctorSummaryInTarget": {
+    "description": "In target range percentage in doctor summary"
+  },
+  "doctorSummaryAboveTarget": "Über Bereich (Hyper)",
+  "@doctorSummaryAboveTarget": {
+    "description": "Above target range percentage in doctor summary"
+  },
+  "doctorSummaryBelowTarget": "Unter Bereich (Hypo)",
+  "@doctorSummaryBelowTarget": {
+    "description": "Below target range percentage in doctor summary"
+  },
+  "doctorSummaryVariability": "Glukosevariabilität (SD)",
+  "@doctorSummaryVariability": {
+    "description": "Variability standard deviation in doctor summary"
+  },
+  "doctorSummaryTotalReadings": "Erfasste Werte gesamt",
+  "@doctorSummaryTotalReadings": {
+    "description": "Total readings count in doctor summary"
+  },
+  "doctorSummaryHypoIncidents": "Hypoglykämie-Ereignisse",
+  "@doctorSummaryHypoIncidents": {
+    "description": "Hypo incidents count in doctor summary"
+  },
+  "doctorSummaryMeanGlucose": "Mittlerer Blutzucker",
+  "@doctorSummaryMeanGlucose": {
+    "description": "Mean glucose label in doctor summary"
+  },
+  "csvImportSection": "Daten importieren",
+  "@csvImportSection": {
+    "description": "Section title for CSV data import"
+  },
+  "csvImportSubtitle": "Blutzuckermessungen aus einer CSV-Datei wiederherstellen",
+  "@csvImportSubtitle": {
+    "description": "Subtitle explaining CSV import feature"
+  },
+  "csvImportPickFile": "CSV-Datei auswählen",
+  "@csvImportPickFile": {
+    "description": "Button to open file picker for CSV import"
+  },
+  "csvImportAnalyzing": "Datei wird analysiert …",
+  "@csvImportAnalyzing": {
+    "description": "Loading label shown while analyzing CSV file"
+  },
+  "csvImportPreviewTitle": "Importvorschau",
+  "@csvImportPreviewTitle": {
+    "description": "Title of CSV import preview dialog"
+  },
+  "csvImportValidRows": "{count, plural, =1{1 Wert bereit zum Import} other{{count} Werte bereit zum Import}}",
+  "@csvImportValidRows": {
+    "description": "Count of valid readings found in CSV file",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
+    }
+  },
+  "csvImportSkippedRows": "{count, plural, =1{1 Zeile übersprungen (ungültiges Format)} other{{count} Zeilen übersprungen (ungültiges Format)}}",
+  "@csvImportSkippedRows": {
+    "description": "Count of malformed rows skipped during CSV analysis",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "csvImportDuplicateRows": "{count, plural, =1{1 Duplikat bereits in deinen Daten} other{{count} Duplikate bereits in deinen Daten}}",
+  "@csvImportDuplicateRows": {
+    "description": "Count of rows duplicating existing readings",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "csvImportConfirm": "Importieren",
+  "@csvImportConfirm": {
+    "description": "Confirm button for CSV import preview dialog"
+  },
+  "csvImportSuccess": "{count, plural, =1{1 Wert importiert} other{{count} Werte importiert}}",
+  "@csvImportSuccess": {
+    "description": "Success message after CSV import completes",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
+    }
+  },
+  "csvImportErrorTooLarge": "Datei ist zu groß (maximal 5 MB)",
+  "@csvImportErrorTooLarge": {
+    "description": "Error when selected CSV file exceeds size limit"
+  },
+  "csvImportErrorInvalid": "Diese Datei konnte nicht gelesen werden. Prüfe das CSV-Format.",
+  "@csvImportErrorInvalid": {
+    "description": "Error when CSV file structure is unparseable"
+  },
+  "csvImportErrorEmpty": "Keine gültigen Blutzuckerwerte in dieser Datei gefunden.",
+  "@csvImportErrorEmpty": {
+    "description": "Error when CSV file contains no valid glucose records"
+  },
+  "csvImportErrorPick": "Dateiauswahl konnte nicht geöffnet werden.",
+  "@csvImportErrorPick": {
+    "description": "Error when file picker cannot be opened"
+  },
+  "healthSyncSection": "Gesundheits-Sync",
+  "@healthSyncSection": {
+    "description": "Section title for platform health synchronization"
+  },
+  "healthSyncTitle": "Mit {platform} synchronisieren",
+  "@healthSyncTitle": {
+    "description": "Health sync toggle title with platform name",
+    "placeholders": {
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
+    }
+  },
+  "healthSyncSubtitle": "Blutzuckerwerte automatisch mit {platform} austauschen",
+  "@healthSyncSubtitle": {
+    "description": "Health sync toggle subtitle with platform name",
+    "placeholders": {
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
+    }
+  },
+  "healthSyncNow": "Jetzt synchronisieren",
+  "@healthSyncNow": {
+    "description": "Button to trigger immediate health synchronization"
+  },
+  "healthSyncLast": "Letzter Sync: {date}",
+  "@healthSyncLast": {
+    "description": "Label showing last successful sync timestamp",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "Oct 3, 14:30"
+      }
+    }
+  },
+  "healthSyncNever": "Nie synchronisiert",
+  "@healthSyncNever": {
+    "description": "Label when no health sync has run yet"
+  },
+  "healthSyncSuccess": "Sync abgeschlossen: {imported} importiert, {exported} exportiert",
+  "@healthSyncSuccess": {
+    "description": "Success message after health synchronization",
+    "placeholders": {
+      "imported": {
+        "type": "int",
+        "example": "5"
+      },
+      "exported": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "healthSyncNoPermissions": "Gesundheitsberechtigungen wurden nicht erteilt",
+  "@healthSyncNoPermissions": {
+    "description": "Error when health permissions are denied"
+  },
+  "healthSyncUnavailable": "Gesundheitsdienst auf diesem Gerät nicht verfügbar",
+  "@healthSyncUnavailable": {
+    "description": "Error when platform health store is unreachable"
+  },
+  "healthConnectRequiredTitle": "Health Connect erforderlich",
+  "@healthConnectRequiredTitle": {
+    "description": "Title of Health Connect install prompt"
+  },
+  "healthConnectRequiredSubtitle": "Installiere Google Health Connect aus dem Play Store, um deine Messungen zu synchronisieren.",
+  "@healthConnectRequiredSubtitle": {
+    "description": "Subtitle of Health Connect install prompt"
+  },
+  "installFromPlayStore": "Aus dem Play Store installieren",
+  "@installFromPlayStore": {
+    "description": "Button opening Play Store Health Connect listing"
+  },
+  "widgetNoData": "Keine Werte",
+  "@widgetNoData": {
+    "description": "Widget empty state label"
+  },
+  "widgetTapToAdd": "Tippen zum Hinzufügen",
+  "@widgetTapToAdd": {
+    "description": "Widget empty state call to action"
+  },
+  "widgetToday": "Heute",
+  "@widgetToday": {
+    "description": "Widget label for readings taken today"
+  },
+  "widgetPromoTitle": "Zucker auf einen Blick",
+  "@widgetPromoTitle": {
+    "description": "Widget promo card title"
+  },
+  "widgetPromoSubtitle": "Heft das Glucosa-Widget auf deinen Startbildschirm",
+  "@widgetPromoSubtitle": {
+    "description": "Widget promo card subtitle"
+  },
+  "widgetPromoPin": "Anheften",
+  "@widgetPromoPin": {
+    "description": "Widget promo pin button"
+  },
+  "widgetPinRequested": "Widget-Anheftung an Launcher gesendet",
+  "@widgetPinRequested": {
+    "description": "Confirmation after requesting widget pin"
+  },
+  "onboardingRangeTitle": "Wähle deinen Zielbereich",
+  "@onboardingRangeTitle": {
+    "description": "Title of onboarding target range step"
+  },
+  "onboardingRangeSubtitle": "Werte in diesem Bereich zählen als Zeit im Bereich",
+  "@onboardingRangeSubtitle": {
+    "description": "Subtitle of onboarding target range step"
+  },
+  "onboardingHealthTitle": "Mit {platform} synchronisieren",
+  "@onboardingHealthTitle": {
+    "description": "Title of onboarding health sync step",
+    "placeholders": {
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
+    }
+  },
+  "onboardingHealthSubtitle": "Blutzuckerwerte automatisch mit {platform} austauschen. Du kannst das später in den Einstellungen ändern.",
+  "@onboardingHealthSubtitle": {
+    "description": "Subtitle of onboarding health sync step",
+    "placeholders": {
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
+    }
+  },
+  "onboardingHealthEnable": "Gesundheits-Sync aktivieren",
+  "@onboardingHealthEnable": {
+    "description": "Health sync toggle label in onboarding"
+  },
+  "onboardingReminderTitle": "Tägliche Erinnerung",
+  "@onboardingReminderTitle": {
+    "description": "Title of onboarding reminder step"
+  },
+  "onboardingReminderSubtitle": "Lass dich täglich an deine Zuckermessung erinnern. Du kannst das später in den Einstellungen ändern.",
+  "@onboardingReminderSubtitle": {
+    "description": "Subtitle of onboarding reminder step"
+  },
+  "onboardingReminderEnable": "Tägliche Erinnerung aktivieren",
+  "@onboardingReminderEnable": {
+    "description": "Reminder toggle label in onboarding"
+  },
+  "onboardingReminderOff": "Aus",
+  "@onboardingReminderOff": {
+    "description": "Label when onboarding reminder is disabled"
+  },
+  "onboardingReminderChange": "Uhrzeit ändern",
+  "@onboardingReminderChange": {
+    "description": "Button changing onboarding reminder time"
+  },
+  "onboardingBiometricTitle": "Mit Biometrie schützen",
+  "@onboardingBiometricTitle": {
+    "description": "Title of onboarding biometric step"
+  },
+  "onboardingBiometricSubtitle": "Face ID, Touch ID oder Fingerabdruck zum Öffnen von Glucosa erforderlich.",
+  "@onboardingBiometricSubtitle": {
+    "description": "Subtitle of onboarding biometric step"
+  },
+  "onboardingBiometricEnable": "App-Sperre aktivieren",
+  "@onboardingBiometricEnable": {
+    "description": "Biometric toggle label in onboarding"
+  },
+  "onboardingPrivacyTitle": "Deine Daten bleiben deine",
+  "@onboardingPrivacyTitle": {
+    "description": "Title of onboarding privacy step"
+  },
+  "onboardingPrivacySubtitle": "Messungen werden nur auf diesem Gerät gespeichert. Anonyme Absturzberichte helfen, Fehler zu beheben — kein Konto, kein Tracking, keine Werbung.",
+  "@onboardingPrivacySubtitle": {
+    "description": "Subtitle of onboarding privacy step"
+  },
+  "onboardingPrivacyAcknowledge": "Ich verstehe",
+  "@onboardingPrivacyAcknowledge": {
+    "description": "Privacy acknowledgement checkbox label"
+  },
+  "onboardingPrivacyRequired": "Bitte bestätige den Datenschutzhinweis, um fortzufahren",
+  "@onboardingPrivacyRequired": {
+    "description": "Validation message when privacy is not acknowledged"
+  },
+  "onboardingCsvTitle": "Nimm deine Historie mit",
+  "@onboardingCsvTitle": {
+    "description": "Title of onboarding CSV import step"
+  },
+  "onboardingCsvSubtitle": "Importiere Messungen aus mySugr, Dexcom oder Contour — oder überspringe und starte neu.",
+  "@onboardingCsvSubtitle": {
+    "description": "Subtitle of onboarding CSV import step"
+  },
+  "onboardingBaselineLabel": "Basiszucker (optional)",
+  "@onboardingBaselineLabel": {
+    "description": "Label of optional baseline glucose input"
+  },
+  "onboardingBaselineHintMgDl": "z. B. 120 mg/dL",
+  "@onboardingBaselineHintMgDl": {
+    "description": "Hint for baseline glucose input in mg/dL"
+  },
+  "onboardingBaselineHintMmolL": "z. B. 6,5 mmol/L",
+  "@onboardingBaselineHintMmolL": {
+    "description": "Hint for baseline glucose input in mmol/L"
+  },
+  "onboardingBaselineInvalid": "Gib einen gültigen Zuckerwert ein",
+  "@onboardingBaselineInvalid": {
+    "description": "Validation error for baseline glucose input"
+  },
+  "onboardingDefaultReminderLabel": "Zuckerkontrolle",
+  "@onboardingDefaultReminderLabel": {
+    "description": "Default label for onboarding-created reminder"
+  },
+  "dailyTipTitle": "Tipp des Tages",
+  "@dailyTipTitle": {
+    "description": "Title of the daily diabetes tip card"
+  },
+  "dailyTip1": "Miss deinen Zucker vor dem Autofahren.",
+  "@dailyTip1": {
+    "description": "Rotating diabetes tip 1"
+  },
+  "dailyTip2": "Erfasse jeden Wert sofort — das Gedächtnis trügt schnell.",
+  "@dailyTip2": {
+    "description": "Rotating diabetes tip 2"
+  },
+  "dailyTip3": "Habe immer schnelle Kohlenhydrate dabei.",
+  "@dailyTip3": {
+    "description": "Rotating diabetes tip 3"
+  },
+  "dailyTip4": "Ein 10-minütiger Spaziergang nach Mahlzeiten glättet Zuckerspitzen.",
+  "@dailyTip4": {
+    "description": "Rotating diabetes tip 4"
+  },
+  "dailyTip5": "Prüfe jeden Sonntag deine wöchentliche Zeit im Bereich.",
+  "@dailyTip5": {
+    "description": "Rotating diabetes tip 5"
+  },
+  "dailyTip6": "Lagere Teststreifen und Sensoren fern von Hitze.",
+  "@dailyTip6": {
+    "description": "Rotating diabetes tip 6"
+  },
+  "dailyTip7": "Trinke über den Tag verteilt Wasser — das stabilisiert den Zucker.",
+  "@dailyTip7": {
+    "description": "Rotating diabetes tip 7"
+  },
+  "dailyTip8": "Kombiniere Kohlenhydrate mit Eiweiß oder gesundem Fett.",
+  "@dailyTip8": {
+    "description": "Rotating diabetes tip 8"
+  },
+  "dailyTip9": "Gehe regelmäßig zur gleichen Zeit schlafen für gleichmäßigere Morgen.",
+  "@dailyTip9": {
+    "description": "Rotating diabetes tip 9"
+  },
+  "dailyTip10": "Kontrolliere und wechsle Einstich- und Sensorstellen regelmäßig.",
+  "@dailyTip10": {
+    "description": "Rotating diabetes tip 10"
+  },
+  "dailyTip11": "Lerne deine persönlichen Frühzeichen einer Unterzuckerung.",
+  "@dailyTip11": {
+    "description": "Rotating diabetes tip 11"
+  },
+  "dailyTip12": "Bringe deine Glucosa-Übersicht zu jedem Arztbesuch mit.",
+  "@dailyTip12": {
+    "description": "Rotating diabetes tip 12"
+  },
+  "dailyTip13": "Kontrolliere 15 Minuten nach der Behandlung einer Unterzuckerung erneut.",
+  "@dailyTip13": {
+    "description": "Rotating diabetes tip 13"
+  },
+  "dailyTip14": "Feiere Serien — und verzeihe dir Lücken.",
+  "@dailyTip14": {
+    "description": "Rotating diabetes tip 14"
+  }
+}
