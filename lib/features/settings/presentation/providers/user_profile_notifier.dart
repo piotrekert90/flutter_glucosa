@@ -48,6 +48,20 @@ class UserProfileNotifier extends _$UserProfileNotifier {
         .updateFirstDayOfWeek(firstDayOfWeek);
   }
 
+  /// Updates whether platform health store synchronization is enabled to [isEnabled].
+  Future<CommandResult> updateHealthSyncEnabled(bool isEnabled) {
+    return ref
+        .read(userProfileRepositoryProvider)
+        .updateHealthSyncEnabled(isEnabled);
+  }
+
+  /// Records the timestamp of the last successful health synchronization to [timestamp].
+  Future<CommandResult> updateLastHealthSyncAt(DateTime? timestamp) {
+    return ref
+        .read(userProfileRepositoryProvider)
+        .updateLastHealthSyncAt(timestamp);
+  }
+
   /// Updates the user's complete [profile].
   Future<CommandResult> updateProfile(UserProfile profile) {
     return ref.read(userProfileRepositoryProvider).save(profile);
