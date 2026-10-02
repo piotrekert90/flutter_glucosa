@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/presentation/widgets/add_reading_bottom_sheet.dart';
-import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -21,6 +20,7 @@ import '../../../statistics/presentation/widgets/sections/milestones_card.dart';
 import '../../../statistics/presentation/widgets/sections/period_comparison_card.dart';
 import '../widgets/metric_trend_card.dart';
 import '../widgets/daily_tip_card.dart';
+import '../widgets/today_shimmer_skeleton.dart';
 import '../widgets/widget_promo_card.dart';
 
 /// Main dashboard overview screen displaying latest readings, health summaries, and quick actions.
@@ -114,11 +114,9 @@ class OverviewScreen extends ConsumerWidget {
                     onTap: () => context.push('/glucose/edit/${reading.id}'),
                   );
                 },
-                loading: () => const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(24),
-                    child: AppLoadingIndicator(),
-                  ),
+                loading: () => const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  child: TodayShimmerSkeleton(),
                 ),
                 error: (_, _) => Card(
                   child: Padding(
