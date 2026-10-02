@@ -394,7 +394,44 @@
   "csvImportErrorTooLarge": "Plik jest za duży (maksymalnie 5 MB)",
   "csvImportErrorInvalid": "Nie można odczytać tego pliku. Sprawdź format CSV.",
   "csvImportErrorEmpty": "Nie znaleziono prawidłowych pomiarów glikemii w tym pliku.",
-  "csvImportErrorPick": "Nie można otworzyć wyboru pliku."
+  "csvImportErrorPick": "Nie można otworzyć wyboru pliku.",
+  "healthSyncSection": "Synchronizacja zdrowia",
+  "healthSyncTitle": "Synchronizuj z {platform}",
+  "@healthSyncTitle": {
+    "description": "Health sync toggle title with platform name",
+    "placeholders": {
+      "platform": {"type": "String", "example": "Apple Health"}
+    }
+  },
+  "healthSyncSubtitle": "Automatycznie wymieniaj pomiary glikemii z {platform}",
+  "@healthSyncSubtitle": {
+    "description": "Health sync toggle subtitle with platform name",
+    "placeholders": {
+      "platform": {"type": "String", "example": "Apple Health"}
+    }
+  },
+  "healthSyncNow": "Synchronizuj teraz",
+  "healthSyncLast": "Ostatnia synchronizacja: {date}",
+  "@healthSyncLast": {
+    "description": "Label showing last successful sync timestamp",
+    "placeholders": {
+      "date": {"type": "String", "example": "3 paź, 14:30"}
+    }
+  },
+  "healthSyncNever": "Nigdy nie synchronizowano",
+  "healthSyncSuccess": "Synchronizacja ukończona: zaimportowano {imported}, wyeksportowano {exported}",
+  "@healthSyncSuccess": {
+    "description": "Success message after health synchronization",
+    "placeholders": {
+      "imported": {"type": "int", "example": "5"},
+      "exported": {"type": "int", "example": "3"}
+    }
+  },
+  "healthSyncNoPermissions": "Nie udzielono uprawnień zdrowotnych",
+  "healthSyncUnavailable": "Usługa zdrowotna jest niedostępna na tym urządzeniu",
+  "healthConnectRequiredTitle": "Wymagany Health Connect",
+  "healthConnectRequiredSubtitle": "Zainstaluj Google Health Connect ze Sklepu Play, aby synchronizować pomiary.",
+  "installFromPlayStore": "Zainstaluj ze Sklepu Play"
 }
 
 

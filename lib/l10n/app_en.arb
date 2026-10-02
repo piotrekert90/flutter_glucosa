@@ -1537,6 +1537,67 @@
   "csvImportErrorPick": "Could not open the file picker.",
   "@csvImportErrorPick": {
     "description": "Error when file picker cannot be opened"
+  },
+  "healthSyncSection": "Health Sync",
+  "@healthSyncSection": {
+    "description": "Section title for platform health synchronization"
+  },
+  "healthSyncTitle": "Sync with {platform}",
+  "@healthSyncTitle": {
+    "description": "Health sync toggle title with platform name",
+    "placeholders": {
+      "platform": {"type": "String", "example": "Apple Health"}
+    }
+  },
+  "healthSyncSubtitle": "Automatically exchange glucose readings with {platform}",
+  "@healthSyncSubtitle": {
+    "description": "Health sync toggle subtitle with platform name",
+    "placeholders": {
+      "platform": {"type": "String", "example": "Apple Health"}
+    }
+  },
+  "healthSyncNow": "Sync Now",
+  "@healthSyncNow": {
+    "description": "Button to trigger immediate health synchronization"
+  },
+  "healthSyncLast": "Last sync: {date}",
+  "@healthSyncLast": {
+    "description": "Label showing last successful sync timestamp",
+    "placeholders": {
+      "date": {"type": "String", "example": "Oct 3, 14:30"}
+    }
+  },
+  "healthSyncNever": "Never synced",
+  "@healthSyncNever": {
+    "description": "Label when no health sync has run yet"
+  },
+  "healthSyncSuccess": "Sync complete: {imported} imported, {exported} exported",
+  "@healthSyncSuccess": {
+    "description": "Success message after health synchronization",
+    "placeholders": {
+      "imported": {"type": "int", "example": "5"},
+      "exported": {"type": "int", "example": "3"}
+    }
+  },
+  "healthSyncNoPermissions": "Health permissions were not granted",
+  "@healthSyncNoPermissions": {
+    "description": "Error when health permissions are denied"
+  },
+  "healthSyncUnavailable": "Health service is not available on this device",
+  "@healthSyncUnavailable": {
+    "description": "Error when platform health store is unreachable"
+  },
+  "healthConnectRequiredTitle": "Health Connect Required",
+  "@healthConnectRequiredTitle": {
+    "description": "Title of Health Connect install prompt"
+  },
+  "healthConnectRequiredSubtitle": "Install Google Health Connect from the Play Store to sync your measurements.",
+  "@healthConnectRequiredSubtitle": {
+    "description": "Subtitle of Health Connect install prompt"
+  },
+  "installFromPlayStore": "Install from Play Store",
+  "@installFromPlayStore": {
+    "description": "Button opening Play Store Health Connect listing"
   }
 }
 

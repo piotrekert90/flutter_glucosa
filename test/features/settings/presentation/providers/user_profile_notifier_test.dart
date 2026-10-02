@@ -158,6 +158,43 @@ void main() {
       verify(() => mockRepo.updateBiometricLockEnabled(true)).called(1);
     });
 
+    test('calls repository.updateHealthSyncEnabled with value', () async {
+      when(
+        () => mockRepo.updateHealthSyncEnabled(true),
+      ).thenAnswer((_) async => (true, null));
+
+      container = _makeContainer(mockRepo);
+      container.listen(userProfileProvider, (_, _) {});
+      await container.read(userProfileProvider.future);
+
+      final (success, failure) = await container
+          .read(userProfileProvider.notifier)
+          .updateHealthSyncEnabled(true);
+
+      expect(success, isTrue);
+      expect(failure, isNull);
+      verify(() => mockRepo.updateHealthSyncEnabled(true)).called(1);
+    });
+
+    test('calls repository.updateLastHealthSyncAt with timestamp', () async {
+      final stamp = DateTime(2026, 10, 3, 14, 30);
+      when(
+        () => mockRepo.updateLastHealthSyncAt(stamp),
+      ).thenAnswer((_) async => (true, null));
+
+      container = _makeContainer(mockRepo);
+      container.listen(userProfileProvider, (_, _) {});
+      await container.read(userProfileProvider.future);
+
+      final (success, failure) = await container
+          .read(userProfileProvider.notifier)
+          .updateLastHealthSyncAt(stamp);
+
+      expect(success, isTrue);
+      expect(failure, isNull);
+      verify(() => mockRepo.updateLastHealthSyncAt(stamp)).called(1);
+    });
+
     test('calls repository.wipeAllData', () async {
       when(() => mockRepo.wipeAllData()).thenAnswer((_) async => (true, null));
 

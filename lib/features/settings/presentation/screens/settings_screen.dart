@@ -21,6 +21,7 @@ import '../providers/user_profile_notifier.dart';
 import '../widgets/components/custom_settings_tile.dart';
 import '../widgets/components/custom_settings_toggle.dart';
 import '../widgets/components/edit_name_dialog.dart';
+import '../widgets/components/health_sync_section.dart';
 import '../widgets/components/section_header.dart';
 import '../widgets/components/selection_dialog.dart';
 import '../widgets/components/target_range_dialog.dart';
@@ -189,6 +190,9 @@ class SettingsScreen extends ConsumerWidget {
                       'Permanently delete all health records, reminders, and preferences from this device.',
                   onTap: () => _handleWipeData(context, ref),
                 ),
+                const SizedBox(height: 12),
+                SectionHeader(label: l10n?.healthSyncSection ?? 'Health Sync'),
+                HealthSyncSection(profile: profile),
                 const SizedBox(height: 12),
                 SectionHeader(label: l10n?.tools ?? 'Tools'),
                 CustomSettingsTile(
