@@ -707,7 +707,7 @@
   "@diabetesTypeLada": {
     "description": "Label for LADA diabetes"
   },
-  "onboardingUnitsTitle": "Preferred units and target range",
+  "onboardingUnitsTitle": "Preferred glucose unit",
   "@onboardingUnitsTitle": {
     "description": "Title of the onboarding units and range step"
   },
@@ -1626,6 +1626,112 @@
   "widgetPinRequested": "Widget pin request sent to launcher",
   "@widgetPinRequested": {
     "description": "Confirmation after requesting widget pin"
+  },
+  "onboardingRangeTitle": "Choose your target range",
+  "@onboardingRangeTitle": {
+    "description": "Title of onboarding target range step"
+  },
+  "onboardingRangeSubtitle": "Readings inside this range count as Time in Range",
+  "@onboardingRangeSubtitle": {
+    "description": "Subtitle of onboarding target range step"
+  },
+  "onboardingHealthTitle": "Sync with {platform}",
+  "@onboardingHealthTitle": {
+    "description": "Title of onboarding health sync step",
+    "placeholders": {
+      "platform": {"type": "String", "example": "Apple Health"}
+    }
+  },
+  "onboardingHealthSubtitle": "Exchange glucose readings with {platform} automatically. You can change this later in Settings.",
+  "@onboardingHealthSubtitle": {
+    "description": "Subtitle of onboarding health sync step",
+    "placeholders": {
+      "platform": {"type": "String", "example": "Apple Health"}
+    }
+  },
+  "onboardingHealthEnable": "Enable health sync",
+  "@onboardingHealthEnable": {
+    "description": "Health sync toggle label in onboarding"
+  },
+  "onboardingReminderTitle": "Daily reminder",
+  "@onboardingReminderTitle": {
+    "description": "Title of onboarding reminder step"
+  },
+  "onboardingReminderSubtitle": "Get notified every day to log your glucose. You can change this later in Settings.",
+  "@onboardingReminderSubtitle": {
+    "description": "Subtitle of onboarding reminder step"
+  },
+  "onboardingReminderEnable": "Enable daily reminder",
+  "@onboardingReminderEnable": {
+    "description": "Reminder toggle label in onboarding"
+  },
+  "onboardingReminderOff": "Off",
+  "@onboardingReminderOff": {
+    "description": "Label when onboarding reminder is disabled"
+  },
+  "onboardingReminderChange": "Change time",
+  "@onboardingReminderChange": {
+    "description": "Button changing onboarding reminder time"
+  },
+  "onboardingBiometricTitle": "Protect with biometrics",
+  "@onboardingBiometricTitle": {
+    "description": "Title of onboarding biometric step"
+  },
+  "onboardingBiometricSubtitle": "Require Face ID, Touch ID, or fingerprint to open Glucosa.",
+  "@onboardingBiometricSubtitle": {
+    "description": "Subtitle of onboarding biometric step"
+  },
+  "onboardingBiometricEnable": "Enable app lock",
+  "@onboardingBiometricEnable": {
+    "description": "Biometric toggle label in onboarding"
+  },
+  "onboardingPrivacyTitle": "Your data stays yours",
+  "@onboardingPrivacyTitle": {
+    "description": "Title of onboarding privacy step"
+  },
+  "onboardingPrivacySubtitle": "Measurements are stored only on this device. Anonymous crash reports help fix bugs — no account, no tracking, no ads.",
+  "@onboardingPrivacySubtitle": {
+    "description": "Subtitle of onboarding privacy step"
+  },
+  "onboardingPrivacyAcknowledge": "I understand",
+  "@onboardingPrivacyAcknowledge": {
+    "description": "Privacy acknowledgement checkbox label"
+  },
+  "onboardingPrivacyRequired": "Please acknowledge the privacy notice to continue",
+  "@onboardingPrivacyRequired": {
+    "description": "Validation message when privacy is not acknowledged"
+  },
+  "onboardingCsvTitle": "Bring your history",
+  "@onboardingCsvTitle": {
+    "description": "Title of onboarding CSV import step"
+  },
+  "onboardingCsvSubtitle": "Import measurements from mySugr, Dexcom, or Contour — or skip and start fresh.",
+  "@onboardingCsvSubtitle": {
+    "description": "Subtitle of onboarding CSV import step"
+  },
+  "onboardingGetStarted": "Get Started",
+  "@onboardingGetStarted": {
+    "description": "Final onboarding completion button"
+  },
+  "onboardingBaselineLabel": "Baseline glucose (optional)",
+  "@onboardingBaselineLabel": {
+    "description": "Label of optional baseline glucose input"
+  },
+  "onboardingBaselineHintMgDl": "e.g. 120 mg/dL",
+  "@onboardingBaselineHintMgDl": {
+    "description": "Hint for baseline glucose input in mg/dL"
+  },
+  "onboardingBaselineHintMmolL": "e.g. 6.5 mmol/L",
+  "@onboardingBaselineHintMmolL": {
+    "description": "Hint for baseline glucose input in mmol/L"
+  },
+  "onboardingBaselineInvalid": "Enter a valid glucose value",
+  "@onboardingBaselineInvalid": {
+    "description": "Validation error for baseline glucose input"
+  },
+  "onboardingDefaultReminderLabel": "Glucose check",
+  "@onboardingDefaultReminderLabel": {
+    "description": "Default label for onboarding-created reminder"
   }
 }
 

@@ -1,18 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/domain/enums/enums.dart';
+import '../../../../core/domain/utils/glucose_converter.dart';
+import '../../../../core/domain/utils/reading_validator.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../extensions/diabetes_type_l10n.dart';
 import '../providers/onboarding_notifier.dart';
 
-/// Second onboarding step selecting the diagnosed diabetes type.
-class OnboardingDiabetesStep extends ConsumerWidget {
+/// Second onboarding step selecting the diagnosed diabetes type with an
+/// optional baseline glucose measurement.
+class OnboardingDiabetesStep extends ConsumerStatefulWidget {
   /// Creates an [OnboardingDiabetesStep].
   const OnboardingDiabetesStep({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<OnboardingDiabetesStep> createState() =>
+      _OnboardingDiabetesStepState();
+}
+
+class _OnboardingDiabetesStepState
+    extends ConsumerState<OnboardingDiabetesStep> {
+  final _baselineController = TextEditingController();
+  String? _baselineError;
+
+  @override
+  void dispose() {
+    _baselineController.dispose();
+    super.dispose();
+  }
+
+  /// Parses the baseline input in the draft unit and stores mg/dL.
+  void _onBaselineChanged(String raw) {
+    final notifier = ref.read(onboardingProvider.notifier);
+    final draft = ref.read(onboardingProvider);
+    final trimmed = raw.trim();
+    if (trimmed.isEmpty) {
+      setState(() => _baselineError = null);
+      notifier.updateBaselineMgDl(null);
+      return;
+    }
+    final normalized = trimmed.replaceAll(',', '.');
+    final value = double.tryParse(normalized);
+    if (value == null) {
+      setState(() {
+        final l10n = AppLocalizations.of(context);
+        _baselineError =
+            l10n?.onboardingBaselineInvalid ?? 'Enter a valid glucose value';
+      });
+      notifier.updateBaselineMgDl(null);
+      return;
+    }
+    final isMmolL = draft.glucoseUnit == GlucoseUnit.mmolL;
+    final valid = isMmolL
+        ? ReadingValidator.isValidGlucoseMmolL(value)
+        : ReadingValidator.isValidGlucoseMgDl(value);
+    if (!valid) {
+      setState(() {
+        final l10n = AppLocalizations.of(context);
+        _baselineError =
+            l10n?.onboardingBaselineInvalid ?? 'Enter a valid glucose value';
+      });
+      notifier.updateBaselineMgDl(null);
+      return;
+    }
+    setState(() => _baselineError = null);
+    notifier.updateBaselineMgDl(
+      isMmolL ? GlucoseConverter.mmolLToMgDl(value) : value.round(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     final draft = ref.watch(onboardingProvider);
@@ -45,6 +105,29 @@ class OnboardingDiabetesStep extends ConsumerWidget {
                 onSelected: (_) => notifier.selectDiabetesType(type),
               ),
             ),
+          const SizedBox(height: 16),
+          Text(
+            l10n?.onboardingBaselineLabel ?? 'Baseline glucose (optional)',
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _baselineController,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]')),
+            ],
+            decoration: InputDecoration(
+              hintText: draft.glucoseUnit == GlucoseUnit.mmolL
+                  ? (l10n?.onboardingBaselineHintMmolL ?? 'e.g. 6.5 mmol/L')
+                  : (l10n?.onboardingBaselineHintMgDl ?? 'e.g. 120 mg/dL'),
+              errorText: _baselineError,
+              border: const OutlineInputBorder(),
+            ),
+            onChanged: _onBaselineChanged,
+          ),
         ],
       ),
     );

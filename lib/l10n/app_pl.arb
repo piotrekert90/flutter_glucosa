@@ -181,7 +181,7 @@
   "diabetesType2": "Typ 2",
   "diabetesTypeGestational": "Ciążowa",
   "diabetesTypeLada": "LADA",
-  "onboardingUnitsTitle": "Preferowane jednostki i zakres docelowy",
+  "onboardingUnitsTitle": "Preferowana jednostka glikemii",
   "onboardingGlucoseUnitLabel": "Jednostka glukozy",
   "onboardingRangeLabel": "Zakres docelowy",
   "onboardingConfirmTitle": "Wszystko gotowe!",
@@ -438,7 +438,44 @@
   "widgetPromoTitle": "Glikemia na wyciągnięcie ręki",
   "widgetPromoSubtitle": "Przypnij widget Glucosa do ekranu głównego",
   "widgetPromoPin": "Przypnij",
-  "widgetPinRequested": "Wysłano prośbę o przypięcie widgetu"
+  "widgetPinRequested": "Wysłano prośbę o przypięcie widgetu",
+  "onboardingRangeTitle": "Wybierz zakres docelowy",
+  "onboardingRangeSubtitle": "Pomiary w tym zakresie liczą się jako czas w normie",
+  "onboardingHealthTitle": "Synchronizuj z {platform}",
+  "@onboardingHealthTitle": {
+    "description": "Title of onboarding health sync step",
+    "placeholders": {
+      "platform": {"type": "String", "example": "Apple Health"}
+    }
+  },
+  "onboardingHealthSubtitle": "Automatycznie wymieniaj pomiary glikemii z {platform}. Możesz to zmienić później w Ustawieniach.",
+  "@onboardingHealthSubtitle": {
+    "description": "Subtitle of onboarding health sync step",
+    "placeholders": {
+      "platform": {"type": "String", "example": "Apple Health"}
+    }
+  },
+  "onboardingHealthEnable": "Włącz synchronizację zdrowia",
+  "onboardingReminderTitle": "Codzienne przypomnienie",
+  "onboardingReminderSubtitle": "Dostawaj codziennie powiadomienie o pomiarze glikemii. Możesz to zmienić później w Ustawieniach.",
+  "onboardingReminderEnable": "Włącz codzienne przypomnienie",
+  "onboardingReminderOff": "Wyłączone",
+  "onboardingReminderChange": "Zmień godzinę",
+  "onboardingBiometricTitle": "Chroń biometrią",
+  "onboardingBiometricSubtitle": "Wymagaj Face ID, Touch ID lub odcisku palca, aby otworzyć Glucosa.",
+  "onboardingBiometricEnable": "Włącz blokadę aplikacji",
+  "onboardingPrivacyTitle": "Twoje dane zostają Twoje",
+  "onboardingPrivacySubtitle": "Pomiary są przechowywane tylko na tym urządzeniu. Anonimowe raporty o awariach pomagają naprawiać błędy — bez konta, bez śledzenia, bez reklam.",
+  "onboardingPrivacyAcknowledge": "Rozumiem",
+  "onboardingPrivacyRequired": "Zaakceptuj informację o prywatności, aby kontynuować",
+  "onboardingCsvTitle": "Zabierz swoją historię",
+  "onboardingCsvSubtitle": "Zaimportuj pomiary z mySugr, Dexcom lub Contour — albo pomiń i zacznij od nowa.",
+  "onboardingGetStarted": "Zaczynamy",
+  "onboardingBaselineLabel": "Glikemia bazowa (opcjonalnie)",
+  "onboardingBaselineHintMgDl": "np. 120 mg/dL",
+  "onboardingBaselineHintMmolL": "np. 6,5 mmol/L",
+  "onboardingBaselineInvalid": "Wprowadź prawidłową wartość glikemii",
+  "onboardingDefaultReminderLabel": "Kontrola glikemii"
 }
 
 
