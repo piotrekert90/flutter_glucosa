@@ -114,6 +114,15 @@ class SettingsScreen extends ConsumerWidget {
                   onTap: () => context.push('/reminders'),
                 ),
                 const SizedBox(height: 12),
+                CustomSettingsTile(
+                  icon: Icons.file_upload_outlined,
+                  title: l10n?.exportData ?? 'Export Data',
+                  subtitle:
+                      l10n?.exportSubtitle ??
+                      'Export measurements to CSV format',
+                  onTap: () => context.push('/export'),
+                ),
+                const SizedBox(height: 12),
                 SectionHeader(label: l10n?.about ?? 'About'),
                 FutureBuilder<PackageInfo>(
                   future: PackageInfo.fromPlatform(),

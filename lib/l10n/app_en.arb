@@ -798,5 +798,71 @@
   "reminderDeletedSuccess": "Reminder deleted",
   "@reminderDeletedSuccess": {
     "description": "Snackbar message when reminder is deleted"
+  },
+  "exportData": "Export Data",
+  "@exportData": {
+    "description": "Title for the data export screen and menu tile"
+  },
+  "exportSubtitle": "Export measurements to CSV format",
+  "@exportSubtitle": {
+    "description": "Subtitle describing the data export option"
+  },
+  "exportDateRange": "Date Range",
+  "@exportDateRange": {
+    "description": "Header for the date range filter in export screen"
+  },
+  "exportAllTime": "All Time",
+  "@exportAllTime": {
+    "description": "Option to export data across all time"
+  },
+  "exportLast7Days": "Last 7 days",
+  "@exportLast7Days": {
+    "description": "Option to export data from the last 7 days"
+  },
+  "exportLast30Days": "Last 30 days",
+  "@exportLast30Days": {
+    "description": "Option to export data from the last 30 days"
+  },
+  "exportLast90Days": "Last 90 days",
+  "@exportLast90Days": {
+    "description": "Option to export data from the last 90 days"
+  },
+  "exportCustomRange": "Custom range",
+  "@exportCustomRange": {
+    "description": "Option to pick custom start and end dates"
+  },
+  "exportMetrics": "Metrics to Include",
+  "@exportMetrics": {
+    "description": "Section title for metric selection in export screen"
+  },
+  "exportSelectAll": "Select All",
+  "@exportSelectAll": {
+    "description": "Button to select all metrics"
+  },
+  "exportDeselectAll": "Deselect All",
+  "@exportDeselectAll": {
+    "description": "Button to deselect all metrics"
+  },
+  "exportMatchingRecords": "{count, plural, =0{No records found} =1{1 record selected} other{{count} records selected}}",
+  "@exportMatchingRecords": {
+    "description": "Label indicating number of matching records to be exported",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
+    }
+  },
+  "exportAndShare": "Export & Share",
+  "@exportAndShare": {
+    "description": "Button label to trigger CSV export and open system share sheet"
+  },
+  "exportSuccess": "Export completed successfully",
+  "@exportSuccess": {
+    "description": "Feedback message when export finishes successfully"
+  },
+  "exportNoMetricsSelected": "Please select at least one metric",
+  "@exportNoMetricsSelected": {
+    "description": "Validation error when no metrics are selected"
   }
 }

@@ -202,6 +202,21 @@
   "reminderOneTime": "Jednorazowe przypomnienie",
   "reminderOneTimeSubtitle": "Wyłącza się automatycznie po wysłaniu",
   "reminderSavedSuccess": "Przypomnienie zostało pomyślnie zapisane",
-  "reminderDeletedSuccess": "Przypomnienie zostało usunięte"
+  "reminderDeletedSuccess": "Przypomnienie zostało usunięte",
+  "exportData": "Eksport danych",
+  "exportSubtitle": "Eksportuj pomiary do formatu CSV",
+  "exportDateRange": "Zakres dat",
+  "exportAllTime": "Cały okres",
+  "exportLast7Days": "Ostatnie 7 dni",
+  "exportLast30Days": "Ostatnie 30 dni",
+  "exportLast90Days": "Ostatnie 90 dni",
+  "exportCustomRange": "Własny zakres",
+  "exportMetrics": "Pomiary do uwzględnienia",
+  "exportSelectAll": "Zaznacz wszystkie",
+  "exportDeselectAll": "Odznacz wszystkie",
+  "exportMatchingRecords": "{count, plural, =0{Brak pomiarów} =1{Wybrano 1 pomiar} few{Wybrano {count} pomiary} many{Wybrano {count} pomiarów} other{Wybrano {count} pomiarów}}",
+  "exportAndShare": "Eksportuj i udostępnij",
+  "exportSuccess": "Eksport zakończony pomyślnie",
+  "exportNoMetricsSelected": "Wybierz co najmniej jeden rodzaj pomiaru"
 }
 

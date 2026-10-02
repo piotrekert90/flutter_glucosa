@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/router/app_router.dart';
 import 'package:flutter_glucosa/core/router/app_routes.dart';
+import 'package:flutter_glucosa/features/export/presentation/providers/export_service_provider.dart';
+import 'package:flutter_glucosa/features/export/presentation/screens/export_screen.dart';
 import 'package:flutter_glucosa/features/glucose/data/providers/glucose_reading_repository_provider.dart';
 import 'package:flutter_glucosa/features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
@@ -16,6 +18,7 @@ import 'package:flutter_glucosa/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../helpers/fake_export_service.dart';
 import '../../helpers/fake_glucose_reading_repository.dart';
 import '../../helpers/fake_reminder_repository.dart';
 import '../../helpers/fake_user_profile_repository.dart';
@@ -24,6 +27,7 @@ void main() {
   late FakeUserProfileRepository fakeUserProfileRepository;
   late FakeGlucoseReadingRepository fakeGlucoseReadingRepository;
   late FakeReminderRepository fakeReminderRepository;
+  late FakeExportService fakeExportService;
 
   setUp(() {
     // Seed a completed profile so the onboarding guard lets tests through
@@ -35,6 +39,7 @@ void main() {
     );
     fakeGlucoseReadingRepository = FakeGlucoseReadingRepository();
     fakeReminderRepository = FakeReminderRepository();
+    fakeExportService = FakeExportService();
   });
 
   tearDown(() {
@@ -53,6 +58,7 @@ void main() {
           fakeGlucoseReadingRepository,
         ),
         reminderRepositoryProvider.overrideWithValue(fakeReminderRepository),
+        exportServiceProvider.overrideWithValue(fakeExportService),
       ],
       child: Consumer(
         builder: (context, ref, _) {
@@ -102,6 +108,8 @@ void main() {
       expect(AppRoute.addWeight.name, 'add_weight');
       expect(AppRoute.editWeight.path, '/weight/edit/:id');
       expect(AppRoute.editWeight.name, 'edit_weight');
+      expect(AppRoute.export.path, '/export');
+      expect(AppRoute.export.name, 'export');
     });
 
     testWidgets('Renders OverviewScreen on initial "/" route', (tester) async {
@@ -284,6 +292,13 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(RemindersScreen), findsOneWidget);
+    });
+
+    testWidgets('Navigates to ExportScreen on "/export"', (tester) async {
+      await tester.pumpWidget(createTestApp(initialLocation: '/export'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ExportScreen), findsOneWidget);
     });
 
     testWidgets('Renders error screen on unknown route', (tester) async {

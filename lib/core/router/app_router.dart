@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../features/blood_pressure/presentation/screens/add_edit_blood_pressure_reading_screen.dart';
 import '../../features/cholesterol/presentation/screens/add_edit_cholesterol_reading_screen.dart';
+import '../../features/export/presentation/screens/export_screen.dart';
 import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import '../../features/hba1c/presentation/screens/add_edit_hba1c_reading_screen.dart';
 import '../../features/ketones/presentation/screens/add_edit_ketone_reading_screen.dart';
@@ -227,6 +228,12 @@ GoRouter appRouter(Ref ref) {
         name: AppRoute.reminders.name,
         builder: (BuildContext context, GoRouterState state) =>
             const RemindersScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.export.path,
+        name: AppRoute.export.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const ExportScreen(),
       ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) {

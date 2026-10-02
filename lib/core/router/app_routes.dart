@@ -55,7 +55,10 @@ enum AppRoute {
   onboarding('/onboarding', 'onboarding'),
 
   /// Route to view and manage scheduled measurement reminders.
-  reminders('/reminders', 'reminders');
+  reminders('/reminders', 'reminders'),
+
+  /// Route for exporting health measurement data.
+  export('/export', 'export');
 
   const AppRoute(this.path, this.name);
 

@@ -36,7 +36,7 @@ final class ExportNotifierProvider
   ExportNotifier create() => ExportNotifier();
 }
 
-String _$exportNotifierHash() => r'cf116971bcdc346d642e37f862e308ebcfd57aeb';
+String _$exportNotifierHash() => r'03e46383a996bfb2ea3926246cc2997eed55d28e';
 
 /// Riverpod state notifier managing data export configuration, metrics selection, and sharing.
 
