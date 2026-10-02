@@ -431,7 +431,14 @@
   "healthSyncUnavailable": "Usługa zdrowotna jest niedostępna na tym urządzeniu",
   "healthConnectRequiredTitle": "Wymagany Health Connect",
   "healthConnectRequiredSubtitle": "Zainstaluj Google Health Connect ze Sklepu Play, aby synchronizować pomiary.",
-  "installFromPlayStore": "Zainstaluj ze Sklepu Play"
+  "installFromPlayStore": "Zainstaluj ze Sklepu Play",
+  "widgetNoData": "Brak pomiarów",
+  "widgetTapToAdd": "Dotknij, aby dodać",
+  "widgetToday": "Dzisiaj",
+  "widgetPromoTitle": "Glikemia na wyciągnięcie ręki",
+  "widgetPromoSubtitle": "Przypnij widget Glucosa do ekranu głównego",
+  "widgetPromoPin": "Przypnij",
+  "widgetPinRequested": "Wysłano prośbę o przypięcie widgetu"
 }
 
 

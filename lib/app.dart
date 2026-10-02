@@ -9,6 +9,7 @@ import 'core/integrations/biometrics/biometric_lock_provider.dart';
 import 'core/presentation/screens/biometric_shield_screen.dart';
 import 'core/presentation/theme/app_theme.dart';
 import 'core/router/app_router.dart';
+import 'features/glucose/presentation/providers/widget_sync_observer.dart';
 import 'features/settings/presentation/providers/user_profile_notifier.dart';
 
 /// Root application widget configuring themes, navigation, and core Material3 setup.
@@ -51,6 +52,8 @@ class _AppState extends ConsumerState<App> {
     final profile = ref.watch(userProfileProvider).value;
     final router = ref.watch(appRouterProvider);
     final isLocked = ref.watch(biometricLockProvider);
+    // Keeps native home screen widgets in sync with glucose readings.
+    ref.watch(widgetSyncObserverProvider);
 
     return MaterialApp.router(
       routerConfig: router,

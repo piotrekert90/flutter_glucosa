@@ -8,6 +8,7 @@ import 'app.dart';
 import 'core/presentation/widgets/app_startup_widget.dart';
 import 'core/providers/app_provider_observer.dart';
 import 'core/utils/crash_reporter.dart';
+import 'features/glucose/data/services/widget_sync_service.dart';
 
 /// Main entrypoint function for the application.
 ///
@@ -44,6 +45,9 @@ Future<void> main() async {
     );
     return true;
   };
+
+  // Configures the shared App Group so native widgets can read Flutter data.
+  await const WidgetSyncService().initialize();
 
   runApp(
     ProviderScope(

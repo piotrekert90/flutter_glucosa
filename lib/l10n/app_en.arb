@@ -1598,6 +1598,34 @@
   "installFromPlayStore": "Install from Play Store",
   "@installFromPlayStore": {
     "description": "Button opening Play Store Health Connect listing"
+  },
+  "widgetNoData": "No readings",
+  "@widgetNoData": {
+    "description": "Widget empty state label"
+  },
+  "widgetTapToAdd": "Tap to add",
+  "@widgetTapToAdd": {
+    "description": "Widget empty state call to action"
+  },
+  "widgetToday": "Today",
+  "@widgetToday": {
+    "description": "Widget label for readings taken today"
+  },
+  "widgetPromoTitle": "Glucose at a glance",
+  "@widgetPromoTitle": {
+    "description": "Widget promo card title"
+  },
+  "widgetPromoSubtitle": "Pin the Glucosa widget to your home screen",
+  "@widgetPromoSubtitle": {
+    "description": "Widget promo card subtitle"
+  },
+  "widgetPromoPin": "Pin",
+  "@widgetPromoPin": {
+    "description": "Widget promo pin button"
+  },
+  "widgetPinRequested": "Widget pin request sent to launcher",
+  "@widgetPinRequested": {
+    "description": "Confirmation after requesting widget pin"
   }
 }
 
