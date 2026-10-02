@@ -435,7 +435,7 @@ class CsvGlucoseImporter {
       'measurement time',
       'czas pomiaru',
     };
-    const timeAliases = {'czas', 'time', 'hour', 'godzina', 'godz'};
+    const timeAliases = {'czas', 'time', 'hour', 'godzina', 'godz', 'uhrzeit'};
     const valueAliases = {
       'value',
       'wartość',
@@ -443,6 +443,7 @@ class CsvGlucoseImporter {
       'glucose',
       'glikemia',
       'cukier',
+      'blutzucker',
       'blood glucose',
       'blood sugar',
       'reading',
