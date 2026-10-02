@@ -29,6 +29,12 @@ class AppConfig {
   static bool get isProd => environment == AppEnvironment.prod;
 
   /// The user-facing application name tailored to the active environment.
-  static String get appName =>
-      isDev ? 'Flutter Riverpod (Dev)' : 'Flutter Riverpod';
+  static String get appName => isDev ? 'Glucosa (Dev)' : 'Glucosa';
+
+  /// Notification channel identifier isolated per environment.
+  ///
+  /// Separate channels prevent development builds from interfering with
+  /// production reminder notifications on the same device.
+  static String get notificationChannelId =>
+      isDev ? 'glucosa_reminders_dev' : 'glucosa_reminders';
 }

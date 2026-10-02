@@ -2,6 +2,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
+import '../../../../core/config/app_environment.dart';
 import '../../domain/entities/reminder.dart';
 import '../../domain/services/notification_service.dart';
 
@@ -89,16 +90,16 @@ class NotificationServiceImpl implements NotificationService {
       scheduledDate = scheduledDate.add(const Duration(days: 1));
     }
 
-    const notificationDetails = NotificationDetails(
+    final notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
-        'glucosa_reminders',
+        AppConfig.notificationChannelId,
         'Measurement Reminders',
         channelDescription:
             'Scheduled notifications reminding you to log health measurements',
         importance: Importance.high,
         priority: Priority.high,
       ),
-      iOS: DarwinNotificationDetails(
+      iOS: const DarwinNotificationDetails(
         presentAlert: true,
         presentBadge: true,
         presentSound: true,
