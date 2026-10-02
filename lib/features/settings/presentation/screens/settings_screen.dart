@@ -13,6 +13,7 @@ import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/utils/crash_reporter.dart';
+import '../../../../core/integrations/biometrics/biometric_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../onboarding/presentation/extensions/diabetes_type_l10n.dart';
 import '../providers/user_profile_notifier.dart';
@@ -23,6 +24,7 @@ import '../widgets/components/section_header.dart';
 import '../widgets/components/selection_dialog.dart';
 import '../widgets/components/target_range_dialog.dart';
 import '../widgets/components/theme_selection_dialog.dart';
+import '../widgets/components/wipe_data_dialog.dart';
 
 /// Presentation widget rendering the user profile and application settings screen.
 ///
@@ -153,6 +155,28 @@ class SettingsScreen extends ConsumerWidget {
                       );
                     }
                   },
+                ),
+                const SizedBox(height: 12),
+                SectionHeader(
+                  label: l10n?.securitySection ?? 'Security & Privacy',
+                ),
+                CustomSettingsToggle(
+                  icon: Icons.fingerprint,
+                  title: l10n?.biometricSettingTitle ?? 'Biometric Lock',
+                  subtitle:
+                      l10n?.biometricSettingSubtitle ??
+                      'Require Face ID, Touch ID, or fingerprint to open the app',
+                  value: profile.isBiometricLockEnabled,
+                  onChanged: (value) =>
+                      _toggleBiometricLock(context, ref, value),
+                ),
+                CustomSettingsTile(
+                  icon: Icons.delete_forever_outlined,
+                  title: l10n?.wipeDataTitle ?? 'Wipe All Data',
+                  subtitle:
+                      l10n?.wipeDataDescription ??
+                      'Permanently delete all health records, reminders, and preferences from this device.',
+                  onTap: () => _handleWipeData(context, ref),
                 ),
                 const SizedBox(height: 12),
                 SectionHeader(label: l10n?.tools ?? 'Tools'),
@@ -491,5 +515,95 @@ class SettingsScreen extends ConsumerWidget {
       UserThemeMode.dark => l10n?.themeDark ?? 'Dark Mode',
       UserThemeMode.system => l10n?.themeSystem ?? 'System',
     };
+  }
+
+  Future<void> _toggleBiometricLock(
+    BuildContext context,
+    WidgetRef ref,
+    bool enable,
+  ) async {
+    final l10n = AppLocalizations.of(context);
+    if (enable) {
+      final canAuth = await BiometricService.instance.canAuthenticate();
+      if (!canAuth) {
+        if (context.mounted) {
+          AppSnackBar.show(
+            context,
+            message:
+                l10n?.biometricNotAvailable ??
+                'Biometric authentication is not available on this device',
+            type: SnackBarType.error,
+          );
+        }
+        return;
+      }
+
+      final result = await BiometricService.instance.authenticate(
+        localizedReason:
+            l10n?.biometricReason ??
+            'Unlock Glucosa to access your blood glucose records',
+        authMessages: l10n != null
+            ? BiometricService.createAuthMessages(l10n)
+            : const [],
+      );
+
+      if (result != BiometricAuthResult.success) {
+        if (context.mounted && result != BiometricAuthResult.canceled) {
+          final errorMsg = result == BiometricAuthResult.lockedOut
+              ? (l10n?.biometricLockedOut ?? 'Biometrics temporarily locked.')
+              : (l10n?.biometricNotAvailable ??
+                    'Biometric authentication failed');
+          AppSnackBar.show(
+            context,
+            message: errorMsg,
+            type: SnackBarType.error,
+          );
+        }
+        return;
+      }
+    }
+
+    final (success, failure) = await ref
+        .read(userProfileProvider.notifier)
+        .updateBiometricLockEnabled(enable);
+    if (!success && context.mounted) {
+      AppSnackBar.show(
+        context,
+        message: failure != null && l10n != null
+            ? failure.toUserMessage(l10n)
+            : (l10n?.failedToUpdatePreferences ??
+                  'Failed to update preferences'),
+        type: SnackBarType.error,
+      );
+    }
+  }
+
+  Future<void> _handleWipeData(BuildContext context, WidgetRef ref) async {
+    final confirmed = await WipeDataDialog.show(context);
+    if (confirmed == true && context.mounted) {
+      final (success, failure) = await ref
+          .read(userProfileProvider.notifier)
+          .wipeAllData();
+      if (context.mounted) {
+        final l10n = AppLocalizations.of(context);
+        if (success) {
+          AppSnackBar.show(
+            context,
+            message:
+                l10n?.wipeDataSuccess ??
+                'All data has been wiped successfully.',
+            type: SnackBarType.success,
+          );
+        } else {
+          AppSnackBar.show(
+            context,
+            message: failure != null && l10n != null
+                ? failure.toUserMessage(l10n)
+                : 'Failed to wipe data',
+            type: SnackBarType.error,
+          );
+        }
+      }
+    }
   }
 }

@@ -242,7 +242,26 @@
   "targetRangeCustom": "Własny",
   "editTargetRange": "Docelowy zakres glukozy",
   "targetRangeInvalid": "Wartość minimalna musi być mniejsza od maksymalnej i większa od zera",
-  "notSet": "Nie ustawiono",
-  "tools": "Narzędzia"
+  "tools": "Narzędzia",
+  "biometricReason": "Potwierdź tożsamość, aby uzyskać dostęp do danych zdrowotnych",
+  "biometricUnlockTitle": "Odblokuj Glucosa",
+  "biometricUnlockDescription": "Wymagana autoryzacja w celu ochrony danych medycznych.",
+  "biometricUnlockButton": "Odblokuj",
+  "biometricNotAvailable": "Uwierzytelnianie biometryczne nie jest dostępne na tym urządzeniu",
+  "biometricLockedOut": "Biometria tymczasowo zablokowana z powodu zbyt wielu prób. Spróbuj ponownie później.",
+  "biometricLockRecoveryTitle": "Biometria niedostępna",
+  "biometricLockRecoveryMessage": "Uwierzytelnianie biometryczne nie powiodło się, ponieważ dane nie są skonfigurowane lub zostały wyłączone. Czy chcesz wyłączyć blokadę biometryczną, aby odzyskać dostęp?",
+  "biometricLockRecoveryDisable": "Wyłącz blokadę",
+  "biometricSettingTitle": "Blokada biometryczna",
+  "biometricSettingSubtitle": "Wymagaj Face ID, Touch ID lub odcisku palca przy otwieraniu aplikacji",
+  "securitySection": "Bezpieczeństwo i prywatność",
+  "wipeDataTitle": "Wyczyść wszystkie dane",
+  "wipeDataDescription": "Nieodwracalnie usuń wszystkie pomiary, przypomnienia i ustawienia z tego urządzenia.",
+  "wipeDataConfirmTitle": "Czy na pewno?",
+  "wipeDataConfirmMessage": "Tej operacji nie można cofnąć. Wszystkie Twoje pomiary glikemii i ustawienia zostaną bezpowrotnie utracone.",
+  "wipeDataButton": "Usuń wszystko",
+  "wipeDataSuccess": "Wszystkie dane zostały pomyślnie usunięte.",
+  "notSet": "Nie ustawiono"
 }
+
 

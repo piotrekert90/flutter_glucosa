@@ -968,5 +968,78 @@
   "tools": "Tools",
   "@tools": {
     "description": "Section header for utility tools in settings"
+  },
+  "biometricReason": "Please authenticate to access your health data",
+  "@biometricReason": {
+    "description": "System biometric prompt explanation message"
+  },
+  "biometricUnlockTitle": "Unlock Glucosa",
+  "@biometricUnlockTitle": {
+    "description": "Title displayed on biometric shield and sign in prompt"
+  },
+  "biometricUnlockDescription": "Authentication required to protect your medical information.",
+  "@biometricUnlockDescription": {
+    "description": "Subtitle on biometric shield screen"
+  },
+  "biometricUnlockButton": "Unlock",
+  "@biometricUnlockButton": {
+    "description": "Button to trigger biometric authentication"
+  },
+  "biometricNotAvailable": "Biometric authentication is not available on this device",
+  "@biometricNotAvailable": {
+    "description": "Error message when biometrics cannot be used"
+  },
+  "biometricLockedOut": "Biometrics temporarily locked due to too many attempts. Please try again later.",
+  "@biometricLockedOut": {
+    "description": "Error message when biometrics are temporarily locked out"
+  },
+  "biometricLockRecoveryTitle": "Biometrics Unavailable",
+  "@biometricLockRecoveryTitle": {
+    "description": "Title for biometric lock recovery dialog"
+  },
+  "biometricLockRecoveryMessage": "Biometric authentication cannot be completed because credentials are not set up or have been disabled. Would you like to disable the biometric lock to regain access?",
+  "@biometricLockRecoveryMessage": {
+    "description": "Message for biometric lock recovery dialog"
+  },
+  "biometricLockRecoveryDisable": "Disable Lock",
+  "@biometricLockRecoveryDisable": {
+    "description": "Action button in lock recovery dialog"
+  },
+  "biometricSettingTitle": "Biometric Lock",
+  "@biometricSettingTitle": {
+    "description": "Title for biometric lock setting"
+  },
+  "biometricSettingSubtitle": "Require Face ID, Touch ID, or fingerprint to open the app",
+  "@biometricSettingSubtitle": {
+    "description": "Subtitle for biometric lock setting"
+  },
+  "securitySection": "Security & Privacy",
+  "@securitySection": {
+    "description": "Section header in settings for security and privacy"
+  },
+  "wipeDataTitle": "Wipe All Data",
+  "@wipeDataTitle": {
+    "description": "Title for GDPR wipe data option"
+  },
+  "wipeDataDescription": "Permanently delete all health records, reminders, and preferences from this device.",
+  "@wipeDataDescription": {
+    "description": "Description for GDPR wipe data option"
+  },
+  "wipeDataConfirmTitle": "Are you sure?",
+  "@wipeDataConfirmTitle": {
+    "description": "Title for wipe data confirmation dialog"
+  },
+  "wipeDataConfirmMessage": "This action cannot be undone. All your blood glucose readings and settings will be permanently lost.",
+  "@wipeDataConfirmMessage": {
+    "description": "Warning message in wipe data confirmation dialog"
+  },
+  "wipeDataButton": "Wipe Everything",
+  "@wipeDataButton": {
+    "description": "Destructive button in wipe data dialog"
+  },
+  "wipeDataSuccess": "All data has been wiped successfully.",
+  "@wipeDataSuccess": {
+    "description": "Snackbar notification after data wipe"
   }
 }
+

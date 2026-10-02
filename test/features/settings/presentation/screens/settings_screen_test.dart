@@ -4,7 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_glucosa/core/domain/enums/enums.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
+import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
+import 'package:flutter_glucosa/features/settings/presentation/widgets/components/custom_settings_toggle.dart';
 import 'package:flutter_glucosa/l10n/app_localizations.dart';
 
 import '../../../../helpers/fake_user_profile_repository.dart';
@@ -56,6 +58,9 @@ void main() {
     expect(find.text('Appearance'), findsOneWidget);
     expect(find.text('Theme'), findsOneWidget);
     expect(find.text('Notifications'), findsOneWidget);
+    expect(find.text('Security & Privacy'), findsOneWidget);
+    expect(find.text('Biometric Lock'), findsOneWidget);
+    expect(find.text('Wipe All Data'), findsOneWidget);
     expect(find.text('Tools'), findsOneWidget);
     expect(find.text('Reminders'), findsOneWidget);
     expect(find.text('Export Data'), findsOneWidget);
@@ -223,9 +228,62 @@ void main() {
 
     expect((await repository.get()).themeMode, UserThemeMode.dark);
 
-    await tester.tap(find.byType(Switch));
+    final notificationSwitch = find.descendant(
+      of: find.widgetWithText(CustomSettingsToggle, 'Notifications'),
+      matching: find.byType(Switch),
+    );
+    await tester.tap(notificationSwitch);
     await tester.pumpAndSettle();
 
     expect((await repository.get()).isNotificationsEnabled, isFalse);
+  });
+
+  testWidgets('Wipe all data shows dialog and cancels without wiping', (
+    tester,
+  ) async {
+    await repository.save(const UserProfile(name: 'Jane Doe'));
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    await tester.pumpWidget(_buildSettingsApp(repository));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Wipe All Data'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Are you sure?'), findsOneWidget);
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Are you sure?'), findsNothing);
+    expect((await repository.get()).name, 'Jane Doe');
+  });
+
+  testWidgets('Wipe all data confirms and triggers data wipe', (tester) async {
+    await repository.save(const UserProfile(name: 'Jane Doe'));
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    await tester.pumpWidget(_buildSettingsApp(repository));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Wipe All Data'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Are you sure?'), findsOneWidget);
+    await tester.tap(find.text('Wipe Everything'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Are you sure?'), findsNothing);
+    expect(find.text('All data has been wiped successfully.'), findsOneWidget);
+    expect((await repository.get()).name, '');
   });
 }
