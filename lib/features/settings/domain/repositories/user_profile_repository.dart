@@ -38,6 +38,9 @@ abstract class UserProfileRepository {
   /// Marks the onboarding wizard as completed.
   Future<CommandResult> completeOnboarding();
 
+  /// Updates the preferred first day of the week to [firstDayOfWeek].
+  Future<CommandResult> updateFirstDayOfWeek(FirstDayOfWeek firstDayOfWeek);
+
   /// Irreversibly erases all health records, reminders, and resets user profile to defaults.
   Future<CommandResult> wipeAllData();
 }

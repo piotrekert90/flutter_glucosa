@@ -57,6 +57,7 @@ void main() {
     expect(find.text('Target Range'), findsWidgets);
     expect(find.text('Appearance'), findsOneWidget);
     expect(find.text('Theme'), findsOneWidget);
+    expect(find.text('First Day of Week'), findsOneWidget);
     expect(find.text('Notifications'), findsOneWidget);
     expect(find.text('Security & Privacy'), findsOneWidget);
     expect(find.text('Biometric Lock'), findsOneWidget);
@@ -236,6 +237,27 @@ void main() {
     await tester.pumpAndSettle();
 
     expect((await repository.get()).isNotificationsEnabled, isFalse);
+  });
+
+  testWidgets('Updates first day of week via SelectionDialog', (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    await tester.pumpWidget(_buildSettingsApp(repository));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('First Day of Week'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Select First Day of Week'), findsOneWidget);
+    await tester.tap(find.text('Monday').last);
+    await tester.pumpAndSettle();
+
+    expect((await repository.get()).firstDayOfWeek, FirstDayOfWeek.monday);
   });
 
   testWidgets('Wipe all data shows dialog and cancels without wiping', (

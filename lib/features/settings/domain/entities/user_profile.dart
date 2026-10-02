@@ -33,6 +33,9 @@ class UserProfile {
   /// Flag indicating whether biometric authentication is required to unlock the app.
   final bool isBiometricLockEnabled;
 
+  /// Preferred first day of the week for calendar displays.
+  final FirstDayOfWeek firstDayOfWeek;
+
   /// Creates a [UserProfile] instance with default clinical parameters.
   const UserProfile({
     this.name = '',
@@ -45,6 +48,7 @@ class UserProfile {
     this.isNotificationsEnabled = true,
     this.themeMode = UserThemeMode.system,
     this.isBiometricLockEnabled = false,
+    this.firstDayOfWeek = FirstDayOfWeek.system,
   });
 
   /// Factory constructor producing default baseline profile parameters.
@@ -62,6 +66,7 @@ class UserProfile {
     bool? isNotificationsEnabled,
     UserThemeMode? themeMode,
     bool? isBiometricLockEnabled,
+    FirstDayOfWeek? firstDayOfWeek,
   }) {
     return UserProfile(
       name: name ?? this.name,
@@ -77,6 +82,7 @@ class UserProfile {
       themeMode: themeMode ?? this.themeMode,
       isBiometricLockEnabled:
           isBiometricLockEnabled ?? this.isBiometricLockEnabled,
+      firstDayOfWeek: firstDayOfWeek ?? this.firstDayOfWeek,
     );
   }
 
@@ -93,7 +99,8 @@ class UserProfile {
         other.isOnboardingCompleted == isOnboardingCompleted &&
         other.isNotificationsEnabled == isNotificationsEnabled &&
         other.themeMode == themeMode &&
-        other.isBiometricLockEnabled == isBiometricLockEnabled;
+        other.isBiometricLockEnabled == isBiometricLockEnabled &&
+        other.firstDayOfWeek == firstDayOfWeek;
   }
 
   @override
@@ -108,5 +115,6 @@ class UserProfile {
     isNotificationsEnabled,
     themeMode,
     isBiometricLockEnabled,
+    firstDayOfWeek,
   );
 }

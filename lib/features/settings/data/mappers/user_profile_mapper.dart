@@ -46,6 +46,11 @@ extension UserProfileModelMapper on UserProfileModel {
         UserThemeMode.system,
       ),
       isBiometricLockEnabled: isBiometricLockEnabled,
+      firstDayOfWeek: _enumFromName(
+        FirstDayOfWeek.values,
+        firstDayOfWeek,
+        FirstDayOfWeek.system,
+      ),
     );
   }
 }
@@ -67,7 +72,8 @@ extension UserProfileMapper on UserProfile {
       ..isOnboardingCompleted = isOnboardingCompleted
       ..isNotificationsEnabled = isNotificationsEnabled
       ..themeMode = themeMode.name
-      ..isBiometricLockEnabled = isBiometricLockEnabled;
+      ..isBiometricLockEnabled = isBiometricLockEnabled
+      ..firstDayOfWeek = firstDayOfWeek.name;
   }
 }
 

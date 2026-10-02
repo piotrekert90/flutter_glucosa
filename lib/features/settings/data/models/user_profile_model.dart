@@ -49,4 +49,7 @@ class UserProfileModel {
 
   /// Flag indicating if biometric authentication lock is enabled.
   bool isBiometricLockEnabled = false;
+
+  /// Preferred first day of the week stored by enum name ('system', 'monday', 'sunday').
+  String firstDayOfWeek = 'system';
 }

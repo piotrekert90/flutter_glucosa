@@ -16,6 +16,7 @@ import '../../../../core/utils/crash_reporter.dart';
 import '../../../../core/integrations/biometrics/biometric_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../onboarding/presentation/extensions/diabetes_type_l10n.dart';
+import '../../../calendar/presentation/extensions/first_day_of_week_ui_extension.dart';
 import '../providers/user_profile_notifier.dart';
 import '../widgets/components/custom_settings_tile.dart';
 import '../widgets/components/custom_settings_toggle.dart';
@@ -131,6 +132,16 @@ class SettingsScreen extends ConsumerWidget {
                   valueText: _themeLabel(l10n, profile.themeMode),
                   onTap: () =>
                       _showThemePicker(context, ref, profile.themeMode),
+                ),
+                CustomSettingsTile(
+                  icon: Icons.calendar_today_outlined,
+                  title: l10n?.firstDayOfWeek ?? 'First Day of Week',
+                  valueText: profile.firstDayOfWeek.label(l10n),
+                  onTap: () => _showFirstDayOfWeekPicker(
+                    context,
+                    ref,
+                    profile.firstDayOfWeek,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 CustomSettingsToggle(
@@ -515,6 +526,36 @@ class SettingsScreen extends ConsumerWidget {
       UserThemeMode.dark => l10n?.themeDark ?? 'Dark Mode',
       UserThemeMode.system => l10n?.themeSystem ?? 'System',
     };
+  }
+
+  void _showFirstDayOfWeekPicker(
+    BuildContext context,
+    WidgetRef ref,
+    FirstDayOfWeek current,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    SelectionDialog.show<FirstDayOfWeek>(
+      context,
+      title: l10n?.selectFirstDayOfWeek ?? 'Select First Day of Week',
+      currentValue: current,
+      items: FirstDayOfWeek.values,
+      itemLabel: (item) => item.label(l10n),
+      onSelected: (selected) async {
+        final (success, failure) = await ref
+            .read(userProfileProvider.notifier)
+            .updateFirstDayOfWeek(selected);
+        if (!success && context.mounted) {
+          AppSnackBar.show(
+            context,
+            message: failure != null && l10n != null
+                ? failure.toUserMessage(l10n)
+                : (l10n?.failedToUpdatePreferences ??
+                      'Failed to update preferences'),
+            type: SnackBarType.error,
+          );
+        }
+      },
+    );
   }
 
   Future<void> _toggleBiometricLock(

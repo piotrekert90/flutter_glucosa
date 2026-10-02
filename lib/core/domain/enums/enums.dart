@@ -1,5 +1,6 @@
 export 'chart_time_range.dart';
 export 'diabetes_type.dart';
+export 'first_day_of_week.dart';
 export 'glucose_range_preset.dart';
 export 'glucose_status.dart';
 export 'glucose_unit.dart';

@@ -125,6 +125,24 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   }
 
   @override
+  Future<CommandResult> updateFirstDayOfWeek(
+    FirstDayOfWeek firstDayOfWeek,
+  ) async {
+    try {
+      await _isar.writeTxn(() async {
+        final model = await _getOrCreateModel();
+        model.firstDayOfWeek = firstDayOfWeek.name;
+        await _isar.userProfileModels.put(model);
+      });
+      return (true, null);
+    } on IsarError catch (e) {
+      return (false, DatabaseFailure(e.message));
+    } catch (e) {
+      return (false, DatabaseFailure('Unexpected error: $e'));
+    }
+  }
+
+  @override
   Future<CommandResult> updateGlucoseUnit(GlucoseUnit unit) async {
     try {
       await _isar.writeTxn(() async {

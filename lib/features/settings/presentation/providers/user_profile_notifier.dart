@@ -41,6 +41,13 @@ class UserProfileNotifier extends _$UserProfileNotifier {
         .updateBiometricLockEnabled(isEnabled);
   }
 
+  /// Updates the preferred first day of the week to [firstDayOfWeek].
+  Future<CommandResult> updateFirstDayOfWeek(FirstDayOfWeek firstDayOfWeek) {
+    return ref
+        .read(userProfileRepositoryProvider)
+        .updateFirstDayOfWeek(firstDayOfWeek);
+  }
+
   /// Updates the user's complete [profile].
   Future<CommandResult> updateProfile(UserProfile profile) {
     return ref.read(userProfileRepositoryProvider).save(profile);

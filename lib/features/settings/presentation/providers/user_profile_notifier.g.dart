@@ -46,7 +46,7 @@ final class UserProfileNotifierProvider
 }
 
 String _$userProfileNotifierHash() =>
-    r'f8487088cff288bbe0f1aec59148166621a71075';
+    r'8562831f40279be38c7e2b8bcfed5f3222a03a7a';
 
 /// Riverpod state notifier managing the user's clinical profile and settings state.
 ///

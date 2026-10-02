@@ -64,6 +64,15 @@ class FakeUserProfileRepository implements UserProfileRepository {
   }
 
   @override
+  Future<CommandResult> updateFirstDayOfWeek(
+    FirstDayOfWeek firstDayOfWeek,
+  ) async {
+    _profile = _profile.copyWith(firstDayOfWeek: firstDayOfWeek);
+    _emit();
+    return (true, null);
+  }
+
+  @override
   Future<CommandResult> updateGlucoseUnit(GlucoseUnit unit) async {
     _profile = _profile.copyWith(preferredGlucoseUnit: unit);
     _emit();
