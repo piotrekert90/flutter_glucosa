@@ -475,7 +475,22 @@
   "onboardingBaselineHintMgDl": "np. 120 mg/dL",
   "onboardingBaselineHintMmolL": "np. 6,5 mmol/L",
   "onboardingBaselineInvalid": "Wprowadź prawidłową wartość glikemii",
-  "onboardingDefaultReminderLabel": "Kontrola glikemii"
+  "onboardingDefaultReminderLabel": "Kontrola glikemii",
+  "dailyTipTitle": "Porada dnia",
+  "dailyTip1": "Sprawdź glikemię przed prowadzeniem auta.",
+  "dailyTip2": "Zapisuj każdy pomiar od razu — pamięć szybko zawodzi.",
+  "dailyTip3": "Miej zawsze przy sobie szybkie cukry.",
+  "dailyTip4": "10-minutowy spacer po posiłku łagodzi skoki glikemii.",
+  "dailyTip5": "Przeglądaj swój tygodniowy czas w normie w każdą niedzielę.",
+  "dailyTip6": "Trzymaj paski testowe i sensory z dala od ciepła.",
+  "dailyTip7": "Pij wodę w ciągu dnia — nawadnianie stabilizuje glikemię.",
+  "dailyTip8": "Łącz węglowodany z białkiem lub zdrowym tłuszczem.",
+  "dailyTip9": "Chodź spać o stałej porze dla równiejszych poranków.",
+  "dailyTip10": "Regularnie kontroluj i zmieniaj miejsca wkłuć i sensorów.",
+  "dailyTip11": "Poznaj swoje wczesne objawy niedocukrzenia.",
+  "dailyTip12": "Zabieraj podsumowanie Glucosa na każdą wizytę u lekarza.",
+  "dailyTip13": "Skontroluj glikemię 15 minut po leczeniu niedocukrzenia.",
+  "dailyTip14": "Świętuj serie — a przerwy sobie wybaczaj."
 }
 
 

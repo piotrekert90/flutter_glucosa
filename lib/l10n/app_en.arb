@@ -1732,7 +1732,39 @@
   "onboardingDefaultReminderLabel": "Glucose check",
   "@onboardingDefaultReminderLabel": {
     "description": "Default label for onboarding-created reminder"
-  }
+  },
+  "dailyTipTitle": "Daily tip",
+  "@dailyTipTitle": {
+    "description": "Title of the daily diabetes tip card"
+  },
+  "dailyTip1": "Check your glucose before driving.",
+  "@dailyTip1": {"description": "Rotating diabetes tip 1"},
+  "dailyTip2": "Log every reading right away — memory fades fast.",
+  "@dailyTip2": {"description": "Rotating diabetes tip 2"},
+  "dailyTip3": "Carry fast-acting glucose with you at all times.",
+  "@dailyTip3": {"description": "Rotating diabetes tip 3"},
+  "dailyTip4": "A 10-minute walk after meals smooths glucose spikes.",
+  "@dailyTip4": {"description": "Rotating diabetes tip 4"},
+  "dailyTip5": "Review your weekly Time in Range every Sunday.",
+  "@dailyTip5": {"description": "Rotating diabetes tip 5"},
+  "dailyTip6": "Keep test strips and sensors away from heat.",
+  "@dailyTip6": {"description": "Rotating diabetes tip 6"},
+  "dailyTip7": "Stay hydrated — water helps steady glucose levels.",
+  "@dailyTip7": {"description": "Rotating diabetes tip 7"},
+  "dailyTip8": "Pair carbohydrates with protein or healthy fat.",
+  "@dailyTip8": {"description": "Rotating diabetes tip 8"},
+  "dailyTip9": "Keep a consistent bedtime for steadier mornings.",
+  "@dailyTip9": {"description": "Rotating diabetes tip 9"},
+  "dailyTip10": "Inspect and rotate injection or sensor sites regularly.",
+  "@dailyTip10": {"description": "Rotating diabetes tip 10"},
+  "dailyTip11": "Learn your personal early signs of a low.",
+  "@dailyTip11": {"description": "Rotating diabetes tip 11"},
+  "dailyTip12": "Bring your Glucosa summary to every doctor visit.",
+  "@dailyTip12": {"description": "Rotating diabetes tip 12"},
+  "dailyTip13": "Recheck 15 minutes after treating a low.",
+  "@dailyTip13": {"description": "Rotating diabetes tip 13"},
+  "dailyTip14": "Celebrate streaks — and forgive the gaps.",
+  "@dailyTip14": {"description": "Rotating diabetes tip 14"}
 }
 
 

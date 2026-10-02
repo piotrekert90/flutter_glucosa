@@ -20,6 +20,7 @@ import '../../../statistics/presentation/widgets/sections/habits_activity_card.d
 import '../../../statistics/presentation/widgets/sections/milestones_card.dart';
 import '../../../statistics/presentation/widgets/sections/period_comparison_card.dart';
 import '../widgets/metric_trend_card.dart';
+import '../widgets/daily_tip_card.dart';
 import '../widgets/widget_promo_card.dart';
 
 /// Main dashboard overview screen displaying latest readings, health summaries, and quick actions.
@@ -308,6 +309,8 @@ class OverviewScreen extends ConsumerWidget {
                 loading: () => const SizedBox.shrink(),
                 error: (_, _) => const SizedBox.shrink(),
               ),
+              const SizedBox(height: 20),
+              const DailyTipCard(),
             ],
           ),
         ),
