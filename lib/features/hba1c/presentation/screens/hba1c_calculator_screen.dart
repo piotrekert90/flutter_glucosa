@@ -273,19 +273,22 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    TextField(
-                      controller: _glucoseController,
-                      keyboardType: const TextInputType.numberWithOptions(
-                        decimal: true,
+                    Semantics(
+                      label: l10n?.averageGlucose ?? 'Average Glucose',
+                      child: TextField(
+                        controller: _glucoseController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: _glucoseUnit == GlucoseUnit.mgDl
+                              ? 'e.g. 154'
+                              : 'e.g. 8.5',
+                          suffixText: _glucoseUnit.displayName,
+                          border: const OutlineInputBorder(),
+                        ),
+                        onChanged: _onGlucoseChanged,
                       ),
-                      decoration: InputDecoration(
-                        hintText: _glucoseUnit == GlucoseUnit.mgDl
-                            ? 'e.g. 154'
-                            : 'e.g. 8.5',
-                        suffixText: _glucoseUnit.displayName,
-                        border: const OutlineInputBorder(),
-                      ),
-                      onChanged: _onGlucoseChanged,
                     ),
                   ],
                 ),
@@ -344,19 +347,22 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    TextField(
-                      controller: _hba1cController,
-                      keyboardType: const TextInputType.numberWithOptions(
-                        decimal: true,
+                    Semantics(
+                      label: l10n?.estimatedHbA1c ?? 'Estimated HbA1c',
+                      child: TextField(
+                        controller: _hba1cController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: _hba1cUnit == HbA1cUnit.percentage
+                              ? 'e.g. 7.0'
+                              : 'e.g. 53',
+                          suffixText: _hba1cUnit.displayName,
+                          border: const OutlineInputBorder(),
+                        ),
+                        onChanged: _onHbA1cChanged,
                       ),
-                      decoration: InputDecoration(
-                        hintText: _hba1cUnit == HbA1cUnit.percentage
-                            ? 'e.g. 7.0'
-                            : 'e.g. 53',
-                        suffixText: _hba1cUnit.displayName,
-                        border: const OutlineInputBorder(),
-                      ),
-                      onChanged: _onHbA1cChanged,
                     ),
                   ],
                 ),

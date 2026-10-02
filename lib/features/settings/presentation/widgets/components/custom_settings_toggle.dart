@@ -71,6 +71,7 @@ class CustomSettingsToggleState extends State<CustomSettingsToggle> {
     ];
 
     final tile = Semantics(
+      excludeSemantics: true,
       toggled: widget.value,
       label: labelParts.join(', '),
       child: Focus(

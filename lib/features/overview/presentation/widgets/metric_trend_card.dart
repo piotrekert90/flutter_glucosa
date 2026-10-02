@@ -146,6 +146,20 @@ class _MetricTrendCardState extends ConsumerState<MetricTrendCard> {
         ),
     ];
 
+    final metricLabel = switch (_metric) {
+      MetricType.glucose => l10n.glucose,
+      MetricType.hba1c => l10n.hba1c,
+      MetricType.bloodPressure => l10n.bloodPressure,
+      MetricType.ketones => l10n.ketones,
+      MetricType.cholesterol => l10n.cholesterol,
+      MetricType.weight => l10n.weight,
+    };
+
+    final stats = ChartDataUtils.summarize(grouped);
+    final semanticLabel = stats != null
+        ? '$metricLabel trend chart: Average ${stats.average.toStringAsFixed(1)} ${data.unitLabel}, min ${stats.min.toStringAsFixed(1)}, max ${stats.max.toStringAsFixed(1)} across ${grouped.length} readings'
+        : '$metricLabel trend chart';
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -153,6 +167,7 @@ class _MetricTrendCardState extends ConsumerState<MetricTrendCard> {
           series: series,
           xLabels: xLabels,
           limitLines: data.limitLines(isDark),
+          semanticLabel: semanticLabel,
         ),
         const SizedBox(height: 8),
         _StatsRow(

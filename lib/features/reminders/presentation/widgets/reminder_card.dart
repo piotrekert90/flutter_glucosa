@@ -51,68 +51,70 @@ class ReminderCard extends StatelessWidget {
           color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
         ),
       ),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      formattedTime,
-                      style: theme.textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: reminder.isActive
-                            ? theme.colorScheme.onSurface
-                            : theme.colorScheme.onSurface.withValues(
-                                alpha: 0.38,
-                              ),
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      reminder.label,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: reminder.isActive
-                            ? theme.colorScheme.onSurfaceVariant
-                            : theme.colorScheme.onSurfaceVariant.withValues(
-                                alpha: 0.38,
-                              ),
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 4,
-                      children: [
-                        _BadgeChip(
-                          icon: metricIcon,
-                          label: metricLabel,
-                          isActive: reminder.isActive,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: InkWell(
+                onTap: onTap,
+                borderRadius: BorderRadius.circular(12),
+                child: MergeSemantics(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        formattedTime,
+                        style: theme.textTheme.headlineMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: reminder.isActive
+                              ? theme.colorScheme.onSurface
+                              : theme.colorScheme.onSurface.withValues(
+                                  alpha: 0.38,
+                                ),
                         ),
-                        _BadgeChip(
-                          icon: reminder.isOneTime
-                              ? Icons.looks_one_outlined
-                              : Icons.repeat_rounded,
-                          label: reminder.isOneTime ? 'Once' : 'Daily',
-                          isActive: reminder.isActive,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        reminder.label,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: reminder.isActive
+                              ? theme.colorScheme.onSurfaceVariant
+                              : theme.colorScheme.onSurfaceVariant.withValues(
+                                  alpha: 0.38,
+                                ),
                         ),
-                      ],
-                    ),
-                  ],
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 4,
+                        children: [
+                          _BadgeChip(
+                            icon: metricIcon,
+                            label: metricLabel,
+                            isActive: reminder.isActive,
+                          ),
+                          _BadgeChip(
+                            icon: reminder.isOneTime
+                                ? Icons.looks_one_outlined
+                                : Icons.repeat_rounded,
+                            label: reminder.isOneTime ? 'Once' : 'Daily',
+                            isActive: reminder.isActive,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(width: 12),
-              Switch.adaptive(value: reminder.isActive, onChanged: onToggle),
-            ],
-          ),
+            ),
+            const SizedBox(width: 12),
+            Switch.adaptive(value: reminder.isActive, onChanged: onToggle),
+          ],
         ),
       ),
     );
