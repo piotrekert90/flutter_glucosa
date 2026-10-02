@@ -264,7 +264,6 @@ class _AddEditKetoneReadingScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Value Input
                 TextFormField(
                   controller: _valueController,
                   keyboardType: const TextInputType.numberWithOptions(
@@ -292,7 +291,6 @@ class _AddEditKetoneReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Date & Time Row
                 Row(
                   children: [
                     Expanded(
@@ -314,7 +312,6 @@ class _AddEditKetoneReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Notes Input
                 TextFormField(
                   controller: _notesController,
                   maxLines: 3,
@@ -327,7 +324,6 @@ class _AddEditKetoneReadingScreenState
                 ),
                 const SizedBox(height: 24),
 
-                // Save Button
                 FilledButton.icon(
                   onPressed: _isSaving ? null : _save,
                   icon: _isSaving
