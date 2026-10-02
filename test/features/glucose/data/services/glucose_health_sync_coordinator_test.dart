@@ -1,63 +1,12 @@
+import 'package:flutter_glucosa/core/domain/enums/meal_context.dart';
 import 'package:flutter_glucosa/core/integrations/health/health_metric.dart';
 import 'package:flutter_glucosa/core/integrations/health/health_sample.dart';
-import 'package:flutter_glucosa/core/integrations/health/health_service.dart';
 import 'package:flutter_glucosa/features/glucose/data/services/glucose_health_sync_coordinator.dart';
+import 'package:flutter_glucosa/features/glucose/domain/entities/glucose_reading.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../helpers/fake_glucose_reading_repository.dart';
-import 'package:flutter_glucosa/core/domain/enums/meal_context.dart';
-import 'package:flutter_glucosa/features/glucose/domain/entities/glucose_reading.dart';
-
-/// Scriptable [HealthService] fake for coordinator tests.
-class FakeHealthService implements HealthService {
-  bool permissionsGranted = true;
-  List<HealthSample> remoteSamples = [];
-  final List<HealthSample> writtenSamples = [];
-
-  @override
-  Future<bool> isHealthApiAvailable() async => true;
-
-  @override
-  Future<bool> hasPermissions(Set<HealthMetric> metrics) async =>
-      permissionsGranted;
-
-  @override
-  Future<bool> requestPermissions(Set<HealthMetric> metrics) async {
-    permissionsGranted = true;
-    return true;
-  }
-
-  @override
-  Future<bool> openSystemSettings() async => true;
-
-  @override
-  Future<void> installHealthConnect() async {}
-
-  @override
-  Future<List<HealthSample>> fetchSamples({
-    required HealthMetric metric,
-    required DateTime start,
-    required DateTime end,
-  }) async {
-    return remoteSamples
-        .where(
-          (s) =>
-              s.metric == metric &&
-              s.timestamp.isAfter(start) &&
-              s.timestamp.isBefore(end),
-        )
-        .toList();
-  }
-
-  @override
-  Future<bool> writeSample(HealthSample sample) async {
-    writtenSamples.add(sample);
-    return true;
-  }
-
-  @override
-  Future<bool> deleteSample(HealthSample sample) async => true;
-}
+import '../../../../helpers/fake_health_service.dart';
 
 void main() {
   group('GlucoseHealthSyncCoordinator', () {
