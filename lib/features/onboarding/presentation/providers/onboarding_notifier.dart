@@ -56,7 +56,10 @@ class OnboardingDraft {
 }
 
 /// Riverpod notifier managing onboarding wizard step navigation and draft profile state.
-@riverpod
+///
+/// Kept alive for the container lifetime so text input callbacks always
+/// reach a live notifier, even when no widget is currently watching.
+@Riverpod(keepAlive: true)
 class Onboarding extends _$Onboarding {
   @override
   OnboardingDraft build() => const OnboardingDraft();

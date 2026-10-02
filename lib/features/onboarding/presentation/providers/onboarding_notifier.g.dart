@@ -9,21 +9,30 @@ part of 'onboarding_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 /// Riverpod notifier managing onboarding wizard step navigation and draft profile state.
+///
+/// Kept alive for the container lifetime so text input callbacks always
+/// reach a live notifier, even when no widget is currently watching.
 
 @ProviderFor(Onboarding)
 final onboardingProvider = OnboardingProvider._();
 
 /// Riverpod notifier managing onboarding wizard step navigation and draft profile state.
+///
+/// Kept alive for the container lifetime so text input callbacks always
+/// reach a live notifier, even when no widget is currently watching.
 final class OnboardingProvider
     extends $NotifierProvider<Onboarding, OnboardingDraft> {
   /// Riverpod notifier managing onboarding wizard step navigation and draft profile state.
+  ///
+  /// Kept alive for the container lifetime so text input callbacks always
+  /// reach a live notifier, even when no widget is currently watching.
   OnboardingProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
         name: r'onboardingProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -44,9 +53,12 @@ final class OnboardingProvider
   }
 }
 
-String _$onboardingHash() => r'ed28b2d49d2c892e31947362b1bf75e92de4aa0f';
+String _$onboardingHash() => r'1ebf963f138997e9479dfe05a82533138a1b92b5';
 
 /// Riverpod notifier managing onboarding wizard step navigation and draft profile state.
+///
+/// Kept alive for the container lifetime so text input callbacks always
+/// reach a live notifier, even when no widget is currently watching.
 
 abstract class _$Onboarding extends $Notifier<OnboardingDraft> {
   OnboardingDraft build();
