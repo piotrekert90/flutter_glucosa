@@ -53,7 +53,7 @@ final class OnboardingProvider
   }
 }
 
-String _$onboardingHash() => r'1ebf963f138997e9479dfe05a82533138a1b92b5';
+String _$onboardingHash() => r'ccbc8e3636a729b3d47d77739e48f1b19f22cfa7';
 
 /// Riverpod notifier managing onboarding wizard step navigation and draft profile state.
 ///
