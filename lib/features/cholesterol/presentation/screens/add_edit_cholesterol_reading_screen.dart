@@ -295,7 +295,6 @@ class _AddEditCholesterolReadingScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Total Input
                 TextFormField(
                   controller: _totalController,
                   keyboardType: TextInputType.number,
@@ -310,7 +309,6 @@ class _AddEditCholesterolReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // LDL Input
                 TextFormField(
                   controller: _ldlController,
                   keyboardType: TextInputType.number,
@@ -325,7 +323,6 @@ class _AddEditCholesterolReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // HDL Input
                 TextFormField(
                   controller: _hdlController,
                   keyboardType: TextInputType.number,
@@ -340,7 +337,6 @@ class _AddEditCholesterolReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Date & Time Row
                 Row(
                   children: [
                     Expanded(
@@ -362,7 +358,6 @@ class _AddEditCholesterolReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Notes Input
                 TextFormField(
                   controller: _notesController,
                   maxLines: 3,
@@ -375,7 +370,6 @@ class _AddEditCholesterolReadingScreenState
                 ),
                 const SizedBox(height: 24),
 
-                // Save Button
                 FilledButton.icon(
                   onPressed: _isSaving ? null : _save,
                   icon: _isSaving
