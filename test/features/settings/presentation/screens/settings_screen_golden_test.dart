@@ -13,10 +13,22 @@ import 'package:flutter_glucosa/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:package_info_plus/package_info_plus.dart';
+
 import '../../../../helpers/fake_user_profile_repository.dart';
 
 void main() {
   late FakeUserProfileRepository repository;
+
+  setUp(() {
+    PackageInfo.setMockInitialValues(
+      appName: 'Glucosa',
+      packageName: 'com.piotrekert.glucosa',
+      version: '1.0.0',
+      buildNumber: '1',
+      buildSignature: '',
+    );
+  });
 
   tearDown(() {
     repository.dispose();
