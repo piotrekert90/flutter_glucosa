@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/domain/enums/glucose_unit.dart';
 import '../../../../core/domain/enums/meal_context.dart';
+import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../core/domain/utils/meal_context_detector.dart';
 import '../../../../core/domain/utils/reading_validator.dart';
@@ -78,7 +79,7 @@ class _AddEditGlucoseReadingScreenState
 
   Future<void> _pickDate() async {
     final now = DateTime.now();
-    final pickedDate = await showDatePicker(
+    final pickedDate = await PickerHelpers.showSafeDatePicker(
       context: context,
       initialDate: _selectedDateTime,
       firstDate: DateTime(2000),
@@ -99,7 +100,7 @@ class _AddEditGlucoseReadingScreenState
   }
 
   Future<void> _pickTime() async {
-    final pickedTime = await showTimePicker(
+    final pickedTime = await PickerHelpers.showSafeTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
     );

@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/domain/enums/weight_unit.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
+import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../core/domain/utils/reading_validator.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
@@ -69,7 +70,7 @@ class _AddEditWeightReadingScreenState
   }
 
   Future<void> _pickDate() async {
-    final picked = await showDatePicker(
+    final picked = await PickerHelpers.showSafeDatePicker(
       context: context,
       initialDate: _selectedDateTime,
       firstDate: DateTime(2000),
@@ -89,7 +90,7 @@ class _AddEditWeightReadingScreenState
   }
 
   Future<void> _pickTime() async {
-    final picked = await showTimePicker(
+    final picked = await PickerHelpers.showSafeTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
     );

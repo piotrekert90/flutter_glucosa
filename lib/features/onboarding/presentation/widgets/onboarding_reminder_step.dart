@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/onboarding_notifier.dart';
 
@@ -18,7 +19,10 @@ class OnboardingReminderStep extends ConsumerWidget {
       hour: draft.reminderHour ?? 8,
       minute: draft.reminderMinute ?? 0,
     );
-    final picked = await showTimePicker(context: context, initialTime: initial);
+    final picked = await PickerHelpers.showSafeTimePicker(
+      context: context,
+      initialTime: initial,
+    );
     if (picked == null) return;
     ref
         .read(onboardingProvider.notifier)

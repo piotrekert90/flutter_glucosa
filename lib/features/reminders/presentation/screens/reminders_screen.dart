@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/domain/enums/metric_type.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
+import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../core/presentation/widgets/app_empty_view.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
@@ -245,10 +246,11 @@ class RemindersScreen extends ConsumerWidget {
                                 ),
                               ),
                               onPressed: () async {
-                                final selected = await showTimePicker(
-                                  context: context,
-                                  initialTime: time,
-                                );
+                                final selected =
+                                    await PickerHelpers.showSafeTimePicker(
+                                      context: context,
+                                      initialTime: time,
+                                    );
                                 if (selected != null) {
                                   setSheetState(() => time = selected);
                                 }

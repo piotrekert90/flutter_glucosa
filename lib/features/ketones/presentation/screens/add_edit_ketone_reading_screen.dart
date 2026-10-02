@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/domain/utils/reading_validator.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
+import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -59,7 +60,7 @@ class _AddEditKetoneReadingScreenState
   }
 
   Future<void> _pickDate() async {
-    final picked = await showDatePicker(
+    final picked = await PickerHelpers.showSafeDatePicker(
       context: context,
       initialDate: _selectedDateTime,
       firstDate: DateTime(2000),
@@ -79,7 +80,7 @@ class _AddEditKetoneReadingScreenState
   }
 
   Future<void> _pickTime() async {
-    final picked = await showTimePicker(
+    final picked = await PickerHelpers.showSafeTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
     );
