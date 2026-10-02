@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/domain/enums/enums.dart';
+import '../../../../core/presentation/widgets/pill_segmented_control.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/onboarding_notifier.dart';
 
@@ -38,14 +39,13 @@ class OnboardingUnitsStep extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 8),
-          SegmentedButton<GlucoseUnit>(
+          PillSegmentedControl<GlucoseUnit>(
             segments: const [
-              ButtonSegment(value: GlucoseUnit.mgDl, label: Text('mg/dL')),
-              ButtonSegment(value: GlucoseUnit.mmolL, label: Text('mmol/L')),
+              PillSegment(value: GlucoseUnit.mgDl, label: 'mg/dL'),
+              PillSegment(value: GlucoseUnit.mmolL, label: 'mmol/L'),
             ],
-            selected: {draft.glucoseUnit},
-            onSelectionChanged: (selection) =>
-                notifier.selectGlucoseUnit(selection.first),
+            selected: draft.glucoseUnit,
+            onChanged: notifier.selectGlucoseUnit,
           ),
         ],
       ),
