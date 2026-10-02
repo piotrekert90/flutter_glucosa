@@ -282,7 +282,6 @@ class _AddEditBloodPressureReadingScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Systolic Input
                 TextFormField(
                   controller: _systolicController,
                   keyboardType: TextInputType.number,
@@ -304,7 +303,6 @@ class _AddEditBloodPressureReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Diastolic Input
                 TextFormField(
                   controller: _diastolicController,
                   keyboardType: TextInputType.number,
@@ -326,7 +324,6 @@ class _AddEditBloodPressureReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Date & Time Row
                 Row(
                   children: [
                     Expanded(
@@ -348,7 +345,6 @@ class _AddEditBloodPressureReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Notes Input
                 TextFormField(
                   controller: _notesController,
                   maxLines: 3,
@@ -361,7 +357,6 @@ class _AddEditBloodPressureReadingScreenState
                 ),
                 const SizedBox(height: 24),
 
-                // Save Button
                 FilledButton.icon(
                   onPressed: _isSaving ? null : _save,
                   icon: _isSaving
