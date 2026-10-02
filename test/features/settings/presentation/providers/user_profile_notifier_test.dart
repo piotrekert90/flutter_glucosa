@@ -27,6 +27,10 @@ ProviderContainer _makeContainer(MockUserProfileRepository mock) {
 }
 
 void main() {
+  setUpAll(() {
+    registerFallbackValue(_testProfile);
+  });
+
   late MockUserProfileRepository mockRepo;
   late ProviderContainer container;
 
@@ -190,6 +194,110 @@ void main() {
       expect(success, isTrue);
       expect(failure, isNull);
       verify(() => mockRepo.completeOnboarding()).called(1);
+    });
+
+    test('calls repository.save with updated name', () async {
+      when(() => mockRepo.get()).thenAnswer((_) async => _testProfile);
+      when(() => mockRepo.save(any())).thenAnswer((_) async => (true, null));
+
+      container = _makeContainer(mockRepo);
+      container.listen(userProfileProvider, (_, _) {});
+      await container.read(userProfileProvider.future);
+
+      final (success, failure) = await container
+          .read(userProfileProvider.notifier)
+          .updateName('Jane Doe');
+
+      expect(success, isTrue);
+      expect(failure, isNull);
+      verify(
+        () => mockRepo.save(
+          any(
+            that: isA<UserProfile>().having((p) => p.name, 'name', 'Jane Doe'),
+          ),
+        ),
+      ).called(1);
+    });
+
+    test('calls repository.save with updated diabetes type', () async {
+      when(() => mockRepo.get()).thenAnswer((_) async => _testProfile);
+      when(() => mockRepo.save(any())).thenAnswer((_) async => (true, null));
+
+      container = _makeContainer(mockRepo);
+      container.listen(userProfileProvider, (_, _) {});
+      await container.read(userProfileProvider.future);
+
+      final (success, failure) = await container
+          .read(userProfileProvider.notifier)
+          .updateDiabetesType(DiabetesType.type1);
+
+      expect(success, isTrue);
+      expect(failure, isNull);
+      verify(
+        () => mockRepo.save(
+          any(
+            that: isA<UserProfile>().having(
+              (p) => p.diabetesType,
+              'diabetesType',
+              DiabetesType.type1,
+            ),
+          ),
+        ),
+      ).called(1);
+    });
+
+    test('calls repository.save with updated HbA1c unit', () async {
+      when(() => mockRepo.get()).thenAnswer((_) async => _testProfile);
+      when(() => mockRepo.save(any())).thenAnswer((_) async => (true, null));
+
+      container = _makeContainer(mockRepo);
+      container.listen(userProfileProvider, (_, _) {});
+      await container.read(userProfileProvider.future);
+
+      final (success, failure) = await container
+          .read(userProfileProvider.notifier)
+          .updateHbA1cUnit(HbA1cUnit.mmolMol);
+
+      expect(success, isTrue);
+      expect(failure, isNull);
+      verify(
+        () => mockRepo.save(
+          any(
+            that: isA<UserProfile>().having(
+              (p) => p.preferredHbA1cUnit,
+              'preferredHbA1cUnit',
+              HbA1cUnit.mmolMol,
+            ),
+          ),
+        ),
+      ).called(1);
+    });
+
+    test('calls repository.save with updated weight unit', () async {
+      when(() => mockRepo.get()).thenAnswer((_) async => _testProfile);
+      when(() => mockRepo.save(any())).thenAnswer((_) async => (true, null));
+
+      container = _makeContainer(mockRepo);
+      container.listen(userProfileProvider, (_, _) {});
+      await container.read(userProfileProvider.future);
+
+      final (success, failure) = await container
+          .read(userProfileProvider.notifier)
+          .updateWeightUnit(WeightUnit.pounds);
+
+      expect(success, isTrue);
+      expect(failure, isNull);
+      verify(
+        () => mockRepo.save(
+          any(
+            that: isA<UserProfile>().having(
+              (p) => p.preferredWeightUnit,
+              'preferredWeightUnit',
+              WeightUnit.pounds,
+            ),
+          ),
+        ),
+      ).called(1);
     });
 
     test(

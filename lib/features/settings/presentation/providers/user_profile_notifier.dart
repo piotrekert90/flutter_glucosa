@@ -39,9 +39,41 @@ class UserProfileNotifier extends _$UserProfileNotifier {
     return ref.read(userProfileRepositoryProvider).save(profile);
   }
 
+  /// Updates the user's display name to [name].
+  Future<CommandResult> updateName(String name) async {
+    final current = await ref.read(userProfileRepositoryProvider).get();
+    return ref
+        .read(userProfileRepositoryProvider)
+        .save(current.copyWith(name: name));
+  }
+
+  /// Updates the diagnosed diabetes classification to [type].
+  Future<CommandResult> updateDiabetesType(DiabetesType type) async {
+    final current = await ref.read(userProfileRepositoryProvider).get();
+    return ref
+        .read(userProfileRepositoryProvider)
+        .save(current.copyWith(diabetesType: type));
+  }
+
   /// Updates the preferred blood glucose unit to [unit].
   Future<CommandResult> updateGlucoseUnit(GlucoseUnit unit) {
     return ref.read(userProfileRepositoryProvider).updateGlucoseUnit(unit);
+  }
+
+  /// Updates the preferred glycated hemoglobin (HbA1c) unit to [unit].
+  Future<CommandResult> updateHbA1cUnit(HbA1cUnit unit) async {
+    final current = await ref.read(userProfileRepositoryProvider).get();
+    return ref
+        .read(userProfileRepositoryProvider)
+        .save(current.copyWith(preferredHbA1cUnit: unit));
+  }
+
+  /// Updates the preferred body weight unit to [unit].
+  Future<CommandResult> updateWeightUnit(WeightUnit unit) async {
+    final current = await ref.read(userProfileRepositoryProvider).get();
+    return ref
+        .read(userProfileRepositoryProvider)
+        .save(current.copyWith(preferredWeightUnit: unit));
   }
 
   /// Updates the target clinical blood glucose range to [range].
