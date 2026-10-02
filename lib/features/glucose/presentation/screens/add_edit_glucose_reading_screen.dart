@@ -312,7 +312,6 @@ class _AddEditGlucoseReadingScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Value Input Field
                 TextFormField(
                   controller: _valueController,
                   keyboardType: const TextInputType.numberWithOptions(
@@ -344,7 +343,6 @@ class _AddEditGlucoseReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Meal Context Dropdown
                 DropdownButtonFormField<MealContext>(
                   initialValue: _selectedContext,
                   decoration: InputDecoration(
@@ -365,7 +363,6 @@ class _AddEditGlucoseReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Date & Time Selectors
                 Row(
                   children: [
                     Expanded(
@@ -390,7 +387,6 @@ class _AddEditGlucoseReadingScreenState
                 ),
                 const SizedBox(height: 16),
 
-                // Notes Field
                 TextFormField(
                   controller: _notesController,
                   maxLines: 3,
@@ -404,7 +400,6 @@ class _AddEditGlucoseReadingScreenState
                 ),
                 const SizedBox(height: 24),
 
-                // Save Button
                 FilledButton.icon(
                   icon: _isSaving
                       ? SizedBox(

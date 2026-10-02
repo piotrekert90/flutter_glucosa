@@ -76,7 +76,6 @@ class GlucoseReadingCard extends ConsumerWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Value and unit
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.alphabetic,
@@ -98,7 +97,6 @@ class GlucoseReadingCard extends ConsumerWidget {
                       ],
                     ),
                     const Spacer(),
-                    // Status badge pill
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 10,
