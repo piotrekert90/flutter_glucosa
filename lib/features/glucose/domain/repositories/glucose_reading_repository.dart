@@ -30,6 +30,12 @@ abstract interface class GlucoseReadingRepository {
   /// [reading] The blood glucose entity to create.
   Future<CommandResult> add(GlucoseReading reading);
 
+  /// Persists multiple new [readings] records atomically in a single transaction.
+  ///
+  /// [readings] The blood glucose entities to create.
+  /// Returns the number of inserted records, or a [Failure] on error.
+  Future<DataResult<int>> addAll(List<GlucoseReading> readings);
+
   /// Persists modifications to an existing [reading] record.
   ///
   /// [reading] The updated blood glucose entity.

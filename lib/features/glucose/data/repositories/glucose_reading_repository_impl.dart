@@ -106,6 +106,24 @@ class GlucoseReadingRepositoryImpl implements GlucoseReadingRepository {
   }
 
   @override
+  Future<DataResult<int>> addAll(List<GlucoseReading> readings) async {
+    try {
+      await _isar.writeTxn(() async {
+        final models = readings.map((r) => r.toModel()).toList();
+        await _isar.glucoseReadingModels.putAll(models);
+      });
+      return (readings.length, null);
+    } on IsarError catch (e) {
+      return (null, DatabaseFailure(e.message));
+    } catch (e) {
+      return (
+        null,
+        DatabaseFailure('Unexpected error bulk importing glucose readings: $e'),
+      );
+    }
+  }
+
+  @override
   Future<CommandResult> update(GlucoseReading reading) async {
     try {
       await _isar.writeTxn(() async {

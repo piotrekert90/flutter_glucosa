@@ -77,6 +77,14 @@ class FakeGlucoseReadingRepository implements GlucoseReadingRepository {
   }
 
   @override
+  Future<DataResult<int>> addAll(List<GlucoseReading> readings) async {
+    for (final reading in readings) {
+      await add(reading);
+    }
+    return (readings.length, null);
+  }
+
+  @override
   Future<CommandResult> update(GlucoseReading reading) async {
     final index = _readings.indexWhere((r) => r.id == reading.id);
     if (index != -1) {
