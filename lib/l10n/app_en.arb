@@ -110,6 +110,10 @@
   "@cancel": {
     "description": "Cancel button label"
   },
+  "close": "Close",
+  "@close": {
+    "description": "Close button label"
+  },
   "add": "Add",
   "@add": {
     "description": "Add button label"
@@ -1146,6 +1150,325 @@
   "moreOptions": "More options",
   "@moreOptions": {
     "description": "Tooltip for more options popup menu button"
+  },
+  "habitsAndStreaks": "Habits & Streaks",
+  "@habitsAndStreaks": {
+    "description": "Section title for habit tracking and streaks"
+  },
+  "currentStreak": "Current Streak",
+  "@currentStreak": {
+    "description": "Label for current consecutive logging streak"
+  },
+  "bestStreak": "Best Streak",
+  "@bestStreak": {
+    "description": "Label for longest historical logging streak"
+  },
+  "loggingStreak": "Logging Streak",
+  "@loggingStreak": {
+    "description": "Card title for daily logging streak"
+  },
+  "streakDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "@streakDays": {
+    "description": "Pluralized streak duration in days",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "monthlyCompliance": "Monthly Compliance",
+  "@monthlyCompliance": {
+    "description": "Label for logging compliance in the active month"
+  },
+  "totalCompliance": "Total Compliance",
+  "@totalCompliance": {
+    "description": "Label for total historical logging compliance"
+  },
+  "periodComparison": "Period Comparison",
+  "@periodComparison": {
+    "description": "Section header for comparing rolling time windows"
+  },
+  "rollingDays7": "7 Days",
+  "@rollingDays7": {
+    "description": "Toggle chip for 7-day rolling period"
+  },
+  "rollingDays14": "14 Days",
+  "@rollingDays14": {
+    "description": "Toggle chip for 14-day rolling period"
+  },
+  "rollingDays30": "30 Days",
+  "@rollingDays30": {
+    "description": "Toggle chip for 30-day rolling period"
+  },
+  "meanGlucose": "Mean Glucose",
+  "@meanGlucose": {
+    "description": "Label for average glucose level"
+  },
+  "glucoseVariabilitySd": "Variability (SD)",
+  "@glucoseVariabilitySd": {
+    "description": "Label for glucose standard deviation variability"
+  },
+  "timeInRangeShort": "Time in Range",
+  "@timeInRangeShort": {
+    "description": "Short label for Time in Range (TIR)"
+  },
+  "readingsCountLabel": "Total Readings",
+  "@readingsCountLabel": {
+    "description": "Label for total readings logged in period"
+  },
+  "hypoIncidentsLabel": "Hypo Events",
+  "@hypoIncidentsLabel": {
+    "description": "Label for number of hypoglycemia events"
+  },
+  "insufficientComparisonData": "More data needed in both periods to compare",
+  "@insufficientComparisonData": {
+    "description": "Message shown when period comparison has insufficient readings"
+  },
+  "comparisonImproved": "Improved",
+  "@comparisonImproved": {
+    "description": "Status badge when comparative metrics show clinical improvement"
+  },
+  "comparisonStable": "Stable",
+  "@comparisonStable": {
+    "description": "Status badge when comparative metrics remain stable"
+  },
+  "comparisonNeedsAttention": "Needs attention",
+  "@comparisonNeedsAttention": {
+    "description": "Status badge when comparative metrics worsen"
+  },
+  "milestones": "Milestones",
+  "@milestones": {
+    "description": "Section title for patient milestones"
+  },
+  "milestonesUnlocked": "{unlocked} of {total} unlocked",
+  "@milestonesUnlocked": {
+    "description": "Subtitle showing ratio of unlocked milestones",
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "milestonesGallery": "Achievements Gallery",
+  "@milestonesGallery": {
+    "description": "Title of milestones modal gallery bottom sheet"
+  },
+  "milestoneCategoryGoals": "Clinical Goals",
+  "@milestoneCategoryGoals": {
+    "description": "Milestone category header for target and TIR goals"
+  },
+  "milestoneCategoryStreaks": "Streaks & Consistency",
+  "@milestoneCategoryStreaks": {
+    "description": "Milestone category header for consecutive logging streaks"
+  },
+  "milestoneCategoryRoutines": "Routines & Timing",
+  "@milestoneCategoryRoutines": {
+    "description": "Milestone category header for meal and time of day routines"
+  },
+  "milestoneCategorySpecial": "Special Days",
+  "@milestoneCategorySpecial": {
+    "description": "Milestone category header for holidays and weekend tracking"
+  },
+  "milestoneFirstReadingTitle": "First Reading",
+  "@milestoneFirstReadingTitle": {
+    "description": "Title for first reading milestone"
+  },
+  "milestoneFirstReadingDesc": "Logged your first blood glucose measurement.",
+  "@milestoneFirstReadingDesc": {
+    "description": "Description for first reading milestone"
+  },
+  "milestoneStreak7Title": "7-Day Streak",
+  "@milestoneStreak7Title": {
+    "description": "Title for 7-day streak milestone"
+  },
+  "milestoneStreak7Desc": "Logged glucose readings for 7 consecutive days.",
+  "@milestoneStreak7Desc": {
+    "description": "Description for 7-day streak milestone"
+  },
+  "milestoneStreak30Title": "30-Day Dedication",
+  "@milestoneStreak30Title": {
+    "description": "Title for 30-day streak milestone"
+  },
+  "milestoneStreak30Desc": "Logged glucose readings for 30 consecutive days.",
+  "@milestoneStreak30Desc": {
+    "description": "Description for 30-day streak milestone"
+  },
+  "milestoneStreak100Title": "Century Club (100 Days)",
+  "@milestoneStreak100Title": {
+    "description": "Title for 100-day streak milestone"
+  },
+  "milestoneStreak100Desc": "Logged glucose readings for 100 consecutive days.",
+  "@milestoneStreak100Desc": {
+    "description": "Description for 100-day streak milestone"
+  },
+  "milestoneStreak365Title": "365-Day Master",
+  "@milestoneStreak365Title": {
+    "description": "Title for 365-day streak milestone"
+  },
+  "milestoneStreak365Desc": "Logged glucose readings every day for a full year.",
+  "@milestoneStreak365Desc": {
+    "description": "Description for 365-day streak milestone"
+  },
+  "milestoneComebackTitle": "The Comeback",
+  "@milestoneComebackTitle": {
+    "description": "Title for comeback milestone"
+  },
+  "milestoneComebackDesc": "Returned to active glucose tracking after a gap of over 14 days.",
+  "@milestoneComebackDesc": {
+    "description": "Description for comeback milestone"
+  },
+  "milestoneTargetTirWeekTitle": "7-Day TIR Champion",
+  "@milestoneTargetTirWeekTitle": {
+    "description": "Title for 7-day TIR milestone"
+  },
+  "milestoneTargetTirWeekDesc": "Maintained 70%+ Time in Range over 7 days (minimum 14 readings).",
+  "@milestoneTargetTirWeekDesc": {
+    "description": "Description for 7-day TIR milestone"
+  },
+  "milestoneTargetTirMonthTitle": "Monthly TIR Excellence",
+  "@milestoneTargetTirMonthTitle": {
+    "description": "Title for 30-day TIR milestone"
+  },
+  "milestoneTargetTirMonthDesc": "Maintained 70%+ Time in Range over 30 days (minimum 50 readings).",
+  "@milestoneTargetTirMonthDesc": {
+    "description": "Description for 30-day TIR milestone"
+  },
+  "milestoneFastingChampionTitle": "Fasting Champion",
+  "@milestoneFastingChampionTitle": {
+    "description": "Title for fasting milestone"
+  },
+  "milestoneFastingChampionDesc": "Recorded 10 fasting blood glucose measurements.",
+  "@milestoneFastingChampionDesc": {
+    "description": "Description for fasting milestone"
+  },
+  "milestonePostMealMasterTitle": "Post-Meal Master",
+  "@milestonePostMealMasterTitle": {
+    "description": "Title for post-meal milestone"
+  },
+  "milestonePostMealMasterDesc": "Recorded 10 post-meal blood glucose measurements.",
+  "@milestonePostMealMasterDesc": {
+    "description": "Description for post-meal milestone"
+  },
+  "milestoneEarlyBirdTitle": "Early Bird",
+  "@milestoneEarlyBirdTitle": {
+    "description": "Title for early morning milestone"
+  },
+  "milestoneEarlyBirdDesc": "Recorded a morning reading before 7:00 AM.",
+  "@milestoneEarlyBirdDesc": {
+    "description": "Description for early morning milestone"
+  },
+  "milestoneNightOwlTitle": "Night Owl",
+  "@milestoneNightOwlTitle": {
+    "description": "Title for late night milestone"
+  },
+  "milestoneNightOwlDesc": "Recorded a late evening reading after 11:00 PM.",
+  "@milestoneNightOwlDesc": {
+    "description": "Description for late night milestone"
+  },
+  "milestoneWeekendWarriorTitle": "Weekend Warrior",
+  "@milestoneWeekendWarriorTitle": {
+    "description": "Title for weekend milestone"
+  },
+  "milestoneWeekendWarriorDesc": "Logged readings on both Saturday and Sunday in a single weekend.",
+  "@milestoneWeekendWarriorDesc": {
+    "description": "Description for weekend milestone"
+  },
+  "milestoneNewYearTitle": "New Year Health",
+  "@milestoneNewYearTitle": {
+    "description": "Title for New Year milestone"
+  },
+  "milestoneNewYearDesc": "Recorded a reading on New Year's Day (January 1).",
+  "@milestoneNewYearDesc": {
+    "description": "Description for New Year milestone"
+  },
+  "milestoneYearEndTitle": "Year-End Guardian",
+  "@milestoneYearEndTitle": {
+    "description": "Title for Year End milestone"
+  },
+  "milestoneYearEndDesc": "Recorded a reading on New Year's Eve (December 31).",
+  "@milestoneYearEndDesc": {
+    "description": "Description for Year End milestone"
+  },
+  "milestoneUnlockedDate": "Unlocked on {date}",
+  "@milestoneUnlockedDate": {
+    "description": "Subtitle showing unlock date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "milestoneLocked": "Locked",
+  "@milestoneLocked": {
+    "description": "Status badge for locked milestone"
+  },
+  "milestoneProgress": "{percent}% completed",
+  "@milestoneProgress": {
+    "description": "Progress percentage towards milestone completion",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "shareDoctorSummary": "Share Doctor Summary",
+  "@shareDoctorSummary": {
+    "description": "Button to format and share clinical summary with physician"
+  },
+  "shareDoctorSummaryTooltip": "Share clinical summary with your doctor",
+  "@shareDoctorSummaryTooltip": {
+    "description": "Tooltip for doctor summary share action"
+  },
+  "doctorSummaryTitle": "Glucosa — Clinical Health Summary",
+  "@doctorSummaryTitle": {
+    "description": "Header title of exported clinical text summary"
+  },
+  "doctorSummaryPatientName": "Patient",
+  "@doctorSummaryPatientName": {
+    "description": "Patient name label in doctor summary"
+  },
+  "doctorSummaryTargetRangeLabel": "Target Range",
+  "@doctorSummaryTargetRangeLabel": {
+    "description": "Target range label in doctor summary"
+  },
+  "doctorSummaryEstimatedHbA1c": "Estimated HbA1c",
+  "@doctorSummaryEstimatedHbA1c": {
+    "description": "Estimated HbA1c label in doctor summary"
+  },
+  "doctorSummaryTirBreakdown": "Time in Range (TIR) Breakdown",
+  "@doctorSummaryTirBreakdown": {
+    "description": "TIR breakdown section title in doctor summary"
+  },
+  "doctorSummaryInTarget": "In Range",
+  "@doctorSummaryInTarget": {
+    "description": "In target range percentage in doctor summary"
+  },
+  "doctorSummaryAboveTarget": "Above Range (Hyper)",
+  "@doctorSummaryAboveTarget": {
+    "description": "Above target range percentage in doctor summary"
+  },
+  "doctorSummaryBelowTarget": "Below Range (Hypo)",
+  "@doctorSummaryBelowTarget": {
+    "description": "Below target range percentage in doctor summary"
+  },
+  "doctorSummaryVariability": "Glucose Variability (SD)",
+  "@doctorSummaryVariability": {
+    "description": "Variability standard deviation in doctor summary"
+  },
+  "doctorSummaryTotalReadings": "Total Readings Logged",
+  "@doctorSummaryTotalReadings": {
+    "description": "Total readings count in doctor summary"
+  },
+  "doctorSummaryHypoIncidents": "Hypoglycemic Incidents",
+  "@doctorSummaryHypoIncidents": {
+    "description": "Hypo incidents count in doctor summary"
+  },
+  "doctorSummaryMeanGlucose": "Mean Blood Glucose",
+  "@doctorSummaryMeanGlucose": {
+    "description": "Mean glucose label in doctor summary"
   }
 }
 
