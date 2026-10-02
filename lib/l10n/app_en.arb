@@ -888,5 +888,81 @@
   "hba1cReadingSaved": "HbA1c reading saved successfully",
   "@hba1cReadingSaved": {
     "description": "Feedback message when calculated HbA1c reading is persisted"
+  },
+  "name": "Name",
+  "@name": {
+    "description": "Label for user name"
+  },
+  "nameHint": "Enter your name",
+  "@nameHint": {
+    "description": "Hint text for name input field"
+  },
+  "editName": "Edit Name",
+  "@editName": {
+    "description": "Title of the edit name dialog"
+  },
+  "diabetesType": "Diabetes Type",
+  "@diabetesType": {
+    "description": "Label for diabetes type"
+  },
+  "selectDiabetesType": "Select Diabetes Type",
+  "@selectDiabetesType": {
+    "description": "Title for selecting diabetes type dialog"
+  },
+  "units": "Units",
+  "@units": {
+    "description": "Section title for measurement units"
+  },
+  "glucoseUnit": "Glucose Unit",
+  "@glucoseUnit": {
+    "description": "Label for glucose measurement unit"
+  },
+  "selectGlucoseUnit": "Select Glucose Unit",
+  "@selectGlucoseUnit": {
+    "description": "Title for selecting glucose unit dialog"
+  },
+  "hba1cUnit": "HbA1c Unit",
+  "@hba1cUnit": {
+    "description": "Label for HbA1c measurement unit"
+  },
+  "selectHbA1cUnit": "Select HbA1c Unit",
+  "@selectHbA1cUnit": {
+    "description": "Title for selecting HbA1c unit dialog"
+  },
+  "weightUnit": "Weight Unit",
+  "@weightUnit": {
+    "description": "Label for weight measurement unit"
+  },
+  "selectWeightUnit": "Select Weight Unit",
+  "@selectWeightUnit": {
+    "description": "Title for selecting weight unit dialog"
+  },
+  "targetRangePreset": "Preset",
+  "@targetRangePreset": {
+    "description": "Label for target range preset"
+  },
+  "targetRangeMin": "Minimum",
+  "@targetRangeMin": {
+    "description": "Label for minimum target range field"
+  },
+  "targetRangeMax": "Maximum",
+  "@targetRangeMax": {
+    "description": "Label for maximum target range field"
+  },
+  "targetRangeCustom": "Custom",
+  "@targetRangeCustom": {
+    "description": "Label for custom target range preset"
+  },
+  "editTargetRange": "Target Glucose Range",
+  "@editTargetRange": {
+    "description": "Title for editing target glucose range dialog"
+  },
+  "targetRangeInvalid": "Minimum must be less than maximum and greater than zero",
+  "@targetRangeInvalid": {
+    "description": "Error message when custom target range inputs are invalid"
+  },
+  "notSet": "Not set",
+  "@notSet": {
+    "description": "Placeholder text when a setting or property is not set"
   }
 }

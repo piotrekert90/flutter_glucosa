@@ -223,6 +223,25 @@
   "averageGlucose": "Średnia glukoza",
   "adagFormulaExplanation": "Obliczenia oparte są na wzorze z badania ADAG: eAG = 28.7 × HbA1c − 46.7.",
   "saveAsHbA1cReading": "Zapisz jako pomiar HbA1c",
-  "hba1cReadingSaved": "Pomiar HbA1c został zapisany"
+  "hba1cReadingSaved": "Pomiar HbA1c został zapisany",
+  "name": "Imię",
+  "nameHint": "Wprowadź swoje imię",
+  "editName": "Edytuj imię",
+  "diabetesType": "Typ cukrzycy",
+  "selectDiabetesType": "Wybierz typ cukrzycy",
+  "units": "Jednostki",
+  "glucoseUnit": "Jednostka glukozy",
+  "selectGlucoseUnit": "Wybierz jednostkę glukozy",
+  "hba1cUnit": "Jednostka HbA1c",
+  "selectHbA1cUnit": "Wybierz jednostkę HbA1c",
+  "weightUnit": "Jednostka wagi",
+  "selectWeightUnit": "Wybierz jednostkę wagi",
+  "targetRangePreset": "Wzorzec",
+  "targetRangeMin": "Minimum",
+  "targetRangeMax": "Maksimum",
+  "targetRangeCustom": "Własny",
+  "editTargetRange": "Docelowy zakres glukozy",
+  "targetRangeInvalid": "Wartość minimalna musi być mniejsza od maksymalnej i większa od zera",
+  "notSet": "Nie ustawiono"
 }
 
