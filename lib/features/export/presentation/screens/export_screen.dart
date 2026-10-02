@@ -77,7 +77,6 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         ),
         const SizedBox(height: 20),
 
-        // Date Range Header
         Text(
           l10n?.exportDateRange ?? 'Date Range',
           style: theme.textTheme.titleMedium?.copyWith(
@@ -86,7 +85,6 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         ),
         const SizedBox(height: 8),
 
-        // Date Presets
         Wrap(
           spacing: 8,
           runSpacing: 4,
@@ -159,7 +157,6 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         ),
         const SizedBox(height: 24),
 
-        // Metrics Section Header
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -185,7 +182,6 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         ),
         const SizedBox(height: 4),
 
-        // Metric Checkboxes
         Card(
           elevation: 0,
           color: theme.colorScheme.surfaceContainerHighest.withValues(
@@ -208,7 +204,6 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         ),
         const SizedBox(height: 20),
 
-        // Record Count Summary
         Card(
           elevation: 0,
           color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
@@ -236,7 +231,6 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
           ),
         ),
 
-        // Error Message Banner
         if (state.errorMessage != null) ...[
           const SizedBox(height: 12),
           Card(
@@ -267,7 +261,6 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
 
         const SizedBox(height: 28),
 
-        // Export and Share Button
         FilledButton.icon(
           onPressed: (state.isExporting || state.selectedMetrics.isEmpty)
               ? null
@@ -291,7 +284,6 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         const Divider(),
         const SizedBox(height: 12),
 
-        // Import Section Header
         Text(
           l10n?.csvImportSection ?? 'Import Data',
           style: theme.textTheme.titleMedium?.copyWith(
@@ -308,7 +300,6 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         ),
         const SizedBox(height: 12),
 
-        // Import Button
         OutlinedButton.icon(
           onPressed: _isImporting ? null : () => _handleImport(context),
           icon: _isImporting

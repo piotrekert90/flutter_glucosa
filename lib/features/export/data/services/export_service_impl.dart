@@ -142,7 +142,6 @@ class ExportServiceImpl implements ExportService {
     final selectedMetrics = metrics ?? MetricType.values.toSet();
     final results = <_ExportRecord>[];
 
-    // Glucose
     if (selectedMetrics.contains(MetricType.glucose)) {
       final all = await glucoseRepo.getAll();
       for (final r in all) {
@@ -164,7 +163,6 @@ class ExportServiceImpl implements ExportService {
       }
     }
 
-    // HbA1c
     if (selectedMetrics.contains(MetricType.hba1c)) {
       final all = await hba1cRepo.getAll();
       for (final r in all) {
@@ -188,7 +186,6 @@ class ExportServiceImpl implements ExportService {
       }
     }
 
-    // Blood Pressure
     if (selectedMetrics.contains(MetricType.bloodPressure)) {
       final all = await bpRepo.getAll();
       for (final r in all) {
@@ -207,7 +204,6 @@ class ExportServiceImpl implements ExportService {
       }
     }
 
-    // Ketones
     if (selectedMetrics.contains(MetricType.ketones)) {
       final all = await ketoneRepo.getAll();
       for (final r in all) {
@@ -226,7 +222,6 @@ class ExportServiceImpl implements ExportService {
       }
     }
 
-    // Cholesterol
     if (selectedMetrics.contains(MetricType.cholesterol)) {
       final all = await cholesterolRepo.getAll();
       for (final r in all) {
@@ -245,7 +240,6 @@ class ExportServiceImpl implements ExportService {
       }
     }
 
-    // Weight
     if (selectedMetrics.contains(MetricType.weight)) {
       final all = await weightRepo.getAll();
       for (final r in all) {
