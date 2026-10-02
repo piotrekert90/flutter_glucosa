@@ -96,6 +96,10 @@ final _weightReading = WeightReading(
 );
 
 void main() {
+  setUpAll(() {
+    registerFallbackValue(_glucoseReading);
+  });
+
   late MockGlucoseReadingRepository mockGlucoseRepo;
   late MockHbA1cReadingRepository mockHba1cRepo;
   late MockBloodPressureReadingRepository mockBpRepo;
@@ -282,4 +286,32 @@ void main() {
     expect(find.text('Add reading'), findsOneWidget);
     expect(find.byType(ListTile), findsNWidgets(6));
   });
+
+  testWidgets(
+    'swipe-to-delete dismisses reading and restores when undo is tapped',
+    (tester) async {
+      when(
+        () => mockGlucoseRepo.delete(1),
+      ).thenAnswer((_) async => (true, null));
+      when(
+        () => mockGlucoseRepo.add(any()),
+      ).thenAnswer((_) async => (true, null));
+
+      await tester.pumpWidget(createWidget(glucose: [_glucoseReading]));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GlucoseReadingCard), findsOneWidget);
+
+      await tester.drag(find.byType(Dismissible), const Offset(-500, 0));
+      await tester.pumpAndSettle();
+
+      verify(() => mockGlucoseRepo.delete(1)).called(1);
+      expect(find.text('Undo'), findsOneWidget);
+
+      await tester.tap(find.text('Undo'));
+      await tester.pumpAndSettle();
+
+      verify(() => mockGlucoseRepo.add(_glucoseReading)).called(1);
+    },
+  );
 }

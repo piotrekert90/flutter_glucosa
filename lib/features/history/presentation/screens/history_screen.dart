@@ -121,8 +121,46 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                     padding: const EdgeInsets.all(16),
                     itemCount: visible.length,
                     separatorBuilder: (_, _) => const SizedBox(height: 8),
-                    itemBuilder: (context, index) =>
-                        _buildCard(context, visible[index]),
+                    itemBuilder: (context, index) {
+                      final entry = visible[index];
+                      final id = _readingId(entry.reading);
+                      final theme = Theme.of(context);
+                      return Dismissible(
+                        key: ValueKey('${entry.type.name}_$id'),
+                        direction: DismissDirection.endToStart,
+                        background: Container(
+                          alignment: Alignment.centerRight,
+                          padding: const EdgeInsets.only(right: 20),
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.error,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Icon(
+                            Icons.delete_outline,
+                            color: theme.colorScheme.onError,
+                          ),
+                        ),
+                        onDismissed: (_) async {
+                          await _deleteEntry(entry);
+                          if (context.mounted) {
+                            final l10n = AppLocalizations.of(context)!;
+                            ScaffoldMessenger.of(context).clearSnackBars();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  _deleteSuccessMessage(entry.type, l10n),
+                                ),
+                                action: SnackBarAction(
+                                  label: l10n.undo,
+                                  onPressed: () => _restoreEntry(entry),
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        child: _buildCard(context, entry),
+                      );
+                    },
                   );
                 },
               ),
@@ -223,6 +261,65 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
           onTap: () => context.push('/weight/edit/${reading.id}'),
         );
     }
+  }
+
+  int _readingId(Object reading) {
+    return switch (reading) {
+      GlucoseReading r => r.id,
+      HbA1cReading r => r.id,
+      BloodPressureReading r => r.id,
+      KetoneReading r => r.id,
+      CholesterolReading r => r.id,
+      WeightReading r => r.id,
+      _ => 0,
+    };
+  }
+
+  Future<void> _deleteEntry(_HistoryEntry entry) {
+    return switch (entry.reading) {
+      GlucoseReading r =>
+        ref.read(glucoseReadingListProvider.notifier).deleteReading(r.id),
+      HbA1cReading r =>
+        ref.read(hbA1cReadingListProvider.notifier).deleteReading(r.id),
+      BloodPressureReading r =>
+        ref.read(bloodPressureReadingListProvider.notifier).deleteReading(r.id),
+      KetoneReading r =>
+        ref.read(ketoneReadingListProvider.notifier).deleteReading(r.id),
+      CholesterolReading r =>
+        ref.read(cholesterolReadingListProvider.notifier).deleteReading(r.id),
+      WeightReading r =>
+        ref.read(weightReadingListProvider.notifier).deleteReading(r.id),
+      _ => Future.value(),
+    };
+  }
+
+  Future<void> _restoreEntry(_HistoryEntry entry) {
+    return switch (entry.reading) {
+      GlucoseReading r =>
+        ref.read(glucoseReadingListProvider.notifier).addReading(r),
+      HbA1cReading r =>
+        ref.read(hbA1cReadingListProvider.notifier).addReading(r),
+      BloodPressureReading r =>
+        ref.read(bloodPressureReadingListProvider.notifier).addReading(r),
+      KetoneReading r =>
+        ref.read(ketoneReadingListProvider.notifier).addReading(r),
+      CholesterolReading r =>
+        ref.read(cholesterolReadingListProvider.notifier).addReading(r),
+      WeightReading r =>
+        ref.read(weightReadingListProvider.notifier).addReading(r),
+      _ => Future.value(),
+    };
+  }
+
+  String _deleteSuccessMessage(MetricType type, AppLocalizations l10n) {
+    return switch (type) {
+      MetricType.glucose => l10n.glucoseReadingDeleted,
+      MetricType.hba1c => l10n.hba1cDeletedSuccess,
+      MetricType.bloodPressure => l10n.bpDeletedSuccess,
+      MetricType.ketones => l10n.ketonesDeletedSuccess,
+      MetricType.cholesterol => l10n.cholesterolDeletedSuccess,
+      MetricType.weight => l10n.weightDeletedSuccess,
+    };
   }
 }
 
