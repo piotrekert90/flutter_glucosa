@@ -1,6 +1,6 @@
-# 🚀 Flutter GitHub Template — Clean Architecture, Riverpod 3.x & Isar Community (v1.4.0)
+# 🩸 Glucosa — Modern Diabetes & Health Tracking App
 
-[![Release](https://img.shields.io/badge/Release-v1.4.0-blue.svg)](CHANGELOG.md)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue.svg)](CHANGELOG.md)
 [![Flutter](https://img.shields.io/badge/Flutter-3.47+-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.12+-0175C2?logo=dart&logoColor=white)](https://dart.dev)
 [![State](https://img.shields.io/badge/State-Riverpod_3.x-0553B1)](https://riverpod.dev)
@@ -8,139 +8,131 @@
 [![Routing](https://img.shields.io/badge/Routing-GoRouter-teal)](https://pub.dev/packages/go_router)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A production-grade, store-ready reference architecture and starter template for Flutter applications, engineered for offline resilience, predictable state boundaries, and lean scalability.
+**Glucosa** is an offline-first, privacy-focused diabetes and metabolic health tracking application built with **Flutter**, **Riverpod 3.x**, **Isar Community**, and **Material 3**. Designed for individuals managing diabetes (Type 1, Type 2, Gestational, LADA, MODY), Glucosa provides seamless multi-metric health tracking, interactive trend analysis, clinical calculators, recurring reminders, and secure data export—with 100% on-device data sovereignty.
 
 ---
 
-## 🎯 Core Pillars
+## 🎯 Core Features
 
-### 1. Clean Architecture (Feature-First)
-Organized by features (`lib/features/<feature>/`), isolating Domain logic from technical Data implementations and Presentation UI components:
-- **Domain Layer**: Pure Dart entities, repository contracts, and functional `Result` types (`CommandResult`, `DataResult<T>`).
-- **Data Layer**: Isar models, synchronous mappers, and repository implementations.
-- **Presentation Layer**: Riverpod state notifiers (`@riverpod`), Material 3 UI widgets, and accessible design system components.
+### 📊 Multi-Metric Health Tracking
+- **Blood Glucose**: Log readings with rich meal context (Fasting, Before/After Breakfast, Before/After Lunch, Before/After Dinner, Bedtime, Exercise, General). Automatic conversion and display in **mg/dL** or **mmol/L**.
+- **HbA1c**: Record laboratory glycated hemoglobin in **%** or **mmol/mol**.
+- **Blood Pressure**: Monitor systolic and diastolic pressures (mmHg) with clinical AHA stage indicators (Normal, Elevated, Stage 1, Stage 2, Crisis).
+- **Ketones**: Track blood beta-hydroxybutyrate levels (mmol/L) with clinical warnings for ketoacidosis risk.
+- **Cholesterol**: Record Total, LDL, and HDL lipid profiles (mg/dL).
+- **Weight**: Track body weight in **kg** or **lbs**.
 
-### 2. Riverpod 3.x
-Strict code generation via `@riverpod` annotations. All state updates are stream-driven directly from persistence layers into `AsyncValue` state.
+### 📈 Interactive Charts & Clinical Insights
+- **Trend Charts**: Interactive `fl_chart` time-series visualization with selectable ranges (7, 14, 30, and 90 days).
+- **Target Range Bounds**: Visual upper and lower target lines on charts based on personalized target ranges.
+- **Estimated HbA1c (eA1c)**: Calculated dynamically from 90-day glucose averages.
+- **Unified History Feed**: Chronological stream of all health metrics with filter chips, swipe-to-delete, and instant undo actions. Tested and optimized for high-volume datasets (1000+ entries).
 
-### 3. Isar Community
-Ultra-fast, offline-first local database providing reactive queries and watch streams as the single source of truth.
+### 🛠 Tools & Utilities
+- **HbA1c Calculator**: Standalone utility screen offering bidirectional estimation between average glucose and HbA1c with direct reading persistence.
+- **Scheduled Reminders**: Local notification reminders for medication, blood glucose checks, and lifestyle logging with recurring schedules.
+- **CSV Data Export**: Filter readings by metric and date range, generating standard CSV files shareable directly via the native system share sheet.
 
----
-
-## ✨ Features & Capabilities
-
-### 📱 Applications & Screens
-- **Todo Management**: Complete reactive CRUD operations (add via modal dialog, checkbox toggling, swipe-to-delete with SnackBar confirmation).
-- **Todo Detail Screen**: Dedicated view (`/todos/:id`) displaying status, creation timestamps, and reactive stream sync.
-- **Settings Module**:
-  - Theme mode selection (System, Light, Dark) with custom dialog and accessible radio group.
-  - Notification toggle backed by an Isar database singleton collection (`id=0`).
-  - In-app Open Source Licenses screen (`LicensesScreen`) with searchable package list.
-  - In-app Privacy Policy screen (`PrivacyPolicyScreen`) with external legal link launching via `url_launcher`.
-  - Dynamic app version and build metadata display via `package_info_plus`.
-
-### 🎨 Design System & Accessibility
-- **Responsive Layout Tokens**: `ContextLayout` extensions (`context.layout`, `context.isPhone`, `context.isTablet`) supporting phones, foldables, tablets, and desktop form factors.
-- **ClampedLayout**: Container widget enforcing ergonomic content widths on wide screens.
-- **AdaptiveNavigationScaffold**: Responsive navigation shell switching between bottom `NavigationBar` on compact screens and side `NavigationRail` on tablets/desktops.
-- **Semantic Feedback & Theming**: `AppFeedbackTheme` and floating `AppSnackBar` with status icons for Success, Error, Warning, and Info states.
-- **State Cards**: Reusable, accessible `StateMessageCard` components for empty, loading, and error states (`AppEmptyView`, `AppErrorView`, `AppLoadingIndicator`).
-
-### 🛡️ Core Resilience & Security
-- **Bootstrap & Error Handling**: Robust edge-to-edge startup with system UI overlay configuration, platform dispatcher error hooks, and `AppInitializationErrorScreen` fallback.
-- **Global Diagnostics**: `AppProviderObserver` logging state transitions and unhandled errors across all Riverpod providers.
-- **Rotating Crash Log**: On-device crash reporting (`crash_log.txt`, 1 MB limit) managed by `AppCrashReporter`.
-- **Typography Guards**: Clamped `textScaler` between `0.85` and `2.0` in `lib/app.dart` preventing UI distortion from extreme system accessibility settings.
-- **Data Encryption**: `FieldCipher` utility (`lib/core/utils/field_cipher.dart`) implementing AES-256-CBC + HMAC-SHA256 Encrypt-then-MAC with constant-time verification.
-- **Store Compliance**: Top-level `SECURITY.md` vulnerability reporting policy and offline `doc/privacy_policy.md`.
-
-### 📸 Automated Screenshot Testing
-- Headless automated integration test harness (`integration_test/app_screenshots_test.dart`) capturing App Store / Google Play marketing screenshots across English and Polish locales.
-- CLI generation scripts (`scripts/screenshots/generate_screenshots.sh` and `scripts/screenshots/run_screenshot_target.sh`) with emulator orchestration.
-
-### ⚙️ Platform & CI/CD Hardening
-- **Android**: Enabled R8 full-mode optimization (`proguard-rules.pro`), Java 17 desugaring (`desugar_jdk_libs:2.1.5`), release R8 minification, resource shrinking, and language/density/ABI bundle splits.
-- **iOS**: Normalized minimum deployment target to `14.0` in `Podfile` post-install configuration.
-- **Workflows**: GitHub Actions CI ([`ci.yml`](.github/workflows/ci.yml)) with Gradle caching, `.flutter-version` synchronization, and debug APK build verification.
-- **Release Workflow**: Automated release packaging ([`release.yml`](.github/workflows/release.yml)) generating Android App Bundles (`.aab`) alongside APKs, uploading ProGuard debug symbols, and drafting GitHub Releases on `v*` tags.
+### ⚙️ Personalization & Clinical Settings
+- **Target Range Profiles**: Select clinical presets (ADA Standard, Tight Control, Relaxed, Pregnancy) or configure custom minimum/maximum glucose thresholds.
+- **Diabetes Profiles**: Tailored tracking for Type 1, Type 2, Gestational, LADA, MODY, and Prediabetes.
+- **Appearance**: Seamless switching between System, Light, and Dark themes.
+- **Security & Privacy**: Zero remote tracking or telemetry. Local-first storage backed by Isar with optional AES-256 field encryption.
 
 ---
 
-## 🛠 Project Structure
+## 🏗 Architecture & Engineering
+
+Glucosa adheres strictly to **Clean Architecture** organized with a **feature-first** package structure:
 
 ```text
 lib/
-├── main.dart                    # Bootstrap entry point (error hooks & System UI)
-├── app.dart                     # MaterialApp.router configuration & typography clamping
+├── main.dart                    # Application entry point & crash reporting
+├── app.dart                     # MaterialApp.router configuration & theme bindings
 ├── core/
-│   ├── config/                  # AppEnvironment runtime configuration
-│   ├── errors/                  # Failure hierarchy (Database, Network, Validation) & Result types
+│   ├── config/                  # Environment flags & runtime configuration
+│   ├── domain/                  # Shared value objects, clinical validators & converters
+│   ├── errors/                  # Unified Failure hierarchy & Result types
 │   ├── presentation/
-│   │   ├── navigation/          # AdaptiveNavigationScaffold (Bar vs Rail)
-│   │   ├── screens/             # AppStartupWidget & AppInitializationErrorScreen
-│   │   ├── theme/               # AppTheme, AppColors, AppFeedbackTheme, AppLayoutTokens
-│   │   ├── utils/               # AppSnackBar, UI extensions
-│   │   └── widgets/             # ClampedLayout, AppEmptyView, AppErrorView, StateMessageCard
-│   ├── providers/               # Global observers (AppProviderObserver, isarProvider)
-│   ├── router/                  # GoRouter declarative routes & redirection
-│   └── utils/                   # AppLogger, AppCrashReporter, FieldCipher
+│   │   ├── navigation/          # AdaptiveNavigationScaffold (Bottom Bar vs Side Rail)
+│   │   ├── theme/               # Semantic color tokens, typography & feedback themes
+│   │   └── widgets/             # Reusable UI primitives (empty, loading, error, charts)
+│   ├── providers/               # Global Isar instance & Riverpod observers
+│   └── router/                  # GoRouter routes and redirection logic
 └── features/
-    ├── todos/                   # Feature: Todos
-    │   ├── domain/              # Entities & Repository contracts
-    │   ├── data/                # Isar models, Synchronous Mappers & Repository impl
-    │   └── presentation/        # Notifiers (@riverpod), Screens & Widgets
-    └── settings/                # Feature: Settings
-        ├── domain/              # User preferences domain contracts
-        ├── data/                # Isar singleton model & Repository impl
-        └── presentation/        # Settings Notifier, Licenses, Privacy Policy & Dialogs
+    ├── blood_pressure/          # Blood pressure domain, Isar models & screens
+    ├── cholesterol/             # Lipid panel tracking
+    ├── export/                  # CSV compilation & native share service
+    ├── glucose/                 # Glucose domain, statistics & entry forms
+    ├── hba1c/                   # HbA1c readings & clinical calculator
+    ├── history/                 # Merged chronological timeline & filtering
+    ├── ketones/                 # Blood ketone tracking
+    ├── onboarding/              # First-launch clinical setup wizard
+    ├── overview/                # Dashboard summary & trend charts
+    ├── reminders/               # Scheduled measurement alerts & notification service
+    ├── settings/                # Profile, unit preferences & target ranges
+    └── weight/                  # Body weight tracking
 ```
+
+### Key Technical Stack
+- **State Management**: [Riverpod 3.x](https://riverpod.dev) with code generation (`@riverpod`). Providers bind directly to reactive streams.
+- **Database**: [Isar Community](https://isar-community.dev) fast NoSQL database with reactive watch queries.
+- **Routing**: [GoRouter](https://pub.dev/packages/go_router) declarative navigation.
+- **Charts**: [fl_chart](https://pub.dev/packages/fl_chart) smooth, reactive line charts.
+- **Localization**: Native Flutter `intl` & `l10n` supporting English (`en`) and Polish (`pl`).
+- **Testing**: 580+ unit, widget, and mapper tests covering 100% of domain and state logic.
 
 ---
 
-## 🚀 Setup & Commands
+## 🚀 Getting Started
+
+### Prerequisites
+- Flutter SDK `3.47+`
+- Dart SDK `3.12+`
+
+### Setup Commands
 
 ```bash
-# Fetch workspace dependencies
+# Clone the repository
+git clone https://github.com/piotrekert90/flutter_glucosa.git
+cd flutter_glucosa
+
+# Install dependencies
 flutter pub get
 
 # Generate Riverpod & Isar code
 dart run build_runner build --delete-conflicting-outputs
 
-# Generate App Icons
-dart run flutter_launcher_icons
+# Generate localization files
+flutter gen-l10n
 
-# Generate Native Splash Screen
-dart run flutter_native_splash:create
-
-# Run full pre-push verification pipeline
-bash scripts/before_push.sh
-```
-
-## 🧪 Verification & Testing
-
-```bash
-# Multi-directory formatting
-dart format lib test integration_test test_driver
-
-# Static analysis
-flutter analyze
-
-# Riverpod custom lint checks
-dart run custom_lint
-
-# Unit & Widget tests
-flutter test --exclude-tags "golden,screenshot"
-
-# Golden regression tests
-flutter test --tags golden
-
-# Automated App Store screenshots
-./scripts/screenshots/generate_screenshots.sh all en
+# Launch application
+flutter run
 ```
 
 ---
 
-## 📜 Changelog
+## 🧪 Verification & Quality Assurance
 
-All notable changes, architectural enhancements, and release notes are documented in [CHANGELOG.md](CHANGELOG.md).
+Glucosa enforces a mandatory verification pipeline:
+
+```bash
+# Format code
+dart format lib test
+
+# Run static analysis
+flutter analyze
+
+# Execute Riverpod-specific linter rules
+dart run custom_lint
+
+# Run test suite
+flutter test --exclude-tags "golden,screenshot"
+```
+
+---
+
+## 📜 License & Privacy
+
+Glucosa is open-source software licensed under the [MIT License](LICENSE).
+Your health data belongs entirely to you. Learn more in our [Privacy Policy](doc/privacy_policy.md).

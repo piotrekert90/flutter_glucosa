@@ -1,8 +1,8 @@
 # Privacy Policy
 
-**Last Updated:** September 17, 2026
+**Last Updated:** October 2, 2026
 
-This application is designed from the ground up to respect your privacy. This policy outlines how your data is handled.
+Glucosa is designed from the ground up to respect your privacy and secure your personal health records. This policy outlines how your health and diabetes monitoring data is handled.
 
 ## 1. Local-First Data Storage
 All user data generated within the app is stored locally on your device. We do not transmit, sell, or sync your personal data to any remote servers without your explicit knowledge and action.
