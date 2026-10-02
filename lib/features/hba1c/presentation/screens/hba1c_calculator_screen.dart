@@ -232,7 +232,6 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
             ),
             const SizedBox(height: 24),
 
-            // Average Glucose Input Card
             Card(
               elevation: 0,
               color: theme.colorScheme.surfaceContainerHighest.withValues(
@@ -296,7 +295,6 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
             ),
             const SizedBox(height: 16),
 
-            // Bidirectional indicator icon
             Center(
               child: Icon(
                 Icons.swap_vert_rounded,
@@ -306,7 +304,6 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
             ),
             const SizedBox(height: 16),
 
-            // Estimated HbA1c Input Card
             Card(
               elevation: 0,
               color: theme.colorScheme.surfaceContainerHighest.withValues(
@@ -370,7 +367,6 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Formula explanation card
             Card(
               elevation: 0,
               color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
@@ -400,7 +396,6 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
             ),
             const SizedBox(height: 28),
 
-            // Save reading button
             FilledButton.icon(
               onPressed: canSave ? _saveReading : null,
               icon: _isSaving

@@ -45,7 +45,6 @@ class HbA1cReadingCard extends ConsumerWidget {
       unitLabel = HbA1cUnit.percentage.displayName;
     }
 
-    // Estimated average glucose
     final avgMgDl = GlucoseConverter.hba1cToEstimatedGlucose(
       reading.readingPercentage,
     ).round();
