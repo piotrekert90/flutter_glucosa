@@ -36,6 +36,12 @@ class UserProfile {
   /// Preferred first day of the week for calendar displays.
   final FirstDayOfWeek firstDayOfWeek;
 
+  /// Flag indicating whether synchronization with the platform health store is enabled.
+  final bool isHealthSyncEnabled;
+
+  /// Timestamp of the last successful platform health synchronization, if any.
+  final DateTime? lastHealthSyncAt;
+
   /// Creates a [UserProfile] instance with default clinical parameters.
   const UserProfile({
     this.name = '',
@@ -49,6 +55,8 @@ class UserProfile {
     this.themeMode = UserThemeMode.system,
     this.isBiometricLockEnabled = false,
     this.firstDayOfWeek = FirstDayOfWeek.system,
+    this.isHealthSyncEnabled = false,
+    this.lastHealthSyncAt,
   });
 
   /// Factory constructor producing default baseline profile parameters.
@@ -67,6 +75,8 @@ class UserProfile {
     UserThemeMode? themeMode,
     bool? isBiometricLockEnabled,
     FirstDayOfWeek? firstDayOfWeek,
+    bool? isHealthSyncEnabled,
+    DateTime? lastHealthSyncAt,
   }) {
     return UserProfile(
       name: name ?? this.name,
@@ -83,6 +93,8 @@ class UserProfile {
       isBiometricLockEnabled:
           isBiometricLockEnabled ?? this.isBiometricLockEnabled,
       firstDayOfWeek: firstDayOfWeek ?? this.firstDayOfWeek,
+      isHealthSyncEnabled: isHealthSyncEnabled ?? this.isHealthSyncEnabled,
+      lastHealthSyncAt: lastHealthSyncAt ?? this.lastHealthSyncAt,
     );
   }
 
@@ -100,7 +112,9 @@ class UserProfile {
         other.isNotificationsEnabled == isNotificationsEnabled &&
         other.themeMode == themeMode &&
         other.isBiometricLockEnabled == isBiometricLockEnabled &&
-        other.firstDayOfWeek == firstDayOfWeek;
+        other.firstDayOfWeek == firstDayOfWeek &&
+        other.isHealthSyncEnabled == isHealthSyncEnabled &&
+        other.lastHealthSyncAt == lastHealthSyncAt;
   }
 
   @override
@@ -116,5 +130,7 @@ class UserProfile {
     themeMode,
     isBiometricLockEnabled,
     firstDayOfWeek,
+    isHealthSyncEnabled,
+    lastHealthSyncAt,
   );
 }

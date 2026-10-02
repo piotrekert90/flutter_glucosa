@@ -41,6 +41,12 @@ abstract class UserProfileRepository {
   /// Updates the preferred first day of the week to [firstDayOfWeek].
   Future<CommandResult> updateFirstDayOfWeek(FirstDayOfWeek firstDayOfWeek);
 
+  /// Updates whether platform health store synchronization is enabled to [isEnabled].
+  Future<CommandResult> updateHealthSyncEnabled(bool isEnabled);
+
+  /// Records the timestamp of the last successful health synchronization to [timestamp].
+  Future<CommandResult> updateLastHealthSyncAt(DateTime? timestamp);
+
   /// Irreversibly erases all health records, reminders, and resets user profile to defaults.
   Future<CommandResult> wipeAllData();
 }
