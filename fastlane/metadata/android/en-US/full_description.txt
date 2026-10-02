@@ -1,0 +1,35 @@
+Take control of your diabetes with Glucosa — the private, offline-first blood glucose tracker designed for daily routine.
+
+Unlike other health apps, Glucosa puts your privacy first: no account, no cloud sync, no subscription, no ads. Your health data stays 100% on your device, protected by biometric lock.
+
+🎯 WHY YOU WILL LOVE GLUCOSA:
+
+• 100% Private & Offline by Design
+No sign-up, no internet required, no data collection. Your measurements never leave your phone.
+
+• Complete Glucose Logging
+Blood glucose with meal context, HbA1c, blood pressure, ketones, cholesterol, and weight — all in one place with mg/dL and mmol/L support.
+
+• Time in Range Analytics
+Interactive charts, rolling period comparison, habit streaks, and achievement milestones that keep you motivated.
+
+• Doctor-Ready Reports
+Generate a clinical summary (mean glucose, estimated HbA1c, TIR breakdown, hypo incidents) and share it straight from the app.
+
+• Smart Reminders & Home Widgets
+Never miss a measurement with daily reminders, and glance at your latest reading from the home screen widget.
+
+• Health Connect & Apple Health Sync
+Bidirectional synchronization with Google Health Connect and Apple Health keeps your whole health ecosystem up to date.
+
+• Biometric App Lock
+Protect sensitive records with fingerprint or face unlock on every launch.
+
+• Your Data, Your Freedom (Import & Export)
+Export or migrate your full history as CSV at any time. GDPR wipe included.
+
+• Modern Material 3 Design
+Smooth, battery-friendly interface with automatic dark mode, calendar history, and 10 languages.
+
+🌟 Pure Tracking. Zero Distractions.
+Download Glucosa today and take charge of your glucose with confidence!

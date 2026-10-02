@@ -1,0 +1,35 @@
+Przejmij kontrolę nad cukrzycą z Glucosa — prywatnym dziennikiem glikemii offline, stworzonym do codziennego użytku.
+
+W przeciwieństwie do innych aplikacji zdrowotnych Glucosa stawia prywatność na pierwszym miejscu: bez konta, bez chmury, bez subskrypcji i bez reklam. Twoje dane zdrowotne w 100% zostają na urządzeniu, chronione blokadą biometryczną.
+
+🎯 DLACZEGO POKOCHASZ GLUCOSA:
+
+• 100% prywatności i praca offline
+Bez rejestracji, bez internetu, bez zbierania danych. Twoje pomiary nigdy nie opuszczają telefonu.
+
+• Kompletny dziennik glikemii
+Glikemia z kontekstem posiłku, HbA1c, ciśnienie, ketony, cholesterol i waga — wszystko w jednym miejscu, z obsługą mg/dL i mmol/L.
+
+• Analityka czasu w normie
+Interaktywne wykresy, porównania okresów, serie nawyków i odznaki osiągnięć, które motywują.
+
+• Raporty gotowe dla lekarza
+Generuj podsumowanie kliniczne (średnia glikemia, szacowane HbA1c, rozkład TIR, epizody hipo) i udostępniaj je prosto z aplikacji.
+
+• Przypomnienia i widgety
+Nigdy nie zapomnij o pomiarze dzięki codziennym przypomnieniom, a ostatni wynik podejrzyj z widgetu ekranu głównego.
+
+• Synchronizacja z Health Connect i Apple Health
+Dwukierunkowa synchronizacja utrzymuje cały twój ekosystem zdrowotny w aktualności.
+
+• Blokada biometryczna
+Chroń wrażliwe dane odciskiem palca lub twarzą przy każdym uruchomieniu.
+
+• Twoje dane, twoja wolność (import i eksport)
+Eksportuj lub migruj całą historię jako CSV w każdej chwili. Czyszczenie RODO w cenie.
+
+• Nowoczesny design Material 3
+Płynny, oszczędny interfejs z trybem ciemnym, kalendarzem historii i 10 językami.
+
+🌟 Czyste pomiary. Zero rozpraszaczy.
+Pobierz Glucosa już dziś i panuj nad glikemią z pewnością siebie!
