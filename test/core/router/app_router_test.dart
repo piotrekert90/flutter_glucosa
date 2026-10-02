@@ -6,6 +6,7 @@ import 'package:flutter_glucosa/features/glucose/presentation/screens/add_edit_g
 import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
 import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
+import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/licenses_screen.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/privacy_policy_screen.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/settings_screen.dart';
@@ -21,7 +22,13 @@ void main() {
   late FakeGlucoseReadingRepository fakeGlucoseReadingRepository;
 
   setUp(() {
-    fakeUserProfileRepository = FakeUserProfileRepository();
+    // Seed a completed profile so the onboarding guard lets tests through
+    // to the requested routes; guard behavior itself is tested separately.
+    fakeUserProfileRepository = FakeUserProfileRepository(
+      initialProfile: UserProfile.defaults().copyWith(
+        isOnboardingCompleted: true,
+      ),
+    );
     fakeGlucoseReadingRepository = FakeGlucoseReadingRepository();
   });
 
@@ -272,6 +279,29 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.textContaining('Page not found'), findsOneWidget);
+    });
+
+    group('Onboarding redirect guard', () {
+      testWidgets('redirects to onboarding when profile is incomplete', (
+        tester,
+      ) async {
+        fakeUserProfileRepository.dispose();
+        fakeUserProfileRepository = FakeUserProfileRepository();
+
+        await tester.pumpWidget(createTestApp(initialLocation: '/'));
+        await tester.pumpAndSettle();
+
+        expect(find.text('Welcome to Glucosa'), findsOneWidget);
+      });
+
+      testWidgets('redirects away from onboarding when already completed', (
+        tester,
+      ) async {
+        await tester.pumpWidget(createTestApp(initialLocation: '/onboarding'));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(OverviewScreen), findsOneWidget);
+      });
     });
   });
 }

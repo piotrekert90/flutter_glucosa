@@ -8,12 +8,14 @@ import '../../features/cholesterol/presentation/screens/add_edit_cholesterol_rea
 import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import '../../features/hba1c/presentation/screens/add_edit_hba1c_reading_screen.dart';
 import '../../features/ketones/presentation/screens/add_edit_ketone_reading_screen.dart';
+import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/weight/presentation/screens/add_edit_weight_reading_screen.dart';
 import '../../features/history/presentation/screens/history_screen.dart';
 import '../../features/overview/presentation/screens/overview_screen.dart';
 import '../../features/settings/presentation/screens/licenses_screen.dart';
 import '../../features/settings/presentation/screens/privacy_policy_screen.dart';
 import '../../features/settings/presentation/screens/settings_screen.dart';
+import '../../features/settings/presentation/providers/user_profile_notifier.dart';
 import '../../l10n/app_localizations.dart';
 import '../presentation/navigation/adaptive_navigation_scaffold.dart';
 import 'app_routes.dart';
@@ -23,9 +25,24 @@ part 'app_router.g.dart';
 /// Configures the application [GoRouter] instance with declarative routes and error handling.
 @Riverpod(keepAlive: true)
 GoRouter appRouter(Ref ref) {
+  // Rebuilds the router when the profile changes so the onboarding
+  // redirect guard below always evaluates the latest completion flag.
+  final profile = ref.watch(userProfileProvider).value;
   return GoRouter(
     initialLocation: AppRoute.overview.path,
     debugLogDiagnostics: kDebugMode,
+    redirect: (BuildContext context, GoRouterState state) {
+      final location = state.matchedLocation;
+      final isOnboardingRoute = location == AppRoute.onboarding.path;
+      if (profile == null) return null;
+      if (!profile.isOnboardingCompleted && !isOnboardingRoute) {
+        return AppRoute.onboarding.path;
+      }
+      if (profile.isOnboardingCompleted && isOnboardingRoute) {
+        return AppRoute.overview.path;
+      }
+      return null;
+    },
     routes: [
       StatefulShellRoute.indexedStack(
         builder:
@@ -197,6 +214,12 @@ GoRouter appRouter(Ref ref) {
           final id = int.tryParse(idString ?? '');
           return AddEditWeightReadingScreen(readingId: id);
         },
+      ),
+      GoRoute(
+        path: AppRoute.onboarding.path,
+        name: AppRoute.onboarding.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const OnboardingScreen(),
       ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) {

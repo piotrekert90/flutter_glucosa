@@ -49,7 +49,10 @@ enum AppRoute {
   addWeight('/weight/add', 'add_weight'),
 
   /// Route to edit an existing weight reading with path parameter id.
-  editWeight('/weight/edit/:id', 'edit_weight');
+  editWeight('/weight/edit/:id', 'edit_weight'),
+
+  /// Route for the first-run onboarding wizard.
+  onboarding('/onboarding', 'onboarding');
 
   const AppRoute(this.path, this.name);
 
