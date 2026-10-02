@@ -356,7 +356,45 @@
   "doctorSummaryVariability": "Zmienność glukozy (SD)",
   "doctorSummaryTotalReadings": "Łączna liczba pomiarów",
   "doctorSummaryHypoIncidents": "Epizody hipoglikemii",
-  "doctorSummaryMeanGlucose": "Średnia glikemia"
+  "doctorSummaryMeanGlucose": "Średnia glikemia",
+  "csvImportSection": "Import danych",
+  "csvImportSubtitle": "Przywróć pomiary glikemii z pliku CSV",
+  "csvImportPickFile": "Wybierz plik CSV",
+  "csvImportAnalyzing": "Analizowanie pliku...",
+  "csvImportPreviewTitle": "Podgląd importu",
+  "csvImportValidRows": "{count, plural, =1{1 pomiar gotowy do importu} few{{count} pomiary gotowe do importu} other{{count} pomiarów gotowych do importu}}",
+  "@csvImportValidRows": {
+    "description": "Count of valid readings found in CSV file",
+    "placeholders": {
+      "count": {"type": "int", "example": "42"}
+    }
+  },
+  "csvImportSkippedRows": "{count, plural, =1{1 wiersz pominięty (nieprawidłowy format)} few{{count} wiersze pominięte (nieprawidłowy format)} other{{count} wierszy pominiętych (nieprawidłowy format)}}",
+  "@csvImportSkippedRows": {
+    "description": "Count of malformed rows skipped during CSV analysis",
+    "placeholders": {
+      "count": {"type": "int", "example": "3"}
+    }
+  },
+  "csvImportDuplicateRows": "{count, plural, =1{1 duplikat już jest w Twoich danych} few{{count} duplikaty już są w Twoich danych} other{{count} duplikatów już jest w Twoich danych}}",
+  "@csvImportDuplicateRows": {
+    "description": "Count of rows duplicating existing readings",
+    "placeholders": {
+      "count": {"type": "int", "example": "5"}
+    }
+  },
+  "csvImportConfirm": "Importuj",
+  "csvImportSuccess": "{count, plural, =1{Zaimportowano 1 pomiar} few{Zaimportowano {count} pomiary} other{Zaimportowano {count} pomiarów}}",
+  "@csvImportSuccess": {
+    "description": "Success message after CSV import completes",
+    "placeholders": {
+      "count": {"type": "int", "example": "42"}
+    }
+  },
+  "csvImportErrorTooLarge": "Plik jest za duży (maksymalnie 5 MB)",
+  "csvImportErrorInvalid": "Nie można odczytać tego pliku. Sprawdź format CSV.",
+  "csvImportErrorEmpty": "Nie znaleziono prawidłowych pomiarów glikemii w tym pliku.",
+  "csvImportErrorPick": "Nie można otworzyć wyboru pliku."
 }
 
 

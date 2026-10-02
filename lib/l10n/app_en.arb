@@ -1469,6 +1469,74 @@
   "doctorSummaryMeanGlucose": "Mean Blood Glucose",
   "@doctorSummaryMeanGlucose": {
     "description": "Mean glucose label in doctor summary"
+  },
+  "csvImportSection": "Import Data",
+  "@csvImportSection": {
+    "description": "Section title for CSV data import"
+  },
+  "csvImportSubtitle": "Restore glucose measurements from a CSV file",
+  "@csvImportSubtitle": {
+    "description": "Subtitle explaining CSV import feature"
+  },
+  "csvImportPickFile": "Select CSV File",
+  "@csvImportPickFile": {
+    "description": "Button to open file picker for CSV import"
+  },
+  "csvImportAnalyzing": "Analyzing file...",
+  "@csvImportAnalyzing": {
+    "description": "Loading label shown while analyzing CSV file"
+  },
+  "csvImportPreviewTitle": "Import Preview",
+  "@csvImportPreviewTitle": {
+    "description": "Title of CSV import preview dialog"
+  },
+  "csvImportValidRows": "{count, plural, =1{1 reading ready to import} other{{count} readings ready to import}}",
+  "@csvImportValidRows": {
+    "description": "Count of valid readings found in CSV file",
+    "placeholders": {
+      "count": {"type": "int", "example": "42"}
+    }
+  },
+  "csvImportSkippedRows": "{count, plural, =1{1 row skipped (invalid format)} other{{count} rows skipped (invalid format)}}",
+  "@csvImportSkippedRows": {
+    "description": "Count of malformed rows skipped during CSV analysis",
+    "placeholders": {
+      "count": {"type": "int", "example": "3"}
+    }
+  },
+  "csvImportDuplicateRows": "{count, plural, =1{1 duplicate already in your records} other{{count} duplicates already in your records}}",
+  "@csvImportDuplicateRows": {
+    "description": "Count of rows duplicating existing readings",
+    "placeholders": {
+      "count": {"type": "int", "example": "5"}
+    }
+  },
+  "csvImportConfirm": "Import",
+  "@csvImportConfirm": {
+    "description": "Confirm button for CSV import preview dialog"
+  },
+  "csvImportSuccess": "{count, plural, =1{Imported 1 reading} other{Imported {count} readings}}",
+  "@csvImportSuccess": {
+    "description": "Success message after CSV import completes",
+    "placeholders": {
+      "count": {"type": "int", "example": "42"}
+    }
+  },
+  "csvImportErrorTooLarge": "File is too large (maximum 5 MB)",
+  "@csvImportErrorTooLarge": {
+    "description": "Error when selected CSV file exceeds size limit"
+  },
+  "csvImportErrorInvalid": "Could not parse this file. Check the CSV format.",
+  "@csvImportErrorInvalid": {
+    "description": "Error when CSV file structure is unparseable"
+  },
+  "csvImportErrorEmpty": "No valid glucose readings found in this file.",
+  "@csvImportErrorEmpty": {
+    "description": "Error when CSV file contains no valid glucose records"
+  },
+  "csvImportErrorPick": "Could not open the file picker.",
+  "@csvImportErrorPick": {
+    "description": "Error when file picker cannot be opened"
   }
 }
 

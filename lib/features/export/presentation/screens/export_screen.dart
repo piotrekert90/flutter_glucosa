@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/domain/enums/metric_type.dart';
@@ -7,9 +8,12 @@ import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
+import '../../../glucose/domain/services/csv_glucose_importer.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../providers/csv_import_service_provider.dart';
 import '../providers/export_notifier.dart';
 import '../providers/export_state.dart';
+import '../widgets/csv_import_preview_dialog.dart';
 
 /// Screen enabling users to configure and export their health measurement data to CSV.
 class ExportScreen extends ConsumerWidget {
@@ -52,6 +56,7 @@ enum _DatePreset { allTime, last7Days, last30Days, last90Days, custom }
 
 class _ExportContentState extends ConsumerState<_ExportContent> {
   _DatePreset _activePreset = _DatePreset.allTime;
+  bool _isImporting = false;
 
   @override
   Widget build(BuildContext context) {
@@ -282,6 +287,49 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
             padding: const EdgeInsets.symmetric(vertical: 14),
           ),
         ),
+        const SizedBox(height: 28),
+        const Divider(),
+        const SizedBox(height: 12),
+
+        // Import Section Header
+        Text(
+          l10n?.csvImportSection ?? 'Import Data',
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          l10n?.csvImportSubtitle ??
+              'Restore glucose measurements from a CSV file',
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+        ),
+        const SizedBox(height: 12),
+
+        // Import Button
+        OutlinedButton.icon(
+          onPressed: _isImporting ? null : () => _handleImport(context),
+          icon: _isImporting
+              ? SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: theme.colorScheme.primary,
+                  ),
+                )
+              : const Icon(Icons.file_upload_outlined),
+          label: Text(
+            _isImporting
+                ? (l10n?.csvImportAnalyzing ?? 'Analyzing file...')
+                : (l10n?.csvImportPickFile ?? 'Select CSV File'),
+          ),
+          style: OutlinedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 14),
+          ),
+        ),
         const SizedBox(height: 20),
       ],
     );
@@ -322,6 +370,84 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         type: SnackBarType.success,
       );
     }
+  }
+
+  Future<void> _handleImport(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    setState(() => _isImporting = true);
+    try {
+      final picked = await FilePicker.pickFile(
+        type: FileType.custom,
+        allowedExtensions: ['csv'],
+      );
+      final path = picked?.path;
+      if (path == null) return;
+      if (!context.mounted) return;
+
+      final service = ref.read(csvGlucoseImportServiceProvider);
+      final outcome = await service.analyzeFile(path);
+      if (!context.mounted) return;
+
+      switch (outcome) {
+        case CsvAnalysisFailure(:final errorType):
+          AppSnackBar.show(
+            context,
+            message: _importErrorMessage(l10n, errorType),
+            type: SnackBarType.error,
+          );
+        case CsvAnalysisSuccess(:final analysis):
+          final confirmed = await CsvImportPreviewDialog.show(
+            context,
+            analysis: analysis,
+          );
+          if (!confirmed || !context.mounted) return;
+          final (count, failure) = await service.confirmImport(
+            analysis.validEntries,
+          );
+          if (!context.mounted) return;
+          if (failure != null || count == null) {
+            AppSnackBar.show(
+              context,
+              message:
+                  l10n?.csvImportErrorInvalid ??
+                  'Could not parse this file. Check the CSV format.',
+              type: SnackBarType.error,
+            );
+          } else {
+            ref.invalidate(exportProvider);
+            AppSnackBar.show(
+              context,
+              message:
+                  l10n?.csvImportSuccess(count) ?? 'Imported $count readings',
+              type: SnackBarType.success,
+            );
+          }
+      }
+    } catch (_) {
+      if (context.mounted) {
+        AppSnackBar.show(
+          context,
+          message:
+              l10n?.csvImportErrorPick ?? 'Could not open the file picker.',
+          type: SnackBarType.error,
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isImporting = false);
+    }
+  }
+
+  String _importErrorMessage(AppLocalizations? l10n, CsvErrorType errorType) {
+    return switch (errorType) {
+      CsvErrorType.fileTooLarge =>
+        l10n?.csvImportErrorTooLarge ?? 'File is too large (maximum 5 MB)',
+      CsvErrorType.invalidFormat =>
+        l10n?.csvImportErrorInvalid ??
+            'Could not parse this file. Check the CSV format.',
+      CsvErrorType.noEntries =>
+        l10n?.csvImportErrorEmpty ??
+            'No valid glucose readings found in this file.',
+    };
   }
 
   (IconData, String) _metricInfo(MetricType type, AppLocalizations? l10n) {
