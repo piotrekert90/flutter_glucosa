@@ -55,6 +55,9 @@ class GlucoseTargetRange {
     );
   }
 
+  /// Checks whether a given blood glucose concentration in mg/dL falls within this target range.
+  bool isInRange(int mgDl) => mgDl >= minMgDl && mgDl <= maxMgDl;
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
