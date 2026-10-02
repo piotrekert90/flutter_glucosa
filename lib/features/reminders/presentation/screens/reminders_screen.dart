@@ -109,11 +109,21 @@ class RemindersScreen extends ConsumerWidget {
                         .read(reminderListProvider.notifier)
                         .deleteReminder(reminder.id);
                     if (context.mounted) {
-                      AppSnackBar.show(
-                        context,
-                        message:
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
                             l10n?.reminderDeletedSuccess ?? 'Reminder deleted',
-                        type: SnackBarType.info,
+                          ),
+                          action: SnackBarAction(
+                            label: l10n?.undo ?? 'Undo',
+                            onPressed: () {
+                              ref
+                                  .read(reminderListProvider.notifier)
+                                  .addReminder(reminder);
+                            },
+                          ),
+                        ),
                       );
                     }
                   },

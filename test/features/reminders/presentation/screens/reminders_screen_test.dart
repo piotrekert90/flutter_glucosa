@@ -169,6 +169,14 @@ void main() {
         final all = await fakeRepo.getAll();
         expect(all, isEmpty);
         expect(find.text('Delete Test'), findsNothing);
+
+        expect(find.text('Undo'), findsOneWidget);
+        await tester.tap(find.text('Undo'));
+        await tester.pumpAndSettle();
+
+        final restored = await fakeRepo.getAll();
+        expect(restored.length, 1);
+        expect(restored.first.label, 'Delete Test');
       },
     );
   });
