@@ -1,7 +1,5 @@
 /// Pure Dart validator enforcing clinical boundary and format rules for health metrics.
 abstract final class ReadingValidator {
-  // --- Blood Glucose ---
-
   /// Validates blood glucose concentration in mg/dL (valid range: 20–600).
   ///
   /// [value] Blood glucose value in mg/dL.
@@ -42,8 +40,6 @@ abstract final class ReadingValidator {
   static bool isValidGlucoseMmolL(num? value) =>
       validateGlucoseMmolL(value) == null;
 
-  // --- HbA1c ---
-
   /// Validates glycated hemoglobin percentage (valid range: 3.0–20.0 %).
   ///
   /// [value] HbA1c percentage.
@@ -81,8 +77,6 @@ abstract final class ReadingValidator {
   static bool isValidHbA1cMmolMol(num? value) =>
       validateHbA1cMmolMol(value) == null;
 
-  // --- Blood Pressure ---
-
   /// Validates systolic (60–300 mmHg) and diastolic (30–200 mmHg) blood pressure.
   ///
   /// [systolic] Systolic pressure in mmHg.
@@ -107,8 +101,6 @@ abstract final class ReadingValidator {
   static bool isValidBloodPressure({int? systolic, int? diastolic}) =>
       validateBloodPressure(systolic: systolic, diastolic: diastolic) == null;
 
-  // --- Ketones ---
-
   /// Validates blood ketone concentration in mmol/L (valid range: 0.0–25.0).
   ///
   /// [value] Ketone concentration in mmol/L.
@@ -124,8 +116,6 @@ abstract final class ReadingValidator {
 
   /// Checks if [value] is a valid ketone reading.
   static bool isValidKetones(num? value) => validateKetones(value) == null;
-
-  // --- Cholesterol ---
 
   /// Validates total (50–500), LDL (20–400), and HDL (10–150) cholesterol values in mg/dL.
   ///
@@ -151,8 +141,6 @@ abstract final class ReadingValidator {
   /// Checks if [total], [ldl], and [hdl] form a valid cholesterol panel.
   static bool isValidCholesterol({num? total, num? ldl, num? hdl}) =>
       validateCholesterol(total: total, ldl: ldl, hdl: hdl) == null;
-
-  // --- Weight ---
 
   /// Validates body weight in kilograms (valid range: 10–500).
   ///
@@ -186,8 +174,6 @@ abstract final class ReadingValidator {
   /// Checks if [value] is a valid weight in pounds.
   static bool isValidWeightLbs(num? value) => validateWeightLbs(value) == null;
 
-  // --- Custom Target Range ---
-
   /// Validates customized glucose target boundaries (min: 40–200, max: 60–400, min < max).
   ///
   /// [minMgDl] Lower target threshold in mg/dL.
@@ -213,8 +199,6 @@ abstract final class ReadingValidator {
     required int minMgDl,
     required int maxMgDl,
   }) => validateCustomTargetRange(minMgDl: minMgDl, maxMgDl: maxMgDl) == null;
-
-  // --- Reminder ---
 
   /// Validates reminder title label (non-empty, maximum 100 characters).
   ///
