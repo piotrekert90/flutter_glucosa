@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_glucosa/l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -8,10 +7,18 @@ void main() {
       final codes = AppLocalizations.supportedLocales
           .map((l) => l.languageCode)
           .toSet();
-      expect(
-        codes,
-        {'de', 'en', 'es', 'fr', 'it', 'ja', 'ko', 'nl', 'pl', 'pt'},
-      );
+      expect(codes, {
+        'de',
+        'en',
+        'es',
+        'fr',
+        'it',
+        'ja',
+        'ko',
+        'nl',
+        'pl',
+        'pt',
+      });
     });
 
     test('formats plural and parameterized messages in every locale', () {
@@ -28,26 +35,11 @@ void main() {
         }
 
         // Parameterized messages must interpolate without throwing.
-        expect(
-          () => l10n.onboardingStepOf(3, 9),
-          returnsNormally,
-        );
-        expect(
-          () => l10n.healthSyncTitle('Health Connect'),
-          returnsNormally,
-        );
-        expect(
-          () => l10n.healthSyncSuccess(2, 4),
-          returnsNormally,
-        );
-        expect(
-          () => l10n.milestonesUnlocked(3, 10),
-          returnsNormally,
-        );
-        expect(
-          () => l10n.calendarDaySemantics('Sep 20', 2),
-          returnsNormally,
-        );
+        expect(() => l10n.onboardingStepOf(3, 9), returnsNormally);
+        expect(() => l10n.healthSyncTitle('Health Connect'), returnsNormally);
+        expect(() => l10n.healthSyncSuccess(2, 4), returnsNormally);
+        expect(() => l10n.milestonesUnlocked(3, 10), returnsNormally);
+        expect(() => l10n.calendarDaySemantics('Sep 20', 2), returnsNormally);
       }
     });
   });
