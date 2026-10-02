@@ -9,6 +9,9 @@ import 'package:flutter_glucosa/features/overview/presentation/screens/overview_
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
 import 'package:flutter_glucosa/features/settings/domain/repositories/user_profile_repository.dart';
+import 'package:flutter_glucosa/features/statistics/presentation/widgets/sections/habits_activity_card.dart';
+import 'package:flutter_glucosa/features/statistics/presentation/widgets/sections/milestones_card.dart';
+import 'package:flutter_glucosa/features/statistics/presentation/widgets/sections/period_comparison_card.dart';
 import 'package:flutter_glucosa/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -75,19 +78,29 @@ void main() {
     expect(find.text('No glucose readings recorded yet'), findsOneWidget);
     expect(find.byType(FloatingActionButton), findsOneWidget);
     expect(find.text('Target Range'), findsOneWidget);
+    expect(find.byIcon(Icons.share_outlined), findsNothing);
+    expect(find.byType(PeriodComparisonCard), findsNothing);
+    expect(find.byType(HabitsActivityCard), findsNothing);
+    expect(find.byType(MilestonesCard), findsNothing);
   });
 
-  testWidgets('renders reading card and estimated HbA1c when readings exist', (
-    tester,
-  ) async {
-    await tester.pumpWidget(createWidget(latestReading: _sampleReading));
-    await tester.pumpAndSettle();
+  testWidgets(
+    'renders reading card, estimated HbA1c, share action, and statistics cards when readings exist',
+    (tester) async {
+      await tester.pumpWidget(createWidget(latestReading: _sampleReading));
+      await tester.pumpAndSettle();
 
-    expect(find.byType(GlucoseReadingCard), findsOneWidget);
-    expect(find.text('120'), findsOneWidget);
-    expect(find.text('Estimated HbA1c'), findsOneWidget);
-    expect(find.text('Target Range'), findsOneWidget);
-  });
+      expect(find.byType(GlucoseReadingCard), findsOneWidget);
+      expect(find.text('120'), findsOneWidget);
+      expect(find.text('Estimated HbA1c'), findsOneWidget);
+      expect(find.text('Target Range'), findsOneWidget);
+      expect(find.byIcon(Icons.share_outlined), findsOneWidget);
+
+      expect(find.byType(PeriodComparisonCard), findsOneWidget);
+      expect(find.byType(HabitsActivityCard), findsOneWidget);
+      expect(find.byType(MilestonesCard), findsOneWidget);
+    },
+  );
 
   testWidgets('FAB opens the metric selection bottom sheet', (tester) async {
     await tester.pumpWidget(createWidget(latestReading: null));

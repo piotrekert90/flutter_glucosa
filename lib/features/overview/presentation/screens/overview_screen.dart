@@ -8,9 +8,17 @@ import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../glucose/presentation/providers/estimated_hba1c_provider.dart';
+import '../../../glucose/presentation/providers/glucose_reading_list_notifier.dart';
 import '../../../glucose/presentation/providers/latest_glucose_reading_provider.dart';
 import '../../../glucose/presentation/widgets/glucose_reading_card.dart';
+import '../../../settings/domain/entities/user_profile.dart';
 import '../../../settings/presentation/providers/user_profile_notifier.dart';
+import '../../../statistics/domain/services/habits_calculator.dart';
+import '../../../statistics/domain/services/milestone_calculator.dart';
+import '../../../statistics/presentation/utils/summary_share_coordinator.dart';
+import '../../../statistics/presentation/widgets/sections/habits_activity_card.dart';
+import '../../../statistics/presentation/widgets/sections/milestones_card.dart';
+import '../../../statistics/presentation/widgets/sections/period_comparison_card.dart';
 import '../widgets/metric_trend_card.dart';
 
 /// Main dashboard overview screen displaying latest readings, health summaries, and quick actions.
@@ -23,11 +31,29 @@ class OverviewScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context)!;
     final latestReadingAsync = ref.watch(latestGlucoseReadingProvider);
+    final readingsAsync = ref.watch(glucoseReadingListProvider);
     final estimatedHbA1cAsync = ref.watch(estimatedHbA1cProvider);
     final profileAsync = ref.watch(userProfileProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.navOverview)),
+      appBar: AppBar(
+        title: Text(l10n.navOverview),
+        actions: [
+          if (readingsAsync.value?.isNotEmpty ?? false)
+            IconButton(
+              icon: const Icon(Icons.share_outlined),
+              tooltip: l10n.shareDoctorSummary,
+              onPressed: () {
+                final profile = profileAsync.value ?? const UserProfile();
+                SummaryShareCoordinator.shareDoctorSummary(
+                  context,
+                  readings: readingsAsync.value!,
+                  profile: profile,
+                );
+              },
+            ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         tooltip: l10n.addReading,
         onPressed: () => showAddReadingBottomSheet(context),
@@ -238,6 +264,46 @@ class OverviewScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
+              ),
+
+              // Period Comparison, Habits & Milestones (when readings exist)
+              readingsAsync.when(
+                data: (readings) {
+                  if (readings.isEmpty) return const SizedBox.shrink();
+                  final profile = profileAsync.value ?? const UserProfile();
+                  final streak = HabitsCalculator.calculateStreak(readings);
+                  final bestStreak = HabitsCalculator.calculateBestStreak(
+                    readings,
+                  );
+                  final compliance =
+                      HabitsCalculator.calculateMonthlyCompliance(readings);
+                  final milestones = MilestoneCalculator.evaluateAll(
+                    readings: readings,
+                    targetRange: profile.targetRange,
+                  );
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(height: 20),
+                      PeriodComparisonCard(
+                        readings: readings,
+                        unit: profile.preferredGlucoseUnit,
+                        targetRange: profile.targetRange,
+                      ),
+                      const SizedBox(height: 20),
+                      HabitsActivityCard(
+                        streak: streak,
+                        bestStreak: bestStreak,
+                        compliancePct: compliance,
+                      ),
+                      const SizedBox(height: 20),
+                      MilestonesCard(milestones: milestones),
+                    ],
+                  );
+                },
+                loading: () => const SizedBox.shrink(),
+                error: (_, _) => const SizedBox.shrink(),
               ),
             ],
           ),
