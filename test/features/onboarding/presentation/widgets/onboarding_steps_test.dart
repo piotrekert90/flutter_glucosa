@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/presentation/theme/app_theme.dart';
 import 'package:flutter_glucosa/features/onboarding/presentation/providers/onboarding_notifier.dart';
-import 'package:flutter_glucosa/features/onboarding/presentation/widgets/onboarding_confirm_step.dart';
+import 'package:flutter_glucosa/features/onboarding/presentation/widgets/onboarding_csv_import_step.dart';
 import 'package:flutter_glucosa/features/onboarding/presentation/widgets/onboarding_diabetes_step.dart';
+import 'package:flutter_glucosa/features/onboarding/presentation/widgets/onboarding_privacy_step.dart';
+import 'package:flutter_glucosa/features/onboarding/presentation/widgets/onboarding_target_range_step.dart';
 import 'package:flutter_glucosa/features/onboarding/presentation/widgets/onboarding_units_step.dart';
 import 'package:flutter_glucosa/features/onboarding/presentation/widgets/onboarding_welcome_step.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
@@ -95,21 +97,50 @@ void main() {
         equals('type1'),
       );
     });
+
+    testWidgets('entering baseline updates the draft in mg/dL', (tester) async {
+      await tester.pumpWidget(_wrap(const OnboardingDiabetesStep()));
+      await tester.pumpAndSettle();
+
+      final fields = find.byType(TextField);
+      expect(fields, findsOneWidget);
+      await tester.enterText(fields, '120');
+      await tester.pumpAndSettle();
+
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(TextField)),
+      );
+      expect(container.read(onboardingProvider).baselineMgDl, equals(120));
+    });
+
+    testWidgets('invalid baseline shows error and clears draft value', (
+      tester,
+    ) async {
+      await tester.pumpWidget(_wrap(const OnboardingDiabetesStep()));
+      await tester.pumpAndSettle();
+
+      await tester.enterText(find.byType(TextField), '9999');
+      await tester.pumpAndSettle();
+
+      expect(find.text('Enter a valid glucose value'), findsOneWidget);
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(TextField)),
+      );
+      expect(container.read(onboardingProvider).baselineMgDl, isNull);
+    });
   });
 
   group('OnboardingUnitsStep', () {
-    testWidgets('renders unit segmented control and range presets', (
+    testWidgets('renders unit segmented control without range presets', (
       tester,
     ) async {
       await tester.pumpWidget(_wrap(const OnboardingUnitsStep()));
       await tester.pumpAndSettle();
 
-      expect(find.text('Preferred units and target range'), findsOneWidget);
+      expect(find.text('Preferred glucose unit'), findsOneWidget);
       expect(find.text('mg/dL'), findsOneWidget);
       expect(find.text('mmol/L'), findsOneWidget);
-      expect(find.textContaining('ADA'), findsOneWidget);
-      expect(find.textContaining('AACE'), findsOneWidget);
-      expect(find.textContaining('UK NICE'), findsOneWidget);
+      expect(find.textContaining('ADA'), findsNothing);
     });
 
     testWidgets('selecting mmol/L updates the draft unit', (tester) async {
@@ -129,7 +160,44 @@ void main() {
     });
   });
 
-  group('OnboardingConfirmStep', () {
+  group('OnboardingTargetRangeStep', () {
+    testWidgets('renders presets and updates the draft range', (tester) async {
+      await tester.pumpWidget(_wrap(const OnboardingTargetRangeStep()));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Choose your target range'), findsOneWidget);
+      expect(find.textContaining('ADA'), findsOneWidget);
+
+      await tester.tap(find.textContaining('AACE'));
+      await tester.pumpAndSettle();
+
+      final container = ProviderScope.containerOf(
+        tester.element(find.textContaining('AACE')),
+      );
+      expect(
+        container.read(onboardingProvider).rangePreset.name,
+        equals('aace'),
+      );
+    });
+  });
+
+  group('OnboardingPrivacyStep', () {
+    testWidgets('acknowledging updates the draft flag', (tester) async {
+      await tester.pumpWidget(_wrap(const OnboardingPrivacyStep()));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Your data stays yours'), findsOneWidget);
+      await tester.tap(find.text('I understand'));
+      await tester.pumpAndSettle();
+
+      final container = ProviderScope.containerOf(
+        tester.element(find.text('I understand')),
+      );
+      expect(container.read(onboardingProvider).privacyAcknowledged, isTrue);
+    });
+  });
+
+  group('OnboardingCsvImportStep', () {
     testWidgets('renders summary and saves on Get Started', (tester) async {
       final mockRepo = MockUserProfileRepository();
       when(() => mockRepo.save(any())).thenAnswer((_) async => (true, null));
@@ -145,7 +213,7 @@ void main() {
             supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme.lightTheme,
             home: Scaffold(
-              body: OnboardingConfirmStep(
+              body: OnboardingCsvImportStep(
                 onCompleted: () {
                   completed = true;
                 },
@@ -156,7 +224,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(find.text("You're all set!"), findsOneWidget);
+      expect(find.text('Bring your history'), findsOneWidget);
       expect(find.text('Get Started'), findsOneWidget);
 
       await tester.tap(find.text('Get Started'));
