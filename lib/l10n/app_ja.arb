@@ -1,0 +1,1829 @@
+{
+  "@@locale": "ja",
+  "appTitle": "Glucosa",
+  "@appTitle": {
+    "description": "The title of the application displayed in the top appBar"
+  },
+  "initializationFailed": "初期化に失敗しました",
+  "@initializationFailed": {
+    "description": "Header text displayed when startup initialization fails"
+  },
+  "tryAgain": "再試行",
+  "@tryAgain": {
+    "description": "Button label to retry a failed operation"
+  },
+  "retry": "再試行",
+  "@retry": {
+    "description": "Button label to retry an operation"
+  },
+  "pageNotFound": "ページが見つかりません: {uri}",
+  "@pageNotFound": {
+    "description": "Error message displayed for unrecognized routes",
+    "placeholders": {
+      "uri": {
+        "type": "String",
+        "example": "/unknown"
+      }
+    }
+  },
+  "settings": "設定",
+  "@settings": {
+    "description": "Settings label"
+  },
+  "settingsTitle": "設定",
+  "@settingsTitle": {
+    "description": "Title displayed on the settings screen app bar"
+  },
+  "userProfile": "プロフィール",
+  "@userProfile": {
+    "description": "Section header for user profile"
+  },
+  "failedToLoadSettings": "設定を読み込めませんでした",
+  "@failedToLoadSettings": {
+    "description": "Error message when settings cannot be retrieved"
+  },
+  "theme": "テーマ",
+  "@theme": {
+    "description": "Theme label"
+  },
+  "themeSystem": "システム",
+  "@themeSystem": {
+    "description": "Label for system default theme option"
+  },
+  "themeLight": "ライト",
+  "@themeLight": {
+    "description": "Label for light theme option"
+  },
+  "themeDark": "ダークモード",
+  "@themeDark": {
+    "description": "Label for dark theme option"
+  },
+  "notifications": "通知",
+  "@notifications": {
+    "description": "Label for notifications toggle switch"
+  },
+  "receivePushNotifications": "プッシュ通知を受け取る",
+  "@receivePushNotifications": {
+    "description": "Subtitle for notifications toggle switch"
+  },
+  "failedToUpdatePreferences": "設定を更新できませんでした",
+  "@failedToUpdatePreferences": {
+    "description": "Snackbar message when updating notification preference fails"
+  },
+  "failedToUpdateThemeMode": "テーマを更新できませんでした",
+  "@failedToUpdateThemeMode": {
+    "description": "Snackbar message when updating theme mode fails"
+  },
+  "settingsTooltip": "設定",
+  "@settingsTooltip": {
+    "description": "Accessibility tooltip for settings button in app bar"
+  },
+  "navOverview": "概要",
+  "@navOverview": {
+    "description": "Label for overview dashboard bottom navigation tab"
+  },
+  "navHistory": "履歴",
+  "@navHistory": {
+    "description": "Label for measurement history bottom navigation tab"
+  },
+  "navSettings": "設定",
+  "@navSettings": {
+    "description": "Label for settings bottom navigation tab"
+  },
+  "overviewComingSoon": "ダッシュボードは近日公開",
+  "@overviewComingSoon": {
+    "description": "Placeholder text for overview dashboard"
+  },
+  "historyComingSoon": "記録は近日公開",
+  "@historyComingSoon": {
+    "description": "Placeholder text for history log"
+  },
+  "delete": "削除",
+  "@delete": {
+    "description": "Label for delete action"
+  },
+  "undo": "元に戻す",
+  "@undo": {
+    "description": "Label for undo action"
+  },
+  "cancel": "キャンセル",
+  "@cancel": {
+    "description": "Cancel button label"
+  },
+  "close": "閉じる",
+  "@close": {
+    "description": "Close button label"
+  },
+  "add": "追加",
+  "@add": {
+    "description": "Add button label"
+  },
+  "save": "保存",
+  "@save": {
+    "description": "Save button label"
+  },
+  "genericError": "エラーが発生しました",
+  "@genericError": {
+    "description": "Generic error header message"
+  },
+  "errorPrefix": "エラー: {message}",
+  "@errorPrefix": {
+    "description": "Prefix for formatted error messages",
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "errorNotFound": "この項目はもう存在しません。",
+  "@errorNotFound": {
+    "description": "Failure message for not found"
+  },
+  "errorDatabase": "データの保存中に問題が発生しました。もう一度お試しください。",
+  "@errorDatabase": {
+    "description": "Failure message for database error"
+  },
+  "errorNetwork": "ネットワークエラーが発生しました。接続を確認してもう一度お試しください。",
+  "@errorNetwork": {
+    "description": "Failure message for network error"
+  },
+  "errorUnauthorized": "セッションの有効期限が切れました。もう一度サインインしてください。",
+  "@errorUnauthorized": {
+    "description": "Failure message for unauthorized"
+  },
+  "errorValidation": "一部のフィールドに無効な値があります。",
+  "@errorValidation": {
+    "description": "Failure message for validation error"
+  },
+  "appearance": "外観",
+  "@appearance": {
+    "description": "Appearance section header"
+  },
+  "about": "情報",
+  "@about": {
+    "description": "About section header"
+  },
+  "version": "バージョン",
+  "@version": {
+    "description": "App version label"
+  },
+  "licenses": "ライセンス",
+  "@licenses": {
+    "description": "Licenses tile label"
+  },
+  "privacyPolicy": "プライバシーポリシー",
+  "@privacyPolicy": {
+    "description": "Privacy policy tile label"
+  },
+  "poweredByFlutter": "Flutterで作成",
+  "@poweredByFlutter": {
+    "description": "Footer label on licenses screen"
+  },
+  "privacyPolicyHeaderSubtitle": "オフライン＆プライバシー優先",
+  "@privacyPolicyHeaderSubtitle": {
+    "description": "Subtitle in privacy policy screen header"
+  },
+  "privacyPolicyIntro": "このアプリはデータをあなたのデバイスにのみ保存します。あなたのプライバシーを尊重し、個人データを販売・収集しません。",
+  "@privacyPolicyIntro": {
+    "description": "Introduction text in privacy policy screen"
+  },
+  "privacyPolicySection1Title": "ローカル保存",
+  "@privacyPolicySection1Title": {
+    "description": "Title of section 1 in privacy policy"
+  },
+  "privacyPolicySection1Body": "すべてのタスクと設定はあなたのデバイスに残ります。",
+  "@privacyPolicySection1Body": {
+    "description": "Body of section 1 in privacy policy"
+  },
+  "privacyPolicySection2Title": "診断とクラッシュレポート",
+  "@privacyPolicySection2Title": {
+    "description": "Title of section 2 in privacy policy"
+  },
+  "privacyPolicySection2Body": "信頼性向上のため匿名のクラッシュログを収集する場合がありますが、個人情報は含まれません。",
+  "@privacyPolicySection2Body": {
+    "description": "Body of section 2 in privacy policy"
+  },
+  "privacyPolicySection3Title": "ハードウェアセキュリティ",
+  "@privacyPolicySection3Title": {
+    "description": "Title of section 3 in privacy policy"
+  },
+  "privacyPolicySection3Body": "機密性の高いデバイス状態にはシステムのサンドボックスとキーチェーンを使用します。",
+  "@privacyPolicySection3Body": {
+    "description": "Body of section 3 in privacy policy"
+  },
+  "privacyPolicySection4Title": "データの完全な管理",
+  "@privacyPolicySection4Title": {
+    "description": "Title of section 4 in privacy policy"
+  },
+  "privacyPolicySection4Body": "データの管理権はあなたにあります。デバイスの設定からいつでも削除・リセットできます。",
+  "@privacyPolicySection4Body": {
+    "description": "Body of section 4 in privacy policy"
+  },
+  "privacyPolicyContactTitle": "お問い合わせとサポート",
+  "@privacyPolicyContactTitle": {
+    "description": "Contact title in privacy policy"
+  },
+  "privacyPolicyContactBody": "ご質問やご意見はチームまでご連絡ください:",
+  "@privacyPolicyContactBody": {
+    "description": "Contact body in privacy policy"
+  },
+  "initErrorTitle": "初期化エラー",
+  "@initErrorTitle": {
+    "description": "Title for app initialization error"
+  },
+  "initErrorSubtitle": "ストレージまたはサービスを初期化できませんでした。再起動してもう一度お試しください。",
+  "@initErrorSubtitle": {
+    "description": "Subtitle for app initialization error"
+  },
+  "retryStartup": "起動を再試行",
+  "@retryStartup": {
+    "description": "Retry button on startup error screen"
+  },
+  "initErrorSemantics": "起動初期化エラー画面",
+  "@initErrorSemantics": {
+    "description": "Semantics label for initialization error screen"
+  },
+  "rateApp": "アプリを評価",
+  "@rateApp": {
+    "description": "Label for rate app tile in settings"
+  },
+  "couldNotOpenStore": "ストアを開けませんでした",
+  "@couldNotOpenStore": {
+    "description": "Error message when opening app store fails"
+  },
+  "glucose": "血糖値",
+  "@glucose": {
+    "description": "Blood glucose metric label"
+  },
+  "addGlucoseReading": "血糖値を追加",
+  "@addGlucoseReading": {
+    "description": "Screen title and action for adding a new glucose reading"
+  },
+  "editGlucoseReading": "血糖値を編集",
+  "@editGlucoseReading": {
+    "description": "Screen title for editing an existing glucose reading"
+  },
+  "glucoseReadingValue": "血糖値",
+  "@glucoseReadingValue": {
+    "description": "Label for glucose value input field"
+  },
+  "glucoseValueHint": "値を入力",
+  "@glucoseValueHint": {
+    "description": "Hint text for glucose value input field"
+  },
+  "glucoseReadingAdded": "血糖値を追加しました",
+  "@glucoseReadingAdded": {
+    "description": "Snackbar message when a glucose reading is successfully added"
+  },
+  "glucoseReadingUpdated": "血糖値を更新しました",
+  "@glucoseReadingUpdated": {
+    "description": "Snackbar message when a glucose reading is successfully updated"
+  },
+  "glucoseReadingDeleted": "血糖値を削除しました",
+  "@glucoseReadingDeleted": {
+    "description": "Snackbar message when a glucose reading is successfully deleted"
+  },
+  "failedToAddGlucoseReading": "血糖値を追加できませんでした",
+  "@failedToAddGlucoseReading": {
+    "description": "Snackbar message when adding a glucose reading fails"
+  },
+  "failedToUpdateGlucoseReading": "血糖値を更新できませんでした",
+  "@failedToUpdateGlucoseReading": {
+    "description": "Snackbar message when updating a glucose reading fails"
+  },
+  "failedToDeleteGlucoseReading": "血糖値を削除できませんでした",
+  "@failedToDeleteGlucoseReading": {
+    "description": "Snackbar message when deleting a glucose reading fails"
+  },
+  "mealContext": "食事の状況",
+  "@mealContext": {
+    "description": "Label for meal context selector"
+  },
+  "dateTime": "日時",
+  "@dateTime": {
+    "description": "Label for date and time picker"
+  },
+  "notes": "メモ",
+  "@notes": {
+    "description": "Label for notes text field"
+  },
+  "notesHint": "任意のメモやコメント",
+  "@notesHint": {
+    "description": "Hint text for notes input field"
+  },
+  "deleteReadingConfirmationTitle": "測定値を削除",
+  "@deleteReadingConfirmationTitle": {
+    "description": "Title of deletion confirmation dialog"
+  },
+  "deleteReadingConfirmationMessage": "この血糖測定値を削除してもよろしいですか? この操作は取り消せません。",
+  "@deleteReadingConfirmationMessage": {
+    "description": "Message of deletion confirmation dialog"
+  },
+  "noReadingsYet": "まだ血糖測定値がありません",
+  "@noReadingsYet": {
+    "description": "Empty state label when no readings exist"
+  },
+  "latestReading": "最新の測定値",
+  "@latestReading": {
+    "description": "Header for latest reading card"
+  },
+  "estimatedHbA1c": "推定HbA1c",
+  "@estimatedHbA1c": {
+    "description": "Header for estimated HbA1c card"
+  },
+  "targetRange": "目標範囲",
+  "@targetRange": {
+    "description": "Label for clinical target range"
+  },
+  "statusHypoglycemia": "低血糖",
+  "@statusHypoglycemia": {
+    "description": "Clinical status label for very low blood glucose"
+  },
+  "statusLow": "低め",
+  "@statusLow": {
+    "description": "Clinical status label for low blood glucose"
+  },
+  "statusInRange": "範囲内",
+  "@statusInRange": {
+    "description": "Clinical status label for target blood glucose"
+  },
+  "statusHigh": "高め",
+  "@statusHigh": {
+    "description": "Clinical status label for high blood glucose"
+  },
+  "statusHyperglycemia": "高血糖",
+  "@statusHyperglycemia": {
+    "description": "Clinical status label for very high blood glucose"
+  },
+  "mealContextBeforeBreakfast": "朝食前",
+  "@mealContextBeforeBreakfast": {
+    "description": "Meal context label for before breakfast"
+  },
+  "mealContextAfterBreakfast": "朝食後",
+  "@mealContextAfterBreakfast": {
+    "description": "Meal context label for after breakfast"
+  },
+  "mealContextBeforeLunch": "昼食前",
+  "@mealContextBeforeLunch": {
+    "description": "Meal context label for before lunch"
+  },
+  "mealContextAfterLunch": "昼食後",
+  "@mealContextAfterLunch": {
+    "description": "Meal context label for after lunch"
+  },
+  "mealContextBeforeDinner": "夕食前",
+  "@mealContextBeforeDinner": {
+    "description": "Meal context label for before dinner"
+  },
+  "mealContextAfterDinner": "夕食後",
+  "@mealContextAfterDinner": {
+    "description": "Meal context label for after dinner"
+  },
+  "mealContextSnack": "間食",
+  "@mealContextSnack": {
+    "description": "Meal context label for snack"
+  },
+  "mealContextBedtime": "就寝前",
+  "@mealContextBedtime": {
+    "description": "Meal context label for bedtime"
+  },
+  "mealContextNight": "夜間",
+  "@mealContextNight": {
+    "description": "Meal context label for night"
+  },
+  "mealContextFasting": "空腹時",
+  "@mealContextFasting": {
+    "description": "Meal context label for fasting"
+  },
+  "mealContextRecheck": "再測定",
+  "@mealContextRecheck": {
+    "description": "Meal context label for recheck"
+  },
+  "mealContextOther": "その他",
+  "@mealContextOther": {
+    "description": "Meal context label for other"
+  },
+  "hba1c": "HbA1c",
+  "@hba1c": {
+    "description": "Title label for HbA1c glycated hemoglobin"
+  },
+  "hba1cStatusNormal": "正常 (<5.7%)",
+  "@hba1cStatusNormal": {
+    "description": "Status badge label for normal HbA1c level"
+  },
+  "hba1cStatusElevated": "高め (5.7–6.4%)",
+  "@hba1cStatusElevated": {
+    "description": "Status badge label for elevated prediabetes HbA1c level"
+  },
+  "hba1cStatusHigh": "高い (≥6.5%)",
+  "@hba1cStatusHigh": {
+    "description": "Status badge label for high diabetes threshold HbA1c level"
+  },
+  "addHba1c": "HbA1cを記録",
+  "@addHba1c": {
+    "description": "Title for screen adding a new HbA1c reading"
+  },
+  "editHba1c": "HbA1cを編集",
+  "@editHba1c": {
+    "description": "Title for screen editing an existing HbA1c reading"
+  },
+  "deleteHba1c": "HbA1cを削除",
+  "@deleteHba1c": {
+    "description": "Delete button label for HbA1c reading"
+  },
+  "deleteHba1cConfirm": "このHbA1cを削除してもよろしいですか?",
+  "@deleteHba1cConfirm": {
+    "description": "Confirmation prompt when deleting an HbA1c reading"
+  },
+  "hba1cValueHint": "例: 6.5",
+  "@hba1cValueHint": {
+    "description": "Hint text for HbA1c input"
+  },
+  "hba1cSavedSuccess": "HbA1cを保存しました",
+  "@hba1cSavedSuccess": {
+    "description": "Snackbar message when HbA1c reading is saved"
+  },
+  "hba1cDeletedSuccess": "HbA1cを削除しました",
+  "@hba1cDeletedSuccess": {
+    "description": "Snackbar message when HbA1c reading is deleted"
+  },
+  "bloodPressure": "血圧",
+  "@bloodPressure": {
+    "description": "Title label for blood pressure metric"
+  },
+  "bpStatusNormal": "正常 (<120/80)",
+  "@bpStatusNormal": {
+    "description": "Status badge label for normal blood pressure level"
+  },
+  "bpStatusElevated": "高め (120–129/<80)",
+  "@bpStatusElevated": {
+    "description": "Status badge label for elevated blood pressure level"
+  },
+  "bpStatusHigh": "高い (≥130/80)",
+  "@bpStatusHigh": {
+    "description": "Status badge label for high blood pressure level"
+  },
+  "addBloodPressure": "血圧を記録",
+  "@addBloodPressure": {
+    "description": "Title for screen adding a new blood pressure reading"
+  },
+  "editBloodPressure": "血圧を編集",
+  "@editBloodPressure": {
+    "description": "Title for screen editing an existing blood pressure reading"
+  },
+  "deleteBloodPressure": "血圧を削除",
+  "@deleteBloodPressure": {
+    "description": "Delete button label for blood pressure reading"
+  },
+  "deleteBloodPressureConfirm": "この血圧測定値を削除してもよろしいですか?",
+  "@deleteBloodPressureConfirm": {
+    "description": "Confirmation prompt when deleting a blood pressure reading"
+  },
+  "systolicLabel": "最高血圧",
+  "@systolicLabel": {
+    "description": "Label for systolic pressure input field"
+  },
+  "diastolicLabel": "最低血圧",
+  "@diastolicLabel": {
+    "description": "Label for diastolic pressure input field"
+  },
+  "systolicHint": "例: 120",
+  "@systolicHint": {
+    "description": "Hint text for systolic pressure input"
+  },
+  "diastolicHint": "例: 80",
+  "@diastolicHint": {
+    "description": "Hint text for diastolic pressure input"
+  },
+  "bpSavedSuccess": "血圧を保存しました",
+  "@bpSavedSuccess": {
+    "description": "Snackbar message when blood pressure reading is saved"
+  },
+  "bpDeletedSuccess": "血圧を削除しました",
+  "@bpDeletedSuccess": {
+    "description": "Snackbar message when blood pressure reading is deleted"
+  },
+  "ketones": "ケトン体",
+  "@ketones": {
+    "description": "Title label for blood ketones metric"
+  },
+  "ketoneStatusNormal": "正常 (<0.6)",
+  "@ketoneStatusNormal": {
+    "description": "Status badge label for normal ketone level"
+  },
+  "ketoneStatusElevated": "高め (0.6–1.5)",
+  "@ketoneStatusElevated": {
+    "description": "Status badge label for elevated ketone level"
+  },
+  "ketoneStatusHigh": "高い (>1.5)",
+  "@ketoneStatusHigh": {
+    "description": "Status badge label for high ketone level"
+  },
+  "addKetones": "ケトン体を記録",
+  "@addKetones": {
+    "description": "Title for screen adding a new ketone reading"
+  },
+  "editKetones": "ケトン体を編集",
+  "@editKetones": {
+    "description": "Title for screen editing an existing ketone reading"
+  },
+  "deleteKetones": "ケトン体を削除",
+  "@deleteKetones": {
+    "description": "Delete button label for ketone reading"
+  },
+  "deleteKetonesConfirm": "このケトン体測定値を削除してもよろしいですか?",
+  "@deleteKetonesConfirm": {
+    "description": "Confirmation prompt when deleting a ketone reading"
+  },
+  "ketonesValueHint": "例: 0.5",
+  "@ketonesValueHint": {
+    "description": "Hint text for ketone value input"
+  },
+  "ketonesSavedSuccess": "ケトン体を保存しました",
+  "@ketonesSavedSuccess": {
+    "description": "Snackbar message when ketone reading is saved"
+  },
+  "ketonesDeletedSuccess": "ケトン体を削除しました",
+  "@ketonesDeletedSuccess": {
+    "description": "Snackbar message when ketone reading is deleted"
+  },
+  "cholesterol": "コレステロール",
+  "@cholesterol": {
+    "description": "Title label for cholesterol panel metric"
+  },
+  "cholesterolStatusNormal": "正常 (<200)",
+  "@cholesterolStatusNormal": {
+    "description": "Status badge label for normal total cholesterol level"
+  },
+  "cholesterolStatusElevated": "境界域 (200–239)",
+  "@cholesterolStatusElevated": {
+    "description": "Status badge label for borderline total cholesterol level"
+  },
+  "cholesterolStatusHigh": "高い (≥240)",
+  "@cholesterolStatusHigh": {
+    "description": "Status badge label for high total cholesterol level"
+  },
+  "addCholesterol": "コレステロールを記録",
+  "@addCholesterol": {
+    "description": "Title for screen adding a new cholesterol reading"
+  },
+  "editCholesterol": "コレステロールを編集",
+  "@editCholesterol": {
+    "description": "Title for screen editing an existing cholesterol reading"
+  },
+  "deleteCholesterol": "コレステロールを削除",
+  "@deleteCholesterol": {
+    "description": "Delete button label for cholesterol reading"
+  },
+  "deleteCholesterolConfirm": "このコレステロール測定値を削除してもよろしいですか?",
+  "@deleteCholesterolConfirm": {
+    "description": "Confirmation prompt when deleting a cholesterol reading"
+  },
+  "totalCholesterolLabel": "総量",
+  "@totalCholesterolLabel": {
+    "description": "Label for total cholesterol input field"
+  },
+  "ldlLabel": "LDL",
+  "@ldlLabel": {
+    "description": "Label for LDL cholesterol input field"
+  },
+  "hdlLabel": "HDL",
+  "@hdlLabel": {
+    "description": "Label for HDL cholesterol input field"
+  },
+  "cholesterolValueHint": "例: 190",
+  "@cholesterolValueHint": {
+    "description": "Hint text for cholesterol value input"
+  },
+  "cholesterolSavedSuccess": "コレステロールを保存しました",
+  "@cholesterolSavedSuccess": {
+    "description": "Snackbar message when cholesterol reading is saved"
+  },
+  "cholesterolDeletedSuccess": "コレステロールを削除しました",
+  "@cholesterolDeletedSuccess": {
+    "description": "Snackbar message when cholesterol reading is deleted"
+  },
+  "weight": "体重",
+  "@weight": {
+    "description": "Title label for body weight metric"
+  },
+  "addWeight": "体重を記録",
+  "@addWeight": {
+    "description": "Title for screen adding a new weight reading"
+  },
+  "editWeight": "体重を編集",
+  "@editWeight": {
+    "description": "Title for screen editing an existing weight reading"
+  },
+  "deleteWeight": "体重を削除",
+  "@deleteWeight": {
+    "description": "Delete button label for weight reading"
+  },
+  "deleteWeightConfirm": "この体重測定値を削除してもよろしいですか?",
+  "@deleteWeightConfirm": {
+    "description": "Confirmation prompt when deleting a weight reading"
+  },
+  "weightValueHint": "例: 75.5",
+  "@weightValueHint": {
+    "description": "Hint text for weight value input"
+  },
+  "weightSavedSuccess": "体重を保存しました",
+  "@weightSavedSuccess": {
+    "description": "Snackbar message when weight reading is saved"
+  },
+  "weightDeletedSuccess": "体重を削除しました",
+  "@weightDeletedSuccess": {
+    "description": "Snackbar message when weight reading is deleted"
+  },
+  "addReading": "測定値を追加",
+  "@addReading": {
+    "description": "Title for the metric selection bottom sheet and add-button tooltip"
+  },
+  "filterAll": "すべて",
+  "@filterAll": {
+    "description": "Label for the 'show all metrics' history filter chip"
+  },
+  "chartTitle": "推移",
+  "@chartTitle": {
+    "description": "Title for the overview metric trend chart card"
+  },
+  "timeRangeDay": "日",
+  "@timeRangeDay": {
+    "description": "Label for the day time range chart selector"
+  },
+  "timeRangeWeek": "週",
+  "@timeRangeWeek": {
+    "description": "Label for the week time range chart selector"
+  },
+  "timeRangeMonth": "月",
+  "@timeRangeMonth": {
+    "description": "Label for the month time range chart selector"
+  },
+  "statAverage": "平均",
+  "@statAverage": {
+    "description": "Label for average statistic under the trend chart"
+  },
+  "statMin": "最小",
+  "@statMin": {
+    "description": "Label for minimum statistic under the trend chart"
+  },
+  "statMax": "最大",
+  "@statMax": {
+    "description": "Label for maximum statistic under the trend chart"
+  },
+  "onboardingWelcomeTitle": "Glucosaへようこそ",
+  "@onboardingWelcomeTitle": {
+    "description": "Title of the onboarding welcome step"
+  },
+  "onboardingWelcomeSubtitle": "いくつかの簡単な手順でプロフィールを設定しましょう。",
+  "@onboardingWelcomeSubtitle": {
+    "description": "Subtitle of the onboarding welcome step"
+  },
+  "onboardingNameLabel": "あなたの名前",
+  "@onboardingNameLabel": {
+    "description": "Label for the name input during onboarding"
+  },
+  "onboardingNameHint": "例: Alex",
+  "@onboardingNameHint": {
+    "description": "Hint text for the name input during onboarding"
+  },
+  "onboardingDiabetesTypeTitle": "糖尿病のタイプはどれですか?",
+  "@onboardingDiabetesTypeTitle": {
+    "description": "Title of the onboarding diabetes type step"
+  },
+  "diabetesType1": "1型",
+  "@diabetesType1": {
+    "description": "Label for type 1 diabetes"
+  },
+  "diabetesType2": "2型",
+  "@diabetesType2": {
+    "description": "Label for type 2 diabetes"
+  },
+  "diabetesTypeGestational": "妊娠糖尿病",
+  "@diabetesTypeGestational": {
+    "description": "Label for gestational diabetes"
+  },
+  "diabetesTypeLada": "LADA",
+  "@diabetesTypeLada": {
+    "description": "Label for LADA diabetes"
+  },
+  "onboardingUnitsTitle": "希望する血糖値の単位",
+  "@onboardingUnitsTitle": {
+    "description": "Title of the onboarding units and range step"
+  },
+  "onboardingGlucoseUnitLabel": "血糖値の単位",
+  "@onboardingGlucoseUnitLabel": {
+    "description": "Label for the glucose unit selector during onboarding"
+  },
+  "onboardingRangeLabel": "目標範囲",
+  "@onboardingRangeLabel": {
+    "description": "Label for the target range selector during onboarding"
+  },
+  "onboardingConfirmTitle": "準備完了!",
+  "@onboardingConfirmTitle": {
+    "description": "Title of the onboarding confirmation step"
+  },
+  "onboardingGetStarted": "はじめる",
+  "@onboardingGetStarted": {
+    "description": "Final onboarding completion button"
+  },
+  "onboardingNext": "次へ",
+  "@onboardingNext": {
+    "description": "Label for the button advancing the onboarding wizard"
+  },
+  "onboardingBack": "戻る",
+  "@onboardingBack": {
+    "description": "Label for the button going back in the onboarding wizard"
+  },
+  "onboardingStepOf": "ステップ {step}/{total}",
+  "@onboardingStepOf": {
+    "description": "Progress indicator of the onboarding wizard",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "reminders": "リマインダー",
+  "@reminders": {
+    "description": "Title for reminders management screen"
+  },
+  "addReminder": "リマインダーを追加",
+  "@addReminder": {
+    "description": "Button label and dialog title to add a new reminder"
+  },
+  "editReminder": "リマインダーを編集",
+  "@editReminder": {
+    "description": "Dialog title to edit an existing reminder"
+  },
+  "deleteReminder": "リマインダーを削除",
+  "@deleteReminder": {
+    "description": "Button label to delete a reminder"
+  },
+  "deleteReminderConfirm": "このリマインダーを削除してもよろしいですか?",
+  "@deleteReminderConfirm": {
+    "description": "Confirmation prompt when deleting a reminder"
+  },
+  "noRemindersTitle": "予定されたリマインダーはありません",
+  "@noRemindersTitle": {
+    "description": "Empty state title when no reminders are configured"
+  },
+  "noRemindersSubtitle": "リマインダーを追加して測定を忘れないようにしましょう。",
+  "@noRemindersSubtitle": {
+    "description": "Empty state subtitle encouraging user to add reminders"
+  },
+  "reminderLabel": "ラベル",
+  "@reminderLabel": {
+    "description": "Form label for reminder description"
+  },
+  "reminderLabelHint": "例: 朝の空腹時血糖",
+  "@reminderLabelHint": {
+    "description": "Hint text for reminder label input"
+  },
+  "reminderTime": "時刻",
+  "@reminderTime": {
+    "description": "Label for reminder time selection"
+  },
+  "reminderMetric": "健康指標",
+  "@reminderMetric": {
+    "description": "Label for reminder health metric type"
+  },
+  "reminderOneTime": "1回限りのリマインダー",
+  "@reminderOneTime": {
+    "description": "Switch label for one-time reminder"
+  },
+  "reminderOneTimeSubtitle": "実行後に自動で無効になります",
+  "@reminderOneTimeSubtitle": {
+    "description": "Subtitle describing one-time reminder behavior"
+  },
+  "reminderSavedSuccess": "リマインダーを保存しました",
+  "@reminderSavedSuccess": {
+    "description": "Snackbar message when reminder is saved"
+  },
+  "reminderDeletedSuccess": "リマインダーを削除しました",
+  "@reminderDeletedSuccess": {
+    "description": "Snackbar message when reminder is deleted"
+  },
+  "exportData": "データをエクスポート",
+  "@exportData": {
+    "description": "Title for the data export screen and menu tile"
+  },
+  "exportSubtitle": "測定値をCSV形式でエクスポート",
+  "@exportSubtitle": {
+    "description": "Subtitle describing the data export option"
+  },
+  "exportDateRange": "期間",
+  "@exportDateRange": {
+    "description": "Header for the date range filter in export screen"
+  },
+  "exportAllTime": "全期間",
+  "@exportAllTime": {
+    "description": "Option to export data across all time"
+  },
+  "exportLast7Days": "過去7日間",
+  "@exportLast7Days": {
+    "description": "Option to export data from the last 7 days"
+  },
+  "exportLast30Days": "過去30日間",
+  "@exportLast30Days": {
+    "description": "Option to export data from the last 30 days"
+  },
+  "exportLast90Days": "過去90日間",
+  "@exportLast90Days": {
+    "description": "Option to export data from the last 90 days"
+  },
+  "exportCustomRange": "カスタム",
+  "@exportCustomRange": {
+    "description": "Option to pick custom start and end dates"
+  },
+  "exportMetrics": "含める指標",
+  "@exportMetrics": {
+    "description": "Section title for metric selection in export screen"
+  },
+  "exportSelectAll": "すべて選択",
+  "@exportSelectAll": {
+    "description": "Button to select all metrics"
+  },
+  "exportDeselectAll": "選択を解除",
+  "@exportDeselectAll": {
+    "description": "Button to deselect all metrics"
+  },
+  "exportMatchingRecords": "{count, plural, other{{count}件の記録を選択}}",
+  "@exportMatchingRecords": {
+    "description": "Label indicating number of matching records to be exported",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
+    }
+  },
+  "exportAndShare": "エクスポートして共有",
+  "@exportAndShare": {
+    "description": "Button label to trigger CSV export and open system share sheet"
+  },
+  "exportSuccess": "エクスポートが完了しました",
+  "@exportSuccess": {
+    "description": "Feedback message when export finishes successfully"
+  },
+  "exportNoMetricsSelected": "少なくとも1つの指標を選択してください",
+  "@exportNoMetricsSelected": {
+    "description": "Validation error when no metrics are selected"
+  },
+  "hba1cCalculator": "HbA1c計算機",
+  "@hba1cCalculator": {
+    "description": "Title for the HbA1c estimation calculator screen and tile"
+  },
+  "hba1cCalculatorSubtitle": "平均血糖値からHbA1cを推定、またはその逆を計算します。",
+  "@hba1cCalculatorSubtitle": {
+    "description": "Subtitle describing the HbA1c calculator screen"
+  },
+  "averageGlucose": "平均血糖値",
+  "@averageGlucose": {
+    "description": "Label for average glucose input field"
+  },
+  "adagFormulaExplanation": "計算はADAG研究の式に基づきます: eAG = 28.7 × HbA1c − 46.7。",
+  "@adagFormulaExplanation": {
+    "description": "Explanatory note describing the ADAG formula"
+  },
+  "saveAsHbA1cReading": "HbA1cとして保存",
+  "@saveAsHbA1cReading": {
+    "description": "Button to save calculated HbA1c value into the log"
+  },
+  "hba1cReadingSaved": "HbA1cを保存しました",
+  "@hba1cReadingSaved": {
+    "description": "Feedback message when calculated HbA1c reading is persisted"
+  },
+  "name": "名前",
+  "@name": {
+    "description": "Label for user name"
+  },
+  "nameHint": "名前を入力",
+  "@nameHint": {
+    "description": "Hint text for name input field"
+  },
+  "editName": "名前を編集",
+  "@editName": {
+    "description": "Title of the edit name dialog"
+  },
+  "diabetesType": "糖尿病のタイプ",
+  "@diabetesType": {
+    "description": "Label for diabetes type"
+  },
+  "selectDiabetesType": "糖尿病のタイプを選択",
+  "@selectDiabetesType": {
+    "description": "Title for selecting diabetes type dialog"
+  },
+  "units": "単位",
+  "@units": {
+    "description": "Section title for measurement units"
+  },
+  "glucoseUnit": "血糖値の単位",
+  "@glucoseUnit": {
+    "description": "Label for glucose measurement unit"
+  },
+  "selectGlucoseUnit": "血糖値の単位を選択",
+  "@selectGlucoseUnit": {
+    "description": "Title for selecting glucose unit dialog"
+  },
+  "hba1cUnit": "HbA1cの単位",
+  "@hba1cUnit": {
+    "description": "Label for HbA1c measurement unit"
+  },
+  "selectHbA1cUnit": "HbA1cの単位を選択",
+  "@selectHbA1cUnit": {
+    "description": "Title for selecting HbA1c unit dialog"
+  },
+  "weightUnit": "体重の単位",
+  "@weightUnit": {
+    "description": "Label for weight measurement unit"
+  },
+  "selectWeightUnit": "体重の単位を選択",
+  "@selectWeightUnit": {
+    "description": "Title for selecting weight unit dialog"
+  },
+  "targetRangePreset": "プリセット",
+  "@targetRangePreset": {
+    "description": "Label for target range preset"
+  },
+  "targetRangeMin": "下限",
+  "@targetRangeMin": {
+    "description": "Label for minimum target range field"
+  },
+  "targetRangeMax": "上限",
+  "@targetRangeMax": {
+    "description": "Label for maximum target range field"
+  },
+  "targetRangeCustom": "カスタム",
+  "@targetRangeCustom": {
+    "description": "Label for custom target range preset"
+  },
+  "editTargetRange": "血糖値の目標範囲",
+  "@editTargetRange": {
+    "description": "Title for editing target glucose range dialog"
+  },
+  "targetRangeInvalid": "下限は上限より小さく、ゼロより大きくしてください",
+  "@targetRangeInvalid": {
+    "description": "Error message when custom target range inputs are invalid"
+  },
+  "notSet": "未設定",
+  "@notSet": {
+    "description": "Placeholder text when a setting or property is not set"
+  },
+  "tools": "ツール",
+  "@tools": {
+    "description": "Section header for utility tools in settings"
+  },
+  "biometricReason": "健康データにアクセスするため認証してください",
+  "@biometricReason": {
+    "description": "System biometric prompt explanation message"
+  },
+  "biometricUnlockTitle": "Glucosaのロック解除",
+  "@biometricUnlockTitle": {
+    "description": "Title displayed on biometric shield and sign in prompt"
+  },
+  "biometricUnlockDescription": "医療情報を保護するため認証が必要です。",
+  "@biometricUnlockDescription": {
+    "description": "Subtitle on biometric shield screen"
+  },
+  "biometricUnlockButton": "ロック解除",
+  "@biometricUnlockButton": {
+    "description": "Button to trigger biometric authentication"
+  },
+  "biometricNotAvailable": "このデバイスでは生体認証を利用できません",
+  "@biometricNotAvailable": {
+    "description": "Error message when biometrics cannot be used"
+  },
+  "biometricLockedOut": "試行回数が多すぎるため一時的にロックされています。しばらくしてからお試しください。",
+  "@biometricLockedOut": {
+    "description": "Error message when biometrics are temporarily locked out"
+  },
+  "biometricLockRecoveryTitle": "生体認証を利用できません",
+  "@biometricLockRecoveryTitle": {
+    "description": "Title for biometric lock recovery dialog"
+  },
+  "biometricLockRecoveryMessage": "認証情報が設定されていないか無効化されているため完了できません。ロックを無効にしてアクセスを回復しますか?",
+  "@biometricLockRecoveryMessage": {
+    "description": "Message for biometric lock recovery dialog"
+  },
+  "biometricLockRecoveryDisable": "ロックを無効化",
+  "@biometricLockRecoveryDisable": {
+    "description": "Action button in lock recovery dialog"
+  },
+  "biometricSettingTitle": "生体認証ロック",
+  "@biometricSettingTitle": {
+    "description": "Title for biometric lock setting"
+  },
+  "biometricSettingSubtitle": "アプリを開く際に顔認証・指紋認証を必須にする",
+  "@biometricSettingSubtitle": {
+    "description": "Subtitle for biometric lock setting"
+  },
+  "securitySection": "セキュリティとプライバシー",
+  "@securitySection": {
+    "description": "Section header in settings for security and privacy"
+  },
+  "wipeDataTitle": "すべてのデータを消去",
+  "@wipeDataTitle": {
+    "description": "Title for GDPR wipe data option"
+  },
+  "wipeDataDescription": "すべての健康記録・リマインダー・設定をこのデバイスから完全に削除します。",
+  "@wipeDataDescription": {
+    "description": "Description for GDPR wipe data option"
+  },
+  "wipeDataConfirmTitle": "本当によろしいですか?",
+  "@wipeDataConfirmTitle": {
+    "description": "Title for wipe data confirmation dialog"
+  },
+  "wipeDataConfirmMessage": "この操作は取り消せません。すべての血糖測定値と設定が完全に失われます。",
+  "@wipeDataConfirmMessage": {
+    "description": "Warning message in wipe data confirmation dialog"
+  },
+  "wipeDataButton": "すべて消去",
+  "@wipeDataButton": {
+    "description": "Destructive button in wipe data dialog"
+  },
+  "wipeDataSuccess": "すべてのデータを消去しました。",
+  "@wipeDataSuccess": {
+    "description": "Snackbar notification after data wipe"
+  },
+  "firstDayOfWeek": "週の開始曜日",
+  "@firstDayOfWeek": {
+    "description": "Label for setting preferred first day of the week"
+  },
+  "firstDayOfWeekSystem": "システム設定",
+  "@firstDayOfWeekSystem": {
+    "description": "Option for system default first day of the week"
+  },
+  "firstDayOfWeekMonday": "月曜日",
+  "@firstDayOfWeekMonday": {
+    "description": "Option for Monday as first day of the week"
+  },
+  "firstDayOfWeekSunday": "日曜日",
+  "@firstDayOfWeekSunday": {
+    "description": "Option for Sunday as first day of the week"
+  },
+  "selectFirstDayOfWeek": "週の開始曜日を選択",
+  "@selectFirstDayOfWeek": {
+    "description": "Dialog title for picking first day of the week"
+  },
+  "tabCalendar": "カレンダー",
+  "@tabCalendar": {
+    "description": "Title and tab label for interactive calendar screen"
+  },
+  "calendarTitle": "カレンダー",
+  "@calendarTitle": {
+    "description": "Top bar title for calendar screen"
+  },
+  "previousMonth": "前の月",
+  "@previousMonth": {
+    "description": "Tooltip for previous month navigation button"
+  },
+  "nextMonth": "次の月",
+  "@nextMonth": {
+    "description": "Tooltip for next month navigation button"
+  },
+  "jumpToToday": "今日",
+  "@jumpToToday": {
+    "description": "Button to jump back to current calendar month and day"
+  },
+  "noEntriesForDate": "この日の測定値はありません",
+  "@noEntriesForDate": {
+    "description": "Empty state title when selected calendar day has no readings"
+  },
+  "noEntriesForDateSubtitle": "下のボタンからこの日の最初の測定値を追加しましょう。",
+  "@noEntriesForDateSubtitle": {
+    "description": "Empty state subtitle prompting the user to add a reading for the selected day"
+  },
+  "entriesFromDate": "{date}の測定値",
+  "@entriesFromDate": {
+    "description": "Header title displaying selected day readings",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "readingsCountPill": "{count, plural, other{{count}件の測定値}}",
+  "@readingsCountPill": {
+    "description": "Badge showing total readings count for selected day",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarDaySemantics": "{date}、{count, plural, other{{count}件の測定値}}",
+  "@calendarDaySemantics": {
+    "description": "Accessibility label for a calendar day cell",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarDaySemanticsGoalAchieved": "{date}、{count, plural, other{{count}件の測定値、すべて目標範囲内}}",
+  "@calendarDaySemanticsGoalAchieved": {
+    "description": "Accessibility label for a calendar day cell where all readings are within target range",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allReadingsInRangeBanner": "すべての測定値が目標範囲内",
+  "@allReadingsInRangeBanner": {
+    "description": "Banner displayed when all readings on selected day are within target range"
+  },
+  "addAnotherReading": "別の測定値を追加",
+  "@addAnotherReading": {
+    "description": "Button to log another measurement for the selected day"
+  },
+  "edit": "編集",
+  "@edit": {
+    "description": "Generic edit action label"
+  },
+  "moreOptions": "その他のオプション",
+  "@moreOptions": {
+    "description": "Tooltip for more options popup menu button"
+  },
+  "habitsAndStreaks": "習慣と連続記録",
+  "@habitsAndStreaks": {
+    "description": "Section title for habit tracking and streaks"
+  },
+  "currentStreak": "現在の連続記録",
+  "@currentStreak": {
+    "description": "Label for current consecutive logging streak"
+  },
+  "bestStreak": "最長連続記録",
+  "@bestStreak": {
+    "description": "Label for longest historical logging streak"
+  },
+  "loggingStreak": "記録の連続",
+  "@loggingStreak": {
+    "description": "Card title for daily logging streak"
+  },
+  "streakDays": "{count, plural, other{{count}日間}}",
+  "@streakDays": {
+    "description": "Pluralized streak duration in days",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "monthlyCompliance": "月間の記録率",
+  "@monthlyCompliance": {
+    "description": "Label for logging compliance in the active month"
+  },
+  "totalCompliance": "全体の記録率",
+  "@totalCompliance": {
+    "description": "Label for total historical logging compliance"
+  },
+  "periodComparison": "期間の比較",
+  "@periodComparison": {
+    "description": "Section header for comparing rolling time windows"
+  },
+  "rollingDays7": "7日間",
+  "@rollingDays7": {
+    "description": "Toggle chip for 7-day rolling period"
+  },
+  "rollingDays14": "14日間",
+  "@rollingDays14": {
+    "description": "Toggle chip for 14-day rolling period"
+  },
+  "rollingDays30": "30日間",
+  "@rollingDays30": {
+    "description": "Toggle chip for 30-day rolling period"
+  },
+  "meanGlucose": "平均血糖値",
+  "@meanGlucose": {
+    "description": "Label for average glucose level"
+  },
+  "glucoseVariabilitySd": "変動 (SD)",
+  "@glucoseVariabilitySd": {
+    "description": "Label for glucose standard deviation variability"
+  },
+  "timeInRangeShort": "目標範囲内時間",
+  "@timeInRangeShort": {
+    "description": "Short label for Time in Range (TIR)"
+  },
+  "readingsCountLabel": "測定値の合計",
+  "@readingsCountLabel": {
+    "description": "Label for total readings logged in period"
+  },
+  "hypoIncidentsLabel": "低血糖イベント",
+  "@hypoIncidentsLabel": {
+    "description": "Label for number of hypoglycemia events"
+  },
+  "insufficientComparisonData": "比較には両方の期間でもっとデータが必要です",
+  "@insufficientComparisonData": {
+    "description": "Message shown when period comparison has insufficient readings"
+  },
+  "comparisonImproved": "改善",
+  "@comparisonImproved": {
+    "description": "Status badge when comparative metrics show clinical improvement"
+  },
+  "comparisonStable": "安定",
+  "@comparisonStable": {
+    "description": "Status badge when comparative metrics remain stable"
+  },
+  "comparisonNeedsAttention": "要注目",
+  "@comparisonNeedsAttention": {
+    "description": "Status badge when comparative metrics worsen"
+  },
+  "milestones": "マイルストーン",
+  "@milestones": {
+    "description": "Section title for patient milestones"
+  },
+  "milestonesUnlocked": "{total}件中{unlocked}件を達成",
+  "@milestonesUnlocked": {
+    "description": "Subtitle showing ratio of unlocked milestones",
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "milestonesGallery": "実績ギャラリー",
+  "@milestonesGallery": {
+    "description": "Title of milestones modal gallery bottom sheet"
+  },
+  "milestoneCategoryGoals": "臨床目標",
+  "@milestoneCategoryGoals": {
+    "description": "Milestone category header for target and TIR goals"
+  },
+  "milestoneCategoryStreaks": "連続記録と継続",
+  "@milestoneCategoryStreaks": {
+    "description": "Milestone category header for consecutive logging streaks"
+  },
+  "milestoneCategoryRoutines": "習慣と時間帯",
+  "@milestoneCategoryRoutines": {
+    "description": "Milestone category header for meal and time of day routines"
+  },
+  "milestoneCategorySpecial": "特別な日",
+  "@milestoneCategorySpecial": {
+    "description": "Milestone category header for holidays and weekend tracking"
+  },
+  "milestoneFirstReadingTitle": "最初の測定",
+  "@milestoneFirstReadingTitle": {
+    "description": "Title for first reading milestone"
+  },
+  "milestoneFirstReadingDesc": "最初の血糖測定値を記録しました。",
+  "@milestoneFirstReadingDesc": {
+    "description": "Description for first reading milestone"
+  },
+  "milestoneStreak7Title": "7日連続",
+  "@milestoneStreak7Title": {
+    "description": "Title for 7-day streak milestone"
+  },
+  "milestoneStreak7Desc": "7日連続で血糖値を記録しました。",
+  "@milestoneStreak7Desc": {
+    "description": "Description for 7-day streak milestone"
+  },
+  "milestoneStreak30Title": "30日の継続",
+  "@milestoneStreak30Title": {
+    "description": "Title for 30-day streak milestone"
+  },
+  "milestoneStreak30Desc": "30日連続で血糖値を記録しました。",
+  "@milestoneStreak30Desc": {
+    "description": "Description for 30-day streak milestone"
+  },
+  "milestoneStreak100Title": "100日クラブ",
+  "@milestoneStreak100Title": {
+    "description": "Title for 100-day streak milestone"
+  },
+  "milestoneStreak100Desc": "100日連続で血糖値を記録しました。",
+  "@milestoneStreak100Desc": {
+    "description": "Description for 100-day streak milestone"
+  },
+  "milestoneStreak365Title": "365日マスター",
+  "@milestoneStreak365Title": {
+    "description": "Title for 365-day streak milestone"
+  },
+  "milestoneStreak365Desc": "1年間毎日記録しました。",
+  "@milestoneStreak365Desc": {
+    "description": "Description for 365-day streak milestone"
+  },
+  "milestoneComebackTitle": "カムバック",
+  "@milestoneComebackTitle": {
+    "description": "Title for comeback milestone"
+  },
+  "milestoneComebackDesc": "14日以上の間隔の後、記録を再開しました。",
+  "@milestoneComebackDesc": {
+    "description": "Description for comeback milestone"
+  },
+  "milestoneTargetTirWeekTitle": "7日間TIRチャンピオン",
+  "@milestoneTargetTirWeekTitle": {
+    "description": "Title for 7-day TIR milestone"
+  },
+  "milestoneTargetTirWeekDesc": "7日間で目標範囲内時間70%以上を維持 (最低14件)。",
+  "@milestoneTargetTirWeekDesc": {
+    "description": "Description for 7-day TIR milestone"
+  },
+  "milestoneTargetTirMonthTitle": "月間TIRエクセレンス",
+  "@milestoneTargetTirMonthTitle": {
+    "description": "Title for 30-day TIR milestone"
+  },
+  "milestoneTargetTirMonthDesc": "30日間で目標範囲内時間70%以上を維持 (最低50件)。",
+  "@milestoneTargetTirMonthDesc": {
+    "description": "Description for 30-day TIR milestone"
+  },
+  "milestoneFastingChampionTitle": "空腹時チャンピオン",
+  "@milestoneFastingChampionTitle": {
+    "description": "Title for fasting milestone"
+  },
+  "milestoneFastingChampionDesc": "空腹時血糖値を10件記録しました。",
+  "@milestoneFastingChampionDesc": {
+    "description": "Description for fasting milestone"
+  },
+  "milestonePostMealMasterTitle": "食後マスター",
+  "@milestonePostMealMasterTitle": {
+    "description": "Title for post-meal milestone"
+  },
+  "milestonePostMealMasterDesc": "食後血糖値を10件記録しました。",
+  "@milestonePostMealMasterDesc": {
+    "description": "Description for post-meal milestone"
+  },
+  "milestoneEarlyBirdTitle": "早起き",
+  "@milestoneEarlyBirdTitle": {
+    "description": "Title for early morning milestone"
+  },
+  "milestoneEarlyBirdDesc": "午前7時前の朝の測定値を記録しました。",
+  "@milestoneEarlyBirdDesc": {
+    "description": "Description for early morning milestone"
+  },
+  "milestoneNightOwlTitle": "夜更かし",
+  "@milestoneNightOwlTitle": {
+    "description": "Title for late night milestone"
+  },
+  "milestoneNightOwlDesc": "午後11時以降の夜の測定値を記録しました。",
+  "@milestoneNightOwlDesc": {
+    "description": "Description for late night milestone"
+  },
+  "milestoneWeekendWarriorTitle": "週末戦士",
+  "@milestoneWeekendWarriorTitle": {
+    "description": "Title for weekend milestone"
+  },
+  "milestoneWeekendWarriorDesc": "同じ週末の土曜と日曜の両方に記録しました。",
+  "@milestoneWeekendWarriorDesc": {
+    "description": "Description for weekend milestone"
+  },
+  "milestoneNewYearTitle": "新年の健康",
+  "@milestoneNewYearTitle": {
+    "description": "Title for New Year milestone"
+  },
+  "milestoneNewYearDesc": "元日 (1月1日) に測定値を記録しました。",
+  "@milestoneNewYearDesc": {
+    "description": "Description for New Year milestone"
+  },
+  "milestoneYearEndTitle": "年末ガーディアン",
+  "@milestoneYearEndTitle": {
+    "description": "Title for Year End milestone"
+  },
+  "milestoneYearEndDesc": "大晦日 (12月31日) に測定値を記録しました。",
+  "@milestoneYearEndDesc": {
+    "description": "Description for Year End milestone"
+  },
+  "milestoneUnlockedDate": "{date}に達成",
+  "@milestoneUnlockedDate": {
+    "description": "Subtitle showing unlock date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "milestoneLocked": "未達成",
+  "@milestoneLocked": {
+    "description": "Status badge for locked milestone"
+  },
+  "milestoneProgress": "達成率{percent}%",
+  "@milestoneProgress": {
+    "description": "Progress percentage towards milestone completion",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "shareDoctorSummary": "医師向けサマリーを共有",
+  "@shareDoctorSummary": {
+    "description": "Button to format and share clinical summary with physician"
+  },
+  "shareDoctorSummaryTooltip": "医師と臨床サマリーを共有",
+  "@shareDoctorSummaryTooltip": {
+    "description": "Tooltip for doctor summary share action"
+  },
+  "doctorSummaryTitle": "Glucosa — 臨床ヘルスサマリー",
+  "@doctorSummaryTitle": {
+    "description": "Header title of exported clinical text summary"
+  },
+  "doctorSummaryPatientName": "患者",
+  "@doctorSummaryPatientName": {
+    "description": "Patient name label in doctor summary"
+  },
+  "doctorSummaryTargetRangeLabel": "目標範囲",
+  "@doctorSummaryTargetRangeLabel": {
+    "description": "Target range label in doctor summary"
+  },
+  "doctorSummaryEstimatedHbA1c": "推定HbA1c",
+  "@doctorSummaryEstimatedHbA1c": {
+    "description": "Estimated HbA1c label in doctor summary"
+  },
+  "doctorSummaryTirBreakdown": "目標範囲内時間 (TIR) の内訳",
+  "@doctorSummaryTirBreakdown": {
+    "description": "TIR breakdown section title in doctor summary"
+  },
+  "doctorSummaryInTarget": "範囲内",
+  "@doctorSummaryInTarget": {
+    "description": "In target range percentage in doctor summary"
+  },
+  "doctorSummaryAboveTarget": "範囲上 (高血糖)",
+  "@doctorSummaryAboveTarget": {
+    "description": "Above target range percentage in doctor summary"
+  },
+  "doctorSummaryBelowTarget": "範囲下 (低血糖)",
+  "@doctorSummaryBelowTarget": {
+    "description": "Below target range percentage in doctor summary"
+  },
+  "doctorSummaryVariability": "血糖変動 (SD)",
+  "@doctorSummaryVariability": {
+    "description": "Variability standard deviation in doctor summary"
+  },
+  "doctorSummaryTotalReadings": "記録した測定値の合計",
+  "@doctorSummaryTotalReadings": {
+    "description": "Total readings count in doctor summary"
+  },
+  "doctorSummaryHypoIncidents": "低血糖イベント",
+  "@doctorSummaryHypoIncidents": {
+    "description": "Hypo incidents count in doctor summary"
+  },
+  "doctorSummaryMeanGlucose": "平均血糖値",
+  "@doctorSummaryMeanGlucose": {
+    "description": "Mean glucose label in doctor summary"
+  },
+  "csvImportSection": "データをインポート",
+  "@csvImportSection": {
+    "description": "Section title for CSV data import"
+  },
+  "csvImportSubtitle": "CSVファイルから血糖測定値を復元",
+  "@csvImportSubtitle": {
+    "description": "Subtitle explaining CSV import feature"
+  },
+  "csvImportPickFile": "CSVファイルを選択",
+  "@csvImportPickFile": {
+    "description": "Button to open file picker for CSV import"
+  },
+  "csvImportAnalyzing": "ファイルを分析中…",
+  "@csvImportAnalyzing": {
+    "description": "Loading label shown while analyzing CSV file"
+  },
+  "csvImportPreviewTitle": "インポートのプレビュー",
+  "@csvImportPreviewTitle": {
+    "description": "Title of CSV import preview dialog"
+  },
+  "csvImportValidRows": "{count, plural, other{{count}件の測定値をインポート可能}}",
+  "@csvImportValidRows": {
+    "description": "Count of valid readings found in CSV file",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
+    }
+  },
+  "csvImportSkippedRows": "{count, plural, other{{count}行をスキップ (形式が無効)}}",
+  "@csvImportSkippedRows": {
+    "description": "Count of malformed rows skipped during CSV analysis",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "csvImportDuplicateRows": "{count, plural, other{重複{count}件は記録済み}}",
+  "@csvImportDuplicateRows": {
+    "description": "Count of rows duplicating existing readings",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "csvImportConfirm": "インポート",
+  "@csvImportConfirm": {
+    "description": "Confirm button for CSV import preview dialog"
+  },
+  "csvImportSuccess": "{count, plural, other{{count}件をインポートしました}}",
+  "@csvImportSuccess": {
+    "description": "Success message after CSV import completes",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
+    }
+  },
+  "csvImportErrorTooLarge": "ファイルが大きすぎます (最大5MB)",
+  "@csvImportErrorTooLarge": {
+    "description": "Error when selected CSV file exceeds size limit"
+  },
+  "csvImportErrorInvalid": "このファイルを読み取れませんでした。CSV形式を確認してください。",
+  "@csvImportErrorInvalid": {
+    "description": "Error when CSV file structure is unparseable"
+  },
+  "csvImportErrorEmpty": "このファイルに有効な血糖測定値がありません。",
+  "@csvImportErrorEmpty": {
+    "description": "Error when CSV file contains no valid glucose records"
+  },
+  "csvImportErrorPick": "ファイル選択を開けませんでした。",
+  "@csvImportErrorPick": {
+    "description": "Error when file picker cannot be opened"
+  },
+  "healthSyncSection": "ヘルス同期",
+  "@healthSyncSection": {
+    "description": "Section title for platform health synchronization"
+  },
+  "healthSyncTitle": "{platform}と同期",
+  "@healthSyncTitle": {
+    "description": "Health sync toggle title with platform name",
+    "placeholders": {
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
+    }
+  },
+  "healthSyncSubtitle": "{platform}と血糖測定値を自動で交換",
+  "@healthSyncSubtitle": {
+    "description": "Health sync toggle subtitle with platform name",
+    "placeholders": {
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
+    }
+  },
+  "healthSyncNow": "今すぐ同期",
+  "@healthSyncNow": {
+    "description": "Button to trigger immediate health synchronization"
+  },
+  "healthSyncLast": "最終同期: {date}",
+  "@healthSyncLast": {
+    "description": "Label showing last successful sync timestamp",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "Oct 3, 14:30"
+      }
+    }
+  },
+  "healthSyncNever": "未同期",
+  "@healthSyncNever": {
+    "description": "Label when no health sync has run yet"
+  },
+  "healthSyncSuccess": "同期完了: {imported}件インポート、{exported}件エクスポート",
+  "@healthSyncSuccess": {
+    "description": "Success message after health synchronization",
+    "placeholders": {
+      "imported": {
+        "type": "int",
+        "example": "5"
+      },
+      "exported": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "healthSyncNoPermissions": "ヘルス権限が付与されていません",
+  "@healthSyncNoPermissions": {
+    "description": "Error when health permissions are denied"
+  },
+  "healthSyncUnavailable": "このデバイスではヘルスサービスを利用できません",
+  "@healthSyncUnavailable": {
+    "description": "Error when platform health store is unreachable"
+  },
+  "healthConnectRequiredTitle": "Health Connectが必要です",
+  "@healthConnectRequiredTitle": {
+    "description": "Title of Health Connect install prompt"
+  },
+  "healthConnectRequiredSubtitle": "測定値を同期するにはPlayストアからGoogle Health Connectをインストールしてください。",
+  "@healthConnectRequiredSubtitle": {
+    "description": "Subtitle of Health Connect install prompt"
+  },
+  "installFromPlayStore": "Playストアからインストール",
+  "@installFromPlayStore": {
+    "description": "Button opening Play Store Health Connect listing"
+  },
+  "widgetNoData": "測定値なし",
+  "@widgetNoData": {
+    "description": "Widget empty state label"
+  },
+  "widgetTapToAdd": "タップして追加",
+  "@widgetTapToAdd": {
+    "description": "Widget empty state call to action"
+  },
+  "widgetToday": "今日",
+  "@widgetToday": {
+    "description": "Widget label for readings taken today"
+  },
+  "widgetPromoTitle": "血糖値を一目で",
+  "@widgetPromoTitle": {
+    "description": "Widget promo card title"
+  },
+  "widgetPromoSubtitle": "Glucosaウィジェットをホーム画面に追加",
+  "@widgetPromoSubtitle": {
+    "description": "Widget promo card subtitle"
+  },
+  "widgetPromoPin": "追加",
+  "@widgetPromoPin": {
+    "description": "Widget promo pin button"
+  },
+  "widgetPinRequested": "ウィジェット追加要求を送信しました",
+  "@widgetPinRequested": {
+    "description": "Confirmation after requesting widget pin"
+  },
+  "onboardingRangeTitle": "目標範囲を選択",
+  "@onboardingRangeTitle": {
+    "description": "Title of onboarding target range step"
+  },
+  "onboardingRangeSubtitle": "この範囲内の測定値は目標範囲内時間にカウントされます",
+  "@onboardingRangeSubtitle": {
+    "description": "Subtitle of onboarding target range step"
+  },
+  "onboardingHealthTitle": "{platform}と同期",
+  "@onboardingHealthTitle": {
+    "description": "Title of onboarding health sync step",
+    "placeholders": {
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
+    }
+  },
+  "onboardingHealthSubtitle": "{platform}と血糖測定値を自動で交換します。後で設定から変更できます。",
+  "@onboardingHealthSubtitle": {
+    "description": "Subtitle of onboarding health sync step",
+    "placeholders": {
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
+    }
+  },
+  "onboardingHealthEnable": "ヘルス同期を有効化",
+  "@onboardingHealthEnable": {
+    "description": "Health sync toggle label in onboarding"
+  },
+  "onboardingReminderTitle": "毎日のリマインダー",
+  "@onboardingReminderTitle": {
+    "description": "Title of onboarding reminder step"
+  },
+  "onboardingReminderSubtitle": "血糖測定のため毎日通知を受け取ります。後で設定から変更できます。",
+  "@onboardingReminderSubtitle": {
+    "description": "Subtitle of onboarding reminder step"
+  },
+  "onboardingReminderEnable": "毎日のリマインダーを有効化",
+  "@onboardingReminderEnable": {
+    "description": "Reminder toggle label in onboarding"
+  },
+  "onboardingReminderOff": "オフ",
+  "@onboardingReminderOff": {
+    "description": "Label when onboarding reminder is disabled"
+  },
+  "onboardingReminderChange": "時刻を変更",
+  "@onboardingReminderChange": {
+    "description": "Button changing onboarding reminder time"
+  },
+  "onboardingBiometricTitle": "生体認証で保護",
+  "@onboardingBiometricTitle": {
+    "description": "Title of onboarding biometric step"
+  },
+  "onboardingBiometricSubtitle": "Glucosaを開く際に顔認証・指紋認証を必須にします。",
+  "@onboardingBiometricSubtitle": {
+    "description": "Subtitle of onboarding biometric step"
+  },
+  "onboardingBiometricEnable": "アプリロックを有効化",
+  "@onboardingBiometricEnable": {
+    "description": "Biometric toggle label in onboarding"
+  },
+  "onboardingPrivacyTitle": "あなたのデータはあなたのもの",
+  "@onboardingPrivacyTitle": {
+    "description": "Title of onboarding privacy step"
+  },
+  "onboardingPrivacySubtitle": "測定値はこのデバイスにのみ保存されます。匿名のクラッシュレポートは不具合修正に役立ちます — アカウントなし、追跡なし、広告なし。",
+  "@onboardingPrivacySubtitle": {
+    "description": "Subtitle of onboarding privacy step"
+  },
+  "onboardingPrivacyAcknowledge": "理解しました",
+  "@onboardingPrivacyAcknowledge": {
+    "description": "Privacy acknowledgement checkbox label"
+  },
+  "onboardingPrivacyRequired": "続けるにはプライバシー通知を確認してください",
+  "@onboardingPrivacyRequired": {
+    "description": "Validation message when privacy is not acknowledged"
+  },
+  "onboardingCsvTitle": "履歴を持ち込む",
+  "@onboardingCsvTitle": {
+    "description": "Title of onboarding CSV import step"
+  },
+  "onboardingCsvSubtitle": "mySugr・Dexcom・Contourから測定値をインポート — またはスキップして新規開始。",
+  "@onboardingCsvSubtitle": {
+    "description": "Subtitle of onboarding CSV import step"
+  },
+  "onboardingBaselineLabel": "基準血糖値 (任意)",
+  "@onboardingBaselineLabel": {
+    "description": "Label of optional baseline glucose input"
+  },
+  "onboardingBaselineHintMgDl": "例: 120 mg/dL",
+  "@onboardingBaselineHintMgDl": {
+    "description": "Hint for baseline glucose input in mg/dL"
+  },
+  "onboardingBaselineHintMmolL": "例: 6.5 mmol/L",
+  "@onboardingBaselineHintMmolL": {
+    "description": "Hint for baseline glucose input in mmol/L"
+  },
+  "onboardingBaselineInvalid": "有効な血糖値を入力してください",
+  "@onboardingBaselineInvalid": {
+    "description": "Validation error for baseline glucose input"
+  },
+  "onboardingDefaultReminderLabel": "血糖チェック",
+  "@onboardingDefaultReminderLabel": {
+    "description": "Default label for onboarding-created reminder"
+  },
+  "dailyTipTitle": "今日のヒント",
+  "@dailyTipTitle": {
+    "description": "Title of the daily diabetes tip card"
+  },
+  "dailyTip1": "運転前に血糖値を測りましょう。",
+  "@dailyTip1": {
+    "description": "Rotating diabetes tip 1"
+  },
+  "dailyTip2": "測定値はすぐに記録しましょう — 記憶は曖昧になります。",
+  "@dailyTip2": {
+    "description": "Rotating diabetes tip 2"
+  },
+  "dailyTip3": "速効性のブドウ糖を常に携帯しましょう。",
+  "@dailyTip3": {
+    "description": "Rotating diabetes tip 3"
+  },
+  "dailyTip4": "食後の10分間の散歩が血糖スパイクを抑えます。",
+  "@dailyTip4": {
+    "description": "Rotating diabetes tip 4"
+  },
+  "dailyTip5": "毎週日曜日に週間の目標範囲内時間を確認しましょう。",
+  "@dailyTip5": {
+    "description": "Rotating diabetes tip 5"
+  },
+  "dailyTip6": "試験紙とセンサーは熱を避けて保管しましょう。",
+  "@dailyTip6": {
+    "description": "Rotating diabetes tip 6"
+  },
+  "dailyTip7": "日中の水分補給が血糖値を安定させます。",
+  "@dailyTip7": {
+    "description": "Rotating diabetes tip 7"
+  },
+  "dailyTip8": "炭水化物はタンパク質や良質な脂質と組み合わせましょう。",
+  "@dailyTip8": {
+    "description": "Rotating diabetes tip 8"
+  },
+  "dailyTip9": "規則正しい就寝時間が安定した朝につながります。",
+  "@dailyTip9": {
+    "description": "Rotating diabetes tip 9"
+  },
+  "dailyTip10": "穿刺・センサー部位を定期的に確認・変更しましょう。",
+  "@dailyTip10": {
+    "description": "Rotating diabetes tip 10"
+  },
+  "dailyTip11": "自分特有の低血糖の前兆を知りましょう。",
+  "@dailyTip11": {
+    "description": "Rotating diabetes tip 11"
+  },
+  "dailyTip12": "受診のたびにGlucosaサマリーを持参しましょう。",
+  "@dailyTip12": {
+    "description": "Rotating diabetes tip 12"
+  },
+  "dailyTip13": "低血糖対処の15分後に再測定しましょう。",
+  "@dailyTip13": {
+    "description": "Rotating diabetes tip 13"
+  },
+  "dailyTip14": "連続記録を祝い — 途切れは許しましょう。",
+  "@dailyTip14": {
+    "description": "Rotating diabetes tip 14"
+  }
+}
