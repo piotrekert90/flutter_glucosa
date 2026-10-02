@@ -26,26 +26,23 @@ class FakeKetoneReadingRepository implements KetoneReadingRepository {
   }
 
   @override
-  Stream<List<KetoneReading>> watchAll() {
-    return _streamController.stream;
+  Stream<List<KetoneReading>> watchAll() async* {
+    yield List.unmodifiable(_readings);
+    yield* _streamController.stream;
   }
 
   @override
-  Stream<KetoneReading?> watchById(int id) {
-    return _streamController.stream.map((list) {
-      try {
-        return list.firstWhere((r) => r.id == id);
-      } catch (_) {
-        return null;
-      }
-    });
-  }
-
-  @override
-  Stream<KetoneReading?> watchLatest() {
-    return _streamController.stream.map(
-      (list) => list.isEmpty ? null : list.first,
+  Stream<KetoneReading?> watchById(int id) async* {
+    yield _readings.where((r) => r.id == id).firstOrNull;
+    yield* _streamController.stream.map(
+      (list) => list.where((r) => r.id == id).firstOrNull,
     );
+  }
+
+  @override
+  Stream<KetoneReading?> watchLatest() async* {
+    yield _readings.firstOrNull;
+    yield* _streamController.stream.map((list) => list.firstOrNull);
   }
 
   @override

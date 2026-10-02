@@ -26,26 +26,23 @@ class FakeWeightReadingRepository implements WeightReadingRepository {
   }
 
   @override
-  Stream<List<WeightReading>> watchAll() {
-    return _streamController.stream;
+  Stream<List<WeightReading>> watchAll() async* {
+    yield List.unmodifiable(_readings);
+    yield* _streamController.stream;
   }
 
   @override
-  Stream<WeightReading?> watchById(int id) {
-    return _streamController.stream.map((list) {
-      try {
-        return list.firstWhere((r) => r.id == id);
-      } catch (_) {
-        return null;
-      }
-    });
-  }
-
-  @override
-  Stream<WeightReading?> watchLatest() {
-    return _streamController.stream.map(
-      (list) => list.isEmpty ? null : list.first,
+  Stream<WeightReading?> watchById(int id) async* {
+    yield _readings.where((r) => r.id == id).firstOrNull;
+    yield* _streamController.stream.map(
+      (list) => list.where((r) => r.id == id).firstOrNull,
     );
+  }
+
+  @override
+  Stream<WeightReading?> watchLatest() async* {
+    yield _readings.firstOrNull;
+    yield* _streamController.stream.map((list) => list.firstOrNull);
   }
 
   @override

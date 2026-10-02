@@ -26,26 +26,23 @@ class FakeCholesterolReadingRepository implements CholesterolReadingRepository {
   }
 
   @override
-  Stream<List<CholesterolReading>> watchAll() {
-    return _streamController.stream;
+  Stream<List<CholesterolReading>> watchAll() async* {
+    yield List.unmodifiable(_readings);
+    yield* _streamController.stream;
   }
 
   @override
-  Stream<CholesterolReading?> watchById(int id) {
-    return _streamController.stream.map((list) {
-      try {
-        return list.firstWhere((r) => r.id == id);
-      } catch (_) {
-        return null;
-      }
-    });
-  }
-
-  @override
-  Stream<CholesterolReading?> watchLatest() {
-    return _streamController.stream.map(
-      (list) => list.isEmpty ? null : list.first,
+  Stream<CholesterolReading?> watchById(int id) async* {
+    yield _readings.where((r) => r.id == id).firstOrNull;
+    yield* _streamController.stream.map(
+      (list) => list.where((r) => r.id == id).firstOrNull,
     );
+  }
+
+  @override
+  Stream<CholesterolReading?> watchLatest() async* {
+    yield _readings.firstOrNull;
+    yield* _streamController.stream.map((list) => list.firstOrNull);
   }
 
   @override
