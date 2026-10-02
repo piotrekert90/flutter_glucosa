@@ -7,6 +7,7 @@ import '../../features/cholesterol/data/models/cholesterol_reading_model.dart';
 import '../../features/glucose/data/models/glucose_reading_model.dart';
 import '../../features/hba1c/data/models/hba1c_reading_model.dart';
 import '../../features/ketones/data/models/ketone_reading_model.dart';
+import '../../features/reminders/data/models/reminder_model.dart';
 import '../../features/settings/data/models/user_profile_model.dart';
 import '../../features/weight/data/models/weight_reading_model.dart';
 
@@ -26,6 +27,7 @@ Future<Isar> isarDb(Ref ref) async {
         KetoneReadingModelSchema,
         CholesterolReadingModelSchema,
         WeightReadingModelSchema,
+        ReminderModelSchema,
       ], directory: directory.path);
   ref.onDispose(() {
     if (isar.isOpen) {
