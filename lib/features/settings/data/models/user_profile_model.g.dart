@@ -32,49 +32,59 @@ const UserProfileModelSchema = CollectionSchema(
       name: r'isBiometricLockEnabled',
       type: IsarType.bool,
     ),
-    r'isNotificationsEnabled': PropertySchema(
+    r'isHealthSyncEnabled': PropertySchema(
       id: 3,
+      name: r'isHealthSyncEnabled',
+      type: IsarType.bool,
+    ),
+    r'isNotificationsEnabled': PropertySchema(
+      id: 4,
       name: r'isNotificationsEnabled',
       type: IsarType.bool,
     ),
     r'isOnboardingCompleted': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'isOnboardingCompleted',
       type: IsarType.bool,
     ),
-    r'name': PropertySchema(id: 5, name: r'name', type: IsarType.string),
-    r'preferredGlucoseUnit': PropertySchema(
+    r'lastHealthSyncAt': PropertySchema(
       id: 6,
+      name: r'lastHealthSyncAt',
+      type: IsarType.dateTime,
+    ),
+    r'name': PropertySchema(id: 7, name: r'name', type: IsarType.string),
+    r'preferredGlucoseUnit': PropertySchema(
+      id: 8,
       name: r'preferredGlucoseUnit',
       type: IsarType.string,
     ),
     r'preferredHbA1cUnit': PropertySchema(
-      id: 7,
+      id: 9,
       name: r'preferredHbA1cUnit',
       type: IsarType.string,
     ),
     r'preferredWeightUnit': PropertySchema(
-      id: 8,
+      id: 10,
       name: r'preferredWeightUnit',
       type: IsarType.string,
     ),
     r'targetRangeMaxMgDl': PropertySchema(
-      id: 9,
+      id: 11,
       name: r'targetRangeMaxMgDl',
       type: IsarType.long,
     ),
     r'targetRangeMinMgDl': PropertySchema(
-      id: 10,
+      id: 12,
       name: r'targetRangeMinMgDl',
       type: IsarType.long,
     ),
     r'targetRangePreset': PropertySchema(
-      id: 11,
+      id: 13,
       name: r'targetRangePreset',
       type: IsarType.string,
     ),
     r'themeMode': PropertySchema(
-      id: 12,
+      id: 14,
       name: r'themeMode',
       type: IsarType.string,
     ),
@@ -121,16 +131,18 @@ void _userProfileModelSerialize(
   writer.writeString(offsets[0], object.diabetesType);
   writer.writeString(offsets[1], object.firstDayOfWeek);
   writer.writeBool(offsets[2], object.isBiometricLockEnabled);
-  writer.writeBool(offsets[3], object.isNotificationsEnabled);
-  writer.writeBool(offsets[4], object.isOnboardingCompleted);
-  writer.writeString(offsets[5], object.name);
-  writer.writeString(offsets[6], object.preferredGlucoseUnit);
-  writer.writeString(offsets[7], object.preferredHbA1cUnit);
-  writer.writeString(offsets[8], object.preferredWeightUnit);
-  writer.writeLong(offsets[9], object.targetRangeMaxMgDl);
-  writer.writeLong(offsets[10], object.targetRangeMinMgDl);
-  writer.writeString(offsets[11], object.targetRangePreset);
-  writer.writeString(offsets[12], object.themeMode);
+  writer.writeBool(offsets[3], object.isHealthSyncEnabled);
+  writer.writeBool(offsets[4], object.isNotificationsEnabled);
+  writer.writeBool(offsets[5], object.isOnboardingCompleted);
+  writer.writeDateTime(offsets[6], object.lastHealthSyncAt);
+  writer.writeString(offsets[7], object.name);
+  writer.writeString(offsets[8], object.preferredGlucoseUnit);
+  writer.writeString(offsets[9], object.preferredHbA1cUnit);
+  writer.writeString(offsets[10], object.preferredWeightUnit);
+  writer.writeLong(offsets[11], object.targetRangeMaxMgDl);
+  writer.writeLong(offsets[12], object.targetRangeMinMgDl);
+  writer.writeString(offsets[13], object.targetRangePreset);
+  writer.writeString(offsets[14], object.themeMode);
 }
 
 UserProfileModel _userProfileModelDeserialize(
@@ -144,16 +156,18 @@ UserProfileModel _userProfileModelDeserialize(
   object.firstDayOfWeek = reader.readString(offsets[1]);
   object.id = id;
   object.isBiometricLockEnabled = reader.readBool(offsets[2]);
-  object.isNotificationsEnabled = reader.readBool(offsets[3]);
-  object.isOnboardingCompleted = reader.readBool(offsets[4]);
-  object.name = reader.readString(offsets[5]);
-  object.preferredGlucoseUnit = reader.readString(offsets[6]);
-  object.preferredHbA1cUnit = reader.readString(offsets[7]);
-  object.preferredWeightUnit = reader.readString(offsets[8]);
-  object.targetRangeMaxMgDl = reader.readLong(offsets[9]);
-  object.targetRangeMinMgDl = reader.readLong(offsets[10]);
-  object.targetRangePreset = reader.readString(offsets[11]);
-  object.themeMode = reader.readString(offsets[12]);
+  object.isHealthSyncEnabled = reader.readBool(offsets[3]);
+  object.isNotificationsEnabled = reader.readBool(offsets[4]);
+  object.isOnboardingCompleted = reader.readBool(offsets[5]);
+  object.lastHealthSyncAt = reader.readDateTimeOrNull(offsets[6]);
+  object.name = reader.readString(offsets[7]);
+  object.preferredGlucoseUnit = reader.readString(offsets[8]);
+  object.preferredHbA1cUnit = reader.readString(offsets[9]);
+  object.preferredWeightUnit = reader.readString(offsets[10]);
+  object.targetRangeMaxMgDl = reader.readLong(offsets[11]);
+  object.targetRangeMinMgDl = reader.readLong(offsets[12]);
+  object.targetRangePreset = reader.readString(offsets[13]);
+  object.themeMode = reader.readString(offsets[14]);
   return object;
 }
 
@@ -175,20 +189,24 @@ P _userProfileModelDeserializeProp<P>(
     case 4:
       return (reader.readBool(offset)) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 7:
       return (reader.readString(offset)) as P;
     case 8:
       return (reader.readString(offset)) as P;
     case 9:
-      return (reader.readLong(offset)) as P;
-    case 10:
-      return (reader.readLong(offset)) as P;
-    case 11:
       return (reader.readString(offset)) as P;
+    case 10:
+      return (reader.readString(offset)) as P;
+    case 11:
+      return (reader.readLong(offset)) as P;
     case 12:
+      return (reader.readLong(offset)) as P;
+    case 13:
+      return (reader.readString(offset)) as P;
+    case 14:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -642,6 +660,15 @@ extension UserProfileModelQueryFilter
   }
 
   QueryBuilder<UserProfileModel, UserProfileModel, QAfterFilterCondition>
+  isHealthSyncEnabledEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.equalTo(property: r'isHealthSyncEnabled', value: value),
+      );
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterFilterCondition>
   isNotificationsEnabledEqualTo(bool value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -660,6 +687,79 @@ extension UserProfileModelQueryFilter
         FilterCondition.equalTo(
           property: r'isOnboardingCompleted',
           value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterFilterCondition>
+  lastHealthSyncAtIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        const FilterCondition.isNull(property: r'lastHealthSyncAt'),
+      );
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterFilterCondition>
+  lastHealthSyncAtIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        const FilterCondition.isNotNull(property: r'lastHealthSyncAt'),
+      );
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterFilterCondition>
+  lastHealthSyncAtEqualTo(DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.equalTo(property: r'lastHealthSyncAt', value: value),
+      );
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterFilterCondition>
+  lastHealthSyncAtGreaterThan(DateTime? value, {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.greaterThan(
+          include: include,
+          property: r'lastHealthSyncAt',
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterFilterCondition>
+  lastHealthSyncAtLessThan(DateTime? value, {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.lessThan(
+          include: include,
+          property: r'lastHealthSyncAt',
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterFilterCondition>
+  lastHealthSyncAtBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.between(
+          property: r'lastHealthSyncAt',
+          lower: lower,
+          includeLower: includeLower,
+          upper: upper,
+          includeUpper: includeUpper,
         ),
       );
     });
@@ -1679,6 +1779,20 @@ extension UserProfileModelQuerySortBy
   }
 
   QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  sortByIsHealthSyncEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isHealthSyncEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  sortByIsHealthSyncEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isHealthSyncEnabled', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
   sortByIsNotificationsEnabled() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isNotificationsEnabled', Sort.asc);
@@ -1703,6 +1817,20 @@ extension UserProfileModelQuerySortBy
   sortByIsOnboardingCompletedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isOnboardingCompleted', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  sortByLastHealthSyncAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastHealthSyncAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  sortByLastHealthSyncAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastHealthSyncAt', Sort.desc);
     });
   }
 
@@ -1876,6 +2004,20 @@ extension UserProfileModelQuerySortThenBy
   }
 
   QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  thenByIsHealthSyncEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isHealthSyncEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  thenByIsHealthSyncEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isHealthSyncEnabled', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
   thenByIsNotificationsEnabled() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isNotificationsEnabled', Sort.asc);
@@ -1900,6 +2042,20 @@ extension UserProfileModelQuerySortThenBy
   thenByIsOnboardingCompletedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isOnboardingCompleted', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  thenByLastHealthSyncAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastHealthSyncAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QAfterSortBy>
+  thenByLastHealthSyncAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lastHealthSyncAt', Sort.desc);
     });
   }
 
@@ -2042,6 +2198,13 @@ extension UserProfileModelQueryWhereDistinct
   }
 
   QueryBuilder<UserProfileModel, UserProfileModel, QDistinct>
+  distinctByIsHealthSyncEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isHealthSyncEnabled');
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QDistinct>
   distinctByIsNotificationsEnabled() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isNotificationsEnabled');
@@ -2052,6 +2215,13 @@ extension UserProfileModelQueryWhereDistinct
   distinctByIsOnboardingCompleted() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isOnboardingCompleted');
+    });
+  }
+
+  QueryBuilder<UserProfileModel, UserProfileModel, QDistinct>
+  distinctByLastHealthSyncAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'lastHealthSyncAt');
     });
   }
 
@@ -2155,6 +2325,13 @@ extension UserProfileModelQueryProperty
   }
 
   QueryBuilder<UserProfileModel, bool, QQueryOperations>
+  isHealthSyncEnabledProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isHealthSyncEnabled');
+    });
+  }
+
+  QueryBuilder<UserProfileModel, bool, QQueryOperations>
   isNotificationsEnabledProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isNotificationsEnabled');
@@ -2165,6 +2342,13 @@ extension UserProfileModelQueryProperty
   isOnboardingCompletedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isOnboardingCompleted');
+    });
+  }
+
+  QueryBuilder<UserProfileModel, DateTime?, QQueryOperations>
+  lastHealthSyncAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'lastHealthSyncAt');
     });
   }
 
