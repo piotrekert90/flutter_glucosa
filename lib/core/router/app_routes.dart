@@ -3,6 +3,9 @@ enum AppRoute {
   /// Main dashboard overview screen route.
   overview('/', 'overview'),
 
+  /// Interactive calendar screen route.
+  calendar('/calendar', 'calendar'),
+
   /// Health measurements history list route.
   history('/history', 'history'),
 

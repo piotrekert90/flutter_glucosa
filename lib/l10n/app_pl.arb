@@ -261,7 +261,28 @@
   "wipeDataConfirmMessage": "Tej operacji nie można cofnąć. Wszystkie Twoje pomiary glikemii i ustawienia zostaną bezpowrotnie utracone.",
   "wipeDataButton": "Usuń wszystko",
   "wipeDataSuccess": "Wszystkie dane zostały pomyślnie usunięte.",
-  "notSet": "Nie ustawiono"
+  "notSet": "Nie ustawiono",
+  "firstDayOfWeek": "Pierwszy dzień tygodnia",
+  "firstDayOfWeekSystem": "Domyślny systemu",
+  "firstDayOfWeekMonday": "Poniedziałek",
+  "firstDayOfWeekSunday": "Niedziela",
+  "selectFirstDayOfWeek": "Wybierz pierwszy dzień tygodnia",
+  "tabCalendar": "Kalendarz",
+  "calendarTitle": "Kalendarz",
+  "previousMonth": "Poprzedni miesiąc",
+  "nextMonth": "Następny miesiąc",
+  "jumpToToday": "Dzisiaj",
+  "noEntriesForDate": "Brak pomiarów w tym dniu",
+  "noEntriesForDateSubtitle": "Dotknij przycisku poniżej, aby dodać pierwszy pomiar dla tego dnia.",
+  "entriesFromDate": "Pomiary z dnia {date}",
+  "readingsCountPill": "{count, plural, =1{1 pomiar} few{{count} pomiary} other{{count} pomiarów}}",
+  "calendarDaySemantics": "{date}, {count, plural, =0{brak pomiarów} =1{1 pomiar} few{{count} pomiary} other{{count} pomiarów}}",
+  "calendarDaySemanticsGoalAchieved": "{date}, {count, plural, =1{1 pomiar, w normie} few{{count} pomiary, w normie} other{{count} pomiarów, w normie}}",
+  "allReadingsInRangeBanner": "Wszystkie pomiary w zakresie docelowym",
+  "addAnotherReading": "Dodaj kolejny pomiar",
+  "edit": "Edytuj",
+  "moreOptions": "Więcej opcji"
 }
+
 
 

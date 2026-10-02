@@ -3,6 +3,7 @@ import 'package:flutter_glucosa/core/router/app_router.dart';
 import 'package:flutter_glucosa/core/router/app_routes.dart';
 import 'package:flutter_glucosa/features/export/presentation/providers/export_service_provider.dart';
 import 'package:flutter_glucosa/features/export/presentation/screens/export_screen.dart';
+import 'package:flutter_glucosa/features/calendar/presentation/screens/calendar_screen.dart';
 import 'package:flutter_glucosa/features/glucose/data/providers/glucose_reading_repository_provider.dart';
 import 'package:flutter_glucosa/features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import 'package:flutter_glucosa/features/hba1c/data/providers/hba1c_reading_repository_provider.dart';
@@ -89,6 +90,8 @@ void main() {
     test('AppRoute enum definitions have correct paths and names', () {
       expect(AppRoute.overview.path, '/');
       expect(AppRoute.overview.name, 'overview');
+      expect(AppRoute.calendar.path, '/calendar');
+      expect(AppRoute.calendar.name, 'calendar');
       expect(AppRoute.history.path, '/history');
       expect(AppRoute.history.name, 'history');
       expect(AppRoute.settings.path, '/settings');
@@ -128,6 +131,15 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(OverviewScreen), findsOneWidget);
+    });
+
+    testWidgets('Navigates to CalendarScreen on "/calendar" route', (
+      tester,
+    ) async {
+      await tester.pumpWidget(createTestApp(initialLocation: '/calendar'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CalendarScreen), findsOneWidget);
     });
 
     testWidgets('Navigates to HistoryScreen on "/history" route', (

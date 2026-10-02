@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../features/blood_pressure/presentation/screens/add_edit_blood_pressure_reading_screen.dart';
+import '../../features/calendar/presentation/screens/calendar_screen.dart';
 import '../../features/cholesterol/presentation/screens/add_edit_cholesterol_reading_screen.dart';
 import '../../features/export/presentation/screens/export_screen.dart';
 import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
@@ -69,6 +70,11 @@ GoRouter appRouter(Ref ref) {
                     label: l10n?.navOverview ?? 'Overview',
                   ),
                   AdaptiveNavigationDestination(
+                    icon: const Icon(Icons.calendar_month_outlined),
+                    selectedIcon: const Icon(Icons.calendar_month),
+                    label: l10n?.tabCalendar ?? 'Calendar',
+                  ),
+                  AdaptiveNavigationDestination(
                     icon: const Icon(Icons.history_outlined),
                     selectedIcon: const Icon(Icons.history),
                     label: l10n?.navHistory ?? 'History',
@@ -89,6 +95,16 @@ GoRouter appRouter(Ref ref) {
                 name: AppRoute.overview.name,
                 builder: (BuildContext context, GoRouterState state) =>
                     const OverviewScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoute.calendar.path,
+                name: AppRoute.calendar.name,
+                builder: (BuildContext context, GoRouterState state) =>
+                    const CalendarScreen(),
               ),
             ],
           ),

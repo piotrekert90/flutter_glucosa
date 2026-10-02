@@ -1040,6 +1040,113 @@
   "wipeDataSuccess": "All data has been wiped successfully.",
   "@wipeDataSuccess": {
     "description": "Snackbar notification after data wipe"
+  },
+  "firstDayOfWeek": "First Day of Week",
+  "@firstDayOfWeek": {
+    "description": "Label for setting preferred first day of the week"
+  },
+  "firstDayOfWeekSystem": "System default",
+  "@firstDayOfWeekSystem": {
+    "description": "Option for system default first day of the week"
+  },
+  "firstDayOfWeekMonday": "Monday",
+  "@firstDayOfWeekMonday": {
+    "description": "Option for Monday as first day of the week"
+  },
+  "firstDayOfWeekSunday": "Sunday",
+  "@firstDayOfWeekSunday": {
+    "description": "Option for Sunday as first day of the week"
+  },
+  "selectFirstDayOfWeek": "Select First Day of Week",
+  "@selectFirstDayOfWeek": {
+    "description": "Dialog title for picking first day of the week"
+  },
+  "tabCalendar": "Calendar",
+  "@tabCalendar": {
+    "description": "Title and tab label for interactive calendar screen"
+  },
+  "calendarTitle": "Calendar",
+  "@calendarTitle": {
+    "description": "Top bar title for calendar screen"
+  },
+  "previousMonth": "Previous month",
+  "@previousMonth": {
+    "description": "Tooltip for previous month navigation button"
+  },
+  "nextMonth": "Next month",
+  "@nextMonth": {
+    "description": "Tooltip for next month navigation button"
+  },
+  "jumpToToday": "Today",
+  "@jumpToToday": {
+    "description": "Button to jump back to current calendar month and day"
+  },
+  "noEntriesForDate": "No readings on this day",
+  "@noEntriesForDate": {
+    "description": "Empty state title when selected calendar day has no readings"
+  },
+  "noEntriesForDateSubtitle": "Tap the button below to add your first reading for this date.",
+  "@noEntriesForDateSubtitle": {
+    "description": "Empty state subtitle prompting the user to add a reading for the selected day"
+  },
+  "entriesFromDate": "Readings for {date}",
+  "@entriesFromDate": {
+    "description": "Header title displaying selected day readings",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "readingsCountPill": "{count, plural, =1{1 reading} other{{count} readings}}",
+  "@readingsCountPill": {
+    "description": "Badge showing total readings count for selected day",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarDaySemantics": "{date}, {count, plural, =0{no readings} =1{1 reading} other{{count} readings}}",
+  "@calendarDaySemantics": {
+    "description": "Accessibility label for a calendar day cell",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarDaySemanticsGoalAchieved": "{date}, {count, plural, =1{1 reading, all in target} other{{count} readings, all in target}}",
+  "@calendarDaySemanticsGoalAchieved": {
+    "description": "Accessibility label for a calendar day cell where all readings are within target range",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "allReadingsInRangeBanner": "All readings within target range",
+  "@allReadingsInRangeBanner": {
+    "description": "Banner displayed when all readings on selected day are within target range"
+  },
+  "addAnotherReading": "Add Another Reading",
+  "@addAnotherReading": {
+    "description": "Button to log another measurement for the selected day"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Generic edit action label"
+  },
+  "moreOptions": "More options",
+  "@moreOptions": {
+    "description": "Tooltip for more options popup menu button"
   }
 }
+
 
