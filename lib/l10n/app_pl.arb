@@ -187,6 +187,21 @@
   "onboardingGetStarted": "Rozpocznij",
   "onboardingNext": "Dalej",
   "onboardingBack": "Wstecz",
-  "onboardingStepOf": "Krok {step} z {total}"
+  "onboardingStepOf": "Krok {step} z {total}",
+  "reminders": "Przypomnienia",
+  "addReminder": "Dodaj przypomnienie",
+  "editReminder": "Edytuj przypomnienie",
+  "deleteReminder": "Usuń przypomnienie",
+  "deleteReminderConfirm": "Czy na pewno chcesz usunąć to przypomnienie?",
+  "noRemindersTitle": "Brak zaplanowanych przypomnień",
+  "noRemindersSubtitle": "Dodaj przypomnienia, aby nie zapominać o rejestrowaniu pomiarów zdrowotnych.",
+  "reminderLabel": "Etykieta",
+  "reminderLabelHint": "np. Poranna glukoza na czczo",
+  "reminderTime": "Godzina",
+  "reminderMetric": "Wskaźnik zdrowotny",
+  "reminderOneTime": "Jednorazowe przypomnienie",
+  "reminderOneTimeSubtitle": "Wyłącza się automatycznie po wysłaniu",
+  "reminderSavedSuccess": "Przypomnienie zostało pomyślnie zapisane",
+  "reminderDeletedSuccess": "Przypomnienie zostało usunięte"
 }
 

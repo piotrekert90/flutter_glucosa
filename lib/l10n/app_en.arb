@@ -738,5 +738,65 @@
       "step": {"type": "int"},
       "total": {"type": "int"}
     }
+  },
+  "reminders": "Reminders",
+  "@reminders": {
+    "description": "Title for reminders management screen"
+  },
+  "addReminder": "Add Reminder",
+  "@addReminder": {
+    "description": "Button label and dialog title to add a new reminder"
+  },
+  "editReminder": "Edit Reminder",
+  "@editReminder": {
+    "description": "Dialog title to edit an existing reminder"
+  },
+  "deleteReminder": "Delete Reminder",
+  "@deleteReminder": {
+    "description": "Button label to delete a reminder"
+  },
+  "deleteReminderConfirm": "Are you sure you want to delete this reminder?",
+  "@deleteReminderConfirm": {
+    "description": "Confirmation prompt when deleting a reminder"
+  },
+  "noRemindersTitle": "No reminders scheduled",
+  "@noRemindersTitle": {
+    "description": "Empty state title when no reminders are configured"
+  },
+  "noRemindersSubtitle": "Add reminders to never forget logging your health measurements.",
+  "@noRemindersSubtitle": {
+    "description": "Empty state subtitle encouraging user to add reminders"
+  },
+  "reminderLabel": "Label",
+  "@reminderLabel": {
+    "description": "Form label for reminder description"
+  },
+  "reminderLabelHint": "e.g. Morning fasting glucose",
+  "@reminderLabelHint": {
+    "description": "Hint text for reminder label input"
+  },
+  "reminderTime": "Time",
+  "@reminderTime": {
+    "description": "Label for reminder time selection"
+  },
+  "reminderMetric": "Health Metric",
+  "@reminderMetric": {
+    "description": "Label for reminder health metric type"
+  },
+  "reminderOneTime": "One-time reminder",
+  "@reminderOneTime": {
+    "description": "Switch label for one-time reminder"
+  },
+  "reminderOneTimeSubtitle": "Automatically deactivates after firing",
+  "@reminderOneTimeSubtitle": {
+    "description": "Subtitle describing one-time reminder behavior"
+  },
+  "reminderSavedSuccess": "Reminder saved successfully",
+  "@reminderSavedSuccess": {
+    "description": "Snackbar message when reminder is saved"
+  },
+  "reminderDeletedSuccess": "Reminder deleted",
+  "@reminderDeletedSuccess": {
+    "description": "Snackbar message when reminder is deleted"
   }
 }

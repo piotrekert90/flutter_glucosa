@@ -9,6 +9,7 @@ import '../../features/glucose/presentation/screens/add_edit_glucose_reading_scr
 import '../../features/hba1c/presentation/screens/add_edit_hba1c_reading_screen.dart';
 import '../../features/ketones/presentation/screens/add_edit_ketone_reading_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
+import '../../features/reminders/presentation/screens/reminders_screen.dart';
 import '../../features/weight/presentation/screens/add_edit_weight_reading_screen.dart';
 import '../../features/history/presentation/screens/history_screen.dart';
 import '../../features/overview/presentation/screens/overview_screen.dart';
@@ -220,6 +221,12 @@ GoRouter appRouter(Ref ref) {
         name: AppRoute.onboarding.name,
         builder: (BuildContext context, GoRouterState state) =>
             const OnboardingScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.reminders.path,
+        name: AppRoute.reminders.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const RemindersScreen(),
       ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) {

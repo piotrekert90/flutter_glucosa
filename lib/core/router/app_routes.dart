@@ -52,7 +52,10 @@ enum AppRoute {
   editWeight('/weight/edit/:id', 'edit_weight'),
 
   /// Route for the first-run onboarding wizard.
-  onboarding('/onboarding', 'onboarding');
+  onboarding('/onboarding', 'onboarding'),
+
+  /// Route to view and manage scheduled measurement reminders.
+  reminders('/reminders', 'reminders');
 
   const AppRoute(this.path, this.name);
 

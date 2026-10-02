@@ -5,6 +5,8 @@ import 'package:flutter_glucosa/features/glucose/data/providers/glucose_reading_
 import 'package:flutter_glucosa/features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
 import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
+import 'package:flutter_glucosa/features/reminders/presentation/providers/reminder_repository_provider.dart';
+import 'package:flutter_glucosa/features/reminders/presentation/screens/reminders_screen.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
 import 'package:flutter_glucosa/features/settings/presentation/screens/licenses_screen.dart';
@@ -15,11 +17,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/fake_glucose_reading_repository.dart';
+import '../../helpers/fake_reminder_repository.dart';
 import '../../helpers/fake_user_profile_repository.dart';
 
 void main() {
   late FakeUserProfileRepository fakeUserProfileRepository;
   late FakeGlucoseReadingRepository fakeGlucoseReadingRepository;
+  late FakeReminderRepository fakeReminderRepository;
 
   setUp(() {
     // Seed a completed profile so the onboarding guard lets tests through
@@ -30,11 +34,13 @@ void main() {
       ),
     );
     fakeGlucoseReadingRepository = FakeGlucoseReadingRepository();
+    fakeReminderRepository = FakeReminderRepository();
   });
 
   tearDown(() {
     fakeUserProfileRepository.dispose();
     fakeGlucoseReadingRepository.dispose();
+    fakeReminderRepository.dispose();
   });
 
   Widget createTestApp({String? initialLocation}) {
@@ -46,6 +52,7 @@ void main() {
         glucoseReadingRepositoryProvider.overrideWithValue(
           fakeGlucoseReadingRepository,
         ),
+        reminderRepositoryProvider.overrideWithValue(fakeReminderRepository),
       ],
       child: Consumer(
         builder: (context, ref, _) {
@@ -270,6 +277,13 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Edit Weight'), findsOneWidget);
+    });
+
+    testWidgets('Navigates to RemindersScreen on "/reminders"', (tester) async {
+      await tester.pumpWidget(createTestApp(initialLocation: '/reminders'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(RemindersScreen), findsOneWidget);
     });
 
     testWidgets('Renders error screen on unknown route', (tester) async {

@@ -29,19 +29,17 @@ class FakeReminderRepository implements ReminderRepository {
   }
 
   @override
-  Stream<List<Reminder>> watchAll() {
-    return _streamController.stream;
+  Stream<List<Reminder>> watchAll() async* {
+    yield List.unmodifiable(_reminders);
+    yield* _streamController.stream;
   }
 
   @override
-  Stream<Reminder?> watchById(int id) {
-    return _streamController.stream.map((list) {
-      try {
-        return list.firstWhere((r) => r.id == id);
-      } catch (_) {
-        return null;
-      }
-    });
+  Stream<Reminder?> watchById(int id) async* {
+    yield _reminders.where((r) => r.id == id).firstOrNull;
+    yield* _streamController.stream.map(
+      (list) => list.where((r) => r.id == id).firstOrNull,
+    );
   }
 
   @override

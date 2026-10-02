@@ -108,6 +108,12 @@ class SettingsScreen extends ConsumerWidget {
                   },
                 ),
                 const SizedBox(height: 12),
+                CustomSettingsTile(
+                  icon: Icons.alarm_outlined,
+                  title: l10n?.reminders ?? 'Reminders',
+                  onTap: () => context.push('/reminders'),
+                ),
+                const SizedBox(height: 12),
                 SectionHeader(label: l10n?.about ?? 'About'),
                 FutureBuilder<PackageInfo>(
                   future: PackageInfo.fromPlatform(),
