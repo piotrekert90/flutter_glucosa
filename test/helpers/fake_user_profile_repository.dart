@@ -73,6 +73,35 @@ class FakeUserProfileRepository implements UserProfileRepository {
   }
 
   @override
+  Future<CommandResult> updateHealthSyncEnabled(bool isEnabled) async {
+    _profile = _profile.copyWith(isHealthSyncEnabled: isEnabled);
+    _emit();
+    return (true, null);
+  }
+
+  @override
+  Future<CommandResult> updateLastHealthSyncAt(DateTime? timestamp) async {
+    final current = _profile;
+    _profile = UserProfile(
+      name: current.name,
+      diabetesType: current.diabetesType,
+      preferredGlucoseUnit: current.preferredGlucoseUnit,
+      preferredHbA1cUnit: current.preferredHbA1cUnit,
+      preferredWeightUnit: current.preferredWeightUnit,
+      targetRange: current.targetRange,
+      isOnboardingCompleted: current.isOnboardingCompleted,
+      isNotificationsEnabled: current.isNotificationsEnabled,
+      themeMode: current.themeMode,
+      isBiometricLockEnabled: current.isBiometricLockEnabled,
+      firstDayOfWeek: current.firstDayOfWeek,
+      isHealthSyncEnabled: current.isHealthSyncEnabled,
+      lastHealthSyncAt: timestamp,
+    );
+    _emit();
+    return (true, null);
+  }
+
+  @override
   Future<CommandResult> updateGlucoseUnit(GlucoseUnit unit) async {
     _profile = _profile.copyWith(preferredGlucoseUnit: unit);
     _emit();

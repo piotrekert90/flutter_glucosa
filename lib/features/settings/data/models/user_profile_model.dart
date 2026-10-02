@@ -52,4 +52,10 @@ class UserProfileModel {
 
   /// Preferred first day of the week stored by enum name ('system', 'monday', 'sunday').
   String firstDayOfWeek = 'system';
+
+  /// Flag indicating if platform health store synchronization is enabled.
+  bool isHealthSyncEnabled = false;
+
+  /// Timestamp of the last successful platform health synchronization, if any.
+  DateTime? lastHealthSyncAt;
 }

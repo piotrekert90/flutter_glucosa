@@ -143,6 +143,38 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   }
 
   @override
+  Future<CommandResult> updateHealthSyncEnabled(bool isEnabled) async {
+    try {
+      await _isar.writeTxn(() async {
+        final model = await _getOrCreateModel();
+        model.isHealthSyncEnabled = isEnabled;
+        await _isar.userProfileModels.put(model);
+      });
+      return (true, null);
+    } on IsarError catch (e) {
+      return (false, DatabaseFailure(e.message));
+    } catch (e) {
+      return (false, DatabaseFailure('Unexpected error: $e'));
+    }
+  }
+
+  @override
+  Future<CommandResult> updateLastHealthSyncAt(DateTime? timestamp) async {
+    try {
+      await _isar.writeTxn(() async {
+        final model = await _getOrCreateModel();
+        model.lastHealthSyncAt = timestamp;
+        await _isar.userProfileModels.put(model);
+      });
+      return (true, null);
+    } on IsarError catch (e) {
+      return (false, DatabaseFailure(e.message));
+    } catch (e) {
+      return (false, DatabaseFailure('Unexpected error: $e'));
+    }
+  }
+
+  @override
   Future<CommandResult> updateGlucoseUnit(GlucoseUnit unit) async {
     try {
       await _isar.writeTxn(() async {

@@ -51,6 +51,8 @@ extension UserProfileModelMapper on UserProfileModel {
         firstDayOfWeek,
         FirstDayOfWeek.system,
       ),
+      isHealthSyncEnabled: isHealthSyncEnabled,
+      lastHealthSyncAt: lastHealthSyncAt,
     );
   }
 }
@@ -73,7 +75,9 @@ extension UserProfileMapper on UserProfile {
       ..isNotificationsEnabled = isNotificationsEnabled
       ..themeMode = themeMode.name
       ..isBiometricLockEnabled = isBiometricLockEnabled
-      ..firstDayOfWeek = firstDayOfWeek.name;
+      ..firstDayOfWeek = firstDayOfWeek.name
+      ..isHealthSyncEnabled = isHealthSyncEnabled
+      ..lastHealthSyncAt = lastHealthSyncAt;
   }
 }
 
