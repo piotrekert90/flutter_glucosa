@@ -5,6 +5,8 @@ import 'package:flutter_glucosa/features/export/presentation/providers/export_se
 import 'package:flutter_glucosa/features/export/presentation/screens/export_screen.dart';
 import 'package:flutter_glucosa/features/glucose/data/providers/glucose_reading_repository_provider.dart';
 import 'package:flutter_glucosa/features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
+import 'package:flutter_glucosa/features/hba1c/data/providers/hba1c_reading_repository_provider.dart';
+import 'package:flutter_glucosa/features/hba1c/presentation/screens/hba1c_calculator_screen.dart';
 import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
 import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
 import 'package:flutter_glucosa/features/reminders/presentation/providers/reminder_repository_provider.dart';
@@ -20,12 +22,14 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/fake_export_service.dart';
 import '../../helpers/fake_glucose_reading_repository.dart';
+import '../../helpers/fake_hba1c_reading_repository.dart';
 import '../../helpers/fake_reminder_repository.dart';
 import '../../helpers/fake_user_profile_repository.dart';
 
 void main() {
   late FakeUserProfileRepository fakeUserProfileRepository;
   late FakeGlucoseReadingRepository fakeGlucoseReadingRepository;
+  late FakeHbA1cReadingRepository fakeHbA1cReadingRepository;
   late FakeReminderRepository fakeReminderRepository;
   late FakeExportService fakeExportService;
 
@@ -38,6 +42,7 @@ void main() {
       ),
     );
     fakeGlucoseReadingRepository = FakeGlucoseReadingRepository();
+    fakeHbA1cReadingRepository = FakeHbA1cReadingRepository();
     fakeReminderRepository = FakeReminderRepository();
     fakeExportService = FakeExportService();
   });
@@ -45,6 +50,7 @@ void main() {
   tearDown(() {
     fakeUserProfileRepository.dispose();
     fakeGlucoseReadingRepository.dispose();
+    fakeHbA1cReadingRepository.dispose();
     fakeReminderRepository.dispose();
   });
 
@@ -56,6 +62,9 @@ void main() {
         ),
         glucoseReadingRepositoryProvider.overrideWithValue(
           fakeGlucoseReadingRepository,
+        ),
+        hbA1cReadingRepositoryProvider.overrideWithValue(
+          fakeHbA1cReadingRepository,
         ),
         reminderRepositoryProvider.overrideWithValue(fakeReminderRepository),
         exportServiceProvider.overrideWithValue(fakeExportService),
@@ -110,6 +119,8 @@ void main() {
       expect(AppRoute.editWeight.name, 'edit_weight');
       expect(AppRoute.export.path, '/export');
       expect(AppRoute.export.name, 'export');
+      expect(AppRoute.hba1cCalculator.path, '/hba1c-calculator');
+      expect(AppRoute.hba1cCalculator.name, 'hba1c_calculator');
     });
 
     testWidgets('Renders OverviewScreen on initial "/" route', (tester) async {
@@ -299,6 +310,17 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(ExportScreen), findsOneWidget);
+    });
+
+    testWidgets('Navigates to HbA1cCalculatorScreen on "/hba1c-calculator"', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        createTestApp(initialLocation: '/hba1c-calculator'),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(HbA1cCalculatorScreen), findsOneWidget);
     });
 
     testWidgets('Renders error screen on unknown route', (tester) async {

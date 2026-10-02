@@ -217,6 +217,12 @@
   "exportMatchingRecords": "{count, plural, =0{Brak pomiarów} =1{Wybrano 1 pomiar} few{Wybrano {count} pomiary} many{Wybrano {count} pomiarów} other{Wybrano {count} pomiarów}}",
   "exportAndShare": "Eksportuj i udostępnij",
   "exportSuccess": "Eksport zakończony pomyślnie",
-  "exportNoMetricsSelected": "Wybierz co najmniej jeden rodzaj pomiaru"
+  "exportNoMetricsSelected": "Wybierz co najmniej jeden rodzaj pomiaru",
+  "hba1cCalculator": "Kalkulator HbA1c",
+  "hba1cCalculatorSubtitle": "Oblicz szacowane HbA1c ze średniej glukozy lub oszacuj średnią glukozę z HbA1c.",
+  "averageGlucose": "Średnia glukoza",
+  "adagFormulaExplanation": "Obliczenia oparte są na wzorze z badania ADAG: eAG = 28.7 × HbA1c − 46.7.",
+  "saveAsHbA1cReading": "Zapisz jako pomiar HbA1c",
+  "hba1cReadingSaved": "Pomiar HbA1c został zapisany"
 }
 

@@ -123,6 +123,15 @@ class SettingsScreen extends ConsumerWidget {
                   onTap: () => context.push('/export'),
                 ),
                 const SizedBox(height: 12),
+                CustomSettingsTile(
+                  icon: Icons.calculate_outlined,
+                  title: l10n?.hba1cCalculator ?? 'HbA1c Calculator',
+                  subtitle:
+                      l10n?.hba1cCalculatorSubtitle ??
+                      'Calculate estimated HbA1c from average glucose',
+                  onTap: () => context.push('/hba1c-calculator'),
+                ),
+                const SizedBox(height: 12),
                 SectionHeader(label: l10n?.about ?? 'About'),
                 FutureBuilder<PackageInfo>(
                   future: PackageInfo.fromPlatform(),

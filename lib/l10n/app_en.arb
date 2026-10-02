@@ -864,5 +864,29 @@
   "exportNoMetricsSelected": "Please select at least one metric",
   "@exportNoMetricsSelected": {
     "description": "Validation error when no metrics are selected"
+  },
+  "hba1cCalculator": "HbA1c Calculator",
+  "@hba1cCalculator": {
+    "description": "Title for the HbA1c estimation calculator screen and tile"
+  },
+  "hba1cCalculatorSubtitle": "Calculate estimated HbA1c from average glucose, or estimate average glucose from HbA1c.",
+  "@hba1cCalculatorSubtitle": {
+    "description": "Subtitle describing the HbA1c calculator screen"
+  },
+  "averageGlucose": "Average Glucose",
+  "@averageGlucose": {
+    "description": "Label for average glucose input field"
+  },
+  "adagFormulaExplanation": "Calculations are based on the ADAG study formula: eAG = 28.7 × HbA1c − 46.7.",
+  "@adagFormulaExplanation": {
+    "description": "Explanatory note describing the ADAG formula"
+  },
+  "saveAsHbA1cReading": "Save as HbA1c Reading",
+  "@saveAsHbA1cReading": {
+    "description": "Button to save calculated HbA1c value into the log"
+  },
+  "hba1cReadingSaved": "HbA1c reading saved successfully",
+  "@hba1cReadingSaved": {
+    "description": "Feedback message when calculated HbA1c reading is persisted"
   }
 }

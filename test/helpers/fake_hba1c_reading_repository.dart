@@ -26,26 +26,23 @@ class FakeHbA1cReadingRepository implements HbA1cReadingRepository {
   }
 
   @override
-  Stream<List<HbA1cReading>> watchAll() {
-    return _streamController.stream;
+  Stream<List<HbA1cReading>> watchAll() async* {
+    yield List.unmodifiable(_readings);
+    yield* _streamController.stream;
   }
 
   @override
-  Stream<HbA1cReading?> watchById(int id) {
-    return _streamController.stream.map((list) {
-      try {
-        return list.firstWhere((r) => r.id == id);
-      } catch (_) {
-        return null;
-      }
-    });
-  }
-
-  @override
-  Stream<HbA1cReading?> watchLatest() {
-    return _streamController.stream.map(
-      (list) => list.isEmpty ? null : list.first,
+  Stream<HbA1cReading?> watchById(int id) async* {
+    yield _readings.where((r) => r.id == id).firstOrNull;
+    yield* _streamController.stream.map(
+      (list) => list.where((r) => r.id == id).firstOrNull,
     );
+  }
+
+  @override
+  Stream<HbA1cReading?> watchLatest() async* {
+    yield _readings.firstOrNull;
+    yield* _streamController.stream.map((list) => list.firstOrNull);
   }
 
   @override

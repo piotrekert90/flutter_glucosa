@@ -58,7 +58,10 @@ enum AppRoute {
   reminders('/reminders', 'reminders'),
 
   /// Route for exporting health measurement data.
-  export('/export', 'export');
+  export('/export', 'export'),
+
+  /// Route for the standalone HbA1c conversion calculator utility.
+  hba1cCalculator('/hba1c-calculator', 'hba1c_calculator');
 
   const AppRoute(this.path, this.name);
 

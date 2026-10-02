@@ -8,6 +8,7 @@ import '../../features/cholesterol/presentation/screens/add_edit_cholesterol_rea
 import '../../features/export/presentation/screens/export_screen.dart';
 import '../../features/glucose/presentation/screens/add_edit_glucose_reading_screen.dart';
 import '../../features/hba1c/presentation/screens/add_edit_hba1c_reading_screen.dart';
+import '../../features/hba1c/presentation/screens/hba1c_calculator_screen.dart';
 import '../../features/ketones/presentation/screens/add_edit_ketone_reading_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/reminders/presentation/screens/reminders_screen.dart';
@@ -234,6 +235,12 @@ GoRouter appRouter(Ref ref) {
         name: AppRoute.export.name,
         builder: (BuildContext context, GoRouterState state) =>
             const ExportScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.hba1cCalculator.path,
+        name: AppRoute.hba1cCalculator.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const HbA1cCalculatorScreen(),
       ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) {
