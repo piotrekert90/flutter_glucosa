@@ -79,8 +79,8 @@ lib/
 - **Database**: [Isar Community](https://isar-community.dev) fast NoSQL database with reactive watch queries.
 - **Routing**: [GoRouter](https://pub.dev/packages/go_router) declarative navigation.
 - **Charts**: [fl_chart](https://pub.dev/packages/fl_chart) smooth, reactive line charts.
-- **Localization**: Native Flutter `intl` & `l10n` supporting English (`en`) and Polish (`pl`).
-- **Testing**: 580+ unit, widget, and mapper tests covering 100% of domain and state logic.
+- **Localization**: Native Flutter `intl` & `l10n` supporting 10 languages: English (`en`), German (`de`), Spanish (`es`), French (`fr`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Dutch (`nl`), Polish (`pl`), and Portuguese (`pt`).
+- **Testing**: 780+ unit, widget, and mapper tests covering 100% of domain and state logic.
 
 ---
 

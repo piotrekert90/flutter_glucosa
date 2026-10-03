@@ -15,7 +15,7 @@ We take the security and privacy of our users very seriously.
 
 If you believe you have discovered a security vulnerability in this project, please do NOT create a public issue on GitHub. Instead, report it privately:
 
-1. Send an email to **security@example.com** (or open a private security advisory on GitHub).
+1. Send an email to **piotrekert90@gmail.com** (or open a private security advisory on GitHub).
 2. Include a detailed description of the vulnerability, steps to reproduce, and potential impact.
 3. Allow up to 48 hours for an initial response from the development team.
 4. We will coordinate a fix and release before any public disclosure.
