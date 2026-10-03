@@ -142,7 +142,10 @@ class CalendarDayEntriesCard extends ConsumerWidget {
               ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(16),
-                onTap: () => context.push('/glucose/edit/${reading.id}'),
+                onTap: () => context.pushNamed(
+                  AppRoute.editGlucose.name,
+                  pathParameters: {'id': '${reading.id}'},
+                ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -254,8 +257,8 @@ class CalendarDayEntriesCard extends ConsumerWidget {
                             ),
                           ),
                           Container(
-                            width: 40,
-                            height: 40,
+                            width: 48,
+                            height: 48,
                             decoration: BoxDecoration(
                               color: colorScheme.surfaceContainerHigh,
                               borderRadius: BorderRadius.circular(10),
@@ -277,7 +280,10 @@ class CalendarDayEntriesCard extends ConsumerWidget {
                               tooltip: l10n.moreOptions,
                               onSelected: (value) {
                                 if (value == 'edit') {
-                                  context.push('/glucose/edit/${reading.id}');
+                                  context.pushNamed(
+                                    AppRoute.editGlucose.name,
+                                    pathParameters: {'id': '${reading.id}'},
+                                  );
                                 } else if (value == 'delete') {
                                   _confirmDelete(context, ref, reading.id);
                                 }

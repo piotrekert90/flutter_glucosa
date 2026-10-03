@@ -66,14 +66,14 @@ class CalendarMonthHeader extends StatelessWidget {
                   label: Text(l10n?.jumpToToday ?? 'Today'),
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
-                    minimumSize: const Size(48, 40),
+                    minimumSize: const Size(48, 48),
                   ),
                 ),
                 const SizedBox(width: 4),
               ],
               Container(
-                width: 44,
-                height: 44,
+                width: 48,
+                height: 48,
                 decoration: BoxDecoration(
                   color: colorScheme.surfaceContainerHigh,
                   borderRadius: BorderRadius.circular(10),
@@ -89,8 +89,8 @@ class CalendarMonthHeader extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Container(
-                width: 44,
-                height: 44,
+                width: 48,
+                height: 48,
                 decoration: BoxDecoration(
                   color: colorScheme.surfaceContainerHigh,
                   borderRadius: BorderRadius.circular(10),
