@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/domain/utils/reading_validator.dart';
+import '../../../../core/presentation/extensions/failure_ui_extension.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
@@ -143,8 +144,8 @@ class _AddEditBloodPressureReadingScreenState
     if (!mounted) return;
     setState(() => _isSaving = false);
 
+    final l10n = AppLocalizations.of(context);
     if (success) {
-      final l10n = AppLocalizations.of(context);
       AppSnackBar.show(
         context,
         message:
@@ -156,7 +157,9 @@ class _AddEditBloodPressureReadingScreenState
     } else {
       AppSnackBar.show(
         context,
-        message: failure?.message ?? 'Failed to save measurement',
+        message: failure != null && l10n != null
+            ? failure.toUserMessage(l10n)
+            : (l10n?.genericError ?? 'Failed to save measurement'),
         type: SnackBarType.error,
       );
     }
@@ -210,7 +213,9 @@ class _AddEditBloodPressureReadingScreenState
     } else {
       AppSnackBar.show(
         context,
-        message: failure?.message ?? 'Failed to delete measurement',
+        message: failure != null && l10n != null
+            ? failure.toUserMessage(l10n)
+            : (l10n?.genericError ?? 'Failed to delete measurement'),
         type: SnackBarType.error,
       );
     }
