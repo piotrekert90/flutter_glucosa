@@ -403,7 +403,7 @@ class CalendarDayEntriesCard extends ConsumerWidget {
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, true),
             style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.error,
+              foregroundColor: Theme.of(dialogContext).colorScheme.error,
             ),
             child: Text(l10n?.delete ?? 'Delete'),
           ),

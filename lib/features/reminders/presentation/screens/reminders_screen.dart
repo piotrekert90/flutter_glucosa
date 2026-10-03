@@ -87,14 +87,18 @@ class RemindersScreen extends ConsumerWidget {
                                     Navigator.of(dialogCtx).pop(false),
                                 child: Text(
                                   MaterialLocalizations.of(
-                                    context,
+                                    dialogCtx,
                                   ).cancelButtonLabel,
                                 ),
                               ),
                               FilledButton(
                                 style: FilledButton.styleFrom(
-                                  backgroundColor: theme.colorScheme.error,
-                                  foregroundColor: theme.colorScheme.onError,
+                                  backgroundColor: Theme.of(
+                                    dialogCtx,
+                                  ).colorScheme.error,
+                                  foregroundColor: Theme.of(
+                                    dialogCtx,
+                                  ).colorScheme.onError,
                                 ),
                                 onPressed: () =>
                                     Navigator.of(dialogCtx).pop(true),

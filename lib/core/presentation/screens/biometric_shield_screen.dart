@@ -124,7 +124,7 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, true),
             style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.error,
+              foregroundColor: Theme.of(dialogContext).colorScheme.error,
             ),
             child: Text(l10n?.biometricLockRecoveryDisable ?? 'Disable Lock'),
           ),
