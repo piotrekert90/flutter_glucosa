@@ -231,7 +231,6 @@ class RemindersScreen extends ConsumerWidget {
                         onSaved: (val) => label = val?.trim() ?? '',
                       ),
                       const SizedBox(height: 16),
-                      // Time Picker Row
                       Row(
                         children: [
                           Expanded(
@@ -260,7 +259,6 @@ class RemindersScreen extends ConsumerWidget {
                         ],
                       ),
                       const SizedBox(height: 16),
-                      // Metric Type Dropdown
                       DropdownButtonFormField<MetricType>(
                         initialValue: metricType,
                         decoration: InputDecoration(
@@ -281,7 +279,6 @@ class RemindersScreen extends ConsumerWidget {
                         },
                       ),
                       const SizedBox(height: 8),
-                      // One-time SwitchListTile
                       SwitchListTile.adaptive(
                         contentPadding: EdgeInsets.zero,
                         title: Text(
