@@ -50,5 +50,23 @@ void main() {
         expect(GlucoseStatus.values.byName(value.name), equals(value));
       }
     });
+
+    test('ChartTimeRange round-trip name serialization', () {
+      for (final value in ChartTimeRange.values) {
+        expect(ChartTimeRange.values.byName(value.name), equals(value));
+      }
+    });
+
+    test('FirstDayOfWeek round-trip name serialization', () {
+      for (final value in FirstDayOfWeek.values) {
+        expect(FirstDayOfWeek.values.byName(value.name), equals(value));
+      }
+    });
+
+    test('UserThemeMode round-trip name serialization', () {
+      for (final value in UserThemeMode.values) {
+        expect(UserThemeMode.values.byName(value.name), equals(value));
+      }
+    });
   });
 }
