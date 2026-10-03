@@ -85,7 +85,7 @@ Feature-First Clean Architecture under `lib/features/<feature>/`. Features inclu
 - **Unit tests:** notifier state transitions, CRUD logic, subscription cancellation, mappers, ciphers.
 - **Widget tests:** fake repositories injected via `ProviderScope(overrides: [...])`.
 - **Golden tests:** tagged `golden` in `dart_test.yaml`. Run with `flutter test --tags=golden`.
-- **Screenshot tests:** integration test harness in `integration_test/app_screenshots_test.dart` tagged `screenshot`.
+- **Screenshot tests:** modular integration test harness under `integration_test/*_screenshots_test.dart` tagged `screenshot`.
 - **Fixtures:** `test/helpers/fake_user_profile_repository.dart`.
   Always call `.dispose()` in `tearDown()` to close stream controllers.
 

@@ -2,20 +2,34 @@
 
 # ==============================================================================
 # Script Name: generate_screenshots.sh
-# Description: Orchestrator – generates store screenshot suite for Riverpod Template
-#              by delegating to modular per-feature generators.
+# Description: Orchestrator – generates FULL store screenshot suite for Glucosa
+#              by delegating to modular per-feature generators (via run_screenshot_target.sh).
+#              Ensures consistent ScreenshotDeviceFrame emulation (top status
+#              bar 09:41 + signal/wifi/battery + bottom gesture pill) across
+#              all suites via the 12 modular *_screenshots_test.dart files that
+#              use helpers/screenshot_test_helper.dart (KISS/DRY – no monolith).
 # Supports:
 #   android/phone     (1080 x 2400)  -> Medium_Phone
 #   android/tablet_7  (800 x 1280)   -> Small_Tablet  (7")
 #   android/tablet_10 (2560 x 1600)  -> Medium_Tablet (10")
 # Usage:
-#   ./scripts/screenshots/generate_screenshots.sh [target|device] [device|locale] [locale]
+#   ./scripts/screenshots/generate_screenshots.sh [phone|tablet_7|tablet_10|all] [locale]
+#   Default: phone (all locales)
 #   Examples:
 #     ./scripts/screenshots/generate_screenshots.sh phone
-#     ./scripts/screenshots/generate_screenshots.sh phone pl
-#     ./scripts/screenshots/generate_screenshots.sh all en
-#     ./scripts/screenshots/generate_screenshots.sh todos phone pl
-#     ./scripts/screenshots/generate_screenshots.sh settings phone
+#     ./scripts/screenshots/generate_screenshots.sh tablet_7 pl
+#     ./scripts/screenshots/generate_screenshots.sh all ja
+#     ./scripts/screenshots/generate_screenshots.sh all      # all devices, all locales
+# Notes:
+#   - Per-feature scripts: generate_splash.sh, generate_onboarding.sh,
+#     generate_overview.sh, generate_calendar.sh, generate_statistics.sh,
+#     generate_settings.sh, generate_biometric.sh, generate_home_widgets.sh,
+#     generate_history.sh, generate_reminders.sh, generate_export.sh,
+#     generate_calculator.sh
+#   - Each delegates to run_screenshot_target.sh which handles emulator boot
+#     and --dart-define=SCREENSHOT_DEVICE / SCREENSHOT_LOCALE.
+#   - Single-module run: ./scripts/screenshots/run_screenshot_target.sh
+#     integration_test/calendar_screenshots_test.dart [device] [locale]
 # ==============================================================================
 
 set -euo pipefail
@@ -44,74 +58,68 @@ log_error() {
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# ------------------------------------------------------------------------------
+# Ordered list of per-feature generators (00_splash -> 07_home_widgets).
+# Each script is a thin wrapper around run_screenshot_target.sh and already
+# handles [device] [locale] args.
+# ------------------------------------------------------------------------------
 FEATURE_SCRIPTS=(
-    "generate_todos.sh"
+    "generate_splash.sh"
+    "generate_onboarding.sh"
+    "generate_overview.sh"
+    "generate_calendar.sh"
+    "generate_statistics.sh"
     "generate_settings.sh"
+    "generate_biometric.sh"
+    "generate_home_widgets.sh"
+    "generate_history.sh"
+    "generate_reminders.sh"
+    "generate_export.sh"
+    "generate_calculator.sh"
 )
 
-ARG1="${1:-phone}"
-ARG2="${2:-}"
-ARG3="${3:-}"
+# ------------------------------------------------------------------------------
+# Parse args: [device] [locale]
+# ------------------------------------------------------------------------------
+DEVICE_INPUT="${1:-phone}"
+LOCALE_FILTER="${2:-}"
 
-if [[ "$ARG1" == "-h" || "$ARG1" == "--help" ]]; then
-    echo "Usage: $0 [target|device] [device|locale] [locale]"
+if [[ "$DEVICE_INPUT" == "-h" || "$DEVICE_INPUT" == "--help" ]]; then
+    echo "Usage: $0 [phone|tablet_7|tablet_10|all] [locale]"
     echo ""
-    echo "Generates Google Play Store screenshot suite for Riverpod Template."
-    echo "Suites:"
-    echo "  - todos    (Todo List, Add Todo Dialog, Completed states)"
-    echo "  - settings (Settings Screen, Licenses Screen, Theme Dialog)"
+    echo "Generates FULL screenshot suite via modular per-feature targets."
+    echo "Each feature is captured with ScreenshotDeviceFrame (status bar 09:41"
+    echo "+ signal/wifi/battery + bottom gesture pill) for visual consistency."
     echo ""
     echo "Arguments:"
-    echo "  target  all|todos|settings       (optional, default: all features)"
     echo "  device  phone|tablet_7|tablet_10|all  (default: phone)"
-    echo "  locale  en|pl                    (default: all supported)"
+    echo "  locale  en|de|ja|fr|es|pl|pt|nl|it|ko  (default: all)"
     echo ""
     echo "Examples:"
     echo "  $0 phone"
-    echo "  $0 phone pl"
-    echo "  $0 all en"
-    echo "  $0 todos phone pl"
-    echo "  $0 settings phone"
+    echo "  $0 tablet_7 pl"
+    echo "  $0 all ja"
+    echo ""
+    echo "Per-feature alternative:"
+    echo "  ./scripts/screenshots/generate_calendar.sh phone pl"
+    echo "  ./scripts/screenshots/run_screenshot_target.sh integration_test/calendar_screenshots_test.dart phone pl"
     exit 0
 fi
-
-# Detect whether $ARG1 is a feature target or device
-SPECIFIC_TARGET=""
-case "$ARG1" in
-    todos|settings)
-        SPECIFIC_TARGET="$ARG1"
-        DEVICE_INPUT="${ARG2:-phone}"
-        LOCALE_FILTER="${ARG3:-}"
-        ;;
-    all)
-        if [[ -n "$ARG2" && ("$ARG2" == "phone" || "$ARG2" == "tablet_7" || "$ARG2" == "tablet_10" || "$ARG2" == "all") ]]; then
-            DEVICE_INPUT="$ARG2"
-            LOCALE_FILTER="$ARG3"
-        else
-            DEVICE_INPUT="all"
-            LOCALE_FILTER="$ARG2"
-        fi
-        ;;
-    *)
-        DEVICE_INPUT="$ARG1"
-        LOCALE_FILTER="$ARG2"
-        ;;
-esac
 
 case "$DEVICE_INPUT" in
     phone|tablet_7|tablet_10|all) ;;
     *)
         log_error "Unknown device: $DEVICE_INPUT (expected: phone|tablet_7|tablet_10|all)"
-        echo "Usage: $0 [target|device] [device|locale] [locale]"
+        echo "Usage: $0 [phone|tablet_7|tablet_10|all] [locale]"
         exit 1
         ;;
 esac
 
 if [[ -n "$LOCALE_FILTER" ]]; then
     case "$LOCALE_FILTER" in
-        en|pl) ;;
+        en|de|ja|fr|es|pl|pt|nl|it|ko) ;;
         *)
-            log_error "Unknown locale: $LOCALE_FILTER (expected: en|pl)"
+            log_error "Unknown locale: $LOCALE_FILTER (expected: en|de|ja|fr|es|pl|pt|nl|it|ko)"
             exit 1
             ;;
     esac
@@ -119,40 +127,39 @@ fi
 
 START_TIME=$(date +%s)
 
-log_info "Starting Screenshot Suite..."
-log_info "Target: ${SPECIFIC_TARGET:-all} | Devices: $DEVICE_INPUT | Locale: ${LOCALE_FILTER:-all}"
+log_info "Starting FULL Screenshot Suite (Orchestrator Mode)..."
+log_info "Devices: $DEVICE_INPUT | Locale: ${LOCALE_FILTER:-all} | Features: ${#FEATURE_SCRIPTS[@]}"
+log_info "Each feature will run via run_screenshot_target.sh with ScreenshotDeviceFrame."
 
-if [[ -n "$SPECIFIC_TARGET" ]]; then
-    TARGET_SCRIPT="generate_${SPECIFIC_TARGET}.sh"
-    log_step "Feature target: $TARGET_SCRIPT ($DEVICE_INPUT / ${LOCALE_FILTER:-all})"
-    if [[ ! -x "$DIR/$TARGET_SCRIPT" ]]; then
-        chmod +x "$DIR/$TARGET_SCRIPT"
+# ------------------------------------------------------------------------------
+# Delegate sequentially to each per-feature generator.
+# ------------------------------------------------------------------------------
+for SCRIPT in "${FEATURE_SCRIPTS[@]}"; do
+    log_step "Feature: $SCRIPT ($DEVICE_INPUT / ${LOCALE_FILTER:-all})"
+    if [[ ! -x "$DIR/$SCRIPT" ]]; then
+        chmod +x "$DIR/$SCRIPT" || true
     fi
-    "$DIR/$TARGET_SCRIPT" "$DEVICE_INPUT" "${LOCALE_FILTER:-}"
-else
-    # In template where one comprehensive test suite captures the full app, run once per device selection:
-    "$DIR/run_screenshot_target.sh" "integration_test/app_screenshots_test.dart" "$DEVICE_INPUT" "${LOCALE_FILTER:-}"
-fi
+    "$DIR/$SCRIPT" "$DEVICE_INPUT" "${LOCALE_FILTER:-}"
+done
 
-# Global verification
+# ------------------------------------------------------------------------------
+# Global verification – count all android screenshots
+# ------------------------------------------------------------------------------
 log_step "Global Verification (all devices)..."
+
 TOTAL_ALL=$(find screenshots/android -type f -name "*.png" 2>/dev/null | wc -l | tr -d ' ' || echo "0")
 log_success "Total Android screenshots across all devices: $TOTAL_ALL"
 
 if [[ -d "screenshots/android" ]]; then
-    echo ""
-    log_info "Captured screenshots preview:"
-    find screenshots/android -type f -name "*.png" | sort | head -n 25
-    if [[ "$TOTAL_ALL" -gt 25 ]]; then
+    find screenshots/android -type f -name "*.png" | sort | head -n 30
+    if [[ "$TOTAL_ALL" -gt 30 ]]; then
         echo "... ($TOTAL_ALL total, truncated)"
     fi
     echo ""
     log_info "Per-device breakdown:"
     for D in phone tablet_7 tablet_10; do
-        if [[ -d "screenshots/android/$D" ]]; then
-            COUNT=$(find "screenshots/android/$D" -type f -name "*.png" 2>/dev/null | wc -l | tr -d ' ' || echo "0")
-            echo "  android/$D: $COUNT"
-        fi
+        COUNT=$(find "screenshots/android/$D" -type f -name "*.png" 2>/dev/null | wc -l | tr -d ' ' || echo "0")
+        echo "  android/$D: $COUNT"
     done
 fi
 
@@ -162,3 +169,4 @@ DURATION=$((END_TIME - START_TIME))
 echo -e "\n=============================================================================="
 log_success "Full screenshots suite completed in ${DURATION}s (devices: $DEVICE_INPUT, locale: ${LOCALE_FILTER:-all})"
 echo -e "=============================================================================="
+echo -e "${BLUE}ℹ️  [INFO] For single-module runs use e.g.: ./scripts/screenshots/generate_calendar.sh $DEVICE_INPUT ${LOCALE_FILTER:-}${NC}"
