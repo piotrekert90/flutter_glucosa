@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/domain/enums/glucose_unit.dart';
 import 'package:flutter_glucosa/core/domain/enums/hba1c_unit.dart';
 import 'package:flutter_glucosa/core/domain/enums/metric_type.dart';
 import 'package:flutter_glucosa/core/domain/enums/weight_unit.dart';
+import 'package:flutter_glucosa/features/export/domain/models/date_range_filter.dart';
 import 'package:flutter_glucosa/features/export/domain/services/export_service.dart';
 
 /// In-memory fake implementation of [ExportService] for testing.
@@ -17,7 +17,7 @@ class FakeExportService implements ExportService {
   int exportAndShareCallCount = 0;
 
   /// Last arguments passed to [exportAndShare].
-  DateTimeRange? lastDateRange;
+  DateRangeFilter? lastDateRange;
   Set<MetricType>? lastMetrics;
   GlucoseUnit? lastGlucoseUnit;
   HbA1cUnit? lastHbA1cUnit;
@@ -31,7 +31,7 @@ class FakeExportService implements ExportService {
 
   @override
   Future<String> generateCsv({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
     GlucoseUnit? glucoseUnit,
     HbA1cUnit? hba1cUnit,
@@ -47,7 +47,7 @@ class FakeExportService implements ExportService {
 
   @override
   Future<int> countRecords({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
   }) async {
     lastDateRange = dateRange;
@@ -57,7 +57,7 @@ class FakeExportService implements ExportService {
 
   @override
   Future<void> exportAndShare({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
     GlucoseUnit? glucoseUnit,
     HbA1cUnit? hba1cUnit,

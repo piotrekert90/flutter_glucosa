@@ -3,6 +3,7 @@ import 'package:flutter_glucosa/core/domain/enums/glucose_unit.dart';
 import 'package:flutter_glucosa/core/domain/enums/hba1c_unit.dart';
 import 'package:flutter_glucosa/core/domain/enums/metric_type.dart';
 import 'package:flutter_glucosa/core/domain/enums/weight_unit.dart';
+import 'package:flutter_glucosa/features/export/domain/models/date_range_filter.dart';
 import 'package:flutter_glucosa/features/export/presentation/providers/export_notifier.dart';
 import 'package:flutter_glucosa/features/export/presentation/providers/export_service_provider.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
@@ -67,7 +68,10 @@ void main() {
 
       expect(state.dateRange, range);
       expect(state.matchingRecordCount, 7);
-      expect(fakeExportService.lastDateRange, range);
+      expect(
+        fakeExportService.lastDateRange,
+        DateRangeFilter(start: range.start, end: range.end),
+      );
 
       // Clear range
       fakeExportService.countToReturn = 15;
@@ -189,7 +193,7 @@ void main() {
 class _ThrowingExportService extends FakeExportService {
   @override
   Future<void> exportAndShare({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
     GlucoseUnit? glucoseUnit,
     HbA1cUnit? hba1cUnit,

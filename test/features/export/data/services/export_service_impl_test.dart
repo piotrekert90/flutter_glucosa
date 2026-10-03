@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/domain/enums/glucose_unit.dart';
 import 'package:flutter_glucosa/core/domain/enums/hba1c_unit.dart';
 import 'package:flutter_glucosa/core/domain/enums/meal_context.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_glucosa/core/domain/enums/weight_unit.dart';
 import 'package:flutter_glucosa/features/blood_pressure/domain/entities/blood_pressure_reading.dart';
 import 'package:flutter_glucosa/features/cholesterol/domain/entities/cholesterol_reading.dart';
 import 'package:flutter_glucosa/features/export/data/services/export_service_impl.dart';
+import 'package:flutter_glucosa/features/export/domain/models/date_range_filter.dart';
 import 'package:flutter_glucosa/features/glucose/domain/entities/glucose_reading.dart';
 import 'package:flutter_glucosa/features/hba1c/domain/entities/hba1c_reading.dart';
 import 'package:flutter_glucosa/features/ketones/domain/entities/ketone_reading.dart';
@@ -123,7 +123,7 @@ void main() {
       );
 
       final count = await exportService.countRecords(
-        dateRange: DateTimeRange(
+        dateRange: DateRangeFilter(
           start: DateTime(2026, 10, 1),
           end: DateTime(2026, 10, 2),
         ),

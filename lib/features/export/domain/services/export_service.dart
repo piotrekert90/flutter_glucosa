@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import '../../../../core/domain/enums/glucose_unit.dart';
 import '../../../../core/domain/enums/hba1c_unit.dart';
 import '../../../../core/domain/enums/metric_type.dart';
 import '../../../../core/domain/enums/weight_unit.dart';
+import '../models/date_range_filter.dart';
 
 /// Abstract contract for aggregating and exporting user health measurement records.
 abstract interface class ExportService {
@@ -15,7 +14,7 @@ abstract interface class ExportService {
   /// [hba1cUnit] Target display unit for HbA1c readings.
   /// [weightUnit] Target display unit for weight readings.
   Future<String> generateCsv({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
     GlucoseUnit? glucoseUnit,
     HbA1cUnit? hba1cUnit,
@@ -24,13 +23,13 @@ abstract interface class ExportService {
 
   /// Counts the total number of measurement records matching [dateRange] and [metrics].
   Future<int> countRecords({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
   });
 
   /// Generates the CSV file and presents the platform system share sheet.
   Future<void> exportAndShare({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
     GlucoseUnit? glucoseUnit,
     HbA1cUnit? hba1cUnit,

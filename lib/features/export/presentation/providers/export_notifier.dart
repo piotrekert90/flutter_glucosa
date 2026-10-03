@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/domain/enums/metric_type.dart';
 import '../../../settings/data/providers/user_profile_repository_provider.dart';
+import '../../domain/models/date_range_filter.dart';
 import 'export_service_provider.dart';
 import 'export_state.dart';
 
@@ -22,7 +23,9 @@ class ExportNotifier extends _$ExportNotifier {
     final requestId = ++_countRequestId;
     final exportService = ref.read(exportServiceProvider);
     final count = await exportService.countRecords(
-      dateRange: dateRange,
+      dateRange: dateRange != null
+          ? DateRangeFilter(start: dateRange.start, end: dateRange.end)
+          : null,
       metrics: metrics,
     );
     if (requestId != _countRequestId) return;
@@ -120,8 +123,11 @@ class ExportNotifier extends _$ExportNotifier {
     try {
       final exportService = ref.read(exportServiceProvider);
       final profile = await ref.read(userProfileRepositoryProvider).get();
+      final dateRange = current.dateRange;
       await exportService.exportAndShare(
-        dateRange: current.dateRange,
+        dateRange: dateRange != null
+            ? DateRangeFilter(start: dateRange.start, end: dateRange.end)
+            : null,
         metrics: current.selectedMetrics,
         glucoseUnit: profile.preferredGlucoseUnit,
         hba1cUnit: profile.preferredHbA1cUnit,

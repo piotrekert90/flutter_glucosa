@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -16,6 +15,7 @@ import '../../../glucose/domain/repositories/glucose_reading_repository.dart';
 import '../../../hba1c/domain/repositories/hba1c_reading_repository.dart';
 import '../../../ketones/domain/repositories/ketone_reading_repository.dart';
 import '../../../weight/domain/repositories/weight_reading_repository.dart';
+import '../../domain/models/date_range_filter.dart';
 import '../../domain/services/export_service.dart';
 
 /// Concrete implementation of [ExportService] that aggregates readings and creates CSV files.
@@ -50,7 +50,7 @@ class ExportServiceImpl implements ExportService {
 
   @override
   Future<String> generateCsv({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
     GlucoseUnit? glucoseUnit,
     HbA1cUnit? hba1cUnit,
@@ -90,7 +90,7 @@ class ExportServiceImpl implements ExportService {
 
   @override
   Future<int> countRecords({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
   }) async {
     final records = await _gatherRecords(
@@ -105,7 +105,7 @@ class ExportServiceImpl implements ExportService {
 
   @override
   Future<void> exportAndShare({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
     GlucoseUnit? glucoseUnit,
     HbA1cUnit? hba1cUnit,
@@ -133,7 +133,7 @@ class ExportServiceImpl implements ExportService {
   }
 
   Future<List<_ExportRecord>> _gatherRecords({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     Set<MetricType>? metrics,
     required GlucoseUnit glucoseUnit,
     required HbA1cUnit hba1cUnit,
@@ -264,7 +264,7 @@ class ExportServiceImpl implements ExportService {
     return results;
   }
 
-  bool _inRange(DateTime dt, DateTimeRange? range) {
+  bool _inRange(DateTime dt, DateRangeFilter? range) {
     if (range == null) return true;
     final start = DateTime(
       range.start.year,
