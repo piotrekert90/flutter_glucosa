@@ -6,9 +6,10 @@ import '../../../../core/domain/enums/hba1c_unit.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../settings/presentation/providers/user_profile_notifier.dart';
-import '../../data/providers/hba1c_reading_repository_provider.dart';
+import '../providers/hba1c_reading_list_notifier.dart';
 import '../../domain/entities/hba1c_reading.dart';
 
 /// Screen allowing bidirectional estimation between average glucose and glycated hemoglobin (HbA1c).
@@ -185,14 +186,14 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
     setState(() => _isSaving = true);
 
     try {
-      final repo = ref.read(hbA1cReadingRepositoryProvider);
+      final notifier = ref.read(hbA1cReadingListProvider.notifier);
       final reading = HbA1cReading(
         readingPercentage: hba1cPercentage,
         notes: 'Estimated from average glucose calculator',
         createdAt: DateTime.now(),
       );
 
-      final (success, _) = await repo.add(reading);
+      final (success, failure) = await notifier.addReading(reading);
       if (mounted) {
         setState(() => _isSaving = false);
         if (success) {
@@ -202,11 +203,31 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                 l10n?.hba1cReadingSaved ?? 'HbA1c reading saved successfully',
             type: SnackBarType.success,
           );
+        } else {
+          AppSnackBar.show(
+            context,
+            message:
+                failure?.message ??
+                l10n?.genericError ??
+                'Failed to save measurement',
+            type: SnackBarType.error,
+          );
         }
       }
-    } catch (_) {
+    } catch (e, stack) {
+      AppLogger.error(
+        'Failed to save calculated HbA1c reading',
+        error: e,
+        stackTrace: stack,
+        tag: 'HbA1cCalculatorScreen',
+      );
       if (mounted) {
         setState(() => _isSaving = false);
+        AppSnackBar.show(
+          context,
+          message: l10n?.genericError ?? 'Failed to save measurement',
+          type: SnackBarType.error,
+        );
       }
     }
   }
