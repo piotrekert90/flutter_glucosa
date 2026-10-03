@@ -114,7 +114,9 @@ class _AddEditHbA1cReadingScreenState
 
     setState(() => _isSaving = true);
 
-    final rawValue = double.tryParse(_valueController.text.trim()) ?? 0.0;
+    final rawValue =
+        double.tryParse(_valueController.text.trim().replaceAll(',', '.')) ??
+        0.0;
     final double percentage;
     if (unit == HbA1cUnit.mmolMol) {
       percentage = GlucoseConverter.mmolMolToPercentage(rawValue);

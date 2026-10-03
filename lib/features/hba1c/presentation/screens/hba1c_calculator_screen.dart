@@ -65,7 +65,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
       return;
     }
 
-    final parsed = double.tryParse(trimmed);
+    final parsed = double.tryParse(trimmed.replaceAll(',', '.'));
     if (parsed == null || parsed <= 0) {
       _isUpdating = false;
       setState(() {});
@@ -103,7 +103,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
       return;
     }
 
-    final parsed = double.tryParse(trimmed);
+    final parsed = double.tryParse(trimmed.replaceAll(',', '.'));
     if (parsed == null || parsed <= 0) {
       _isUpdating = false;
       setState(() {});
@@ -130,7 +130,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
   void _onGlucoseUnitChanged(GlucoseUnit newUnit) {
     if (_glucoseUnit == newUnit) return;
     final currentText = _glucoseController.text.trim();
-    final parsed = double.tryParse(currentText);
+    final parsed = double.tryParse(currentText.replaceAll(',', '.'));
 
     setState(() {
       _glucoseUnit = newUnit;
@@ -151,7 +151,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
   void _onHbA1cUnitChanged(HbA1cUnit newUnit) {
     if (_hba1cUnit == newUnit) return;
     final currentText = _hba1cController.text.trim();
-    final parsed = double.tryParse(currentText);
+    final parsed = double.tryParse(currentText.replaceAll(',', '.'));
 
     setState(() {
       _hba1cUnit = newUnit;
@@ -171,7 +171,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
 
   double? get _currentHbA1cPercentage {
     final text = _hba1cController.text.trim();
-    final parsed = double.tryParse(text);
+    final parsed = double.tryParse(text.replaceAll(',', '.'));
     if (parsed == null || parsed <= 0) return null;
     return _hba1cUnit == HbA1cUnit.mmolMol
         ? GlucoseConverter.mmolMolToPercentage(parsed)
