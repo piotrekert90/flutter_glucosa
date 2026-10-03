@@ -124,12 +124,22 @@ class ExportServiceImpl implements ExportService {
     final file = File('${tempDir.path}/glucosa_export_$timestamp.csv');
     await file.writeAsString(csvData);
 
-    await SharePlus.instance.share(
-      ShareParams(
-        files: [XFile(file.path, mimeType: 'text/csv')],
-        subject: 'Glucosa Health Data Export',
-      ),
-    );
+    try {
+      await SharePlus.instance.share(
+        ShareParams(
+          files: [XFile(file.path, mimeType: 'text/csv')],
+          subject: 'Glucosa Health Data Export',
+        ),
+      );
+    } finally {
+      if (await file.exists()) {
+        try {
+          await file.delete();
+        } catch (_) {
+          // File deletion may fail if held open by another process
+        }
+      }
+    }
   }
 
   Future<List<_ExportRecord>> _gatherRecords({
