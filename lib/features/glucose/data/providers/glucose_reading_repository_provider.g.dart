@@ -30,7 +30,7 @@ final class GlucoseReadingRepositoryProvider
         argument: null,
         retry: null,
         name: r'glucoseReadingRepositoryProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -59,4 +59,4 @@ final class GlucoseReadingRepositoryProvider
 }
 
 String _$glucoseReadingRepositoryHash() =>
-    r'1ad9375cd77c4ad554fda6e4c42dfd15e00323b3';
+    r'd17005e5746a597d6d61af7bc8b4658f92d1ef05';
