@@ -121,7 +121,6 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
       return;
     }
 
-    // Custom range validation
     final minParsed = double.tryParse(_minController.text.trim());
     final maxParsed = double.tryParse(_maxController.text.trim());
 
