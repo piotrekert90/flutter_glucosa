@@ -81,7 +81,7 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
     super.dispose();
   }
 
-  String _presetLabel(GlucoseRangePreset preset) {
+  String _presetLabel(GlucoseRangePreset preset, AppLocalizations? l10n) {
     final range = switch (preset) {
       GlucoseRangePreset.ada => const GlucoseTargetRange.ada(),
       GlucoseRangePreset.aace => const GlucoseTargetRange.aace(),
@@ -90,7 +90,9 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
     };
 
     if (range == null) {
-      return preset.displayName;
+      return preset == GlucoseRangePreset.custom
+          ? (l10n?.targetRangeCustom ?? preset.displayName)
+          : preset.displayName;
     }
 
     if (widget.preferredUnit == GlucoseUnit.mmolL) {
@@ -179,7 +181,7 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
                   for (final preset in GlucoseRangePreset.values)
                     RadioListTile<GlucoseRangePreset>(
                       value: preset,
-                      title: Text(_presetLabel(preset)),
+                      title: Text(_presetLabel(preset, l10n)),
                       contentPadding: EdgeInsets.zero,
                     ),
                 ],

@@ -248,13 +248,15 @@ class _AddEditCholesterolReadingScreenState
         ),
         error: (err, _) => Scaffold(
           appBar: AppBar(title: Text(title)),
-          body: Center(child: Text('Error loading reading: $err')),
+          body: Center(child: Text(l10n?.genericError ?? 'An error occurred')),
         ),
         data: (reading) {
           if (reading == null) {
             return Scaffold(
               appBar: AppBar(title: Text(title)),
-              body: const Center(child: Text('Reading not found')),
+              body: Center(
+                child: Text(l10n?.errorNotFound ?? 'Reading not found'),
+              ),
             );
           }
           _populateFromReading(reading);

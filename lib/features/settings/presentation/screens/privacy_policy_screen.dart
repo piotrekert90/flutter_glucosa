@@ -20,8 +20,13 @@ class PrivacyPolicyScreen extends StatelessWidget {
       }
     } catch (_) {
       if (context.mounted) {
+        final l10n = AppLocalizations.of(context);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Could not open email client')),
+          SnackBar(
+            content: Text(
+              l10n?.privacyPolicyEmailError ?? 'Could not open email client',
+            ),
+          ),
         );
       }
     }

@@ -44,7 +44,7 @@ class OverviewScreen extends ConsumerWidget {
           if (readingsAsync.value?.isNotEmpty ?? false)
             IconButton(
               icon: const Icon(Icons.share_outlined),
-              tooltip: l10n.shareDoctorSummary,
+              tooltip: l10n.shareDoctorSummaryTooltip,
               onPressed: () {
                 final profile = profileAsync.value ?? const UserProfile();
                 SummaryShareCoordinator.shareDoctorSummary(

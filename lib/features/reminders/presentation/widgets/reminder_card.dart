@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/domain/enums/metric_type.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/reminder.dart';
 
 /// Presentation card displaying a scheduled [Reminder] with a status toggle and metric badge.
@@ -40,7 +41,8 @@ class ReminderCard extends StatelessWidget {
           '$hour12:${reminder.minute.toString().padLeft(2, '0')} $period';
     }
 
-    final (metricIcon, metricLabel) = _metricInfo(reminder.metricType);
+    final l10n = AppLocalizations.of(context);
+    final (metricIcon, metricLabel) = _metricInfo(reminder.metricType, l10n);
 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
@@ -120,14 +122,29 @@ class ReminderCard extends StatelessWidget {
     );
   }
 
-  (IconData, String) _metricInfo(MetricType type) {
+  (IconData, String) _metricInfo(MetricType type, AppLocalizations? l10n) {
     return switch (type) {
-      MetricType.glucose => (Icons.water_drop_outlined, 'Glucose'),
-      MetricType.hba1c => (Icons.biotech_outlined, 'HbA1c'),
-      MetricType.bloodPressure => (Icons.favorite_outline, 'Blood Pressure'),
-      MetricType.ketones => (Icons.science_outlined, 'Ketones'),
-      MetricType.cholesterol => (Icons.bubble_chart_outlined, 'Cholesterol'),
-      MetricType.weight => (Icons.monitor_weight_outlined, 'Weight'),
+      MetricType.glucose => (
+        Icons.water_drop_outlined,
+        l10n?.glucose ?? 'Blood Glucose',
+      ),
+      MetricType.hba1c => (Icons.biotech_outlined, l10n?.hba1c ?? 'HbA1c'),
+      MetricType.bloodPressure => (
+        Icons.favorite_outline,
+        l10n?.bloodPressure ?? 'Blood Pressure',
+      ),
+      MetricType.ketones => (
+        Icons.science_outlined,
+        l10n?.ketones ?? 'Ketones',
+      ),
+      MetricType.cholesterol => (
+        Icons.bubble_chart_outlined,
+        l10n?.cholesterol ?? 'Cholesterol',
+      ),
+      MetricType.weight => (
+        Icons.monitor_weight_outlined,
+        l10n?.weight ?? 'Weight',
+      ),
     };
   }
 }

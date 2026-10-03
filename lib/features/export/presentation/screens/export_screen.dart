@@ -247,7 +247,11 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                      state.errorMessage!,
+                      state.errorMessage ==
+                              'Select at least one metric to export.'
+                          ? (l10n?.exportNoMetricsSelected ??
+                                state.errorMessage!)
+                          : state.errorMessage!,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onErrorContainer,
                       ),

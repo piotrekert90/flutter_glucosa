@@ -340,8 +340,8 @@ class SettingsScreen extends ConsumerWidget {
       items: GlucoseUnit.values,
       itemLabel: (unit) => unit.displayName,
       itemSubtitle: (unit) => unit == GlucoseUnit.mgDl
-          ? 'Milligrams per deciliter'
-          : 'Millimoles per liter',
+          ? (l10n?.glucoseUnitMgDlDescription ?? 'Milligrams per deciliter')
+          : (l10n?.glucoseUnitMmolLDescription ?? 'Millimoles per liter'),
       onSelected: (selected) async {
         final (success, failure) = await ref
             .read(userProfileProvider.notifier)
