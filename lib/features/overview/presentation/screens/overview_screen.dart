@@ -67,7 +67,6 @@ class OverviewScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Latest Reading Section
               Text(
                 l10n.latestReading,
                 style: theme.textTheme.titleMedium?.copyWith(
@@ -130,7 +129,6 @@ class OverviewScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 20),
 
-              // Estimated HbA1c Card
               estimatedHbA1cAsync.when(
                 data: (a1c) {
                   if (a1c == null) return const SizedBox.shrink();
@@ -198,7 +196,6 @@ class OverviewScreen extends ConsumerWidget {
                 error: (_, _) => const SizedBox.shrink(),
               ),
 
-              // Metric Trend Chart
               Text(
                 l10n.chartTitle,
                 style: theme.textTheme.titleMedium?.copyWith(
@@ -210,7 +207,6 @@ class OverviewScreen extends ConsumerWidget {
               const MetricTrendCard(),
               const SizedBox(height: 20),
 
-              // Target Range Summary
               Text(
                 l10n.targetRange,
                 style: theme.textTheme.titleMedium?.copyWith(
@@ -266,7 +262,6 @@ class OverviewScreen extends ConsumerWidget {
                 ),
               ),
 
-              // Period Comparison, Habits & Milestones (when readings exist)
               readingsAsync.when(
                 data: (readings) {
                   if (readings.isEmpty) return const SizedBox.shrink();
