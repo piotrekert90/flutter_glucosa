@@ -59,7 +59,6 @@ class MilestonesGallerySheet extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 12),
-              // Drag handle
               Center(
                 child: Container(
                   width: 36,
@@ -71,7 +70,6 @@ class MilestonesGallerySheet extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              // Header
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -107,7 +105,6 @@ class MilestonesGallerySheet extends StatelessWidget {
                 ),
               ),
               const Divider(height: 24),
-              // Category sections
               Expanded(
                 child: ListView.separated(
                   controller: scrollController,

@@ -121,7 +121,6 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                   ),
                 )
               else ...[
-                // Comparison Date Labels Header
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -141,7 +140,6 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                   ],
                 ),
                 const SizedBox(height: 12),
-                // Metric comparisons
                 _buildComparisonRow(
                   context,
                   title: l10n?.meanGlucose ?? 'Mean Glucose',
