@@ -35,7 +35,6 @@ class _OnboardingWelcomeStepState extends ConsumerState<OnboardingWelcomeStep> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
-    final notifier = ref.read(onboardingProvider.notifier);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -75,7 +74,8 @@ class _OnboardingWelcomeStepState extends ConsumerState<OnboardingWelcomeStep> {
               border: const OutlineInputBorder(),
               prefixIcon: const Icon(Icons.person_outlined),
             ),
-            onChanged: notifier.updateName,
+            onChanged: (val) =>
+                ref.read(onboardingProvider.notifier).updateName(val),
           ),
         ],
       ),

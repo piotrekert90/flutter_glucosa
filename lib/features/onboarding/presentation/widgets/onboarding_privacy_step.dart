@@ -19,7 +19,6 @@ class OnboardingPrivacyStep extends ConsumerWidget {
     final acknowledged = ref.watch(
       onboardingProvider.select((draft) => draft.privacyAcknowledged),
     );
-    final notifier = ref.read(onboardingProvider.notifier);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -54,7 +53,9 @@ class OnboardingPrivacyStep extends ConsumerWidget {
             title: Text(l10n?.onboardingPrivacyAcknowledge ?? 'I understand'),
             value: acknowledged,
             onChanged: (value) {
-              if (value == true) notifier.acknowledgePrivacy();
+              if (value == true) {
+                ref.read(onboardingProvider.notifier).acknowledgePrivacy();
+              }
             },
           ),
         ],

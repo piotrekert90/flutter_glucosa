@@ -16,7 +16,6 @@ class OnboardingUnitsStep extends ConsumerWidget {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     final draft = ref.watch(onboardingProvider);
-    final notifier = ref.read(onboardingProvider.notifier);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -45,7 +44,8 @@ class OnboardingUnitsStep extends ConsumerWidget {
               PillSegment(value: GlucoseUnit.mmolL, label: 'mmol/L'),
             ],
             selected: draft.glucoseUnit,
-            onChanged: notifier.selectGlucoseUnit,
+            onChanged: (unit) =>
+                ref.read(onboardingProvider.notifier).selectGlucoseUnit(unit),
           ),
         ],
       ),

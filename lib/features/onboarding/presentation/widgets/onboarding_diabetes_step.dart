@@ -76,7 +76,6 @@ class _OnboardingDiabetesStepState
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     final draft = ref.watch(onboardingProvider);
-    final notifier = ref.read(onboardingProvider.notifier);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -102,7 +101,9 @@ class _OnboardingDiabetesStepState
                   child: Text(type.label(l10n), textAlign: TextAlign.center),
                 ),
                 selected: draft.diabetesType == type,
-                onSelected: (_) => notifier.selectDiabetesType(type),
+                onSelected: (_) => ref
+                    .read(onboardingProvider.notifier)
+                    .selectDiabetesType(type),
               ),
             ),
           const SizedBox(height: 16),

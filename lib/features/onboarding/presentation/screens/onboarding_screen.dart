@@ -53,7 +53,6 @@ class OnboardingScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final draft = ref.watch(onboardingProvider);
-    final notifier = ref.read(onboardingProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -62,7 +61,7 @@ class OnboardingScreen extends ConsumerWidget {
             ? IconButton(
                 icon: const Icon(Icons.arrow_back_rounded),
                 tooltip: l10n?.onboardingBack ?? 'Back',
-                onPressed: notifier.back,
+                onPressed: () => ref.read(onboardingProvider.notifier).back(),
               )
             : null,
         title: Text(

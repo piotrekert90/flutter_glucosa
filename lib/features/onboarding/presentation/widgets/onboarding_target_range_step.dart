@@ -26,7 +26,6 @@ class OnboardingTargetRangeStep extends ConsumerWidget {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     final draft = ref.watch(onboardingProvider);
-    final notifier = ref.read(onboardingProvider.notifier);
 
     const presets = [
       GlucoseRangePreset.ada,
@@ -70,7 +69,9 @@ class OnboardingTargetRangeStep extends ConsumerWidget {
                   ),
                 ),
                 selected: draft.rangePreset == preset,
-                onSelected: (_) => notifier.selectRangePreset(preset),
+                onSelected: (_) => ref
+                    .read(onboardingProvider.notifier)
+                    .selectRangePreset(preset),
               ),
             ),
         ],
