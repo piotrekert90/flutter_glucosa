@@ -70,7 +70,14 @@ class _AppState extends ConsumerState<App> {
       ),
       builder: (context, child) {
         return Stack(
-          children: [?child, if (isLocked) const BiometricShieldScreen()],
+          children: [
+            if (child != null)
+              ExcludeSemantics(
+                excluding: isLocked,
+                child: AbsorbPointer(absorbing: isLocked, child: child),
+              ),
+            if (isLocked) const BiometricShieldScreen(),
+          ],
         );
       },
     );
