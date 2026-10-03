@@ -69,8 +69,12 @@ Feature-First Clean Architecture under `lib/features/<feature>/`. Features inclu
   record-based domain operation returns.
 
 ### Security & Data Protection
-- Use `FieldCipher` (`lib/core/utils/field_cipher.dart`) for encrypting sensitive fields before persisting to
-  storage. Implements AES-256-CBC + HMAC-SHA256 Encrypt-then-MAC with constant-time verification.
+- **Local Persistence & Encryption Debt:** Isar Community (3.1.0+1) runs unencrypted within the local
+  application sandbox. Native database-level encryption is unsupported by the current engine and is documented
+  as conscious technical debt.
+- `FieldCipher` (`lib/core/utils/field_cipher.dart`) is available as a utility for field-level AES-256-CBC +
+  HMAC-SHA256 Encrypt-then-MAC encryption with constant-time verification when application-level field obfuscation
+  is required.
 
 ### Resource Lifecycle & Disposal (concrete items)
 - Every `StreamSubscription` cancelled in `dispose()` or the corresponding Notifier's `ref.onDispose()`.

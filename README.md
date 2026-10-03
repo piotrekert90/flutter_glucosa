@@ -37,7 +37,7 @@
 - **Target Range Profiles**: Select clinical presets (ADA Standard, Tight Control, Relaxed, Pregnancy) or configure custom minimum/maximum glucose thresholds.
 - **Diabetes Profiles**: Tailored tracking for Type 1, Type 2, Gestational, LADA, MODY, and Prediabetes.
 - **Appearance**: Seamless switching between System, Light, and Dark themes.
-- **Security & Privacy**: Zero remote tracking or telemetry. Local-first storage backed by Isar with optional AES-256 field encryption.
+- **Security & Privacy**: Zero remote tracking or telemetry. Local-first storage backed by Isar Community. (Note: Data is persisted unencrypted within the local application sandbox; full database-level encryption is tracked as conscious technical debt due to Isar Community engine constraints).
 
 ---
 
