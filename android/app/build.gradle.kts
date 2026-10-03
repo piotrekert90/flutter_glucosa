@@ -53,10 +53,10 @@ android {
             // Unique application ID for debug builds so they can coexist with the release
             // version installed from the store on the same device.
             applicationIdSuffix = ".dev"
-            manifestPlaceholders["appName"] = "Flutter Blueprint (Dev)"
+            manifestPlaceholders["appName"] = "Glucosa (Dev)"
         }
         release {
-            manifestPlaceholders["appName"] = "Flutter Blueprint"
+            manifestPlaceholders["appName"] = "Glucosa"
             // Fallback gracefully to debug keys when no release keystore is configured.
             signingConfig = signingConfigs.findByName("release")?.takeIf {
                 it.storeFile?.exists() == true
