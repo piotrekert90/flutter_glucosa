@@ -112,7 +112,10 @@ class OverviewScreen extends ConsumerWidget {
                   }
                   return GlucoseReadingCard(
                     reading: reading,
-                    onTap: () => context.push('/glucose/edit/${reading.id}'),
+                    onTap: () => context.pushNamed(
+                      AppRoute.editGlucose.name,
+                      pathParameters: {'id': '${reading.id}'},
+                    ),
                   );
                 },
                 loading: () => const Padding(

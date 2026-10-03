@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../core/router/app_routes.dart';
+
 import '../../../../core/domain/enums/enums.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../core/domain/value_objects/glucose_target_range.dart';
@@ -198,7 +200,7 @@ class SettingsScreen extends ConsumerWidget {
                 CustomSettingsTile(
                   icon: Icons.alarm_outlined,
                   title: l10n?.reminders ?? 'Reminders',
-                  onTap: () => context.push('/reminders'),
+                  onTap: () => context.push(AppRoute.reminders.path),
                 ),
                 const SizedBox(height: 12),
                 CustomSettingsTile(
@@ -207,7 +209,7 @@ class SettingsScreen extends ConsumerWidget {
                   subtitle:
                       l10n?.exportSubtitle ??
                       'Export measurements to CSV format',
-                  onTap: () => context.push('/export'),
+                  onTap: () => context.push(AppRoute.export.path),
                 ),
                 const SizedBox(height: 12),
                 CustomSettingsTile(
@@ -216,7 +218,7 @@ class SettingsScreen extends ConsumerWidget {
                   subtitle:
                       l10n?.hba1cCalculatorSubtitle ??
                       'Calculate estimated HbA1c from average glucose',
-                  onTap: () => context.push('/hba1c-calculator'),
+                  onTap: () => context.push(AppRoute.hba1cCalculator.path),
                 ),
                 const SizedBox(height: 12),
                 SectionHeader(label: l10n?.about ?? 'About'),
@@ -235,12 +237,16 @@ class SettingsScreen extends ConsumerWidget {
                 CustomSettingsTile(
                   icon: Icons.policy_outlined,
                   title: l10n?.privacyPolicy ?? 'Privacy Policy',
-                  onTap: () => context.go('/settings/privacy-policy'),
+                  onTap: () => context.go(
+                    '${AppRoute.settings.path}/${AppRoute.privacyPolicy.path}',
+                  ),
                 ),
                 CustomSettingsTile(
                   icon: Icons.code_rounded,
                   title: l10n?.licenses ?? 'Licenses',
-                  onTap: () => context.go('/settings/licenses'),
+                  onTap: () => context.go(
+                    '${AppRoute.settings.path}/${AppRoute.licenses.path}',
+                  ),
                 ),
                 CustomSettingsTile(
                   icon: Icons.star_outline_rounded,
