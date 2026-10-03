@@ -46,10 +46,12 @@ class OverviewScreen extends ConsumerWidget {
               icon: const Icon(Icons.share_outlined),
               tooltip: l10n.shareDoctorSummaryTooltip,
               onPressed: () {
+                final readings = readingsAsync.value;
+                if (readings == null || readings.isEmpty) return;
                 final profile = profileAsync.value ?? const UserProfile();
                 SummaryShareCoordinator.shareDoctorSummary(
                   context,
-                  readings: readingsAsync.value!,
+                  readings: readings,
                   profile: profile,
                 );
               },
