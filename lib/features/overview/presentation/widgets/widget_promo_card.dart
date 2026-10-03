@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:home_widget/home_widget.dart';
 
 import '../../../../core/presentation/utils/app_snackbar.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../../../l10n/app_localizations.dart';
 
 /// Dismissible card promoting the native home screen glucose widget.
@@ -40,8 +41,11 @@ class _WidgetPromoCardState extends ConsumerState<WidgetPromoCard> {
       final installed = await HomeWidget.getInstalledWidgets();
       if (!mounted || installed.isNotEmpty) return;
       setState(() => _eligible = true);
-    } catch (_) {
-      // Native widget integration unavailable: stay hidden.
+    } catch (e) {
+      AppLogger.debug(
+        'Native widget integration unavailable or check failed: $e',
+        tag: 'WidgetPromoCard',
+      );
     }
   }
 
@@ -59,8 +63,13 @@ class _WidgetPromoCardState extends ConsumerState<WidgetPromoCard> {
             l10n?.widgetPinRequested ?? 'Widget pin request sent to launcher',
         type: SnackBarType.success,
       );
-    } catch (_) {
-      // Pin request failed: stay silent, the card remains available.
+    } catch (e, stack) {
+      AppLogger.warning(
+        'HomeWidget pin request failed',
+        error: e,
+        stackTrace: stack,
+        tag: 'WidgetPromoCard',
+      );
     }
   }
 
