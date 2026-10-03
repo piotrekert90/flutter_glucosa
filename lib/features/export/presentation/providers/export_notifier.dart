@@ -13,6 +13,25 @@ part 'export_notifier.g.dart';
 /// Riverpod state notifier managing data export configuration, metrics selection, and sharing.
 @riverpod
 class ExportNotifier extends _$ExportNotifier {
+  int _countRequestId = 0;
+
+  Future<void> _updateMatchingRecordCount({
+    required DateTimeRange? dateRange,
+    required Set<MetricType> metrics,
+  }) async {
+    final requestId = ++_countRequestId;
+    final exportService = ref.read(exportServiceProvider);
+    final count = await exportService.countRecords(
+      dateRange: dateRange,
+      metrics: metrics,
+    );
+    if (requestId != _countRequestId) return;
+    final current = state.value;
+    if (current != null) {
+      state = AsyncData(current.copyWith(matchingRecordCount: count));
+    }
+  }
+
   @override
   FutureOr<ExportState> build() async {
     final exportService = ref.watch(exportServiceProvider);
@@ -28,7 +47,6 @@ class ExportNotifier extends _$ExportNotifier {
   /// [range] The target boundary dates or null to include all records.
   Future<void> setDateRange(DateTimeRange? range) async {
     final current = state.value ?? const ExportState();
-    final exportService = ref.read(exportServiceProvider);
 
     state = AsyncData(
       current.copyWith(
@@ -38,13 +56,9 @@ class ExportNotifier extends _$ExportNotifier {
       ),
     );
 
-    final count = await exportService.countRecords(
+    await _updateMatchingRecordCount(
       dateRange: range,
       metrics: current.selectedMetrics,
-    );
-
-    state = AsyncData(
-      (state.value ?? current).copyWith(matchingRecordCount: count),
     );
   }
 
@@ -60,19 +74,13 @@ class ExportNotifier extends _$ExportNotifier {
       updated.add(metric);
     }
 
-    final exportService = ref.read(exportServiceProvider);
-
     state = AsyncData(
       current.copyWith(selectedMetrics: updated, clearErrorMessage: true),
     );
 
-    final count = await exportService.countRecords(
+    await _updateMatchingRecordCount(
       dateRange: current.dateRange,
       metrics: updated,
-    );
-
-    state = AsyncData(
-      (state.value ?? current).copyWith(matchingRecordCount: count),
     );
   }
 
@@ -82,19 +90,14 @@ class ExportNotifier extends _$ExportNotifier {
   Future<void> setSelectAllMetrics(bool selectAll) async {
     final current = state.value ?? const ExportState();
     final updated = selectAll ? MetricType.values.toSet() : <MetricType>{};
-    final exportService = ref.read(exportServiceProvider);
 
     state = AsyncData(
       current.copyWith(selectedMetrics: updated, clearErrorMessage: true),
     );
 
-    final count = await exportService.countRecords(
+    await _updateMatchingRecordCount(
       dateRange: current.dateRange,
       metrics: updated,
-    );
-
-    state = AsyncData(
-      (state.value ?? current).copyWith(matchingRecordCount: count),
     );
   }
 
