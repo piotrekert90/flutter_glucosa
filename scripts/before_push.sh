@@ -71,9 +71,8 @@ FORMAT_DIRS=("lib" "test")
 [ -d "integration_test" ] && FORMAT_DIRS+=("integration_test")
 [ -d "test_driver" ] && FORMAT_DIRS+=("test_driver")
 
-dart format "${FORMAT_DIRS[@]}"
-if ! git diff --quiet "${FORMAT_DIRS[@]}"; then
-    log_error "Unstaged formatting changes detected after 'dart format'. Stage and commit them before pushing."
+if ! dart format --set-exit-if-changed "${FORMAT_DIRS[@]}"; then
+    log_error "Unformatted code detected after 'dart format'. Ensure all files are formatted and committed before pushing."
     exit 1
 fi
 log_success "Codebase formatting aligns with style specifications."
