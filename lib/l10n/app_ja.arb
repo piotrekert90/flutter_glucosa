@@ -38,10 +38,6 @@
   "@userProfile": {
     "description": "Section header for user profile"
   },
-  "failedToLoadSettings": "設定を読み込めませんでした",
-  "@failedToLoadSettings": {
-    "description": "Error message when settings cannot be retrieved"
-  },
   "theme": "テーマ",
   "@theme": {
     "description": "Theme label"
@@ -74,10 +70,6 @@
   "@failedToUpdateThemeMode": {
     "description": "Snackbar message when updating theme mode fails"
   },
-  "settingsTooltip": "設定",
-  "@settingsTooltip": {
-    "description": "Accessibility tooltip for settings button in app bar"
-  },
   "navOverview": "概要",
   "@navOverview": {
     "description": "Label for overview dashboard bottom navigation tab"
@@ -89,14 +81,6 @@
   "navSettings": "設定",
   "@navSettings": {
     "description": "Label for settings bottom navigation tab"
-  },
-  "overviewComingSoon": "ダッシュボードは近日公開",
-  "@overviewComingSoon": {
-    "description": "Placeholder text for overview dashboard"
-  },
-  "historyComingSoon": "記録は近日公開",
-  "@historyComingSoon": {
-    "description": "Placeholder text for history log"
   },
   "delete": "削除",
   "@delete": {
@@ -226,22 +210,6 @@
   "privacyPolicyContactBody": "ご質問やご意見はチームまでご連絡ください:",
   "@privacyPolicyContactBody": {
     "description": "Contact body in privacy policy"
-  },
-  "initErrorTitle": "初期化エラー",
-  "@initErrorTitle": {
-    "description": "Title for app initialization error"
-  },
-  "initErrorSubtitle": "ストレージまたはサービスを初期化できませんでした。再起動してもう一度お試しください。",
-  "@initErrorSubtitle": {
-    "description": "Subtitle for app initialization error"
-  },
-  "retryStartup": "起動を再試行",
-  "@retryStartup": {
-    "description": "Retry button on startup error screen"
-  },
-  "initErrorSemantics": "起動初期化エラー画面",
-  "@initErrorSemantics": {
-    "description": "Semantics label for initialization error screen"
   },
   "rateApp": "アプリを評価",
   "@rateApp": {
@@ -715,14 +683,6 @@
   "@onboardingGlucoseUnitLabel": {
     "description": "Label for the glucose unit selector during onboarding"
   },
-  "onboardingRangeLabel": "目標範囲",
-  "@onboardingRangeLabel": {
-    "description": "Label for the target range selector during onboarding"
-  },
-  "onboardingConfirmTitle": "準備完了!",
-  "@onboardingConfirmTitle": {
-    "description": "Title of the onboarding confirmation step"
-  },
   "onboardingGetStarted": "はじめる",
   "@onboardingGetStarted": {
     "description": "Final onboarding completion button"
@@ -1073,10 +1033,6 @@
   "@tabCalendar": {
     "description": "Title and tab label for interactive calendar screen"
   },
-  "calendarTitle": "カレンダー",
-  "@calendarTitle": {
-    "description": "Top bar title for calendar screen"
-  },
   "previousMonth": "前の月",
   "@previousMonth": {
     "description": "Tooltip for previous month navigation button"
@@ -1167,10 +1123,6 @@
   "@bestStreak": {
     "description": "Label for longest historical logging streak"
   },
-  "loggingStreak": "記録の連続",
-  "@loggingStreak": {
-    "description": "Card title for daily logging streak"
-  },
   "streakDays": "{count, plural, other{{count}日間}}",
   "@streakDays": {
     "description": "Pluralized streak duration in days",
@@ -1183,10 +1135,6 @@
   "monthlyCompliance": "月間の記録率",
   "@monthlyCompliance": {
     "description": "Label for logging compliance in the active month"
-  },
-  "totalCompliance": "全体の記録率",
-  "@totalCompliance": {
-    "description": "Label for total historical logging compliance"
   },
   "periodComparison": "期間の比較",
   "@periodComparison": {
@@ -1208,17 +1156,9 @@
   "@meanGlucose": {
     "description": "Label for average glucose level"
   },
-  "glucoseVariabilitySd": "変動 (SD)",
-  "@glucoseVariabilitySd": {
-    "description": "Label for glucose standard deviation variability"
-  },
   "timeInRangeShort": "目標範囲内時間",
   "@timeInRangeShort": {
     "description": "Short label for Time in Range (TIR)"
-  },
-  "readingsCountLabel": "測定値の合計",
-  "@readingsCountLabel": {
-    "description": "Label for total readings logged in period"
   },
   "hypoIncidentsLabel": "低血糖イベント",
   "@hypoIncidentsLabel": {
@@ -1227,18 +1167,6 @@
   "insufficientComparisonData": "比較には両方の期間でもっとデータが必要です",
   "@insufficientComparisonData": {
     "description": "Message shown when period comparison has insufficient readings"
-  },
-  "comparisonImproved": "改善",
-  "@comparisonImproved": {
-    "description": "Status badge when comparative metrics show clinical improvement"
-  },
-  "comparisonStable": "安定",
-  "@comparisonStable": {
-    "description": "Status badge when comparative metrics remain stable"
-  },
-  "comparisonNeedsAttention": "要注目",
-  "@comparisonNeedsAttention": {
-    "description": "Status badge when comparative metrics worsen"
   },
   "milestones": "マイルストーン",
   "@milestones": {
@@ -1825,5 +1753,17 @@
   "dailyTip14": "連続記録を祝い — 途切れは許しましょう。",
   "@dailyTip14": {
     "description": "Rotating diabetes tip 14"
+  },
+  "privacyPolicyEmailError": "メールアプリを開けませんでした",
+  "@privacyPolicyEmailError": {
+    "description": "Error message when opening email client fails"
+  },
+  "glucoseUnitMgDlDescription": "ミリグラム毎デシリットル",
+  "@glucoseUnitMgDlDescription": {
+    "description": "Full description for mg/dL glucose unit"
+  },
+  "glucoseUnitMmolLDescription": "ミリモル毎リットル",
+  "@glucoseUnitMmolLDescription": {
+    "description": "Full description for mmol/L glucose unit"
   }
 }

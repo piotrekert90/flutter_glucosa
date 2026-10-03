@@ -38,10 +38,6 @@
   "@userProfile": {
     "description": "Section header for user profile"
   },
-  "failedToLoadSettings": "Impossibile caricare le impostazioni",
-  "@failedToLoadSettings": {
-    "description": "Error message when settings cannot be retrieved"
-  },
   "theme": "Tema",
   "@theme": {
     "description": "Theme label"
@@ -74,10 +70,6 @@
   "@failedToUpdateThemeMode": {
     "description": "Snackbar message when updating theme mode fails"
   },
-  "settingsTooltip": "Impostazioni",
-  "@settingsTooltip": {
-    "description": "Accessibility tooltip for settings button in app bar"
-  },
   "navOverview": "Panoramica",
   "@navOverview": {
     "description": "Label for overview dashboard bottom navigation tab"
@@ -89,14 +81,6 @@
   "navSettings": "Impostazioni",
   "@navSettings": {
     "description": "Label for settings bottom navigation tab"
-  },
-  "overviewComingSoon": "Dashboard in arrivo",
-  "@overviewComingSoon": {
-    "description": "Placeholder text for overview dashboard"
-  },
-  "historyComingSoon": "Registro in arrivo",
-  "@historyComingSoon": {
-    "description": "Placeholder text for history log"
   },
   "delete": "Elimina",
   "@delete": {
@@ -226,22 +210,6 @@
   "privacyPolicyContactBody": "Per domande o feedback, contatta il nostro team:",
   "@privacyPolicyContactBody": {
     "description": "Contact body in privacy policy"
-  },
-  "initErrorTitle": "Errore di inizializzazione",
-  "@initErrorTitle": {
-    "description": "Title for app initialization error"
-  },
-  "initErrorSubtitle": "Impossibile inizializzare archiviazione o servizi. Riavvia o riprova.",
-  "@initErrorSubtitle": {
-    "description": "Subtitle for app initialization error"
-  },
-  "retryStartup": "Riprova l'avvio",
-  "@retryStartup": {
-    "description": "Retry button on startup error screen"
-  },
-  "initErrorSemantics": "Schermata di errore di inizializzazione",
-  "@initErrorSemantics": {
-    "description": "Semantics label for initialization error screen"
   },
   "rateApp": "Valuta l'app",
   "@rateApp": {
@@ -715,14 +683,6 @@
   "@onboardingGlucoseUnitLabel": {
     "description": "Label for the glucose unit selector during onboarding"
   },
-  "onboardingRangeLabel": "Intervallo obiettivo",
-  "@onboardingRangeLabel": {
-    "description": "Label for the target range selector during onboarding"
-  },
-  "onboardingConfirmTitle": "Tutto pronto!",
-  "@onboardingConfirmTitle": {
-    "description": "Title of the onboarding confirmation step"
-  },
   "onboardingGetStarted": "Comincia",
   "@onboardingGetStarted": {
     "description": "Final onboarding completion button"
@@ -1073,10 +1033,6 @@
   "@tabCalendar": {
     "description": "Title and tab label for interactive calendar screen"
   },
-  "calendarTitle": "Calendario",
-  "@calendarTitle": {
-    "description": "Top bar title for calendar screen"
-  },
   "previousMonth": "Mese precedente",
   "@previousMonth": {
     "description": "Tooltip for previous month navigation button"
@@ -1167,10 +1123,6 @@
   "@bestStreak": {
     "description": "Label for longest historical logging streak"
   },
-  "loggingStreak": "Serie di registrazione",
-  "@loggingStreak": {
-    "description": "Card title for daily logging streak"
-  },
   "streakDays": "{count, plural, =1{1 giorno} other{{count} giorni}}",
   "@streakDays": {
     "description": "Pluralized streak duration in days",
@@ -1183,10 +1135,6 @@
   "monthlyCompliance": "Costanza mensile",
   "@monthlyCompliance": {
     "description": "Label for logging compliance in the active month"
-  },
-  "totalCompliance": "Costanza totale",
-  "@totalCompliance": {
-    "description": "Label for total historical logging compliance"
   },
   "periodComparison": "Confronto periodi",
   "@periodComparison": {
@@ -1208,17 +1156,9 @@
   "@meanGlucose": {
     "description": "Label for average glucose level"
   },
-  "glucoseVariabilitySd": "Variabilità (DS)",
-  "@glucoseVariabilitySd": {
-    "description": "Label for glucose standard deviation variability"
-  },
   "timeInRangeShort": "Tempo in intervallo",
   "@timeInRangeShort": {
     "description": "Short label for Time in Range (TIR)"
-  },
-  "readingsCountLabel": "Misurazioni totali",
-  "@readingsCountLabel": {
-    "description": "Label for total readings logged in period"
   },
   "hypoIncidentsLabel": "Episodi di ipo",
   "@hypoIncidentsLabel": {
@@ -1227,18 +1167,6 @@
   "insufficientComparisonData": "Servono più dati in entrambi i periodi per confrontare",
   "@insufficientComparisonData": {
     "description": "Message shown when period comparison has insufficient readings"
-  },
-  "comparisonImproved": "Migliorato",
-  "@comparisonImproved": {
-    "description": "Status badge when comparative metrics show clinical improvement"
-  },
-  "comparisonStable": "Stabile",
-  "@comparisonStable": {
-    "description": "Status badge when comparative metrics remain stable"
-  },
-  "comparisonNeedsAttention": "Attenzione",
-  "@comparisonNeedsAttention": {
-    "description": "Status badge when comparative metrics worsen"
   },
   "milestones": "Traguardi",
   "@milestones": {
@@ -1825,5 +1753,17 @@
   "dailyTip14": "Celebra le serie — e perdona le pause.",
   "@dailyTip14": {
     "description": "Rotating diabetes tip 14"
+  },
+  "privacyPolicyEmailError": "Impossibile aprire l'app di posta elettronica",
+  "@privacyPolicyEmailError": {
+    "description": "Error message when opening email client fails"
+  },
+  "glucoseUnitMgDlDescription": "Milligrammi per decilitro",
+  "@glucoseUnitMgDlDescription": {
+    "description": "Full description for mg/dL glucose unit"
+  },
+  "glucoseUnitMmolLDescription": "Millimoli per litro",
+  "@glucoseUnitMmolLDescription": {
+    "description": "Full description for mmol/L glucose unit"
   }
 }

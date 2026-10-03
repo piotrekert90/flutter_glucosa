@@ -7,7 +7,6 @@
   "pageNotFound": "Nie znaleziono strony: {uri}",
   "settings": "Ustawienia",
   "settingsTitle": "Ustawienia",
-  "failedToLoadSettings": "Nie udało się załadować ustawień",
   "theme": "Motyw",
   "themeSystem": "Systemowy",
   "themeLight": "Jasny",
@@ -16,12 +15,9 @@
   "receivePushNotifications": "Otrzymuj powiadomienia push",
   "failedToUpdatePreferences": "Nie udało się zaktualizować preferencji",
   "failedToUpdateThemeMode": "Nie udało się zaktualizować motywu",
-  "settingsTooltip": "Ustawienia",
   "navOverview": "Przegląd",
   "navHistory": "Historia",
   "navSettings": "Ustawienia",
-  "overviewComingSoon": "Panel główny wkrótce",
-  "historyComingSoon": "Historia pomiarów wkrótce",
   "delete": "Usuń",
   "undo": "Cofnij",
   "cancel": "Anuluj",
@@ -61,10 +57,6 @@
   "privacyPolicySection4Body": "Masz pełną kontrolę nad swoimi danymi. Możesz w każdej chwili usunąć lub zresetować dane z poziomu ustawień urządzenia.",
   "privacyPolicyContactTitle": "Kontakt i wsparcie",
   "privacyPolicyContactBody": "W przypadku pytań lub uwag dotyczących prywatności napisz do nas:",
-  "initErrorTitle": "Błąd inicjalizacji",
-  "initErrorSubtitle": "Nie udało się zainicjalizować pamięci lub usług aplikacji. Spróbuj uruchomić aplikację ponownie lub kliknij ponów.",
-  "retryStartup": "Ponów uruchamianie",
-  "initErrorSemantics": "Ekran błędu inicjalizacji startowej",
   "rateApp": "Oceń aplikację",
   "couldNotOpenStore": "Nie udało się otworzyć sklepu z aplikacjami",
   "glucose": "Glukoza we krwi",
@@ -183,9 +175,7 @@
   "diabetesTypeLada": "LADA",
   "onboardingUnitsTitle": "Preferowana jednostka glikemii",
   "onboardingGlucoseUnitLabel": "Jednostka glukozy",
-  "onboardingRangeLabel": "Zakres docelowy",
-  "onboardingConfirmTitle": "Wszystko gotowe!",
-  "onboardingGetStarted": "Rozpocznij",
+  "onboardingGetStarted": "Zaczynamy",
   "onboardingNext": "Dalej",
   "onboardingBack": "Wstecz",
   "onboardingStepOf": "Krok {step} z {total}",
@@ -269,7 +259,6 @@
   "firstDayOfWeekSunday": "Niedziela",
   "selectFirstDayOfWeek": "Wybierz pierwszy dzień tygodnia",
   "tabCalendar": "Kalendarz",
-  "calendarTitle": "Kalendarz",
   "previousMonth": "Poprzedni miesiąc",
   "nextMonth": "Następny miesiąc",
   "jumpToToday": "Dzisiaj",
@@ -286,23 +275,16 @@
   "habitsAndStreaks": "Nawyki i serie",
   "currentStreak": "Aktualna seria",
   "bestStreak": "Najlepsza seria",
-  "loggingStreak": "Seria pomiarów",
   "streakDays": "{count, plural, =1{1 dzień} few{{count} dni} other{{count} dni}}",
   "monthlyCompliance": "Zgodność w tym miesiącu",
-  "totalCompliance": "Całkowita zgodność",
   "periodComparison": "Porównanie okresów",
   "rollingDays7": "7 dni",
   "rollingDays14": "14 dni",
   "rollingDays30": "30 dni",
   "meanGlucose": "Średnia glukoza",
-  "glucoseVariabilitySd": "Zmienność (SD)",
   "timeInRangeShort": "Czas w normie (TIR)",
-  "readingsCountLabel": "Liczba pomiarów",
   "hypoIncidentsLabel": "Epizody hipoglikemii",
   "insufficientComparisonData": "Potrzeba więcej danych w obu okresach do porównania",
-  "comparisonImproved": "Poprawa",
-  "comparisonStable": "Stabilnie",
-  "comparisonNeedsAttention": "Wymaga uwagi",
   "milestones": "Kamienie milowe",
   "milestonesUnlocked": "{unlocked} z {total} odblokowane",
   "milestonesGallery": "Galeria osiągnięć",
@@ -366,21 +348,30 @@
   "@csvImportValidRows": {
     "description": "Count of valid readings found in CSV file",
     "placeholders": {
-      "count": {"type": "int", "example": "42"}
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
     }
   },
   "csvImportSkippedRows": "{count, plural, =1{1 wiersz pominięty (nieprawidłowy format)} few{{count} wiersze pominięte (nieprawidłowy format)} other{{count} wierszy pominiętych (nieprawidłowy format)}}",
   "@csvImportSkippedRows": {
     "description": "Count of malformed rows skipped during CSV analysis",
     "placeholders": {
-      "count": {"type": "int", "example": "3"}
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
     }
   },
   "csvImportDuplicateRows": "{count, plural, =1{1 duplikat już jest w Twoich danych} few{{count} duplikaty już są w Twoich danych} other{{count} duplikatów już jest w Twoich danych}}",
   "@csvImportDuplicateRows": {
     "description": "Count of rows duplicating existing readings",
     "placeholders": {
-      "count": {"type": "int", "example": "5"}
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
     }
   },
   "csvImportConfirm": "Importuj",
@@ -388,7 +379,10 @@
   "@csvImportSuccess": {
     "description": "Success message after CSV import completes",
     "placeholders": {
-      "count": {"type": "int", "example": "42"}
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
     }
   },
   "csvImportErrorTooLarge": "Plik jest za duży (maksymalnie 5 MB)",
@@ -400,14 +394,20 @@
   "@healthSyncTitle": {
     "description": "Health sync toggle title with platform name",
     "placeholders": {
-      "platform": {"type": "String", "example": "Apple Health"}
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
     }
   },
   "healthSyncSubtitle": "Automatycznie wymieniaj pomiary glikemii z {platform}",
   "@healthSyncSubtitle": {
     "description": "Health sync toggle subtitle with platform name",
     "placeholders": {
-      "platform": {"type": "String", "example": "Apple Health"}
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
     }
   },
   "healthSyncNow": "Synchronizuj teraz",
@@ -415,7 +415,10 @@
   "@healthSyncLast": {
     "description": "Label showing last successful sync timestamp",
     "placeholders": {
-      "date": {"type": "String", "example": "3 paź, 14:30"}
+      "date": {
+        "type": "String",
+        "example": "3 paź, 14:30"
+      }
     }
   },
   "healthSyncNever": "Nigdy nie synchronizowano",
@@ -423,8 +426,14 @@
   "@healthSyncSuccess": {
     "description": "Success message after health synchronization",
     "placeholders": {
-      "imported": {"type": "int", "example": "5"},
-      "exported": {"type": "int", "example": "3"}
+      "imported": {
+        "type": "int",
+        "example": "5"
+      },
+      "exported": {
+        "type": "int",
+        "example": "3"
+      }
     }
   },
   "healthSyncNoPermissions": "Nie udzielono uprawnień zdrowotnych",
@@ -445,14 +454,20 @@
   "@onboardingHealthTitle": {
     "description": "Title of onboarding health sync step",
     "placeholders": {
-      "platform": {"type": "String", "example": "Apple Health"}
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
     }
   },
   "onboardingHealthSubtitle": "Automatycznie wymieniaj pomiary glikemii z {platform}. Możesz to zmienić później w Ustawieniach.",
   "@onboardingHealthSubtitle": {
     "description": "Subtitle of onboarding health sync step",
     "placeholders": {
-      "platform": {"type": "String", "example": "Apple Health"}
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
     }
   },
   "onboardingHealthEnable": "Włącz synchronizację zdrowia",
@@ -470,7 +485,6 @@
   "onboardingPrivacyRequired": "Zaakceptuj informację o prywatności, aby kontynuować",
   "onboardingCsvTitle": "Zabierz swoją historię",
   "onboardingCsvSubtitle": "Zaimportuj pomiary z mySugr, Dexcom lub Contour — albo pomiń i zacznij od nowa.",
-  "onboardingGetStarted": "Zaczynamy",
   "onboardingBaselineLabel": "Glikemia bazowa (opcjonalnie)",
   "onboardingBaselineHintMgDl": "np. 120 mg/dL",
   "onboardingBaselineHintMmolL": "np. 6,5 mmol/L",
@@ -490,8 +504,8 @@
   "dailyTip11": "Poznaj swoje wczesne objawy niedocukrzenia.",
   "dailyTip12": "Zabieraj podsumowanie Glucosa na każdą wizytę u lekarza.",
   "dailyTip13": "Skontroluj glikemię 15 minut po leczeniu niedocukrzenia.",
-  "dailyTip14": "Świętuj serie — a przerwy sobie wybaczaj."
+  "dailyTip14": "Świętuj serie — a przerwy sobie wybaczaj.",
+  "privacyPolicyEmailError": "Nie udało się otworzyć aplikacji pocztowej",
+  "glucoseUnitMgDlDescription": "Miligramy na decylitr",
+  "glucoseUnitMmolLDescription": "Milimole na litr"
 }
-
-
-

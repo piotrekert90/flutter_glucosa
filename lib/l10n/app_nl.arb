@@ -38,10 +38,6 @@
   "@userProfile": {
     "description": "Section header for user profile"
   },
-  "failedToLoadSettings": "Instellingen konden niet worden geladen",
-  "@failedToLoadSettings": {
-    "description": "Error message when settings cannot be retrieved"
-  },
   "theme": "Thema",
   "@theme": {
     "description": "Theme label"
@@ -74,10 +70,6 @@
   "@failedToUpdateThemeMode": {
     "description": "Snackbar message when updating theme mode fails"
   },
-  "settingsTooltip": "Instellingen",
-  "@settingsTooltip": {
-    "description": "Accessibility tooltip for settings button in app bar"
-  },
   "navOverview": "Overzicht",
   "@navOverview": {
     "description": "Label for overview dashboard bottom navigation tab"
@@ -89,14 +81,6 @@
   "navSettings": "Instellingen",
   "@navSettings": {
     "description": "Label for settings bottom navigation tab"
-  },
-  "overviewComingSoon": "Dashboard volgt binnenkort",
-  "@overviewComingSoon": {
-    "description": "Placeholder text for overview dashboard"
-  },
-  "historyComingSoon": "Logboek volgt binnenkort",
-  "@historyComingSoon": {
-    "description": "Placeholder text for history log"
   },
   "delete": "Verwijderen",
   "@delete": {
@@ -226,22 +210,6 @@
   "privacyPolicyContactBody": "Neem bij vragen of feedback contact op met ons team:",
   "@privacyPolicyContactBody": {
     "description": "Contact body in privacy policy"
-  },
-  "initErrorTitle": "Initialisatiefout",
-  "@initErrorTitle": {
-    "description": "Title for app initialization error"
-  },
-  "initErrorSubtitle": "Opslag of services konden niet worden geïnitialiseerd. Start opnieuw of probeer het nogmaals.",
-  "@initErrorSubtitle": {
-    "description": "Subtitle for app initialization error"
-  },
-  "retryStartup": "Opstarten opnieuw",
-  "@retryStartup": {
-    "description": "Retry button on startup error screen"
-  },
-  "initErrorSemantics": "Foutscherm bij opstarten",
-  "@initErrorSemantics": {
-    "description": "Semantics label for initialization error screen"
   },
   "rateApp": "App beoordelen",
   "@rateApp": {
@@ -715,14 +683,6 @@
   "@onboardingGlucoseUnitLabel": {
     "description": "Label for the glucose unit selector during onboarding"
   },
-  "onboardingRangeLabel": "Streefbereik",
-  "@onboardingRangeLabel": {
-    "description": "Label for the target range selector during onboarding"
-  },
-  "onboardingConfirmTitle": "Helemaal klaar!",
-  "@onboardingConfirmTitle": {
-    "description": "Title of the onboarding confirmation step"
-  },
   "onboardingGetStarted": "Aan de slag",
   "@onboardingGetStarted": {
     "description": "Final onboarding completion button"
@@ -1073,10 +1033,6 @@
   "@tabCalendar": {
     "description": "Title and tab label for interactive calendar screen"
   },
-  "calendarTitle": "Kalender",
-  "@calendarTitle": {
-    "description": "Top bar title for calendar screen"
-  },
   "previousMonth": "Vorige maand",
   "@previousMonth": {
     "description": "Tooltip for previous month navigation button"
@@ -1167,10 +1123,6 @@
   "@bestStreak": {
     "description": "Label for longest historical logging streak"
   },
-  "loggingStreak": "Logreeks",
-  "@loggingStreak": {
-    "description": "Card title for daily logging streak"
-  },
   "streakDays": "{count, plural, =1{1 dag} other{{count} dagen}}",
   "@streakDays": {
     "description": "Pluralized streak duration in days",
@@ -1183,10 +1135,6 @@
   "monthlyCompliance": "Maandelijkse regelmaat",
   "@monthlyCompliance": {
     "description": "Label for logging compliance in the active month"
-  },
-  "totalCompliance": "Totale regelmaat",
-  "@totalCompliance": {
-    "description": "Label for total historical logging compliance"
   },
   "periodComparison": "Periodevergelijking",
   "@periodComparison": {
@@ -1208,17 +1156,9 @@
   "@meanGlucose": {
     "description": "Label for average glucose level"
   },
-  "glucoseVariabilitySd": "Variabiliteit (SD)",
-  "@glucoseVariabilitySd": {
-    "description": "Label for glucose standard deviation variability"
-  },
   "timeInRangeShort": "Tijd binnen bereik",
   "@timeInRangeShort": {
     "description": "Short label for Time in Range (TIR)"
-  },
-  "readingsCountLabel": "Metingen totaal",
-  "@readingsCountLabel": {
-    "description": "Label for total readings logged in period"
   },
   "hypoIncidentsLabel": "Hypo's",
   "@hypoIncidentsLabel": {
@@ -1227,18 +1167,6 @@
   "insufficientComparisonData": "Meer gegevens in beide perioden nodig om te vergelijken",
   "@insufficientComparisonData": {
     "description": "Message shown when period comparison has insufficient readings"
-  },
-  "comparisonImproved": "Verbeterd",
-  "@comparisonImproved": {
-    "description": "Status badge when comparative metrics show clinical improvement"
-  },
-  "comparisonStable": "Stabiel",
-  "@comparisonStable": {
-    "description": "Status badge when comparative metrics remain stable"
-  },
-  "comparisonNeedsAttention": "Let op",
-  "@comparisonNeedsAttention": {
-    "description": "Status badge when comparative metrics worsen"
   },
   "milestones": "Mijlpalen",
   "@milestones": {
@@ -1825,5 +1753,17 @@
   "dailyTip14": "Vier reeksen — en vergeef de gaten.",
   "@dailyTip14": {
     "description": "Rotating diabetes tip 14"
+  },
+  "privacyPolicyEmailError": "Kan e-mailapp niet openen",
+  "@privacyPolicyEmailError": {
+    "description": "Error message when opening email client fails"
+  },
+  "glucoseUnitMgDlDescription": "Milligram per deciliter",
+  "@glucoseUnitMgDlDescription": {
+    "description": "Full description for mg/dL glucose unit"
+  },
+  "glucoseUnitMmolLDescription": "Millimol per liter",
+  "@glucoseUnitMmolLDescription": {
+    "description": "Full description for mmol/L glucose unit"
   }
 }

@@ -38,10 +38,6 @@
   "@userProfile": {
     "description": "Section header for user profile"
   },
-  "failedToLoadSettings": "Failed to load settings",
-  "@failedToLoadSettings": {
-    "description": "Error message when settings cannot be retrieved"
-  },
   "theme": "Theme",
   "@theme": {
     "description": "Theme label"
@@ -74,10 +70,6 @@
   "@failedToUpdateThemeMode": {
     "description": "Snackbar message when updating theme mode fails"
   },
-  "settingsTooltip": "Settings",
-  "@settingsTooltip": {
-    "description": "Accessibility tooltip for settings button in app bar"
-  },
   "navOverview": "Overview",
   "@navOverview": {
     "description": "Label for overview dashboard bottom navigation tab"
@@ -89,14 +81,6 @@
   "navSettings": "Settings",
   "@navSettings": {
     "description": "Label for settings bottom navigation tab"
-  },
-  "overviewComingSoon": "Overview dashboard coming soon",
-  "@overviewComingSoon": {
-    "description": "Placeholder text for overview dashboard"
-  },
-  "historyComingSoon": "History log coming soon",
-  "@historyComingSoon": {
-    "description": "Placeholder text for history log"
   },
   "delete": "Delete",
   "@delete": {
@@ -226,22 +210,6 @@
   "privacyPolicyContactBody": "For inquiries or privacy feedback, reach out to our team:",
   "@privacyPolicyContactBody": {
     "description": "Contact body in privacy policy"
-  },
-  "initErrorTitle": "Initialization Error",
-  "@initErrorTitle": {
-    "description": "Title for app initialization error"
-  },
-  "initErrorSubtitle": "Failed to initialize application storage or services. Please try restarting or retry.",
-  "@initErrorSubtitle": {
-    "description": "Subtitle for app initialization error"
-  },
-  "retryStartup": "Retry Startup",
-  "@retryStartup": {
-    "description": "Retry button on startup error screen"
-  },
-  "initErrorSemantics": "Startup initialization error screen",
-  "@initErrorSemantics": {
-    "description": "Semantics label for initialization error screen"
   },
   "rateApp": "Rate App",
   "@rateApp": {
@@ -715,17 +683,9 @@
   "@onboardingGlucoseUnitLabel": {
     "description": "Label for the glucose unit selector during onboarding"
   },
-  "onboardingRangeLabel": "Target range",
-  "@onboardingRangeLabel": {
-    "description": "Label for the target range selector during onboarding"
-  },
-  "onboardingConfirmTitle": "You're all set!",
-  "@onboardingConfirmTitle": {
-    "description": "Title of the onboarding confirmation step"
-  },
   "onboardingGetStarted": "Get Started",
   "@onboardingGetStarted": {
-    "description": "Label for the button completing onboarding"
+    "description": "Final onboarding completion button"
   },
   "onboardingNext": "Next",
   "@onboardingNext": {
@@ -739,8 +699,12 @@
   "@onboardingStepOf": {
     "description": "Progress indicator of the onboarding wizard",
     "placeholders": {
-      "step": {"type": "int"},
-      "total": {"type": "int"}
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "reminders": "Reminders",
@@ -1069,10 +1033,6 @@
   "@tabCalendar": {
     "description": "Title and tab label for interactive calendar screen"
   },
-  "calendarTitle": "Calendar",
-  "@calendarTitle": {
-    "description": "Top bar title for calendar screen"
-  },
   "previousMonth": "Previous month",
   "@previousMonth": {
     "description": "Tooltip for previous month navigation button"
@@ -1163,10 +1123,6 @@
   "@bestStreak": {
     "description": "Label for longest historical logging streak"
   },
-  "loggingStreak": "Logging Streak",
-  "@loggingStreak": {
-    "description": "Card title for daily logging streak"
-  },
   "streakDays": "{count, plural, =1{1 day} other{{count} days}}",
   "@streakDays": {
     "description": "Pluralized streak duration in days",
@@ -1179,10 +1135,6 @@
   "monthlyCompliance": "Monthly Compliance",
   "@monthlyCompliance": {
     "description": "Label for logging compliance in the active month"
-  },
-  "totalCompliance": "Total Compliance",
-  "@totalCompliance": {
-    "description": "Label for total historical logging compliance"
   },
   "periodComparison": "Period Comparison",
   "@periodComparison": {
@@ -1204,17 +1156,9 @@
   "@meanGlucose": {
     "description": "Label for average glucose level"
   },
-  "glucoseVariabilitySd": "Variability (SD)",
-  "@glucoseVariabilitySd": {
-    "description": "Label for glucose standard deviation variability"
-  },
   "timeInRangeShort": "Time in Range",
   "@timeInRangeShort": {
     "description": "Short label for Time in Range (TIR)"
-  },
-  "readingsCountLabel": "Total Readings",
-  "@readingsCountLabel": {
-    "description": "Label for total readings logged in period"
   },
   "hypoIncidentsLabel": "Hypo Events",
   "@hypoIncidentsLabel": {
@@ -1223,18 +1167,6 @@
   "insufficientComparisonData": "More data needed in both periods to compare",
   "@insufficientComparisonData": {
     "description": "Message shown when period comparison has insufficient readings"
-  },
-  "comparisonImproved": "Improved",
-  "@comparisonImproved": {
-    "description": "Status badge when comparative metrics show clinical improvement"
-  },
-  "comparisonStable": "Stable",
-  "@comparisonStable": {
-    "description": "Status badge when comparative metrics remain stable"
-  },
-  "comparisonNeedsAttention": "Needs attention",
-  "@comparisonNeedsAttention": {
-    "description": "Status badge when comparative metrics worsen"
   },
   "milestones": "Milestones",
   "@milestones": {
@@ -1494,21 +1426,30 @@
   "@csvImportValidRows": {
     "description": "Count of valid readings found in CSV file",
     "placeholders": {
-      "count": {"type": "int", "example": "42"}
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
     }
   },
   "csvImportSkippedRows": "{count, plural, =1{1 row skipped (invalid format)} other{{count} rows skipped (invalid format)}}",
   "@csvImportSkippedRows": {
     "description": "Count of malformed rows skipped during CSV analysis",
     "placeholders": {
-      "count": {"type": "int", "example": "3"}
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
     }
   },
   "csvImportDuplicateRows": "{count, plural, =1{1 duplicate already in your records} other{{count} duplicates already in your records}}",
   "@csvImportDuplicateRows": {
     "description": "Count of rows duplicating existing readings",
     "placeholders": {
-      "count": {"type": "int", "example": "5"}
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
     }
   },
   "csvImportConfirm": "Import",
@@ -1519,7 +1460,10 @@
   "@csvImportSuccess": {
     "description": "Success message after CSV import completes",
     "placeholders": {
-      "count": {"type": "int", "example": "42"}
+      "count": {
+        "type": "int",
+        "example": "42"
+      }
     }
   },
   "csvImportErrorTooLarge": "File is too large (maximum 5 MB)",
@@ -1546,14 +1490,20 @@
   "@healthSyncTitle": {
     "description": "Health sync toggle title with platform name",
     "placeholders": {
-      "platform": {"type": "String", "example": "Apple Health"}
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
     }
   },
   "healthSyncSubtitle": "Automatically exchange glucose readings with {platform}",
   "@healthSyncSubtitle": {
     "description": "Health sync toggle subtitle with platform name",
     "placeholders": {
-      "platform": {"type": "String", "example": "Apple Health"}
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
     }
   },
   "healthSyncNow": "Sync Now",
@@ -1564,7 +1514,10 @@
   "@healthSyncLast": {
     "description": "Label showing last successful sync timestamp",
     "placeholders": {
-      "date": {"type": "String", "example": "Oct 3, 14:30"}
+      "date": {
+        "type": "String",
+        "example": "Oct 3, 14:30"
+      }
     }
   },
   "healthSyncNever": "Never synced",
@@ -1575,8 +1528,14 @@
   "@healthSyncSuccess": {
     "description": "Success message after health synchronization",
     "placeholders": {
-      "imported": {"type": "int", "example": "5"},
-      "exported": {"type": "int", "example": "3"}
+      "imported": {
+        "type": "int",
+        "example": "5"
+      },
+      "exported": {
+        "type": "int",
+        "example": "3"
+      }
     }
   },
   "healthSyncNoPermissions": "Health permissions were not granted",
@@ -1639,14 +1598,20 @@
   "@onboardingHealthTitle": {
     "description": "Title of onboarding health sync step",
     "placeholders": {
-      "platform": {"type": "String", "example": "Apple Health"}
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
     }
   },
   "onboardingHealthSubtitle": "Exchange glucose readings with {platform} automatically. You can change this later in Settings.",
   "@onboardingHealthSubtitle": {
     "description": "Subtitle of onboarding health sync step",
     "placeholders": {
-      "platform": {"type": "String", "example": "Apple Health"}
+      "platform": {
+        "type": "String",
+        "example": "Apple Health"
+      }
     }
   },
   "onboardingHealthEnable": "Enable health sync",
@@ -1709,10 +1674,6 @@
   "@onboardingCsvSubtitle": {
     "description": "Subtitle of onboarding CSV import step"
   },
-  "onboardingGetStarted": "Get Started",
-  "@onboardingGetStarted": {
-    "description": "Final onboarding completion button"
-  },
   "onboardingBaselineLabel": "Baseline glucose (optional)",
   "@onboardingBaselineLabel": {
     "description": "Label of optional baseline glucose input"
@@ -1738,33 +1699,71 @@
     "description": "Title of the daily diabetes tip card"
   },
   "dailyTip1": "Check your glucose before driving.",
-  "@dailyTip1": {"description": "Rotating diabetes tip 1"},
+  "@dailyTip1": {
+    "description": "Rotating diabetes tip 1"
+  },
   "dailyTip2": "Log every reading right away — memory fades fast.",
-  "@dailyTip2": {"description": "Rotating diabetes tip 2"},
+  "@dailyTip2": {
+    "description": "Rotating diabetes tip 2"
+  },
   "dailyTip3": "Carry fast-acting glucose with you at all times.",
-  "@dailyTip3": {"description": "Rotating diabetes tip 3"},
+  "@dailyTip3": {
+    "description": "Rotating diabetes tip 3"
+  },
   "dailyTip4": "A 10-minute walk after meals smooths glucose spikes.",
-  "@dailyTip4": {"description": "Rotating diabetes tip 4"},
+  "@dailyTip4": {
+    "description": "Rotating diabetes tip 4"
+  },
   "dailyTip5": "Review your weekly Time in Range every Sunday.",
-  "@dailyTip5": {"description": "Rotating diabetes tip 5"},
+  "@dailyTip5": {
+    "description": "Rotating diabetes tip 5"
+  },
   "dailyTip6": "Keep test strips and sensors away from heat.",
-  "@dailyTip6": {"description": "Rotating diabetes tip 6"},
+  "@dailyTip6": {
+    "description": "Rotating diabetes tip 6"
+  },
   "dailyTip7": "Stay hydrated — water helps steady glucose levels.",
-  "@dailyTip7": {"description": "Rotating diabetes tip 7"},
+  "@dailyTip7": {
+    "description": "Rotating diabetes tip 7"
+  },
   "dailyTip8": "Pair carbohydrates with protein or healthy fat.",
-  "@dailyTip8": {"description": "Rotating diabetes tip 8"},
+  "@dailyTip8": {
+    "description": "Rotating diabetes tip 8"
+  },
   "dailyTip9": "Keep a consistent bedtime for steadier mornings.",
-  "@dailyTip9": {"description": "Rotating diabetes tip 9"},
+  "@dailyTip9": {
+    "description": "Rotating diabetes tip 9"
+  },
   "dailyTip10": "Inspect and rotate injection or sensor sites regularly.",
-  "@dailyTip10": {"description": "Rotating diabetes tip 10"},
+  "@dailyTip10": {
+    "description": "Rotating diabetes tip 10"
+  },
   "dailyTip11": "Learn your personal early signs of a low.",
-  "@dailyTip11": {"description": "Rotating diabetes tip 11"},
+  "@dailyTip11": {
+    "description": "Rotating diabetes tip 11"
+  },
   "dailyTip12": "Bring your Glucosa summary to every doctor visit.",
-  "@dailyTip12": {"description": "Rotating diabetes tip 12"},
+  "@dailyTip12": {
+    "description": "Rotating diabetes tip 12"
+  },
   "dailyTip13": "Recheck 15 minutes after treating a low.",
-  "@dailyTip13": {"description": "Rotating diabetes tip 13"},
+  "@dailyTip13": {
+    "description": "Rotating diabetes tip 13"
+  },
   "dailyTip14": "Celebrate streaks — and forgive the gaps.",
-  "@dailyTip14": {"description": "Rotating diabetes tip 14"}
+  "@dailyTip14": {
+    "description": "Rotating diabetes tip 14"
+  },
+  "privacyPolicyEmailError": "Could not open email client",
+  "@privacyPolicyEmailError": {
+    "description": "Error message when opening email client fails"
+  },
+  "glucoseUnitMgDlDescription": "Milligrams per deciliter",
+  "@glucoseUnitMgDlDescription": {
+    "description": "Full description for mg/dL glucose unit"
+  },
+  "glucoseUnitMmolLDescription": "Millimoles per liter",
+  "@glucoseUnitMmolLDescription": {
+    "description": "Full description for mmol/L glucose unit"
+  }
 }
-
-
