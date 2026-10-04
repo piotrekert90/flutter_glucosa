@@ -81,7 +81,7 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
     super.dispose();
   }
 
-  String _presetLabel(GlucoseRangePreset preset, AppLocalizations? l10n) {
+  String _presetLabel(GlucoseRangePreset preset, AppLocalizations l10n) {
     final range = switch (preset) {
       GlucoseRangePreset.ada => const GlucoseTargetRange.ada(),
       GlucoseRangePreset.aace => const GlucoseTargetRange.aace(),
@@ -91,7 +91,7 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
 
     if (range == null) {
       return preset == GlucoseRangePreset.custom
-          ? (l10n?.targetRangeCustom ?? preset.displayName)
+          ? (l10n.targetRangeCustom)
           : preset.displayName;
     }
 
@@ -109,7 +109,7 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
   }
 
   void _handleSave() {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     if (_selectedPreset != GlucoseRangePreset.custom) {
       final range = switch (_selectedPreset) {
@@ -131,9 +131,7 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
         minParsed <= 0 ||
         minParsed >= maxParsed) {
       setState(() {
-        _errorMessage =
-            l10n?.targetRangeInvalid ??
-            'Minimum must be less than maximum and greater than zero';
+        _errorMessage = l10n.targetRangeInvalid;
       });
       return;
     }
@@ -155,11 +153,11 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final unitSuffix = widget.preferredUnit.displayName;
 
     return AlertDialog(
-      title: Text(l10n?.editTargetRange ?? 'Target Glucose Range'),
+      title: Text(l10n.editTargetRange),
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -203,7 +201,7 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
                         ),
                       ],
                       decoration: InputDecoration(
-                        labelText: l10n?.targetRangeMin ?? 'Minimum',
+                        labelText: l10n.targetRangeMin,
                         suffixText: unitSuffix,
                         border: const OutlineInputBorder(),
                       ),
@@ -222,7 +220,7 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
                         ),
                       ],
                       decoration: InputDecoration(
-                        labelText: l10n?.targetRangeMax ?? 'Maximum',
+                        labelText: l10n.targetRangeMax,
                         suffixText: unitSuffix,
                         border: const OutlineInputBorder(),
                       ),
@@ -246,9 +244,9 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(l10n?.cancel ?? 'Cancel'),
+          child: Text(l10n.cancel),
         ),
-        FilledButton(onPressed: _handleSave, child: Text(l10n?.save ?? 'Save')),
+        FilledButton(onPressed: _handleSave, child: Text(l10n.save)),
       ],
     );
   }

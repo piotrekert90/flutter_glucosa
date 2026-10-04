@@ -20,29 +20,23 @@ class WipeDataDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
 
     return AlertDialog(
       scrollable: true,
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      title: Text(l10n?.wipeDataConfirmTitle ?? 'Are you sure?'),
-      content: SizedBox(
-        width: 320,
-        child: Text(
-          l10n?.wipeDataConfirmMessage ??
-              'This action cannot be undone. All your blood glucose readings and settings will be permanently lost.',
-        ),
-      ),
+      title: Text(l10n.wipeDataConfirmTitle),
+      content: SizedBox(width: 320, child: Text(l10n.wipeDataConfirmMessage)),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context, false),
-          child: Text(l10n?.cancel ?? 'Cancel'),
+          child: Text(l10n.cancel),
         ),
         TextButton(
           onPressed: () => Navigator.pop(context, true),
           style: TextButton.styleFrom(foregroundColor: colorScheme.error),
-          child: Text(l10n?.wipeDataButton ?? 'Wipe Everything'),
+          child: Text(l10n.wipeDataButton),
         ),
       ],
     );

@@ -56,17 +56,17 @@ class _EditNameDialogState extends State<EditNameDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return AlertDialog(
-      title: Text(l10n?.editName ?? 'Edit Name'),
+      title: Text(l10n.editName),
       content: TextField(
         controller: _controller,
         autofocus: true,
         textCapitalization: TextCapitalization.words,
         decoration: InputDecoration(
-          labelText: l10n?.name ?? 'Name',
-          hintText: l10n?.nameHint ?? 'Enter your name',
+          labelText: l10n.name,
+          hintText: l10n.nameHint,
           border: const OutlineInputBorder(),
         ),
         onSubmitted: (_) => _handleSave(),
@@ -74,9 +74,9 @@ class _EditNameDialogState extends State<EditNameDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(l10n?.cancel ?? 'Cancel'),
+          child: Text(l10n.cancel),
         ),
-        FilledButton(onPressed: _handleSave, child: Text(l10n?.save ?? 'Save')),
+        FilledButton(onPressed: _handleSave, child: Text(l10n.save)),
       ],
     );
   }

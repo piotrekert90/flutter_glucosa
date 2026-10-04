@@ -21,32 +21,27 @@ class HealthConnectInstallDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return AlertDialog(
       scrollable: true,
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      title: Text(
-        l10n?.healthConnectRequiredTitle ?? 'Health Connect Required',
-      ),
+      title: Text(l10n.healthConnectRequiredTitle),
       content: SizedBox(
         width: 320,
-        child: Text(
-          l10n?.healthConnectRequiredSubtitle ??
-              'Install Google Health Connect from the Play Store to sync your measurements.',
-        ),
+        child: Text(l10n.healthConnectRequiredSubtitle),
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text(l10n?.cancel ?? 'Cancel'),
+          child: Text(l10n.cancel),
         ),
         FilledButton(
           onPressed: () {
             Navigator.pop(context);
             ref.read(healthServiceProvider).installHealthConnect();
           },
-          child: Text(l10n?.installFromPlayStore ?? 'Install from Play Store'),
+          child: Text(l10n.installFromPlayStore),
         ),
       ],
     );

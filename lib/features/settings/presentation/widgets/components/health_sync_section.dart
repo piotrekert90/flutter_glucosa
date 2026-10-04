@@ -39,36 +39,31 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final profile = widget.profile;
 
     final lastSyncText = profile.lastHealthSyncAt != null
-        ? (l10n?.healthSyncLast(
-                DateFormat.yMMMd(
-                  Localizations.localeOf(context).toString(),
-                ).add_Hm().format(profile.lastHealthSyncAt!),
-              ) ??
-              'Last sync: ${profile.lastHealthSyncAt}')
-        : (l10n?.healthSyncNever ?? 'Never synced');
+        ? (l10n.healthSyncLast(
+            DateFormat.yMMMd(
+              Localizations.localeOf(context).toString(),
+            ).add_Hm().format(profile.lastHealthSyncAt!),
+          ))
+        : l10n.healthSyncNever;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         CustomSettingsToggle(
           icon: Icons.favorite_outline,
-          title:
-              l10n?.healthSyncTitle(_platformLabel) ??
-              'Sync with $_platformLabel',
-          subtitle:
-              l10n?.healthSyncSubtitle(_platformLabel) ??
-              'Automatically exchange glucose readings with $_platformLabel',
+          title: l10n.healthSyncTitle(_platformLabel),
+          subtitle: l10n.healthSyncSubtitle(_platformLabel),
           value: profile.isHealthSyncEnabled,
           onChanged: (value) => _toggleHealthSync(value),
         ),
         if (profile.isHealthSyncEnabled) ...[
           CustomSettingsTile(
             icon: Icons.sync_rounded,
-            title: l10n?.healthSyncNow ?? 'Sync Now',
+            title: l10n.healthSyncNow,
             valueText: lastSyncText,
             showChevron: !_isSyncing,
             onTap: _isSyncing ? null : () => _syncNow(),
@@ -83,13 +78,15 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
   }
 
   Future<void> _toggleHealthSync(bool enable) async {
-    final l10n = context.mounted ? AppLocalizations.of(context) : null;
     if (!enable) {
       await ref
           .read(userProfileProvider.notifier)
           .updateHealthSyncEnabled(false);
       return;
     }
+
+    if (!context.mounted) return;
+    final l10n = AppLocalizations.of(context)!;
 
     final service = ref.read(healthServiceProvider);
     if (!await service.isHealthApiAvailable()) {
@@ -99,9 +96,7 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
       } else {
         AppSnackBar.show(
           context,
-          message:
-              l10n?.healthSyncUnavailable ??
-              'Health service is not available on this device',
+          message: l10n.healthSyncUnavailable,
           type: SnackBarType.error,
         );
       }
@@ -112,9 +107,7 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
       if (!mounted) return;
       AppSnackBar.show(
         context,
-        message:
-            l10n?.healthSyncNoPermissions ??
-            'Health permissions were not granted',
+        message: l10n.healthSyncNoPermissions,
         type: SnackBarType.error,
       );
       return;
@@ -130,13 +123,11 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
           .read(glucoseHealthSyncCoordinatorProvider)
           .sync(lastSyncTime: widget.profile.lastHealthSyncAt);
       if (!mounted) return;
-      final l10n = AppLocalizations.of(context);
+      final l10n = AppLocalizations.of(context)!;
       if (result == null) {
         AppSnackBar.show(
           context,
-          message:
-              l10n?.healthSyncNoPermissions ??
-              'Health permissions were not granted',
+          message: l10n.healthSyncNoPermissions,
           type: SnackBarType.error,
         );
         return;
@@ -147,12 +138,10 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
       if (!mounted) return;
       AppSnackBar.show(
         context,
-        message:
-            l10n?.healthSyncSuccess(
-              result.importedCount,
-              result.exportedCount,
-            ) ??
-            'Sync complete: ${result.importedCount} imported, ${result.exportedCount} exported',
+        message: l10n.healthSyncSuccess(
+          result.importedCount,
+          result.exportedCount,
+        ),
         type: SnackBarType.success,
       );
     } finally {

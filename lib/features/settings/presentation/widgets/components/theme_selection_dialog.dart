@@ -38,10 +38,10 @@ class ThemeSelectionDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return SimpleDialog(
-      title: Text(l10n?.theme ?? 'Theme'),
+      title: Text(l10n.theme),
       children: [
         RadioGroup<UserThemeMode>(
           groupValue: currentMode,
@@ -65,11 +65,11 @@ class ThemeSelectionDialog extends StatelessWidget {
     );
   }
 
-  static String _themeLabel(AppLocalizations? l10n, UserThemeMode mode) {
+  static String _themeLabel(AppLocalizations l10n, UserThemeMode mode) {
     return switch (mode) {
-      UserThemeMode.light => l10n?.themeLight ?? 'Light',
-      UserThemeMode.dark => l10n?.themeDark ?? 'Dark Mode',
-      UserThemeMode.system => l10n?.themeSystem ?? 'System',
+      UserThemeMode.light => l10n.themeLight,
+      UserThemeMode.dark => l10n.themeDark,
+      UserThemeMode.system => l10n.themeSystem,
     };
   }
 }
