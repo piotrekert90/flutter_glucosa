@@ -91,5 +91,35 @@ void main() {
         BloodPressureStatus.crisis,
       );
     });
+
+    test(
+      'verifies exact boundary between high and crisis (179 vs 180 and 119 vs 120)',
+      () {
+        // Exactly 179/119 -> high
+        expect(
+          BloodPressureStatusResolver.resolve(
+            systolicMmHg: 179,
+            diastolicMmHg: 119,
+          ),
+          BloodPressureStatus.high,
+        );
+        // Exactly 180/75 -> crisis
+        expect(
+          BloodPressureStatusResolver.resolve(
+            systolicMmHg: 180,
+            diastolicMmHg: 75,
+          ),
+          BloodPressureStatus.crisis,
+        );
+        // Exactly 120/120 -> crisis
+        expect(
+          BloodPressureStatusResolver.resolve(
+            systolicMmHg: 120,
+            diastolicMmHg: 120,
+          ),
+          BloodPressureStatus.crisis,
+        );
+      },
+    );
   });
 }

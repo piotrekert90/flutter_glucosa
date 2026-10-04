@@ -431,7 +431,7 @@
   "@bpStatusHigh": {
     "description": "Status badge label for high blood pressure level"
   },
-  "bpStatusCrisis": "고혈압 위기 (≥180 또는 ≥120 — 진료 필요)",
+  "bpStatusCrisis": "고혈압 위기 (≥180/≥120 mmHg — 진료 필요)",
   "@bpStatusCrisis": {
     "description": "Status badge label for hypertensive crisis level"
   },
