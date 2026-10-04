@@ -67,6 +67,18 @@ class NotificationServiceImpl implements NotificationService {
         >();
     if (androidPlugin != null) {
       final granted = await androidPlugin.requestNotificationsPermission();
+      try {
+        final canExact = await androidPlugin.canScheduleExactNotifications();
+        if (canExact != true) {
+          await androidPlugin.requestExactAlarmsPermission();
+        }
+      } catch (e, st) {
+        AppLogger.warning(
+          'Failed to check or request exact alarm permission: $e',
+          error: e,
+          stackTrace: st,
+        );
+      }
       return granted ?? false;
     }
 
@@ -125,17 +137,56 @@ class NotificationServiceImpl implements NotificationService {
       ),
     );
 
-    await _plugin.zonedSchedule(
-      id: reminder.id,
-      title: reminder.label,
-      body: 'Time to log your ${reminder.metricType.name} measurement.',
-      scheduledDate: scheduledDate,
-      notificationDetails: notificationDetails,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      matchDateTimeComponents: reminder.isOneTime
-          ? null
-          : DateTimeComponents.time,
-    );
+    final androidPlugin = _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
+    bool canExact = false;
+    try {
+      canExact =
+          (await androidPlugin?.canScheduleExactNotifications()) ?? false;
+    } catch (_) {
+      canExact = false;
+    }
+
+    final scheduleMode = canExact
+        ? AndroidScheduleMode.exactAllowWhileIdle
+        : AndroidScheduleMode.inexactAllowWhileIdle;
+
+    try {
+      await _plugin.zonedSchedule(
+        id: reminder.id,
+        title: reminder.label,
+        body: 'Time to log your ${reminder.metricType.name} measurement.',
+        scheduledDate: scheduledDate,
+        notificationDetails: notificationDetails,
+        androidScheduleMode: scheduleMode,
+        matchDateTimeComponents: reminder.isOneTime
+            ? null
+            : DateTimeComponents.time,
+      );
+    } catch (e, st) {
+      if (scheduleMode == AndroidScheduleMode.exactAllowWhileIdle) {
+        AppLogger.warning(
+          'Exact alarm scheduling failed, falling back to inexact: $e',
+          error: e,
+          stackTrace: st,
+        );
+        await _plugin.zonedSchedule(
+          id: reminder.id,
+          title: reminder.label,
+          body: 'Time to log your ${reminder.metricType.name} measurement.',
+          scheduledDate: scheduledDate,
+          notificationDetails: notificationDetails,
+          androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+          matchDateTimeComponents: reminder.isOneTime
+              ? null
+              : DateTimeComponents.time,
+        );
+      } else {
+        rethrow;
+      }
+    }
   }
 
   @override

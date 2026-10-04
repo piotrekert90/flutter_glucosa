@@ -211,7 +211,7 @@ void main() {
             body: any(named: 'body'),
             scheduledDate: captureAny(named: 'scheduledDate'),
             notificationDetails: any(named: 'notificationDetails'),
-            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+            androidScheduleMode: any(named: 'androidScheduleMode'),
             matchDateTimeComponents: DateTimeComponents.time,
           ),
         ).captured;
