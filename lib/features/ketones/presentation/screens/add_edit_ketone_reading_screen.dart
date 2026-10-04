@@ -126,41 +126,36 @@ class _AddEditKetoneReadingScreenState
     if (!mounted) return;
     setState(() => _isSaving = false);
 
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     if (success) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.ketonesSavedSuccess ??
-            'Ketone measurement saved successfully',
+        message: l10n.ketonesSavedSuccess,
         type: SnackBarType.success,
       );
       Navigator.of(context).pop();
     } else {
       AppSnackBar.show(
         context,
-        message: failure != null && l10n != null
+        message: failure != null
             ? failure.toUserMessage(l10n)
-            : (l10n?.genericError ?? 'Failed to save measurement'),
+            : l10n.genericError,
         type: SnackBarType.error,
       );
     }
   }
 
   Future<void> _delete() async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(l10n?.deleteKetones ?? 'Delete Ketones'),
-        content: Text(
-          l10n?.deleteKetonesConfirm ??
-              'Are you sure you want to delete this ketone reading?',
-        ),
+        title: Text(l10n.deleteKetones),
+        content: Text(l10n.deleteKetonesConfirm),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(l10n?.cancel ?? 'Cancel'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             style: FilledButton.styleFrom(
@@ -168,7 +163,7 @@ class _AddEditKetoneReadingScreenState
               foregroundColor: Theme.of(ctx).colorScheme.onError,
             ),
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l10n?.delete ?? 'Delete'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
@@ -186,18 +181,16 @@ class _AddEditKetoneReadingScreenState
     if (success) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.ketonesDeletedSuccess ??
-            'Ketone measurement deleted successfully',
+        message: l10n.ketonesDeletedSuccess,
         type: SnackBarType.success,
       );
       Navigator.of(context).pop();
     } else {
       AppSnackBar.show(
         context,
-        message: failure != null && l10n != null
+        message: failure != null
             ? failure.toUserMessage(l10n)
-            : (l10n?.genericError ?? 'Failed to delete measurement'),
+            : l10n.genericError,
         type: SnackBarType.error,
       );
     }
@@ -205,11 +198,9 @@ class _AddEditKetoneReadingScreenState
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
-    final title = isEditMode
-        ? (l10n?.editKetones ?? 'Edit Ketones')
-        : (l10n?.addKetones ?? 'Log Ketones');
+    final title = isEditMode ? (l10n.editKetones) : l10n.addKetones;
 
     if (isEditMode) {
       final detailAsync = ref.watch(
@@ -222,15 +213,13 @@ class _AddEditKetoneReadingScreenState
         ),
         error: (err, _) => Scaffold(
           appBar: AppBar(title: Text(title)),
-          body: Center(child: Text(l10n?.genericError ?? 'An error occurred')),
+          body: Center(child: Text(l10n.genericError)),
         ),
         data: (reading) {
           if (reading == null) {
             return Scaffold(
               appBar: AppBar(title: Text(title)),
-              body: Center(
-                child: Text(l10n?.errorNotFound ?? 'Reading not found'),
-              ),
+              body: Center(child: Text(l10n.errorNotFound)),
             );
           }
           _populateFromReading(reading);
@@ -245,7 +234,7 @@ class _AddEditKetoneReadingScreenState
   Widget _buildScaffold(
     BuildContext context,
     ThemeData theme,
-    AppLocalizations? l10n,
+    AppLocalizations l10n,
     String title,
   ) {
     final dateFormat = DateFormat.yMMMd();
@@ -258,7 +247,7 @@ class _AddEditKetoneReadingScreenState
           if (isEditMode)
             IconButton(
               icon: const Icon(Icons.delete_outline),
-              tooltip: l10n?.deleteKetones ?? 'Delete Ketones',
+              tooltip: l10n.deleteKetones,
               onPressed: _isSaving ? null : _delete,
             ),
         ],
@@ -277,21 +266,21 @@ class _AddEditKetoneReadingScreenState
                     decimal: true,
                   ),
                   decoration: InputDecoration(
-                    labelText: l10n?.ketones ?? 'Ketones',
-                    hintText: l10n?.ketonesValueHint ?? 'e.g. 0.5',
+                    labelText: l10n.ketones,
+                    hintText: l10n.ketonesValueHint,
                     suffixText: 'mmol/L',
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.science_outlined),
                   ),
                   validator: (val) {
                     if (val == null || val.trim().isEmpty) {
-                      return l10n?.errorValidation ?? 'Invalid value';
+                      return l10n.errorValidation;
                     }
                     final numVal = double.tryParse(
                       val.trim().replaceAll(',', '.'),
                     );
                     if (numVal == null) {
-                      return l10n?.errorValidation ?? 'Invalid value';
+                      return l10n.errorValidation;
                     }
                     return ReadingValidator.validateKetones(numVal);
                   },
@@ -323,8 +312,8 @@ class _AddEditKetoneReadingScreenState
                   controller: _notesController,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    labelText: l10n?.notes ?? 'Notes',
-                    hintText: l10n?.notesHint ?? 'Optional clinical comments',
+                    labelText: l10n.notes,
+                    hintText: l10n.notesHint,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.notes_outlined),
                   ),
@@ -340,7 +329,7 @@ class _AddEditKetoneReadingScreenState
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Icon(Icons.save_outlined),
-                  label: Text(l10n?.save ?? 'Save'),
+                  label: Text(l10n.save),
                 ),
               ],
             ),

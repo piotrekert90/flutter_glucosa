@@ -47,7 +47,10 @@ void main() {
     });
 
     test('formats latest reading with status and trend up', () {
-      final now = DateTime.now();
+      // Midday anchor keeps the relative readings on the same calendar day
+      // regardless of when the suite runs (midnight-boundary flake guard).
+      final today = DateTime.now();
+      final now = DateTime(today.year, today.month, today.day, 12);
       final payload = build(
         readings: [
           reading(110, now.subtract(const Duration(hours: 3))),

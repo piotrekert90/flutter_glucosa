@@ -182,7 +182,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
     final hba1cPercentage = _currentHbA1cPercentage;
     if (hba1cPercentage == null) return;
 
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     setState(() => _isSaving = true);
 
     try {
@@ -199,17 +199,13 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
         if (success) {
           AppSnackBar.show(
             context,
-            message:
-                l10n?.hba1cReadingSaved ?? 'HbA1c reading saved successfully',
+            message: l10n.hba1cReadingSaved,
             type: SnackBarType.success,
           );
         } else {
           AppSnackBar.show(
             context,
-            message:
-                failure?.message ??
-                l10n?.genericError ??
-                'Failed to save measurement',
+            message: failure?.message ?? l10n.genericError,
             type: SnackBarType.error,
           );
         }
@@ -225,7 +221,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
         setState(() => _isSaving = false);
         AppSnackBar.show(
           context,
-          message: l10n?.genericError ?? 'Failed to save measurement',
+          message: l10n.genericError,
           type: SnackBarType.error,
         );
       }
@@ -234,19 +230,18 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final canSave = _currentHbA1cPercentage != null && !_isSaving;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n?.hba1cCalculator ?? 'HbA1c Calculator')),
+      appBar: AppBar(title: Text(l10n.hba1cCalculator)),
       body: ClampedLayout(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           children: [
             Text(
-              l10n?.hba1cCalculatorSubtitle ??
-                  'Calculate estimated HbA1c from average glucose, or estimate average glucose from HbA1c.',
+              l10n.hba1cCalculatorSubtitle,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -267,7 +262,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          l10n?.averageGlucose ?? 'Average Glucose',
+                          l10n.averageGlucose,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -294,7 +289,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                     ),
                     const SizedBox(height: 12),
                     Semantics(
-                      label: l10n?.averageGlucose ?? 'Average Glucose',
+                      label: l10n.averageGlucose,
                       child: TextField(
                         controller: _glucoseController,
                         keyboardType: const TextInputType.numberWithOptions(
@@ -339,7 +334,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          l10n?.estimatedHbA1c ?? 'Estimated HbA1c',
+                          l10n.estimatedHbA1c,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -366,7 +361,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                     ),
                     const SizedBox(height: 12),
                     Semantics(
-                      label: l10n?.estimatedHbA1c ?? 'Estimated HbA1c',
+                      label: l10n.estimatedHbA1c,
                       child: TextField(
                         controller: _hba1cController,
                         keyboardType: const TextInputType.numberWithOptions(
@@ -404,8 +399,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        l10n?.adagFormulaExplanation ??
-                            'Calculations are based on the ADAG study formula: eAG = 28.7 × HbA1c − 46.7.',
+                        l10n.adagFormulaExplanation,
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurface,
                         ),
@@ -429,7 +423,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                       ),
                     )
                   : const Icon(Icons.bookmark_add_outlined),
-              label: Text(l10n?.saveAsHbA1cReading ?? 'Save as HbA1c Reading'),
+              label: Text(l10n.saveAsHbA1cReading),
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 14),
               ),
