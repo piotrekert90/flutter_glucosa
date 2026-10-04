@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last Updated:** October 3, 2026
+**Last Updated:** October 4, 2026
 
 **Glucosa** is engineered with a **local-first** architecture to ensure you retain ownership and control over your metabolic health records. This Privacy Policy discloses how your personal health data is processed, stored, and protected.
 
@@ -45,7 +45,7 @@ Glucosa offers optional biometric app lock (Face ID, Touch ID, or Android Biomet
 
 - **On-Device Logging:** Glucosa maintains an on-device rotating diagnostic crash log (`crash_log.txt`, capped at 1 MB) to assist with troubleshooting application defects.
 - **Privacy Preservation:** Diagnostic logs record technical stack traces and exception types; they never contain personal health measurements, patient names, notes, or credentials.
-- **Optional Cloud Telemetry:** If remote crash reporting or cloud synchronization services (such as Firebase) are enabled, data transmission is strictly encrypted in transit (TLS 1.3) and limited to non-PII operational diagnostics unless explicit cloud backup is activated by the user.
+- **Zero Cloud Transmission:** Diagnostic logs remain strictly on your physical device. No logs, analytics, or telemetry are transmitted to remote servers.
 
 ---
 

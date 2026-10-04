@@ -23,5 +23,5 @@ If you believe you have discovered a security vulnerability in this project, ple
 ## Security Architecture Highlights
 
 - **Local-First Data Isolation:** Health readings are persisted locally within the protected operating system sandbox and are never transmitted without explicit user action.
-- **Hardware-Backed Biometrics & Secure Storage:** Biometric authentication leverages the platform hardware security enclave (Android BiometricPrompt / iOS LocalAuthentication), while sensitive flags and keys are backed by platform secure storage (Android Keystore / iOS Keychain via `flutter_secure_storage`).
+- **Hardware-Backed Biometrics & Platform Sandboxing:** Biometric authentication leverages the platform hardware security enclave (Android BiometricPrompt / iOS LocalAuthentication), while application state and preferences remain isolated within the protected operating system sandbox.
 - **Privacy-Preserving Diagnostics:** Diagnostic crash logs are stored strictly on-device in a rotating local file (`crash_log.txt`) and never contain personal health measurements, patient names, notes, or credentials.
