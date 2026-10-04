@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/presentation/theme/app_feedback_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/blood_pressure_reading.dart';
+import '../../domain/utils/blood_pressure_status_resolver.dart';
+import '../extensions/blood_pressure_status_ui_extension.dart';
 
 /// Presentation card displaying an individual [BloodPressureReading] with clinical status badge.
 class BloodPressureReadingCard extends StatelessWidget {
@@ -23,34 +24,19 @@ class BloodPressureReadingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     final displayValue = '${reading.systolicMmHg}/${reading.diastolicMmHg}';
     const unitLabel = 'mmHg';
 
     final formattedDate = DateFormat.yMMMd().format(reading.createdAt);
 
-    // Clinical status badge per audit categories:
-    // Normal (<120/<80), Elevated (120-129/<80), High (≥130 or ≥80).
-    final Color badgeColor;
-    final String badgeLabel;
-    if (reading.systolicMmHg < 120 && reading.diastolicMmHg < 80) {
-      badgeColor = isDark
-          ? AppFeedbackTheme.successForegroundDark
-          : AppFeedbackTheme.successForegroundLight;
-      badgeLabel = l10n?.bpStatusNormal ?? 'Normal (<120/80)';
-    } else if (reading.systolicMmHg < 130 && reading.diastolicMmHg < 80) {
-      badgeColor = isDark
-          ? AppFeedbackTheme.warningForegroundDark
-          : AppFeedbackTheme.warningForegroundLight;
-      badgeLabel = l10n?.bpStatusElevated ?? 'Elevated (120-129/<80)';
-    } else {
-      badgeColor = isDark
-          ? AppFeedbackTheme.errorForegroundDark
-          : AppFeedbackTheme.errorForegroundLight;
-      badgeLabel = l10n?.bpStatusHigh ?? 'High (≥130/80)';
-    }
+    final status = BloodPressureStatusResolver.resolve(
+      systolicMmHg: reading.systolicMmHg,
+      diastolicMmHg: reading.diastolicMmHg,
+    );
+    final badgeColor = status.foregroundColor(context);
+    final badgeLabel = status.localizedName(l10n);
 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
