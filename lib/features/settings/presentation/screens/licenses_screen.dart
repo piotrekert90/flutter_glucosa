@@ -64,13 +64,13 @@ class _LicensesScreenState extends State<LicensesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n?.licenses ?? 'Licenses')),
+      appBar: AppBar(title: Text(l10n.licenses)),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -88,9 +88,7 @@ class _LicensesScreenState extends State<LicensesScreen> {
                   return Center(
                     child: Padding(
                       padding: const EdgeInsets.all(24),
-                      child: Text(
-                        l10n?.errorDatabase ?? 'Failed to load licenses',
-                      ),
+                      child: Text(l10n.errorDatabase),
                     ),
                   );
                 }
@@ -183,7 +181,7 @@ class _LicensesScreenState extends State<LicensesScreen> {
     required bool isDark,
     required ColorScheme colorScheme,
     required ThemeData theme,
-    required AppLocalizations? l10n,
+    required AppLocalizations l10n,
   }) {
     return Card(
       margin: EdgeInsets.zero,
@@ -219,7 +217,7 @@ class _LicensesScreenState extends State<LicensesScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        l10n?.appTitle ?? 'Glucosa',
+                        l10n.appTitle,
                         style: theme.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: colorScheme.onSurface,
@@ -254,7 +252,7 @@ class _LicensesScreenState extends State<LicensesScreen> {
                   ),
                 ),
                 Text(
-                  l10n?.poweredByFlutter ?? 'Built with Flutter',
+                  l10n.poweredByFlutter,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w500,

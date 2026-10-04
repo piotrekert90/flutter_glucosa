@@ -20,27 +20,23 @@ class PrivacyPolicyScreen extends StatelessWidget {
       }
     } catch (_) {
       if (context.mounted) {
-        final l10n = AppLocalizations.of(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              l10n?.privacyPolicyEmailError ?? 'Could not open email client',
-            ),
-          ),
-        );
+        final l10n = AppLocalizations.of(context)!;
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.privacyPolicyEmailError)));
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n?.privacyPolicy ?? 'Privacy Policy')),
+      appBar: AppBar(title: Text(l10n.privacyPolicy)),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -89,7 +85,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    l10n?.appTitle ?? 'Glucosa',
+                                    l10n.appTitle,
                                     style: theme.textTheme.titleLarge?.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: colorScheme.onSurface,
@@ -97,8 +93,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 2),
                                   Text(
-                                    l10n?.privacyPolicyHeaderSubtitle ??
-                                        'Offline & Privacy-First Architecture',
+                                    l10n.privacyPolicyHeaderSubtitle,
                                     style: theme.textTheme.bodySmall?.copyWith(
                                       color: colorScheme.onSurfaceVariant,
                                       fontWeight: FontWeight.w500,
@@ -111,8 +106,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          l10n?.privacyPolicyIntro ??
-                              'This application stores data strictly on your local device.',
+                          l10n.privacyPolicyIntro,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: colorScheme.onSurfaceVariant,
                             height: 1.45,
@@ -125,42 +119,26 @@ class PrivacyPolicyScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 _PrivacySectionCard(
                   icon: Icons.storage_outlined,
-                  title:
-                      l10n?.privacyPolicySection1Title ??
-                      'Local-First Data Storage',
-                  body:
-                      l10n?.privacyPolicySection1Body ??
-                      'All health measurements and settings remain on your physical device.',
+                  title: l10n.privacyPolicySection1Title,
+                  body: l10n.privacyPolicySection1Body,
                 ),
                 const SizedBox(height: 12),
                 _PrivacySectionCard(
                   icon: Icons.bug_report_outlined,
-                  title:
-                      l10n?.privacyPolicySection2Title ??
-                      'Diagnostics & Crash Reports',
-                  body:
-                      l10n?.privacyPolicySection2Body ??
-                      'Crash and diagnostic logs are stored exclusively on your device for troubleshooting and are never transmitted to external servers.',
+                  title: l10n.privacyPolicySection2Title,
+                  body: l10n.privacyPolicySection2Body,
                 ),
                 const SizedBox(height: 12),
                 _PrivacySectionCard(
                   icon: Icons.lock_outline,
-                  title:
-                      l10n?.privacyPolicySection3Title ??
-                      'Sandboxing & Biometric Security',
-                  body:
-                      l10n?.privacyPolicySection3Body ??
-                      'Your health records are protected within the operating system sandbox and optional biometric app lock.',
+                  title: l10n.privacyPolicySection3Title,
+                  body: l10n.privacyPolicySection3Body,
                 ),
                 const SizedBox(height: 12),
                 _PrivacySectionCard(
                   icon: Icons.delete_outline_rounded,
-                  title:
-                      l10n?.privacyPolicySection4Title ??
-                      'Complete Data Control',
-                  body:
-                      l10n?.privacyPolicySection4Body ??
-                      'You retain full control over your data. You can delete or reset application data at any time.',
+                  title: l10n.privacyPolicySection4Title,
+                  body: l10n.privacyPolicySection4Body,
                 ),
                 const SizedBox(height: 12),
                 Card(
@@ -184,8 +162,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              l10n?.privacyPolicyContactTitle ??
-                                  'Contact & Support',
+                              l10n.privacyPolicyContactTitle,
                               style: theme.textTheme.titleMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: colorScheme.onSurface,
@@ -195,8 +172,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          l10n?.privacyPolicyContactBody ??
-                              'For inquiries or privacy feedback, reach out to our team:',
+                          l10n.privacyPolicyContactBody,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: colorScheme.onSurfaceVariant,
                             height: 1.4,

@@ -41,17 +41,17 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profileAsync = ref.watch(userProfileProvider);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n?.settingsTitle ?? 'Settings')),
+      appBar: AppBar(title: Text(l10n.settingsTitle)),
       body: profileAsync.when(
         loading: () => const AppLoadingIndicator(),
         error: (error, _) => AppErrorView(
-          message: error is Failure && l10n != null
+          message: error is Failure
               ? error.toUserMessage(l10n)
               : error.toString(),
-          retryLabel: l10n?.tryAgain ?? 'Try again',
+          retryLabel: l10n.tryAgain,
           onRetry: () => ref.invalidate(userProfileProvider),
         ),
         data: (profile) => Center(
@@ -60,18 +60,18 @@ class SettingsScreen extends ConsumerWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               children: [
-                SectionHeader(label: l10n?.userProfile ?? 'Profile'),
+                SectionHeader(label: l10n.userProfile),
                 CustomSettingsTile(
                   icon: Icons.person_outline,
-                  title: l10n?.name ?? 'Name',
+                  title: l10n.name,
                   valueText: profile.name.isNotEmpty
                       ? profile.name
-                      : (l10n?.notSet ?? 'Not set'),
+                      : l10n.notSet,
                   onTap: () => _showEditNameDialog(context, ref, profile.name),
                 ),
                 CustomSettingsTile(
                   icon: Icons.medical_services_outlined,
-                  title: l10n?.diabetesType ?? 'Diabetes Type',
+                  title: l10n.diabetesType,
                   valueText: profile.diabetesType.label(l10n),
                   onTap: () => _showDiabetesTypePicker(
                     context,
@@ -80,10 +80,10 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                SectionHeader(label: l10n?.units ?? 'Units'),
+                SectionHeader(label: l10n.units),
                 CustomSettingsTile(
                   icon: Icons.speed_outlined,
-                  title: l10n?.glucoseUnit ?? 'Glucose Unit',
+                  title: l10n.glucoseUnit,
                   valueText: profile.preferredGlucoseUnit.displayName,
                   onTap: () => _showGlucoseUnitPicker(
                     context,
@@ -93,7 +93,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 CustomSettingsTile(
                   icon: Icons.percent_outlined,
-                  title: l10n?.hba1cUnit ?? 'HbA1c Unit',
+                  title: l10n.hba1cUnit,
                   valueText: profile.preferredHbA1cUnit.displayName,
                   onTap: () => _showHbA1cUnitPicker(
                     context,
@@ -103,7 +103,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 CustomSettingsTile(
                   icon: Icons.monitor_weight_outlined,
-                  title: l10n?.weightUnit ?? 'Weight Unit',
+                  title: l10n.weightUnit,
                   valueText: profile.preferredWeightUnit.displayName,
                   onTap: () => _showWeightUnitPicker(
                     context,
@@ -112,10 +112,10 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                SectionHeader(label: l10n?.targetRange ?? 'Target Range'),
+                SectionHeader(label: l10n.targetRange),
                 CustomSettingsTile(
                   icon: Icons.track_changes_outlined,
-                  title: l10n?.targetRange ?? 'Target Range',
+                  title: l10n.targetRange,
                   valueText: _targetRangeLabel(
                     profile.targetRange,
                     profile.preferredGlucoseUnit,
@@ -128,17 +128,17 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                SectionHeader(label: l10n?.appearance ?? 'Appearance'),
+                SectionHeader(label: l10n.appearance),
                 CustomSettingsTile(
                   icon: Icons.palette_outlined,
-                  title: l10n?.theme ?? 'Theme',
+                  title: l10n.theme,
                   valueText: _themeLabel(l10n, profile.themeMode),
                   onTap: () =>
                       _showThemePicker(context, ref, profile.themeMode),
                 ),
                 CustomSettingsTile(
                   icon: Icons.calendar_today_outlined,
-                  title: l10n?.firstDayOfWeek ?? 'First Day of Week',
+                  title: l10n.firstDayOfWeek,
                   valueText: profile.firstDayOfWeek.label(l10n),
                   onTap: () => _showFirstDayOfWeekPicker(
                     context,
@@ -149,10 +149,8 @@ class SettingsScreen extends ConsumerWidget {
                 const SizedBox(height: 12),
                 CustomSettingsToggle(
                   icon: Icons.notifications_outlined,
-                  title: l10n?.notifications ?? 'Notifications',
-                  subtitle:
-                      l10n?.receivePushNotifications ??
-                      'Receive push notifications',
+                  title: l10n.notifications,
+                  subtitle: l10n.receivePushNotifications,
                   value: profile.isNotificationsEnabled,
                   onChanged: (value) async {
                     final (success, failure) = await ref
@@ -161,74 +159,63 @@ class SettingsScreen extends ConsumerWidget {
                     if (!success && context.mounted) {
                       AppSnackBar.show(
                         context,
-                        message: failure != null && l10n != null
+                        message: failure != null
                             ? failure.toUserMessage(l10n)
-                            : (l10n?.failedToUpdatePreferences ??
-                                  'Failed to update preferences'),
+                            : l10n.failedToUpdatePreferences,
                         type: SnackBarType.error,
                       );
                     }
                   },
                 ),
                 const SizedBox(height: 12),
-                SectionHeader(
-                  label: l10n?.securitySection ?? 'Security & Privacy',
-                ),
+                SectionHeader(label: l10n.securitySection),
                 CustomSettingsToggle(
                   icon: Icons.fingerprint,
-                  title: l10n?.biometricSettingTitle ?? 'Biometric Lock',
-                  subtitle:
-                      l10n?.biometricSettingSubtitle ??
-                      'Require Face ID, Touch ID, or fingerprint to open the app',
+                  title: l10n.biometricSettingTitle,
+                  subtitle: l10n.biometricSettingSubtitle,
                   value: profile.isBiometricLockEnabled,
                   onChanged: (value) =>
                       _toggleBiometricLock(context, ref, value),
                 ),
                 CustomSettingsTile(
                   icon: Icons.delete_forever_outlined,
-                  title: l10n?.wipeDataTitle ?? 'Wipe All Data',
-                  subtitle:
-                      l10n?.wipeDataDescription ??
-                      'Permanently delete all health records, reminders, and preferences from this device.',
+                  title: l10n.wipeDataTitle,
+                  subtitle: l10n.wipeDataDescription,
                   onTap: () => _handleWipeData(context, ref),
                 ),
                 const SizedBox(height: 12),
-                SectionHeader(label: l10n?.healthSyncSection ?? 'Health Sync'),
+                SectionHeader(label: l10n.healthSyncSection),
                 HealthSyncSection(profile: profile),
                 const SizedBox(height: 12),
-                SectionHeader(label: l10n?.tools ?? 'Tools'),
+                SectionHeader(label: l10n.tools),
                 CustomSettingsTile(
                   icon: Icons.alarm_outlined,
-                  title: l10n?.reminders ?? 'Reminders',
+                  title: l10n.reminders,
                   onTap: () => context.push(AppRoute.reminders.path),
                 ),
                 const SizedBox(height: 12),
                 CustomSettingsTile(
                   icon: Icons.file_upload_outlined,
-                  title: l10n?.exportData ?? 'Export Data',
-                  subtitle:
-                      l10n?.exportSubtitle ??
-                      'Export measurements to CSV format',
+                  title: l10n.exportData,
+                  subtitle: l10n.exportSubtitle,
                   onTap: () => context.push(AppRoute.export.path),
                 ),
                 const SizedBox(height: 12),
                 CustomSettingsTile(
                   icon: Icons.calculate_outlined,
-                  title: l10n?.hba1cCalculator ?? 'HbA1c Calculator',
-                  subtitle:
-                      l10n?.hba1cCalculatorSubtitle ??
-                      'Calculate estimated HbA1c from average glucose',
+                  title: l10n.hba1cCalculator,
+                  subtitle: l10n.hba1cCalculatorSubtitle,
                   onTap: () => context.push(AppRoute.hba1cCalculator.path),
                 ),
                 const SizedBox(height: 12),
-                SectionHeader(label: l10n?.about ?? 'About'),
+                SectionHeader(label: l10n.about),
                 FutureBuilder<PackageInfo>(
                   future: PackageInfo.fromPlatform(),
                   builder: (context, snapshot) {
                     final version = snapshot.data?.version ?? '1.0.0';
                     return CustomSettingsTile(
                       icon: Icons.info_outline,
-                      title: l10n?.version ?? 'Version',
+                      title: l10n.version,
                       valueText: 'v$version',
                       showChevron: false,
                     );
@@ -236,21 +223,21 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 CustomSettingsTile(
                   icon: Icons.policy_outlined,
-                  title: l10n?.privacyPolicy ?? 'Privacy Policy',
+                  title: l10n.privacyPolicy,
                   onTap: () => context.go(
                     '${AppRoute.settings.path}/${AppRoute.privacyPolicy.path}',
                   ),
                 ),
                 CustomSettingsTile(
                   icon: Icons.code_rounded,
-                  title: l10n?.licenses ?? 'Licenses',
+                  title: l10n.licenses,
                   onTap: () => context.go(
                     '${AppRoute.settings.path}/${AppRoute.licenses.path}',
                   ),
                 ),
                 CustomSettingsTile(
                   icon: Icons.star_outline_rounded,
-                  title: l10n?.rateApp ?? 'Rate App',
+                  title: l10n.rateApp,
                   onTap: () => _rateApp(context),
                 ),
                 const SizedBox(height: 24),
@@ -289,13 +276,12 @@ class SettingsScreen extends ConsumerWidget {
             .read(userProfileProvider.notifier)
             .updateName(newName);
         if (!success && context.mounted) {
-          final l10n = AppLocalizations.of(context);
+          final l10n = AppLocalizations.of(context)!;
           AppSnackBar.show(
             context,
-            message: failure != null && l10n != null
+            message: failure != null
                 ? failure.toUserMessage(l10n)
-                : (l10n?.failedToUpdatePreferences ??
-                      'Failed to update preferences'),
+                : l10n.failedToUpdatePreferences,
             type: SnackBarType.error,
           );
         }
@@ -308,10 +294,10 @@ class SettingsScreen extends ConsumerWidget {
     WidgetRef ref,
     DiabetesType currentType,
   ) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     SelectionDialog.show<DiabetesType>(
       context,
-      title: l10n?.selectDiabetesType ?? 'Select Diabetes Type',
+      title: l10n.selectDiabetesType,
       currentValue: currentType,
       items: DiabetesType.values,
       itemLabel: (type) => type.label(l10n),
@@ -322,10 +308,9 @@ class SettingsScreen extends ConsumerWidget {
         if (!success && context.mounted) {
           AppSnackBar.show(
             context,
-            message: failure != null && l10n != null
+            message: failure != null
                 ? failure.toUserMessage(l10n)
-                : (l10n?.failedToUpdatePreferences ??
-                      'Failed to update preferences'),
+                : l10n.failedToUpdatePreferences,
             type: SnackBarType.error,
           );
         }
@@ -338,16 +323,16 @@ class SettingsScreen extends ConsumerWidget {
     WidgetRef ref,
     GlucoseUnit currentUnit,
   ) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     SelectionDialog.show<GlucoseUnit>(
       context,
-      title: l10n?.selectGlucoseUnit ?? 'Select Glucose Unit',
+      title: l10n.selectGlucoseUnit,
       currentValue: currentUnit,
       items: GlucoseUnit.values,
       itemLabel: (unit) => unit.displayName,
       itemSubtitle: (unit) => unit == GlucoseUnit.mgDl
-          ? (l10n?.glucoseUnitMgDlDescription ?? 'Milligrams per deciliter')
-          : (l10n?.glucoseUnitMmolLDescription ?? 'Millimoles per liter'),
+          ? (l10n.glucoseUnitMgDlDescription)
+          : l10n.glucoseUnitMmolLDescription,
       onSelected: (selected) async {
         final (success, failure) = await ref
             .read(userProfileProvider.notifier)
@@ -355,10 +340,9 @@ class SettingsScreen extends ConsumerWidget {
         if (!success && context.mounted) {
           AppSnackBar.show(
             context,
-            message: failure != null && l10n != null
+            message: failure != null
                 ? failure.toUserMessage(l10n)
-                : (l10n?.failedToUpdatePreferences ??
-                      'Failed to update preferences'),
+                : l10n.failedToUpdatePreferences,
             type: SnackBarType.error,
           );
         }
@@ -371,10 +355,10 @@ class SettingsScreen extends ConsumerWidget {
     WidgetRef ref,
     HbA1cUnit currentUnit,
   ) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     SelectionDialog.show<HbA1cUnit>(
       context,
-      title: l10n?.selectHbA1cUnit ?? 'Select HbA1c Unit',
+      title: l10n.selectHbA1cUnit,
       currentValue: currentUnit,
       items: HbA1cUnit.values,
       itemLabel: (unit) => unit.displayName,
@@ -387,10 +371,9 @@ class SettingsScreen extends ConsumerWidget {
         if (!success && context.mounted) {
           AppSnackBar.show(
             context,
-            message: failure != null && l10n != null
+            message: failure != null
                 ? failure.toUserMessage(l10n)
-                : (l10n?.failedToUpdatePreferences ??
-                      'Failed to update preferences'),
+                : l10n.failedToUpdatePreferences,
             type: SnackBarType.error,
           );
         }
@@ -403,10 +386,10 @@ class SettingsScreen extends ConsumerWidget {
     WidgetRef ref,
     WeightUnit currentUnit,
   ) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     SelectionDialog.show<WeightUnit>(
       context,
-      title: l10n?.selectWeightUnit ?? 'Select Weight Unit',
+      title: l10n.selectWeightUnit,
       currentValue: currentUnit,
       items: WeightUnit.values,
       itemLabel: (unit) => unit.displayName,
@@ -419,10 +402,9 @@ class SettingsScreen extends ConsumerWidget {
         if (!success && context.mounted) {
           AppSnackBar.show(
             context,
-            message: failure != null && l10n != null
+            message: failure != null
                 ? failure.toUserMessage(l10n)
-                : (l10n?.failedToUpdatePreferences ??
-                      'Failed to update preferences'),
+                : l10n.failedToUpdatePreferences,
             type: SnackBarType.error,
           );
         }
@@ -445,13 +427,12 @@ class SettingsScreen extends ConsumerWidget {
             .read(userProfileProvider.notifier)
             .updateTargetRange(newRange);
         if (!success && context.mounted) {
-          final l10n = AppLocalizations.of(context);
+          final l10n = AppLocalizations.of(context)!;
           AppSnackBar.show(
             context,
-            message: failure != null && l10n != null
+            message: failure != null
                 ? failure.toUserMessage(l10n)
-                : (l10n?.failedToUpdatePreferences ??
-                      'Failed to update preferences'),
+                : l10n.failedToUpdatePreferences,
             type: SnackBarType.error,
           );
         }
@@ -460,7 +441,7 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   Future<void> _rateApp(BuildContext context) async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     try {
       final packageInfo = await PackageInfo.fromPlatform();
       final packageName = packageInfo.packageName;
@@ -481,7 +462,7 @@ class SettingsScreen extends ConsumerWidget {
         if (!webLaunched && context.mounted) {
           AppSnackBar.show(
             context,
-            message: l10n?.couldNotOpenStore ?? 'Could not open app store',
+            message: l10n.couldNotOpenStore,
             type: SnackBarType.error,
           );
         }
@@ -496,7 +477,7 @@ class SettingsScreen extends ConsumerWidget {
       if (context.mounted) {
         AppSnackBar.show(
           context,
-          message: l10n?.couldNotOpenStore ?? 'Could not open app store',
+          message: l10n.couldNotOpenStore,
           type: SnackBarType.error,
         );
       }
@@ -516,13 +497,12 @@ class SettingsScreen extends ConsumerWidget {
             .read(userProfileProvider.notifier)
             .updateThemeMode(mode);
         if (!success && context.mounted) {
-          final l10n = AppLocalizations.of(context);
+          final l10n = AppLocalizations.of(context)!;
           AppSnackBar.show(
             context,
-            message: failure != null && l10n != null
+            message: failure != null
                 ? failure.toUserMessage(l10n)
-                : (l10n?.failedToUpdateThemeMode ??
-                      'Failed to update theme mode'),
+                : l10n.failedToUpdateThemeMode,
             type: SnackBarType.error,
           );
         }
@@ -530,11 +510,11 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  String _themeLabel(AppLocalizations? l10n, UserThemeMode mode) {
+  String _themeLabel(AppLocalizations l10n, UserThemeMode mode) {
     return switch (mode) {
-      UserThemeMode.light => l10n?.themeLight ?? 'Light',
-      UserThemeMode.dark => l10n?.themeDark ?? 'Dark Mode',
-      UserThemeMode.system => l10n?.themeSystem ?? 'System',
+      UserThemeMode.light => l10n.themeLight,
+      UserThemeMode.dark => l10n.themeDark,
+      UserThemeMode.system => l10n.themeSystem,
     };
   }
 
@@ -543,10 +523,10 @@ class SettingsScreen extends ConsumerWidget {
     WidgetRef ref,
     FirstDayOfWeek current,
   ) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     SelectionDialog.show<FirstDayOfWeek>(
       context,
-      title: l10n?.selectFirstDayOfWeek ?? 'Select First Day of Week',
+      title: l10n.selectFirstDayOfWeek,
       currentValue: current,
       items: FirstDayOfWeek.values,
       itemLabel: (item) => item.label(l10n),
@@ -557,10 +537,9 @@ class SettingsScreen extends ConsumerWidget {
         if (!success && context.mounted) {
           AppSnackBar.show(
             context,
-            message: failure != null && l10n != null
+            message: failure != null
                 ? failure.toUserMessage(l10n)
-                : (l10n?.failedToUpdatePreferences ??
-                      'Failed to update preferences'),
+                : l10n.failedToUpdatePreferences,
             type: SnackBarType.error,
           );
         }
@@ -573,16 +552,14 @@ class SettingsScreen extends ConsumerWidget {
     WidgetRef ref,
     bool enable,
   ) async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     if (enable) {
       final canAuth = await BiometricService.instance.canAuthenticate();
       if (!canAuth) {
         if (context.mounted) {
           AppSnackBar.show(
             context,
-            message:
-                l10n?.biometricNotAvailable ??
-                'Biometric authentication is not available on this device',
+            message: l10n.biometricNotAvailable,
             type: SnackBarType.error,
           );
         }
@@ -590,20 +567,15 @@ class SettingsScreen extends ConsumerWidget {
       }
 
       final result = await BiometricService.instance.authenticate(
-        localizedReason:
-            l10n?.biometricReason ??
-            'Unlock Glucosa to access your blood glucose records',
-        authMessages: l10n != null
-            ? BiometricService.createAuthMessages(l10n)
-            : const [],
+        localizedReason: l10n.biometricReason,
+        authMessages: BiometricService.createAuthMessages(l10n),
       );
 
       if (result != BiometricAuthResult.success) {
         if (context.mounted && result != BiometricAuthResult.canceled) {
           final errorMsg = result == BiometricAuthResult.lockedOut
-              ? (l10n?.biometricLockedOut ?? 'Biometrics temporarily locked.')
-              : (l10n?.biometricNotAvailable ??
-                    'Biometric authentication failed');
+              ? (l10n.biometricLockedOut)
+              : l10n.biometricNotAvailable;
           AppSnackBar.show(
             context,
             message: errorMsg,
@@ -620,10 +592,9 @@ class SettingsScreen extends ConsumerWidget {
     if (!success && context.mounted) {
       AppSnackBar.show(
         context,
-        message: failure != null && l10n != null
+        message: failure != null
             ? failure.toUserMessage(l10n)
-            : (l10n?.failedToUpdatePreferences ??
-                  'Failed to update preferences'),
+            : l10n.failedToUpdatePreferences,
         type: SnackBarType.error,
       );
     }
@@ -636,19 +607,17 @@ class SettingsScreen extends ConsumerWidget {
           .read(userProfileProvider.notifier)
           .wipeAllData();
       if (context.mounted) {
-        final l10n = AppLocalizations.of(context);
+        final l10n = AppLocalizations.of(context)!;
         if (success) {
           AppSnackBar.show(
             context,
-            message:
-                l10n?.wipeDataSuccess ??
-                'All data has been wiped successfully.',
+            message: l10n.wipeDataSuccess,
             type: SnackBarType.success,
           );
         } else {
           AppSnackBar.show(
             context,
-            message: failure != null && l10n != null
+            message: failure != null
                 ? failure.toUserMessage(l10n)
                 : 'Failed to wipe data',
             type: SnackBarType.error,
