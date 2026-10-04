@@ -21,13 +21,9 @@
 # Play Store Split Install (optional, used by Flutter for deferred components)
 -dontwarn com.google.android.play.core.**
 
-# Firebase Crashlytics
-# Retain line numbers and source file names for accurate stack trace de-obfuscation
+# Stack trace preservation for on-device diagnostics
 -keepattributes SourceFile,LineNumberTable
 -keep public class * extends java.lang.Exception
--keepclassmembers class * {
-    @com.google.firebase.crashlytics.** *;
-}
 
 # Isar Community Database (JNI and generated bindings)
 -keep class dev.isar.** { *; }

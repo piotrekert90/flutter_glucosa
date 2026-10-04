@@ -57,10 +57,10 @@ android {
         }
         release {
             manifestPlaceholders["appName"] = "Glucosa"
-            // Fallback gracefully to debug keys when no release keystore is configured.
-            signingConfig = signingConfigs.findByName("release")?.takeIf {
-                it.storeFile?.exists() == true
-            } ?: signingConfigs.getByName("debug")
+            // Only assign release signing config if keystore file exists; never fall back to debug keys.
+            signingConfigs.findByName("release")?.takeIf { it.storeFile?.exists() == true }?.let {
+                signingConfig = it
+            }
 
             isMinifyEnabled = true
             isShrinkResources = true
