@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/domain/enums/metric_type.dart';
 import 'package:flutter_glucosa/features/reminders/domain/entities/reminder.dart';
 import 'package:flutter_glucosa/features/reminders/presentation/widgets/reminder_card.dart';
+import 'package:flutter_glucosa/l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -11,6 +12,8 @@ void main() {
     VoidCallback? onTap,
   }) {
     return MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: Scaffold(
         body: MediaQuery(
           data: const MediaQueryData(alwaysUse24HourFormat: true),
@@ -42,7 +45,7 @@ void main() {
 
         expect(find.text('08:15'), findsOneWidget);
         expect(find.text('Morning Glucose'), findsOneWidget);
-        expect(find.text('Glucose'), findsOneWidget);
+        expect(find.text('Blood Glucose'), findsOneWidget);
         expect(find.text('Daily'), findsOneWidget);
 
         final switchWidget = tester.widget<Switch>(find.byType(Switch));

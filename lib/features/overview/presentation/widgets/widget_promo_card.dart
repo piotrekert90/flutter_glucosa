@@ -56,11 +56,10 @@ class _WidgetPromoCardState extends ConsumerState<WidgetPromoCard> {
         androidName: 'GlucosaAppWidgetProvider',
       );
       if (!mounted) return;
-      final l10n = AppLocalizations.of(context);
+      final l10n = AppLocalizations.of(context)!;
       AppSnackBar.show(
         context,
-        message:
-            l10n?.widgetPinRequested ?? 'Widget pin request sent to launcher',
+        message: l10n.widgetPinRequested,
         type: SnackBarType.success,
       );
     } catch (e, stack) {
@@ -76,7 +75,7 @@ class _WidgetPromoCardState extends ConsumerState<WidgetPromoCard> {
   @override
   Widget build(BuildContext context) {
     if (!_eligible) return const SizedBox.shrink();
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
     return Card(
@@ -99,15 +98,14 @@ class _WidgetPromoCardState extends ConsumerState<WidgetPromoCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    l10n?.widgetPromoTitle ?? 'Glucose at a glance',
+                    l10n.widgetPromoTitle,
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    l10n?.widgetPromoSubtitle ??
-                        'Pin the Glucosa widget to your home screen',
+                    l10n.widgetPromoSubtitle,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
@@ -118,7 +116,7 @@ class _WidgetPromoCardState extends ConsumerState<WidgetPromoCard> {
             const SizedBox(width: 8),
             FilledButton.tonal(
               onPressed: _handlePin,
-              child: Text(l10n?.widgetPromoPin ?? 'Pin'),
+              child: Text(l10n.widgetPromoPin),
             ),
           ],
         ),

@@ -20,16 +20,16 @@ class RemindersScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final remindersAsync = ref.watch(reminderListProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n?.reminders ?? 'Reminders')),
+      appBar: AppBar(title: Text(l10n.reminders)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddEditReminderDialog(context, ref),
         icon: const Icon(Icons.add_alarm_outlined),
-        label: Text(l10n?.addReminder ?? 'Add Reminder'),
+        label: Text(l10n.addReminder),
       ),
       body: ClampedLayout(
         child: remindersAsync.when(
@@ -45,10 +45,8 @@ class RemindersScreen extends ConsumerWidget {
               return Center(
                 child: AppEmptyView(
                   icon: Icons.notifications_none_outlined,
-                  title: l10n?.noRemindersTitle ?? 'No reminders scheduled',
-                  description:
-                      l10n?.noRemindersSubtitle ??
-                      'Add reminders to never forget logging your health measurements.',
+                  title: l10n.noRemindersTitle,
+                  description: l10n.noRemindersSubtitle,
                 ),
               );
             }
@@ -74,13 +72,8 @@ class RemindersScreen extends ConsumerWidget {
                     return await showDialog<bool>(
                           context: context,
                           builder: (dialogCtx) => AlertDialog(
-                            title: Text(
-                              l10n?.deleteReminder ?? 'Delete Reminder',
-                            ),
-                            content: Text(
-                              l10n?.deleteReminderConfirm ??
-                                  'Are you sure you want to delete this reminder?',
-                            ),
+                            title: Text(l10n.deleteReminder),
+                            content: Text(l10n.deleteReminderConfirm),
                             actions: [
                               TextButton(
                                 onPressed: () =>
@@ -102,7 +95,7 @@ class RemindersScreen extends ConsumerWidget {
                                 ),
                                 onPressed: () =>
                                     Navigator.of(dialogCtx).pop(true),
-                                child: Text(l10n?.deleteReminder ?? 'Delete'),
+                                child: Text(l10n.deleteReminder),
                               ),
                             ],
                           ),
@@ -117,11 +110,9 @@ class RemindersScreen extends ConsumerWidget {
                       ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(
-                            l10n?.reminderDeletedSuccess ?? 'Reminder deleted',
-                          ),
+                          content: Text(l10n.reminderDeletedSuccess),
                           action: SnackBarAction(
-                            label: l10n?.undo ?? 'Undo',
+                            label: l10n.undo,
                             onPressed: () {
                               ref
                                   .read(reminderListProvider.notifier)
@@ -167,7 +158,7 @@ class RemindersScreen extends ConsumerWidget {
     WidgetRef ref, {
     Reminder? existing,
   }) async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final isEditing = existing != null;
 
     var label = existing?.label ?? '';
@@ -208,9 +199,7 @@ class RemindersScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        isEditing
-                            ? (l10n?.editReminder ?? 'Edit Reminder')
-                            : (l10n?.addReminder ?? 'Add Reminder'),
+                        isEditing ? (l10n.editReminder) : l10n.addReminder,
                         style: theme.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -219,16 +208,14 @@ class RemindersScreen extends ConsumerWidget {
                       TextFormField(
                         initialValue: label,
                         decoration: InputDecoration(
-                          labelText: l10n?.reminderLabel ?? 'Label',
-                          hintText:
-                              l10n?.reminderLabelHint ??
-                              'e.g. Morning fasting glucose',
+                          labelText: l10n.reminderLabel,
+                          hintText: l10n.reminderLabelHint,
                           border: const OutlineInputBorder(),
                           prefixIcon: const Icon(Icons.label_outline),
                         ),
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
-                            return l10n?.errorValidation ?? 'Label is required';
+                            return l10n.errorValidation;
                           }
                           return null;
                         },
@@ -241,7 +228,7 @@ class RemindersScreen extends ConsumerWidget {
                             child: OutlinedButton.icon(
                               icon: const Icon(Icons.access_time_outlined),
                               label: Text(
-                                '${l10n?.reminderTime ?? 'Time'}: $timeFormatted',
+                                '${l10n.reminderTime}: $timeFormatted',
                               ),
                               style: OutlinedButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(
@@ -266,7 +253,7 @@ class RemindersScreen extends ConsumerWidget {
                       DropdownButtonFormField<MetricType>(
                         initialValue: metricType,
                         decoration: InputDecoration(
-                          labelText: l10n?.reminderMetric ?? 'Health Metric',
+                          labelText: l10n.reminderMetric,
                           border: const OutlineInputBorder(),
                           prefixIcon: const Icon(Icons.tune_outlined),
                         ),
@@ -285,13 +272,8 @@ class RemindersScreen extends ConsumerWidget {
                       const SizedBox(height: 8),
                       SwitchListTile.adaptive(
                         contentPadding: EdgeInsets.zero,
-                        title: Text(
-                          l10n?.reminderOneTime ?? 'One-time reminder',
-                        ),
-                        subtitle: Text(
-                          l10n?.reminderOneTimeSubtitle ??
-                              'Automatically deactivates after firing',
-                        ),
+                        title: Text(l10n.reminderOneTime),
+                        subtitle: Text(l10n.reminderOneTimeSubtitle),
                         value: isOneTime,
                         onChanged: (val) {
                           setSheetState(() => isOneTime = val);
@@ -326,9 +308,7 @@ class RemindersScreen extends ConsumerWidget {
                               if (success) {
                                 AppSnackBar.show(
                                   context,
-                                  message:
-                                      l10n?.reminderSavedSuccess ??
-                                      'Reminder saved successfully',
+                                  message: l10n.reminderSavedSuccess,
                                   type: SnackBarType.success,
                                 );
                               } else {

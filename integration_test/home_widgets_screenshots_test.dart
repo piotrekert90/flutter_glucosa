@@ -242,7 +242,7 @@ class HomeWidget2x1View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final cardBg = isDark ? const Color(0xFF1E2128) : const Color(0xFFFFFFFF);
     final borderColor = isDark
         ? const Color(0xFF2E333D)
@@ -281,7 +281,7 @@ class HomeWidget2x1View extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Glucosa • ${l10n?.widgetToday ?? 'Today'}',
+                  'Glucosa • ${l10n.widgetToday}',
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
@@ -373,7 +373,7 @@ class HomeWidgetFullView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final cardBg = isDark ? const Color(0xFF1E2128) : const Color(0xFFFFFFFF);
     final borderColor = isDark
         ? const Color(0xFF2E333D)
@@ -414,7 +414,7 @@ class HomeWidgetFullView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Glucosa • ${l10n?.widgetToday ?? 'Today'}',
+                      'Glucosa • ${l10n.widgetToday}',
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w700,
