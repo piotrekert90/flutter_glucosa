@@ -1769,5 +1769,26 @@
   "glucoseUnitMmolLDescription": "Millimoli per litro",
   "@glucoseUnitMmolLDescription": {
     "description": "Full description for mmol/L glucose unit"
-  }
+  },
+  "validationGlucoseRequired": "Il valore di glucosio è obbligatorio",
+  "validationGlucosePositive": "Il valore di glucosio deve essere positivo",
+  "validationGlucoseRangeMgDl": "La glicemia deve essere compresa tra 20 e 600 mg/dL",
+  "validationGlucoseRangeMmolL": "La glicemia deve essere compresa tra 1,1 e 33,3 mmol/L",
+  "validationHbA1cRequired": "Il valore di HbA1c è obbligatorio",
+  "validationHbA1cPositive": "Il valore di HbA1c deve essere positivo",
+  "validationHbA1cRangePercentage": "L'HbA1c deve essere compresa tra 3,0% e 20,0%",
+  "validationHbA1cRangeMmolMol": "L'HbA1c deve essere compresa tra 9 e 195 mmol/mol",
+  "validationBpRequired": "Sono richiesti sia i valori sistolici che diastolici",
+  "validationBpSystolicRange": "La pressione sistolica deve essere compresa tra 60 e 300 mmHg",
+  "validationBpDiastolicRange": "La pressione diastolica deve essere compresa tra 30 e 200 mmHg",
+  "validationBpSystolicGreaterThanDiastolic": "La pressione sistolica deve essere maggiore di quella diastolica",
+  "validationKetonesRequired": "Il valore di chetoni è obbligatorio",
+  "validationKetonesRange": "Il valore di chetoni deve essere compreso tra 0,0 e 25,0 mmol/L",
+  "validationCholesterolRequired": "Sono richiesti i valori di colesterolo totale, LDL e HDL",
+  "validationCholesterolTotalRange": "Il colesterolo totale deve essere compreso tra 50 e 500 mg/dL",
+  "validationCholesterolLdlRange": "Il colesterolo LDL deve essere compreso tra 20 e 400 mg/dL",
+  "validationCholesterolHdlRange": "Il colesterolo HDL deve essere compreso tra 10 e 150 mg/dL",
+  "validationWeightRequired": "Il peso è obbligatorio",
+  "validationWeightRangeKg": "Il peso deve essere compreso tra 10 e 500 kg",
+  "validationWeightRangeLbs": "Il peso deve essere compreso tra 22 e 1102 lbs"
 }

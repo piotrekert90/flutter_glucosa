@@ -8,6 +8,7 @@ import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../core/domain/utils/reading_validator.dart';
 import '../../../../core/presentation/extensions/failure_ui_extension.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
+import '../../../../core/presentation/utils/reading_validation_l10n.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -316,9 +317,19 @@ class _AddEditHbA1cReadingScreenState
                       return l10n?.errorValidation ?? 'Invalid value';
                     }
                     if (unit == HbA1cUnit.mmolMol) {
-                      return ReadingValidator.validateHbA1cMmolMol(numVal);
+                      final error = ReadingValidator.validateHbA1cMmolMol(
+                        numVal,
+                      );
+                      return l10n != null
+                          ? ReadingValidationL10n.translate(error, l10n)
+                          : error;
                     }
-                    return ReadingValidator.validateHbA1cPercentage(numVal);
+                    final error = ReadingValidator.validateHbA1cPercentage(
+                      numVal,
+                    );
+                    return l10n != null
+                        ? ReadingValidationL10n.translate(error, l10n)
+                        : error;
                   },
                 ),
                 const SizedBox(height: 16),

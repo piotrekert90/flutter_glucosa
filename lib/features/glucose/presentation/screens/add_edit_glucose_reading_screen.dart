@@ -9,6 +9,7 @@ import '../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../core/domain/utils/meal_context_detector.dart';
 import '../../../../core/domain/utils/reading_validator.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
+import '../../../../core/presentation/utils/reading_validation_l10n.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -134,9 +135,12 @@ class _AddEditGlucoseReadingScreenState
 
     final validationError = ReadingValidator.validateGlucoseMgDl(mgDl);
     if (validationError != null) {
+      final l10n = AppLocalizations.of(context)!;
       AppSnackBar.show(
         context,
-        message: validationError,
+        message:
+            ReadingValidationL10n.translate(validationError, l10n) ??
+            validationError,
         type: SnackBarType.error,
       );
       return;
@@ -338,7 +342,10 @@ class _AddEditGlucoseReadingScreenState
                         ? GlucoseConverter.mmolLToMgDl(parsed)
                         : parsed.round();
 
-                    return ReadingValidator.validateGlucoseMgDl(mgDl);
+                    return ReadingValidationL10n.translate(
+                      ReadingValidator.validateGlucoseMgDl(mgDl),
+                      l10n,
+                    );
                   },
                 ),
                 const SizedBox(height: 16),

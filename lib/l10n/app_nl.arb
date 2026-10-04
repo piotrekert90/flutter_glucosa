@@ -1769,5 +1769,26 @@
   "glucoseUnitMmolLDescription": "Millimol per liter",
   "@glucoseUnitMmolLDescription": {
     "description": "Full description for mmol/L glucose unit"
-  }
+  },
+  "validationGlucoseRequired": "Glucosewaarde is verplicht",
+  "validationGlucosePositive": "Glucosewaarde moet positief zijn",
+  "validationGlucoseRangeMgDl": "Glucosemeting moet tussen 20 en 600 mg/dL liggen",
+  "validationGlucoseRangeMmolL": "Glucosemeting moet tussen 1,1 en 33,3 mmol/L liggen",
+  "validationHbA1cRequired": "HbA1c-waarde is verplicht",
+  "validationHbA1cPositive": "HbA1c-waarde moet positief zijn",
+  "validationHbA1cRangePercentage": "HbA1c moet tussen 3,0% en 20,0% liggen",
+  "validationHbA1cRangeMmolMol": "HbA1c moet tussen 9 en 195 mmol/mol liggen",
+  "validationBpRequired": "Zowel systolische als diastolische waarden zijn verplicht",
+  "validationBpSystolicRange": "Systolische druk moet tussen 60 en 300 mmHg liggen",
+  "validationBpDiastolicRange": "Diastolische druk moet tussen 30 en 200 mmHg liggen",
+  "validationBpSystolicGreaterThanDiastolic": "Systolische druk moet hoger zijn dan diastolische druk",
+  "validationKetonesRequired": "Ketonenwaarde is verplicht",
+  "validationKetonesRange": "Ketonenwaarde moet tussen 0,0 en 25,0 mmol/L liggen",
+  "validationCholesterolRequired": "Totaal-, LDL- en HDL-cholesterolwaarden zijn verplicht",
+  "validationCholesterolTotalRange": "Totaal cholesterol moet tussen 50 en 500 mg/dL liggen",
+  "validationCholesterolLdlRange": "LDL-cholesterol moet tussen 20 en 400 mg/dL liggen",
+  "validationCholesterolHdlRange": "HDL-cholesterol moet tussen 10 en 150 mg/dL liggen",
+  "validationWeightRequired": "Gewicht is verplicht",
+  "validationWeightRangeKg": "Gewicht moet tussen 10 en 500 kg liggen",
+  "validationWeightRangeLbs": "Gewicht moet tussen 22 en 1102 lbs liggen"
 }

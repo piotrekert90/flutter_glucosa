@@ -1769,5 +1769,26 @@
   "glucoseUnitMmolLDescription": "ミリモル毎リットル",
   "@glucoseUnitMmolLDescription": {
     "description": "Full description for mmol/L glucose unit"
-  }
+  },
+  "validationGlucoseRequired": "血糖値の入力は必須です",
+  "validationGlucosePositive": "血糖値は正の数値である必要があります",
+  "validationGlucoseRangeMgDl": "血糖値は20〜600 mg/dLの範囲である必要があります",
+  "validationGlucoseRangeMmolL": "血糖値は1.1〜33.3 mmol/Lの範囲である必要があります",
+  "validationHbA1cRequired": "HbA1cの入力は必須です",
+  "validationHbA1cPositive": "HbA1cは正の数値である必要があります",
+  "validationHbA1cRangePercentage": "HbA1cは3.0%〜20.0%の範囲である必要があります",
+  "validationHbA1cRangeMmolMol": "HbA1cは9〜195 mmol/molの範囲である必要があります",
+  "validationBpRequired": "収縮期と拡張期の両方の血圧値が必要です",
+  "validationBpSystolicRange": "収縮期血圧は60〜300 mmHgの範囲である必要があります",
+  "validationBpDiastolicRange": "拡張期血圧は30〜200 mmHgの範囲である必要があります",
+  "validationBpSystolicGreaterThanDiastolic": "収縮期血圧は拡張期血圧より高い必要があります",
+  "validationKetonesRequired": "ケトン値の入力は必須です",
+  "validationKetonesRange": "ケトン値は0.0〜25.0 mmol/Lの範囲である必要があります",
+  "validationCholesterolRequired": "総コレステロール、LDL、HDLの値がすべて必要です",
+  "validationCholesterolTotalRange": "総コレステロールは50〜500 mg/dLの範囲である必要があります",
+  "validationCholesterolLdlRange": "LDLコレステロールは20〜400 mg/dLの範囲である必要があります",
+  "validationCholesterolHdlRange": "HDLコレステロールは10〜150 mg/dLの範囲である必要があります",
+  "validationWeightRequired": "体重の入力は必須です",
+  "validationWeightRangeKg": "体重は10〜500 kgの範囲である必要があります",
+  "validationWeightRangeLbs": "体重は22〜1102 lbsの範囲である必要があります"
 }

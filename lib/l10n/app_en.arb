@@ -1769,5 +1769,89 @@
   "glucoseUnitMmolLDescription": "Millimoles per liter",
   "@glucoseUnitMmolLDescription": {
     "description": "Full description for mmol/L glucose unit"
+  },
+  "validationGlucoseRequired": "Glucose value is required",
+  "@validationGlucoseRequired": {
+    "description": "Validation error when glucose value is omitted"
+  },
+  "validationGlucosePositive": "Glucose value must be positive",
+  "@validationGlucosePositive": {
+    "description": "Validation error when glucose value is zero or negative"
+  },
+  "validationGlucoseRangeMgDl": "Glucose reading must be between 20 and 600 mg/dL",
+  "@validationGlucoseRangeMgDl": {
+    "description": "Validation error when glucose value is outside 20-600 mg/dL"
+  },
+  "validationGlucoseRangeMmolL": "Glucose reading must be between 1.1 and 33.3 mmol/L",
+  "@validationGlucoseRangeMmolL": {
+    "description": "Validation error when glucose value is outside 1.1-33.3 mmol/L"
+  },
+  "validationHbA1cRequired": "HbA1c value is required",
+  "@validationHbA1cRequired": {
+    "description": "Validation error when HbA1c value is omitted"
+  },
+  "validationHbA1cPositive": "HbA1c value must be positive",
+  "@validationHbA1cPositive": {
+    "description": "Validation error when HbA1c value is zero or negative"
+  },
+  "validationHbA1cRangePercentage": "HbA1c must be between 3.0% and 20.0%",
+  "@validationHbA1cRangePercentage": {
+    "description": "Validation error when HbA1c percentage is outside 3.0-20.0%"
+  },
+  "validationHbA1cRangeMmolMol": "HbA1c must be between 9 and 195 mmol/mol",
+  "@validationHbA1cRangeMmolMol": {
+    "description": "Validation error when HbA1c mmol/mol is outside 9-195"
+  },
+  "validationBpRequired": "Both systolic and diastolic values are required",
+  "@validationBpRequired": {
+    "description": "Validation error when systolic or diastolic pressure is omitted"
+  },
+  "validationBpSystolicRange": "Systolic pressure must be between 60 and 300 mmHg",
+  "@validationBpSystolicRange": {
+    "description": "Validation error when systolic pressure is outside 60-300 mmHg"
+  },
+  "validationBpDiastolicRange": "Diastolic pressure must be between 30 and 200 mmHg",
+  "@validationBpDiastolicRange": {
+    "description": "Validation error when diastolic pressure is outside 30-200 mmHg"
+  },
+  "validationBpSystolicGreaterThanDiastolic": "Systolic pressure must be greater than diastolic pressure",
+  "@validationBpSystolicGreaterThanDiastolic": {
+    "description": "Validation error when systolic pressure is <= diastolic pressure"
+  },
+  "validationKetonesRequired": "Ketones value is required",
+  "@validationKetonesRequired": {
+    "description": "Validation error when ketone value is omitted"
+  },
+  "validationKetonesRange": "Ketones value must be between 0.0 and 25.0 mmol/L",
+  "@validationKetonesRange": {
+    "description": "Validation error when ketone value is outside 0.0-25.0 mmol/L"
+  },
+  "validationCholesterolRequired": "Total, LDL, and HDL cholesterol values are required",
+  "@validationCholesterolRequired": {
+    "description": "Validation error when cholesterol values are omitted"
+  },
+  "validationCholesterolTotalRange": "Total cholesterol must be between 50 and 500 mg/dL",
+  "@validationCholesterolTotalRange": {
+    "description": "Validation error when total cholesterol is outside 50-500 mg/dL"
+  },
+  "validationCholesterolLdlRange": "LDL cholesterol must be between 20 and 400 mg/dL",
+  "@validationCholesterolLdlRange": {
+    "description": "Validation error when LDL cholesterol is outside 20-400 mg/dL"
+  },
+  "validationCholesterolHdlRange": "HDL cholesterol must be between 10 and 150 mg/dL",
+  "@validationCholesterolHdlRange": {
+    "description": "Validation error when HDL cholesterol is outside 10-150 mg/dL"
+  },
+  "validationWeightRequired": "Weight is required",
+  "@validationWeightRequired": {
+    "description": "Validation error when weight value is omitted"
+  },
+  "validationWeightRangeKg": "Weight must be between 10 and 500 kg",
+  "@validationWeightRangeKg": {
+    "description": "Validation error when weight is outside 10-500 kg"
+  },
+  "validationWeightRangeLbs": "Weight must be between 22 and 1102 lbs",
+  "@validationWeightRangeLbs": {
+    "description": "Validation error when weight is outside 22-1102 lbs"
   }
 }
