@@ -5,10 +5,11 @@ import 'package:intl/intl.dart';
 import '../../../../core/domain/enums/glucose_unit.dart';
 import '../../../../core/domain/enums/hba1c_unit.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
-import '../../../../core/presentation/theme/app_feedback_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../settings/presentation/providers/user_profile_notifier.dart';
 import '../../domain/entities/hba1c_reading.dart';
+import '../../domain/utils/hba1c_status_resolver.dart';
+import '../extensions/hba1c_status_ui_extension.dart';
 
 /// Presentation card displaying an individual [HbA1cReading] with clinical status badge and estimated average glucose.
 class HbA1cReadingCard extends ConsumerWidget {
@@ -24,8 +25,7 @@ class HbA1cReadingCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final profileAsync = ref.watch(userProfileProvider);
 
     final preferredHbA1cUnit =
@@ -58,25 +58,9 @@ class HbA1cReadingCard extends ConsumerWidget {
 
     final formattedDate = DateFormat.yMMMd().format(reading.createdAt);
 
-    // Clinical status badge: <5.7 normal, 5.7-6.4 elevated, >=6.5 high
-    final Color badgeColor;
-    final String badgeLabel;
-    if (reading.readingPercentage < 5.7) {
-      badgeColor = isDark
-          ? AppFeedbackTheme.successForegroundDark
-          : AppFeedbackTheme.successForegroundLight;
-      badgeLabel = l10n?.hba1cStatusNormal ?? 'Normal';
-    } else if (reading.readingPercentage < 6.5) {
-      badgeColor = isDark
-          ? AppFeedbackTheme.warningForegroundDark
-          : AppFeedbackTheme.warningForegroundLight;
-      badgeLabel = l10n?.hba1cStatusElevated ?? 'Elevated';
-    } else {
-      badgeColor = isDark
-          ? AppFeedbackTheme.errorForegroundDark
-          : AppFeedbackTheme.errorForegroundLight;
-      badgeLabel = l10n?.hba1cStatusHigh ?? 'High';
-    }
+    final status = HbA1cStatusResolver.resolve(reading.readingPercentage);
+    final badgeColor = status.foregroundColor(context);
+    final badgeLabel = status.localizedName(l10n);
 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
