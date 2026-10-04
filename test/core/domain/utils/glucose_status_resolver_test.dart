@@ -7,24 +7,25 @@ void main() {
   group('GlucoseStatusResolver', () {
     const adaRange = GlucoseTargetRange.ada(); // [70, 180]
 
-    test('classifies hypoglycemia when reading is below rangeMin - 15', () {
-      // 70 - 15 = 55
-      expect(
-        GlucoseStatusResolver.resolve(readingMgDl: 54, targetRange: adaRange),
-        GlucoseStatus.hypoglycemia,
-      );
-      expect(
-        GlucoseStatusResolver.resolve(readingMgDl: 30, targetRange: adaRange),
-        GlucoseStatus.hypoglycemia,
-      );
-    });
+    test(
+      'classifies hypoglycemia when reading is below Level 2 clinical threshold (< 54 mg/dL)',
+      () {
+        expect(
+          GlucoseStatusResolver.resolve(readingMgDl: 53, targetRange: adaRange),
+          GlucoseStatus.hypoglycemia,
+        );
+        expect(
+          GlucoseStatusResolver.resolve(readingMgDl: 30, targetRange: adaRange),
+          GlucoseStatus.hypoglycemia,
+        );
+      },
+    );
 
     test(
-      'classifies low when reading is between rangeMin - 15 and rangeMin - 1',
+      'classifies low when reading is between 54 mg/dL and rangeMin - 1 (Level 1 hypoglycemia)',
       () {
-        // Exactly at lower boundary: 55
         expect(
-          GlucoseStatusResolver.resolve(readingMgDl: 55, targetRange: adaRange),
+          GlucoseStatusResolver.resolve(readingMgDl: 54, targetRange: adaRange),
           GlucoseStatus.low,
         );
         expect(
@@ -72,7 +73,7 @@ void main() {
     );
 
     test(
-      'classifies high when reading is between rangeMax + 1 and rangeMax + 40',
+      'classifies high when reading is between rangeMax + 1 and 250 mg/dL inclusive (Level 1 hyperglycemia)',
       () {
         // Just above upper limit: 181
         expect(
@@ -89,10 +90,10 @@ void main() {
           ),
           GlucoseStatus.high,
         );
-        // Upper boundary: 180 + 40 = 220
+        // ADA clinical threshold boundary: 250 mg/dL
         expect(
           GlucoseStatusResolver.resolve(
-            readingMgDl: 220,
+            readingMgDl: 250,
             targetRange: adaRange,
           ),
           GlucoseStatus.high,
@@ -100,28 +101,36 @@ void main() {
       },
     );
 
-    test('classifies hyperglycemia when reading is above rangeMax + 40', () {
-      // Above upper boundary: 221+
-      expect(
-        GlucoseStatusResolver.resolve(readingMgDl: 221, targetRange: adaRange),
-        GlucoseStatus.hyperglycemia,
-      );
-      expect(
-        GlucoseStatusResolver.resolve(readingMgDl: 350, targetRange: adaRange),
-        GlucoseStatus.hyperglycemia,
-      );
-    });
+    test(
+      'classifies hyperglycemia when reading is above Level 2 threshold (> 250 mg/dL)',
+      () {
+        expect(
+          GlucoseStatusResolver.resolve(
+            readingMgDl: 251,
+            targetRange: adaRange,
+          ),
+          GlucoseStatus.hyperglycemia,
+        );
+        expect(
+          GlucoseStatusResolver.resolve(
+            readingMgDl: 350,
+            targetRange: adaRange,
+          ),
+          GlucoseStatus.hyperglycemia,
+        );
+      },
+    );
 
     test('resolveFromBounds works with custom numeric bounds', () {
       // Range: [80, 140]
-      // Hypoglycemia: < 65
-      // Low: 65 - 79
+      // Hypoglycemia: < 54 (absolute Level 2 clinical threshold)
+      // Low: 54 - 79 (below target)
       // In Range: 80 - 140
-      // High: 141 - 180
-      // Hyperglycemia: > 180
+      // High: 141 - 250 (above target up to Level 2 threshold)
+      // Hyperglycemia: > 250
       expect(
         GlucoseStatusResolver.resolveFromBounds(
-          readingMgDl: 64,
+          readingMgDl: 53,
           rangeMin: 80,
           rangeMax: 140,
         ),
@@ -129,7 +138,15 @@ void main() {
       );
       expect(
         GlucoseStatusResolver.resolveFromBounds(
-          readingMgDl: 65,
+          readingMgDl: 54,
+          rangeMin: 80,
+          rangeMax: 140,
+        ),
+        GlucoseStatus.low,
+      );
+      expect(
+        GlucoseStatusResolver.resolveFromBounds(
+          readingMgDl: 79,
           rangeMin: 80,
           rangeMax: 140,
         ),
@@ -153,7 +170,15 @@ void main() {
       );
       expect(
         GlucoseStatusResolver.resolveFromBounds(
-          readingMgDl: 181,
+          readingMgDl: 250,
+          rangeMin: 80,
+          rangeMax: 140,
+        ),
+        GlucoseStatus.high,
+      );
+      expect(
+        GlucoseStatusResolver.resolveFromBounds(
+          readingMgDl: 251,
           rangeMin: 80,
           rangeMax: 140,
         ),
