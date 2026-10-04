@@ -31,6 +31,7 @@ class RecordingWidgetSyncService extends WidgetSyncService {
     required String tapToAddLabel,
     required String todayLabel,
     String? localeName,
+    bool hideSensitiveData = false,
   }) async {
     lastReadingCount = readings.length;
     pushCount++;

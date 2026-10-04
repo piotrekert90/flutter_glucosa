@@ -13,6 +13,7 @@ void main() {
   Map<String, Object> build({
     List<GlucoseReading> readings = const [],
     GlucoseUnit unit = GlucoseUnit.mgDl,
+    bool hideSensitiveData = false,
   }) {
     return buildWidgetPayload(
       readings: readings,
@@ -23,6 +24,7 @@ void main() {
       tapToAddLabel: 'Tap to add',
       todayLabel: 'Today',
       localeName: 'en',
+      hideSensitiveData: hideSensitiveData,
     );
   }
 
@@ -120,6 +122,20 @@ void main() {
 
       expect(payload['last_entry_text'], contains('•'));
       expect(payload['last_entry_text'], isNot(contains('Today')));
+    });
+
+    test('masks glucose reading when hideSensitiveData is true', () {
+      final now = DateTime.now();
+      final payload = build(
+        readings: [reading(135, now)],
+        hideSensitiveData: true,
+      );
+
+      expect(payload['has_data'], isTrue);
+      expect(payload['glucose_value'], '•••');
+      expect(payload['status'], 'hidden');
+      expect(payload['trend_text'], isEmpty);
+      expect(payload['last_entry_text'], isEmpty);
     });
   });
 

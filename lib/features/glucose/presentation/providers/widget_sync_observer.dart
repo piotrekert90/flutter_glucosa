@@ -41,6 +41,7 @@ class WidgetSyncObserver extends _$WidgetSyncObserver {
           tapToAddLabel: l10n.widgetTapToAdd,
           todayLabel: l10n.widgetToday,
           localeName: locale.toString(),
+          hideSensitiveData: profile.isBiometricLockEnabled,
         );
   }
 }

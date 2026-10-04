@@ -29,7 +29,8 @@ When you grant permissions, Glucosa accesses only the specific health metric typ
 
 Glucosa offers optional home screen widgets to provide quick glanceability of recent glucose levels:
 - Widget data is populated locally via secure inter-process communication (`home_widget`) on your device.
-- Because widget contents may be visible when your device is unlocked, you can configure or remove widgets from your home screen at any time.
+- When Biometric Lock is active, widget readings are automatically masked (`•••`) to protect sensitive metabolic data on lock screens and home screens.
+- Because widget contents may otherwise be visible when your device is unlocked, you can configure or remove widgets from your home screen at any time.
 
 ---
 

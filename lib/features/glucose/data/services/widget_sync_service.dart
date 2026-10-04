@@ -22,6 +22,7 @@ Map<String, Object> buildWidgetPayload({
   required String tapToAddLabel,
   required String todayLabel,
   String? localeName,
+  bool hideSensitiveData = false,
 }) {
   if (readings.isEmpty) {
     return {
@@ -29,6 +30,19 @@ Map<String, Object> buildWidgetPayload({
       'header_title': headerTitle,
       'no_data_text': noDataLabel,
       'tap_to_add_text': tapToAddLabel,
+    };
+  }
+
+  if (hideSensitiveData) {
+    return {
+      'has_data': true,
+      'header_title': headerTitle,
+      'glucose_value': '•••',
+      'glucose_unit': unit.displayName,
+      'status': 'hidden',
+      'trend': 'flat',
+      'trend_text': '',
+      'last_entry_text': '',
     };
   }
 
@@ -133,6 +147,7 @@ class WidgetSyncService {
     required String tapToAddLabel,
     required String todayLabel,
     String? localeName,
+    bool hideSensitiveData = false,
   }) async {
     try {
       final payload = buildWidgetPayload(
@@ -144,6 +159,7 @@ class WidgetSyncService {
         tapToAddLabel: tapToAddLabel,
         todayLabel: todayLabel,
         localeName: localeName,
+        hideSensitiveData: hideSensitiveData,
       );
       await Future.wait([
         for (final entry in payload.entries) _saveEntry(entry.key, entry.value),
