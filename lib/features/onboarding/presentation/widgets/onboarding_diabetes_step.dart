@@ -45,9 +45,8 @@ class _OnboardingDiabetesStepState
     final value = double.tryParse(normalized);
     if (value == null) {
       setState(() {
-        final l10n = AppLocalizations.of(context);
-        _baselineError =
-            l10n?.onboardingBaselineInvalid ?? 'Enter a valid glucose value';
+        final l10n = AppLocalizations.of(context)!;
+        _baselineError = l10n.onboardingBaselineInvalid;
       });
       notifier.updateBaselineMgDl(null);
       return;
@@ -58,9 +57,8 @@ class _OnboardingDiabetesStepState
         : ReadingValidator.isValidGlucoseMgDl(value);
     if (!valid) {
       setState(() {
-        final l10n = AppLocalizations.of(context);
-        _baselineError =
-            l10n?.onboardingBaselineInvalid ?? 'Enter a valid glucose value';
+        final l10n = AppLocalizations.of(context)!;
+        _baselineError = l10n.onboardingBaselineInvalid;
       });
       notifier.updateBaselineMgDl(null);
       return;
@@ -74,7 +72,7 @@ class _OnboardingDiabetesStepState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final draft = ref.watch(onboardingProvider);
 
     return SingleChildScrollView(
@@ -84,8 +82,7 @@ class _OnboardingDiabetesStepState
         children: [
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingDiabetesTypeTitle ??
-                'Which type of diabetes do you have?',
+            l10n.onboardingDiabetesTypeTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -108,7 +105,7 @@ class _OnboardingDiabetesStepState
             ),
           const SizedBox(height: 16),
           Text(
-            l10n?.onboardingBaselineLabel ?? 'Baseline glucose (optional)',
+            l10n.onboardingBaselineLabel,
             style: theme.textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -122,8 +119,8 @@ class _OnboardingDiabetesStepState
             ],
             decoration: InputDecoration(
               hintText: draft.glucoseUnit == GlucoseUnit.mmolL
-                  ? (l10n?.onboardingBaselineHintMmolL ?? 'e.g. 6.5 mmol/L')
-                  : (l10n?.onboardingBaselineHintMgDl ?? 'e.g. 120 mg/dL'),
+                  ? l10n.onboardingBaselineHintMmolL
+                  : l10n.onboardingBaselineHintMgDl,
               errorText: _baselineError,
               border: const OutlineInputBorder(),
             ),

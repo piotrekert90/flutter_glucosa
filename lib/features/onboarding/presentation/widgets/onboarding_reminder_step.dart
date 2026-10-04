@@ -40,7 +40,7 @@ class OnboardingReminderStep extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final draft = ref.watch(onboardingProvider);
 
     final timeLabel =
@@ -51,7 +51,7 @@ class OnboardingReminderStep extends ConsumerWidget {
             hour: draft.reminderHour!,
             minute: draft.reminderMinute!,
           ).format(context)
-        : (l10n?.onboardingReminderOff ?? 'Off');
+        : l10n.onboardingReminderOff;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -66,7 +66,7 @@ class OnboardingReminderStep extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingReminderTitle ?? 'Daily reminder',
+            l10n.onboardingReminderTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -74,8 +74,7 @@ class OnboardingReminderStep extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            l10n?.onboardingReminderSubtitle ??
-                'Get notified every day to log your glucose. You can change this later in Settings.',
+            l10n.onboardingReminderSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -83,9 +82,7 @@ class OnboardingReminderStep extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           SwitchListTile.adaptive(
-            title: Text(
-              l10n?.onboardingReminderEnable ?? 'Enable daily reminder',
-            ),
+            title: Text(l10n.onboardingReminderEnable),
             subtitle: Text(timeLabel),
             value: draft.reminderEnabled,
             onChanged: (value) => _toggle(context, ref, value),
@@ -95,7 +92,7 @@ class OnboardingReminderStep extends ConsumerWidget {
             OutlinedButton.icon(
               onPressed: () => _pickTime(context, ref),
               icon: const Icon(Icons.schedule_outlined),
-              label: Text(l10n?.onboardingReminderChange ?? 'Change time'),
+              label: Text(l10n.onboardingReminderChange),
             ),
           ],
         ],

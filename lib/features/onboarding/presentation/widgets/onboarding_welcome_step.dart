@@ -34,7 +34,7 @@ class _OnboardingWelcomeStepState extends ConsumerState<OnboardingWelcomeStep> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -49,7 +49,7 @@ class _OnboardingWelcomeStepState extends ConsumerState<OnboardingWelcomeStep> {
           ),
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingWelcomeTitle ?? 'Welcome to Glucosa',
+            l10n.onboardingWelcomeTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -57,8 +57,7 @@ class _OnboardingWelcomeStepState extends ConsumerState<OnboardingWelcomeStep> {
           ),
           const SizedBox(height: 8),
           Text(
-            l10n?.onboardingWelcomeSubtitle ??
-                "Let's set up your profile in a few quick steps.",
+            l10n.onboardingWelcomeSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -69,8 +68,8 @@ class _OnboardingWelcomeStepState extends ConsumerState<OnboardingWelcomeStep> {
             controller: _controller,
             textCapitalization: TextCapitalization.words,
             decoration: InputDecoration(
-              labelText: l10n?.onboardingNameLabel ?? 'Your name',
-              hintText: l10n?.onboardingNameHint ?? 'e.g. Alex',
+              labelText: l10n.onboardingNameLabel,
+              hintText: l10n.onboardingNameHint,
               border: const OutlineInputBorder(),
               prefixIcon: const Icon(Icons.person_outlined),
             ),

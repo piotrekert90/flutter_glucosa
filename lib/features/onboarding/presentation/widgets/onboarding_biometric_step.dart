@@ -42,26 +42,20 @@ class _OnboardingBiometricStepState
       return;
     }
 
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     if (!await BiometricService.instance.canAuthenticate()) {
       if (!mounted) return;
       AppSnackBar.show(
         context,
-        message:
-            l10n?.biometricNotAvailable ??
-            'Biometric authentication is not available on this device',
+        message: l10n.biometricNotAvailable,
         type: SnackBarType.error,
       );
       return;
     }
 
     final result = await BiometricService.instance.authenticate(
-      localizedReason:
-          l10n?.biometricReason ??
-          'Unlock Glucosa to access your blood glucose records',
-      authMessages: l10n != null
-          ? BiometricService.createAuthMessages(l10n)
-          : const [],
+      localizedReason: l10n.biometricReason,
+      authMessages: BiometricService.createAuthMessages(l10n),
     );
     if (!mounted) return;
     if (result == BiometricAuthResult.success) {
@@ -69,8 +63,7 @@ class _OnboardingBiometricStepState
     } else if (result != BiometricAuthResult.canceled) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.biometricNotAvailable ?? 'Biometric authentication failed',
+        message: l10n.biometricNotAvailable,
         type: SnackBarType.error,
       );
     }
@@ -79,7 +72,7 @@ class _OnboardingBiometricStepState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final enabled = ref.watch(
       onboardingProvider.select((draft) => draft.biometricEnabled),
     );
@@ -93,7 +86,7 @@ class _OnboardingBiometricStepState
           Icon(Icons.fingerprint, size: 72, color: theme.colorScheme.primary),
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingBiometricTitle ?? 'Protect with biometrics',
+            l10n.onboardingBiometricTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -101,8 +94,7 @@ class _OnboardingBiometricStepState
           ),
           const SizedBox(height: 8),
           Text(
-            l10n?.onboardingBiometricSubtitle ??
-                'Require Face ID, Touch ID, or fingerprint to open Glucosa.',
+            l10n.onboardingBiometricSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -110,15 +102,14 @@ class _OnboardingBiometricStepState
           ),
           const SizedBox(height: 24),
           SwitchListTile.adaptive(
-            title: Text(l10n?.onboardingBiometricEnable ?? 'Enable app lock'),
+            title: Text(l10n.onboardingBiometricEnable),
             value: enabled && _isAvailable,
             onChanged: _isAvailable ? _toggle : null,
           ),
           if (!_isAvailable) ...[
             const SizedBox(height: 8),
             Text(
-              l10n?.biometricNotAvailable ??
-                  'Biometric authentication is not available on this device',
+              l10n.biometricNotAvailable,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.error,
               ),

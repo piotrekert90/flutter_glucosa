@@ -33,7 +33,7 @@ class _OnboardingCsvImportStepState
   int? _importedCount;
 
   Future<void> _pickAndImport() async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     setState(() => _isAnalyzing = true);
     try {
       final picked = await FilePicker.pickFile(
@@ -68,9 +68,7 @@ class _OnboardingCsvImportStepState
           if (failure != null || count == null) {
             AppSnackBar.show(
               context,
-              message:
-                  l10n?.csvImportErrorInvalid ??
-                  'Could not import this file. Check the CSV format.',
+              message: l10n.csvImportErrorInvalid,
               type: SnackBarType.error,
             );
           } else {
@@ -81,7 +79,7 @@ class _OnboardingCsvImportStepState
       if (!mounted) return;
       AppSnackBar.show(
         context,
-        message: l10n?.csvImportErrorPick ?? 'Could not open the file picker.',
+        message: l10n.csvImportErrorPick,
         type: SnackBarType.error,
       );
     } finally {
@@ -89,28 +87,20 @@ class _OnboardingCsvImportStepState
     }
   }
 
-  String _errorMessage(AppLocalizations? l10n, CsvErrorType errorType) {
+  String _errorMessage(AppLocalizations l10n, CsvErrorType errorType) {
     return switch (errorType) {
-      CsvErrorType.fileTooLarge =>
-        l10n?.csvImportErrorTooLarge ?? 'File is too large (maximum 5 MB)',
-      CsvErrorType.invalidFormat =>
-        l10n?.csvImportErrorInvalid ??
-            'Could not parse this file. Check the CSV format.',
-      CsvErrorType.noEntries =>
-        l10n?.csvImportErrorEmpty ??
-            'No valid glucose readings found in this file.',
+      CsvErrorType.fileTooLarge => l10n.csvImportErrorTooLarge,
+      CsvErrorType.invalidFormat => l10n.csvImportErrorInvalid,
+      CsvErrorType.noEntries => l10n.csvImportErrorEmpty,
     };
   }
 
   Future<void> _finish() async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     setState(() => _isSaving = true);
     final (success, failure) = await ref
         .read(onboardingProvider.notifier)
-        .complete(
-          reminderLabel:
-              l10n?.onboardingDefaultReminderLabel ?? 'Glucose check',
-        );
+        .complete(reminderLabel: l10n.onboardingDefaultReminderLabel);
     if (!mounted) return;
     setState(() => _isSaving = false);
 
@@ -128,7 +118,7 @@ class _OnboardingCsvImportStepState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final draft = ref.watch(onboardingProvider);
 
     return SingleChildScrollView(
@@ -144,7 +134,7 @@ class _OnboardingCsvImportStepState
           ),
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingCsvTitle ?? 'Bring your history',
+            l10n.onboardingCsvTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -152,8 +142,7 @@ class _OnboardingCsvImportStepState
           ),
           const SizedBox(height: 8),
           Text(
-            l10n?.onboardingCsvSubtitle ??
-                'Import measurements from mySugr, Dexcom, or Contour — or skip and start fresh.',
+            l10n.onboardingCsvSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -170,10 +159,7 @@ class _OnboardingCsvImportStepState
                 if (_importedCount != null)
                   ListTile(
                     leading: const Icon(Icons.file_download_done_outlined),
-                    title: Text(
-                      l10n?.csvImportSuccess(_importedCount!) ??
-                          'Imported $_importedCount readings',
-                    ),
+                    title: Text(l10n.csvImportSuccess(_importedCount!)),
                   ),
               ],
             ),
@@ -189,9 +175,7 @@ class _OnboardingCsvImportStepState
                   )
                 : const Icon(Icons.file_open_outlined),
             label: Text(
-              _isAnalyzing
-                  ? (l10n?.csvImportAnalyzing ?? 'Analyzing file...')
-                  : (l10n?.csvImportPickFile ?? 'Select CSV File'),
+              _isAnalyzing ? l10n.csvImportAnalyzing : l10n.csvImportPickFile,
             ),
           ),
           const SizedBox(height: 12),
@@ -203,7 +187,7 @@ class _OnboardingCsvImportStepState
                     height: 20,
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : Text(l10n?.onboardingGetStarted ?? 'Get Started'),
+                : Text(l10n.onboardingGetStarted),
           ),
         ],
       ),

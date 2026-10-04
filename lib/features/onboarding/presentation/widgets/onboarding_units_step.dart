@@ -14,7 +14,7 @@ class OnboardingUnitsStep extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final draft = ref.watch(onboardingProvider);
 
     return SingleChildScrollView(
@@ -24,7 +24,7 @@ class OnboardingUnitsStep extends ConsumerWidget {
         children: [
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingUnitsTitle ?? 'Preferred glucose unit',
+            l10n.onboardingUnitsTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -32,7 +32,7 @@ class OnboardingUnitsStep extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingGlucoseUnitLabel ?? 'Glucose unit',
+            l10n.onboardingGlucoseUnitLabel,
             style: theme.textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
