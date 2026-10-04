@@ -13,6 +13,12 @@ import '../../../../helpers/fake_notification_service.dart';
 class MockFlutterLocalNotificationsPlugin extends Mock
     implements FlutterLocalNotificationsPlugin {}
 
+class MockAndroidFlutterLocalNotificationsPlugin extends Mock
+    implements AndroidFlutterLocalNotificationsPlugin {}
+
+class MockIOSFlutterLocalNotificationsPlugin extends Mock
+    implements IOSFlutterLocalNotificationsPlugin {}
+
 class FakeInitializationSettings extends Fake
     implements InitializationSettings {}
 
@@ -274,6 +280,257 @@ void main() {
         await defaultService.initialize();
 
         expect(tz.local.name, equals('America/New_York'));
+      },
+    );
+
+    test(
+      'scheduleReminder uses inexactAllowWhileIdle when canScheduleExactNotifications is false or null',
+      () async {
+        when(
+          () => mockPlugin.initialize(settings: any(named: 'settings')),
+        ).thenAnswer((_) async => true);
+        when(
+          () => mockPlugin.zonedSchedule(
+            id: any(named: 'id'),
+            title: any(named: 'title'),
+            body: any(named: 'body'),
+            scheduledDate: any(named: 'scheduledDate'),
+            notificationDetails: any(named: 'notificationDetails'),
+            androidScheduleMode: any(named: 'androidScheduleMode'),
+            matchDateTimeComponents: any(named: 'matchDateTimeComponents'),
+          ),
+        ).thenAnswer((_) async {});
+
+        const reminder = Reminder(
+          id: 11,
+          label: 'Inexact Reminder',
+          metricType: MetricType.glucose,
+          hourOfDay: 10,
+          minute: 0,
+          isActive: true,
+        );
+
+        await service.scheduleReminder(reminder);
+
+        verify(
+          () => mockPlugin.zonedSchedule(
+            id: 11,
+            title: 'Inexact Reminder',
+            body: any(named: 'body'),
+            scheduledDate: any(named: 'scheduledDate'),
+            notificationDetails: any(named: 'notificationDetails'),
+            androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+            matchDateTimeComponents: DateTimeComponents.time,
+          ),
+        ).called(1);
+      },
+    );
+
+    test(
+      'scheduleReminder uses exactAllowWhileIdle when canScheduleExactNotifications is true',
+      () async {
+        final mockAndroid = MockAndroidFlutterLocalNotificationsPlugin();
+        when(
+          () => mockPlugin
+              .resolvePlatformSpecificImplementation<
+                AndroidFlutterLocalNotificationsPlugin
+              >(),
+        ).thenReturn(mockAndroid);
+        when(
+          () => mockAndroid.canScheduleExactNotifications(),
+        ).thenAnswer((_) async => true);
+
+        when(
+          () => mockPlugin.initialize(settings: any(named: 'settings')),
+        ).thenAnswer((_) async => true);
+        when(
+          () => mockPlugin.zonedSchedule(
+            id: any(named: 'id'),
+            title: any(named: 'title'),
+            body: any(named: 'body'),
+            scheduledDate: any(named: 'scheduledDate'),
+            notificationDetails: any(named: 'notificationDetails'),
+            androidScheduleMode: any(named: 'androidScheduleMode'),
+            matchDateTimeComponents: any(named: 'matchDateTimeComponents'),
+          ),
+        ).thenAnswer((_) async {});
+
+        const reminder = Reminder(
+          id: 12,
+          label: 'Exact Reminder',
+          metricType: MetricType.glucose,
+          hourOfDay: 10,
+          minute: 0,
+          isActive: true,
+        );
+
+        await service.scheduleReminder(reminder);
+
+        verify(
+          () => mockPlugin.zonedSchedule(
+            id: 12,
+            title: 'Exact Reminder',
+            body: any(named: 'body'),
+            scheduledDate: any(named: 'scheduledDate'),
+            notificationDetails: any(named: 'notificationDetails'),
+            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+            matchDateTimeComponents: DateTimeComponents.time,
+          ),
+        ).called(1);
+      },
+    );
+
+    test(
+      'scheduleReminder falls back to inexact when exact scheduling throws',
+      () async {
+        final mockAndroid = MockAndroidFlutterLocalNotificationsPlugin();
+        when(
+          () => mockPlugin
+              .resolvePlatformSpecificImplementation<
+                AndroidFlutterLocalNotificationsPlugin
+              >(),
+        ).thenReturn(mockAndroid);
+        when(
+          () => mockAndroid.canScheduleExactNotifications(),
+        ).thenAnswer((_) async => true);
+
+        when(
+          () => mockPlugin.initialize(settings: any(named: 'settings')),
+        ).thenAnswer((_) async => true);
+
+        var firstCall = true;
+        when(
+          () => mockPlugin.zonedSchedule(
+            id: any(named: 'id'),
+            title: any(named: 'title'),
+            body: any(named: 'body'),
+            scheduledDate: any(named: 'scheduledDate'),
+            notificationDetails: any(named: 'notificationDetails'),
+            androidScheduleMode: any(named: 'androidScheduleMode'),
+            matchDateTimeComponents: any(named: 'matchDateTimeComponents'),
+          ),
+        ).thenAnswer((invocation) async {
+          final mode =
+              invocation.namedArguments[#androidScheduleMode]
+                  as AndroidScheduleMode;
+          if (mode == AndroidScheduleMode.exactAllowWhileIdle && firstCall) {
+            firstCall = false;
+            throw PlatformException(
+              code: 'exact_alarms_not_permitted',
+              message: 'Exact alarms not permitted',
+            );
+          }
+        });
+
+        const reminder = Reminder(
+          id: 13,
+          label: 'Fallback Reminder',
+          metricType: MetricType.glucose,
+          hourOfDay: 10,
+          minute: 0,
+          isActive: true,
+        );
+
+        await service.scheduleReminder(reminder);
+
+        verifyInOrder([
+          () => mockPlugin.zonedSchedule(
+            id: 13,
+            title: 'Fallback Reminder',
+            body: any(named: 'body'),
+            scheduledDate: any(named: 'scheduledDate'),
+            notificationDetails: any(named: 'notificationDetails'),
+            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+            matchDateTimeComponents: DateTimeComponents.time,
+          ),
+          () => mockPlugin.zonedSchedule(
+            id: 13,
+            title: 'Fallback Reminder',
+            body: any(named: 'body'),
+            scheduledDate: any(named: 'scheduledDate'),
+            notificationDetails: any(named: 'notificationDetails'),
+            androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+            matchDateTimeComponents: DateTimeComponents.time,
+          ),
+        ]);
+      },
+    );
+
+    test('scheduleReminder rethrows if inexact scheduling fails', () async {
+      when(
+        () => mockPlugin.initialize(settings: any(named: 'settings')),
+      ).thenAnswer((_) async => true);
+      when(
+        () => mockPlugin.zonedSchedule(
+          id: any(named: 'id'),
+          title: any(named: 'title'),
+          body: any(named: 'body'),
+          scheduledDate: any(named: 'scheduledDate'),
+          notificationDetails: any(named: 'notificationDetails'),
+          androidScheduleMode: any(named: 'androidScheduleMode'),
+          matchDateTimeComponents: any(named: 'matchDateTimeComponents'),
+        ),
+      ).thenThrow(Exception('Inexact failed'));
+
+      const reminder = Reminder(
+        id: 14,
+        label: 'Failing Reminder',
+        metricType: MetricType.glucose,
+        hourOfDay: 10,
+        minute: 0,
+        isActive: true,
+      );
+
+      expect(
+        () => service.scheduleReminder(reminder),
+        throwsA(isA<Exception>()),
+      );
+    });
+
+    test(
+      'requestPermissions delegates to AndroidFlutterLocalNotificationsPlugin.requestNotificationsPermission',
+      () async {
+        final mockAndroid = MockAndroidFlutterLocalNotificationsPlugin();
+        when(
+          () => mockPlugin
+              .resolvePlatformSpecificImplementation<
+                AndroidFlutterLocalNotificationsPlugin
+              >(),
+        ).thenReturn(mockAndroid);
+        when(
+          () => mockAndroid.requestNotificationsPermission(),
+        ).thenAnswer((_) async => true);
+
+        final granted = await service.requestPermissions();
+        expect(granted, isTrue);
+        verify(() => mockAndroid.requestNotificationsPermission()).called(1);
+      },
+    );
+
+    test(
+      'requestPermissions delegates to IOSFlutterLocalNotificationsPlugin on iOS',
+      () async {
+        final mockIos = MockIOSFlutterLocalNotificationsPlugin();
+        when(
+          () => mockPlugin
+              .resolvePlatformSpecificImplementation<
+                IOSFlutterLocalNotificationsPlugin
+              >(),
+        ).thenReturn(mockIos);
+        when(
+          () => mockIos.requestPermissions(
+            alert: any(named: 'alert'),
+            badge: any(named: 'badge'),
+            sound: any(named: 'sound'),
+          ),
+        ).thenAnswer((_) async => true);
+
+        final granted = await service.requestPermissions();
+        expect(granted, isTrue);
+        verify(
+          () =>
+              mockIos.requestPermissions(alert: true, badge: true, sound: true),
+        ).called(1);
       },
     );
   });
