@@ -1,25 +1,44 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../../../core/config/app_environment.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../domain/entities/reminder.dart';
 import '../../domain/services/notification_service.dart';
 
 /// Implementation of [NotificationService] using `flutter_local_notifications`.
 class NotificationServiceImpl implements NotificationService {
   final FlutterLocalNotificationsPlugin _plugin;
+
+  /// Optional timezone resolver for testing and platform override.
+  final Future<String> Function()? timezoneProvider;
   bool _initialized = false;
 
-  /// Creates a [NotificationServiceImpl] with an optional [_plugin] for testing.
-  NotificationServiceImpl({FlutterLocalNotificationsPlugin? plugin})
-    : _plugin = plugin ?? FlutterLocalNotificationsPlugin();
+  /// Creates a [NotificationServiceImpl] with optional [_plugin] and [timezoneProvider] for testing.
+  NotificationServiceImpl({
+    FlutterLocalNotificationsPlugin? plugin,
+    this.timezoneProvider,
+  }) : _plugin = plugin ?? FlutterLocalNotificationsPlugin();
 
   @override
   Future<void> initialize() async {
     if (_initialized) return;
 
     tz.initializeTimeZones();
+    try {
+      final identifier = timezoneProvider != null
+          ? await timezoneProvider!()
+          : (await FlutterTimezone.getLocalTimezone()).identifier;
+      tz.setLocalLocation(tz.getLocation(identifier));
+    } catch (e, st) {
+      AppLogger.warning(
+        'Failed to configure local timezone, default to UTC: $e',
+        error: e,
+        stackTrace: st,
+      );
+    }
 
     const androidSettings = AndroidInitializationSettings(
       '@mipmap/ic_launcher',

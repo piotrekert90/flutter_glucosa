@@ -1,16 +1,35 @@
 import 'package:flutter_glucosa/core/domain/enums/metric_type.dart';
 import 'package:flutter_glucosa/features/reminders/data/services/notification_service_impl.dart';
 import 'package:flutter_glucosa/features/reminders/domain/entities/reminder.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 import '../../../../helpers/fake_notification_service.dart';
 
 class MockFlutterLocalNotificationsPlugin extends Mock
     implements FlutterLocalNotificationsPlugin {}
 
+class FakeInitializationSettings extends Fake
+    implements InitializationSettings {}
+
+class FakeNotificationDetails extends Fake implements NotificationDetails {}
+
+class FakeTZDateTime extends Fake implements tz.TZDateTime {}
+
 void main() {
+  setUpAll(() {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    tz.initializeTimeZones();
+    registerFallbackValue(FakeInitializationSettings());
+    registerFallbackValue(FakeNotificationDetails());
+    registerFallbackValue(FakeTZDateTime());
+    registerFallbackValue(AndroidScheduleMode.exactAllowWhileIdle);
+  });
+
   group('FakeNotificationService', () {
     late FakeNotificationService service;
 
@@ -135,5 +154,127 @@ void main() {
 
       verify(() => mockPlugin.cancelAll()).called(1);
     });
+
+    test('initialize configures plugin and is idempotent', () async {
+      when(
+        () => mockPlugin.initialize(settings: any(named: 'settings')),
+      ).thenAnswer((_) async => true);
+
+      await service.initialize();
+      verify(
+        () => mockPlugin.initialize(settings: any(named: 'settings')),
+      ).called(1);
+
+      // Subsequent call is a no-op
+      await service.initialize();
+      verifyNoMoreInteractions(mockPlugin);
+    });
+
+    test(
+      'scheduleReminder calculates scheduledDate in local timezone',
+      () async {
+        service = NotificationServiceImpl(
+          plugin: mockPlugin,
+          timezoneProvider: () async => 'Europe/Warsaw',
+        );
+
+        when(
+          () => mockPlugin.initialize(settings: any(named: 'settings')),
+        ).thenAnswer((_) async => true);
+        when(
+          () => mockPlugin.zonedSchedule(
+            id: any(named: 'id'),
+            title: any(named: 'title'),
+            body: any(named: 'body'),
+            scheduledDate: any(named: 'scheduledDate'),
+            notificationDetails: any(named: 'notificationDetails'),
+            androidScheduleMode: any(named: 'androidScheduleMode'),
+            matchDateTimeComponents: any(named: 'matchDateTimeComponents'),
+          ),
+        ).thenAnswer((_) async {});
+
+        const reminder = Reminder(
+          id: 7,
+          label: 'Evening Glucose',
+          metricType: MetricType.glucose,
+          hourOfDay: 20,
+          minute: 15,
+          isActive: true,
+        );
+
+        await service.scheduleReminder(reminder);
+
+        final captured = verify(
+          () => mockPlugin.zonedSchedule(
+            id: 7,
+            title: 'Evening Glucose',
+            body: any(named: 'body'),
+            scheduledDate: captureAny(named: 'scheduledDate'),
+            notificationDetails: any(named: 'notificationDetails'),
+            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+            matchDateTimeComponents: DateTimeComponents.time,
+          ),
+        ).captured;
+
+        final scheduledDate = captured.first as tz.TZDateTime;
+        expect(scheduledDate.location.name, equals('Europe/Warsaw'));
+        expect(scheduledDate.hour, equals(20));
+        expect(scheduledDate.minute, equals(15));
+      },
+    );
+
+    test('scheduleReminder cancels when reminder is inactive', () async {
+      when(
+        () => mockPlugin.cancel(id: any(named: 'id')),
+      ).thenAnswer((_) async {});
+
+      const reminder = Reminder(
+        id: 8,
+        label: 'Inactive Reminder',
+        metricType: MetricType.bloodPressure,
+        hourOfDay: 9,
+        minute: 0,
+        isActive: false,
+      );
+
+      await service.scheduleReminder(reminder);
+
+      verify(() => mockPlugin.cancel(id: 8)).called(1);
+      verifyNever(
+        () => mockPlugin.zonedSchedule(
+          id: any(named: 'id'),
+          title: any(named: 'title'),
+          body: any(named: 'body'),
+          scheduledDate: any(named: 'scheduledDate'),
+          notificationDetails: any(named: 'notificationDetails'),
+          androidScheduleMode: any(named: 'androidScheduleMode'),
+          matchDateTimeComponents: any(named: 'matchDateTimeComponents'),
+        ),
+      );
+    });
+
+    test(
+      'initialize resolves timezone identifier from FlutterTimezone method channel',
+      () async {
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(const MethodChannel('flutter_timezone'), (
+              MethodCall methodCall,
+            ) async {
+              if (methodCall.method == 'getLocalTimezone') {
+                return 'America/New_York';
+              }
+              return null;
+            });
+
+        final defaultService = NotificationServiceImpl(plugin: mockPlugin);
+        when(
+          () => mockPlugin.initialize(settings: any(named: 'settings')),
+        ).thenAnswer((_) async => true);
+
+        await defaultService.initialize();
+
+        expect(tz.local.name, equals('America/New_York'));
+      },
+    );
   });
 }
