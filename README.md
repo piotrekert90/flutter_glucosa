@@ -1,7 +1,7 @@
 # 🩸 Glucosa — Modern Diabetes & Metabolic Health Platform
 
 [![CI](https://github.com/piotrekert90/flutter_glucosa/actions/workflows/ci.yml/badge.svg)](https://github.com/piotrekert90/flutter_glucosa/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/badge/Release-v1.0.0-blue.svg)](https://github.com/piotrekert90/flutter_glucosa/releases)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](CHANGELOG.md)
 [![Flutter](https://img.shields.io/badge/Flutter-3.47+-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.12+-0175C2?logo=dart&logoColor=white)](https://dart.dev)
 [![State](https://img.shields.io/badge/State-Riverpod_3.x-0553B1)](https://riverpod.dev)
@@ -9,23 +9,22 @@
 [![Routing](https://img.shields.io/badge/Routing-GoRouter-teal)](https://pub.dev/packages/go_router)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **Local-first health tracking with production-grade observability and optional cloud synchronization.**
+> **Local-first metabolic health tracking engineered with clean architecture and strict privacy guarantees.**
 
-**Glucosa** is an offline-first diabetes and metabolic health tracking platform built with **Flutter**, **Riverpod 3.x**, **Isar Community**, and **Material 3**. Designed for individuals managing diabetes (Type 1, Type 2, Gestational, LADA), Glucosa delivers seamless multi-metric health tracking, interactive trend analysis, clinical calculators, recurring reminders, calendar overview, device health integrations, and full data export capabilities.
+**Glucosa** is an offline-first diabetes and metabolic health tracking platform built with **Flutter**, **Riverpod 3.x**, **Isar Community**, and **Material 3**. Designed for individuals managing diabetes (Type 1, Type 2, Gestational, LADA), Glucosa delivers multi-metric health tracking, trend analysis, clinical calculators, recurring reminders, calendar overview, device health integrations, and complete data export capabilities.
 
 ---
 
 ## 💡 Why Glucosa? Architectural Motivation
 
-> *"Most glucose tracking apps either lock health data into an account/cloud ecosystem or focus primarily on simple logging. I wanted to explore what a privacy-first, local-first metabolic health tracker could look like when engineered with production-grade rigor."*
+> *"Most glucose tracking apps either lock health data into a proprietary cloud account or focus solely on basic logging. Glucosa demonstrates what a privacy-preserving, local-first metabolic health tracker looks like when engineered with clean architecture."*
 
 Every technical choice in Glucosa is deliberate and rooted in clinical reliability and data sovereignty:
 
 - **Isar Database isn't just an arbitrary database choice** — it is the foundation of a **local-first** reactive architecture. Health readings are persisted instantly with zero network latency, querying is sub-millisecond, and reactive watchers stream database updates directly into UI state.
-- **CSV Export isn't just a checkbox feature** — it guarantees that **the user always owns and can export their health data**, preventing platform lock-in and vendor silos.
+- **CSV Export & Import as the Authoritative Backup Pathway** — with Android cloud auto-backup explicitly disabled (`allowBackup="false"`), health records remain on-device; complete CSV export and import guarantee the user always owns and can migrate their health data without vendor silos.
 - **Biometric Security & Sandboxing** — sensitive health records remain protected behind Face ID, Touch ID, Fingerprint, or system PIN authentication within the local application sandbox.
-- **Production-Grade Observability** — structured logging (`AppLogger`), global provider lifecycle observers (`AppProviderObserver`), and rotating on-device crash logs (`AppCrashReporter`) provide enterprise-level diagnostics without leaking user data.
-- **Optional Cloud Synchronization** — engineered with strict Clean Architecture domain interfaces so cloud sync services (such as Firebase) can be layered on seamlessly without compromising offline guarantees.
+- **Structured Observability** — logging (`AppLogger`), global provider lifecycle observers (`AppProviderObserver`), and rotating on-device crash logs (`AppCrashReporter`) provide diagnostics without leaking user data.
 
 ---
 
@@ -36,10 +35,10 @@ Glucosa demonstrates production-ready mobile engineering across key software arc
 | Dimension | Engineering Focus in Glucosa |
 |---|---|
 | **State Management** | **Riverpod 3.x** code generation (`@riverpod`), stream-driven notifiers, and automatic provider disposal |
-| **Clinical Domain** | Value objects, ADA / AACE / UK NICE clinical guidelines, AHA blood pressure stages, and ketone risk stratification |
+| **Clinical Domain** | Value objects, ADA / AACE / UK NICE clinical guidelines, AHA blood pressure stages (Normal, Elevated, High, Crisis), and ketone risk stratification |
 | **Complex Reactive State** | Unified multi-metric aggregation (glucose, HbA1c, blood pressure, cholesterol, ketones, weight) |
 | **Data Visualization** | Interactive time-series charts via `fl_chart`, day/week/month bucketing, and dynamic target range boundary lines |
-| **Data Sovereignty** | Local-first persistence, biometric app lock, on-device diagnostic logs, and complete CSV export |
+| **Data Sovereignty** | Local-first persistence, biometric app lock, on-device diagnostic logs, and complete CSV export/import |
 | **Clean Architecture** | Feature-first modular package structure, strict inward dependency rules, and zero data-model leakage to presentation |
 
 ---
@@ -49,7 +48,7 @@ Glucosa demonstrates production-ready mobile engineering across key software arc
 ### 📊 Multi-Metric Health Tracking
 - **Blood Glucose**: Log readings with rich clinical meal context (Fasting, Before/After Breakfast, Before/After Lunch, Before/After Dinner, Snack, Bedtime, Night, Recheck, Other). Automatic conversion and display in **mg/dL** or **mmol/L**.
 - **HbA1c**: Record laboratory glycated hemoglobin in **%** or **mmol/mol**.
-- **Blood Pressure**: Monitor systolic and diastolic pressures (mmHg) with clinical status indicators (Normal, Elevated, High).
+- **Blood Pressure**: Monitor systolic and diastolic pressures (mmHg) with clinical status indicators (Normal, Elevated, High, Crisis).
 - **Ketones**: Track blood beta-hydroxybutyrate levels (mmol/L) with clinical warnings (Normal, Elevated, High).
 - **Cholesterol**: Record Total, LDL, and HDL lipid profiles (mg/dL).
 - **Weight**: Track body weight in **kg** or **lbs**.
@@ -57,7 +56,7 @@ Glucosa demonstrates production-ready mobile engineering across key software arc
 ### 📈 Interactive Charts & Clinical Insights
 - **Trend Charts**: Interactive `fl_chart` time-series visualization with flexible aggregation (**Day**, **Week**, **Month**).
 - **Target Range Bounds**: Visual upper and lower target lines on charts based on personalized target ranges.
-- **Estimated HbA1c (eA1c)**: Calculated dynamically from blood glucose reading averages.
+- **Estimated HbA1c (eA1c)**: Calculated dynamically using the ADAG formula based on a 90-day glucose reading average (minimum 3 readings).
 - **Unified History Feed**: Chronological stream of all health metrics with filter chips, swipe-to-delete, and instant undo actions.
 - **Interactive Calendar**: Monthly calendar overview with day-level inspection, month navigation, and quick entry shortcuts.
 - **Habits & Milestones**: Habit tracking, logging streaks, milestone badges, and clinical visit summaries.
@@ -67,7 +66,7 @@ Glucosa demonstrates production-ready mobile engineering across key software arc
 - **Scheduled Reminders**: Local notification reminders for medication, blood glucose checks, and lifestyle logging with customizable recurring schedules.
 - **Health Platform Sync**: Native integration with **Apple HealthKit** (iOS) and **Google Health Connect** (Android) for syncing blood glucose, blood pressure, ketones, and weight.
 - **Biometric Security**: App lock protection supported by biometric authentication (Face ID, Touch ID, Fingerprint) or system PIN with configurable auto-lock timeout.
-- **Home Screen Widgets**: Quick-glance glucose monitoring supported via home screen widgets on Android and iOS WidgetKit.
+- **Home Screen Widgets**: Quick-glance glucose monitoring supported via Android AppWidgets.
 - **CSV Data Export**: Filter readings by metric and date range, generating standard CSV files shareable directly via the native system share sheet.
 
 ### ⚙️ Personalization & Clinical Settings
@@ -120,7 +119,7 @@ lib/
 - **Routing**: [GoRouter](https://pub.dev/packages/go_router) declarative navigation.
 - **Charts**: [fl_chart](https://pub.dev/packages/fl_chart) smooth, reactive line charts.
 - **Health Platform**: [health](https://pub.dev/packages/health) for Apple HealthKit & Health Connect integration.
-- **Home Widgets**: [home_widget](https://pub.dev/packages/home_widget) for Android App Widget & iOS WidgetKit integrations.
+- **Home Widgets**: [home_widget](https://pub.dev/packages/home_widget) for Android AppWidget support.
 - **Biometrics**: [local_auth](https://pub.dev/packages/local_auth) for biometric authentication and app lock.
 - **Localization**: Native Flutter `intl` & `l10n` supporting 10 languages: English (`en`), German (`de`), Spanish (`es`), French (`fr`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Dutch (`nl`), Polish (`pl`), and Portuguese (`pt`).
 - **Testing**: Comprehensive test suite (830+ tests) covering domain logic, state transitions, repository contracts, and presentation widgets.
@@ -155,8 +154,8 @@ flutter run
 
 ### 📱 Platform Setup Notes
 
-- **Android**: Supports Google Health Connect, exact measurement alarm scheduling (`SCHEDULE_EXACT_ALARM`, `POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`), and Home Screen App Widgets out of the box.
-- **iOS**: Apple HealthKit entitlements, App Group (`group.com.piotrekert.glucosa`), and `PrivacyInfo.xcprivacy` are configured. Home Screen WidgetKit extension source is provided in `ios/GlucosaWidget/` with App Group synchronization via `home_widget`.
+- **Android**: Supports Google Health Connect, notification scheduling, and Home Screen AppWidgets out of the box.
+- **iOS**: Apple HealthKit entitlements, App Group (`group.com.piotrekert.glucosa`), and `PrivacyInfo.xcprivacy` are configured.
 
 ---
 

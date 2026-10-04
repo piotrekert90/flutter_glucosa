@@ -95,7 +95,11 @@ jobs:
           KEY_PASSWORD: ${{ secrets['KEY_PASSWORD'] }}
         run: |
           if [ -z "$KEYSTORE_BASE64" ]; then
-            echo "No keystore configured — building unsigned package"
+            if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+              echo "❌ [ERROR] KEYSTORE_BASE64 secret is mandatory for tagged release builds (refs/tags/v*)."
+              exit 1
+            fi
+            echo "No keystore configured — building unsigned package for branch build"
             exit 0
           fi
           echo "$KEYSTORE_BASE64" | base64 --decode > android/app/release.keystore
