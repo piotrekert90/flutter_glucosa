@@ -153,5 +153,21 @@ void main() {
         throwsA(isA<FormatException>()),
       );
     });
+
+    test(
+      'respects injected now timestamp for futureLimit and time-only dates',
+      () async {
+        final fixedNow = DateTime(2026, 5, 10, 12, 0);
+        const csv =
+            'Date,Value\n'
+            '2026-05-10 14:00,120\n' // within 24h of fixedNow -> accepted
+            '2026-05-12 10:00,130\n'; // > 24h past fixedNow -> skipped as future anomaly
+
+        final result = await CsvGlucoseImporter.parse(csv, now: fixedNow);
+        expect(result.validEntries, hasLength(1));
+        expect(result.validEntries.first.readingMgDl, 120);
+        expect(result.skippedRowCount, 1);
+      },
+    );
   });
 }

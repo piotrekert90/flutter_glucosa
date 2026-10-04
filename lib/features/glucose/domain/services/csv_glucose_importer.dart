@@ -88,11 +88,14 @@ class CsvGlucoseImporter {
   ///
   /// Throws a [FormatException] when the content is empty or no valid header
   /// containing date and glucose value columns is found.
-  static Future<CsvImportAnalysis> parse(String csvContent) async {
-    return Isolate.run(() => _parseSync(csvContent));
+  static Future<CsvImportAnalysis> parse(
+    String csvContent, {
+    DateTime? now,
+  }) async {
+    return Isolate.run(() => _parseSync(csvContent, now: now));
   }
 
-  static CsvImportAnalysis _parseSync(String csvContent) {
+  static CsvImportAnalysis _parseSync(String csvContent, {DateTime? now}) {
     if (csvContent.startsWith('\uFEFF')) {
       csvContent = csvContent.substring(1);
     }
@@ -155,7 +158,8 @@ class CsvGlucoseImporter {
     DateTime? earliestDate;
     DateTime? latestDate;
 
-    final futureLimit = DateTime.now().add(const Duration(hours: 24));
+    final currentNow = now ?? DateTime.now();
+    final futureLimit = currentNow.add(const Duration(hours: 24));
     final historicLimit = DateTime.utc(2000);
 
     for (int i = headerIdx + 1; i < rows.length; i++) {
@@ -209,7 +213,7 @@ class CsvGlucoseImporter {
 
       DateTime? entryDateTime;
       final dateRaw = fields[dateCol];
-      final directDate = _parseDate(dateRaw);
+      final directDate = _parseDate(dateRaw, now: currentNow);
 
       if (timeCol != null && timeCol != dateCol && fields.length > timeCol) {
         final timeRaw = fields[timeCol];
@@ -346,7 +350,7 @@ class CsvGlucoseImporter {
     return (hour: hour, minute: minute);
   }
 
-  static DateTime? _parseDate(String raw) {
+  static DateTime? _parseDate(String raw, {DateTime? now}) {
     final trimmed = raw.trim();
     if (trimmed.isEmpty) return null;
 
@@ -363,11 +367,11 @@ class CsvGlucoseImporter {
 
     final timePart = _parseTime(trimmed);
     if (timePart != null) {
-      final now = DateTime.now();
+      final current = now ?? DateTime.now();
       return DateTime(
-        now.year,
-        now.month,
-        now.day,
+        current.year,
+        current.month,
+        current.day,
         timePart.hour,
         timePart.minute,
       );
