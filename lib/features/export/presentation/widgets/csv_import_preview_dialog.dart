@@ -31,7 +31,7 @@ class CsvImportPreviewDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
     final dateFormat = DateFormat.yMMMMd(
@@ -50,7 +50,7 @@ class CsvImportPreviewDialog extends StatelessWidget {
     return AlertDialog(
       scrollable: true,
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      title: Text(l10n?.csvImportPreviewTitle ?? 'Import Preview'),
+      title: Text(l10n.csvImportPreviewTitle),
       content: SizedBox(
         width: 320,
         child: Column(
@@ -74,8 +74,7 @@ class CsvImportPreviewDialog extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    l10n?.csvImportValidRows(analysis.validEntries.length) ??
-                        '${analysis.validEntries.length} readings ready to import',
+                    l10n.csvImportValidRows(analysis.validEntries.length),
                     style: textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onPrimaryContainer,
                     ),
@@ -106,8 +105,7 @@ class CsvImportPreviewDialog extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      l10n?.csvImportSkippedRows(analysis.skippedRowCount) ??
-                          '${analysis.skippedRowCount} rows skipped',
+                      l10n.csvImportSkippedRows(analysis.skippedRowCount),
                       style: textTheme.bodyMedium?.copyWith(
                         color: colorScheme.error,
                       ),
@@ -128,8 +126,7 @@ class CsvImportPreviewDialog extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      l10n?.csvImportDuplicateRows(analysis.duplicateCount) ??
-                          '${analysis.duplicateCount} duplicates skipped',
+                      l10n.csvImportDuplicateRows(analysis.duplicateCount),
                       style: textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurfaceVariant,
                       ),
@@ -144,11 +141,11 @@ class CsvImportPreviewDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: Text(l10n?.cancel ?? 'Cancel'),
+          child: Text(l10n.cancel),
         ),
         FilledButton(
           onPressed: () => Navigator.of(context).pop(true),
-          child: Text(l10n?.csvImportConfirm ?? 'Import'),
+          child: Text(l10n.csvImportConfirm),
         ),
       ],
     );

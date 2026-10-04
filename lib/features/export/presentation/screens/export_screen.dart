@@ -22,11 +22,11 @@ class ExportScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final exportAsync = ref.watch(exportProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n?.exportData ?? 'Export Data')),
+      appBar: AppBar(title: Text(l10n.exportData)),
       body: ClampedLayout(
         child: exportAsync.when(
           loading: () => const Center(child: AppLoadingIndicator()),
@@ -60,7 +60,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final state = widget.state;
     final allSelected =
@@ -70,7 +70,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       children: [
         Text(
-          l10n?.exportSubtitle ?? 'Export measurements to CSV format',
+          l10n.exportSubtitle,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -78,7 +78,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         const SizedBox(height: 20),
 
         Text(
-          l10n?.exportDateRange ?? 'Date Range',
+          l10n.exportDateRange,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
           ),
@@ -90,7 +90,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
           runSpacing: 4,
           children: [
             ChoiceChip(
-              label: Text(l10n?.exportAllTime ?? 'All Time'),
+              label: Text(l10n.exportAllTime),
               selected: _activePreset == _DatePreset.allTime,
               onSelected: (selected) {
                 if (selected) {
@@ -100,7 +100,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
               },
             ),
             ChoiceChip(
-              label: Text(l10n?.exportLast7Days ?? 'Last 7 days'),
+              label: Text(l10n.exportLast7Days),
               selected: _activePreset == _DatePreset.last7Days,
               onSelected: (selected) {
                 if (selected) {
@@ -115,7 +115,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
               },
             ),
             ChoiceChip(
-              label: Text(l10n?.exportLast30Days ?? 'Last 30 days'),
+              label: Text(l10n.exportLast30Days),
               selected: _activePreset == _DatePreset.last30Days,
               onSelected: (selected) {
                 if (selected) {
@@ -130,7 +130,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
               },
             ),
             ChoiceChip(
-              label: Text(l10n?.exportLast90Days ?? 'Last 90 days'),
+              label: Text(l10n.exportLast90Days),
               selected: _activePreset == _DatePreset.last90Days,
               onSelected: (selected) {
                 if (selected) {
@@ -148,7 +148,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
               label: Text(
                 _activePreset == _DatePreset.custom && state.dateRange != null
                     ? _formatCustomRange(state.dateRange!)
-                    : (l10n?.exportCustomRange ?? 'Custom range'),
+                    : l10n.exportCustomRange,
               ),
               selected: _activePreset == _DatePreset.custom,
               onSelected: (_) => _pickCustomRange(context),
@@ -161,7 +161,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              l10n?.exportMetrics ?? 'Metrics to Include',
+              l10n.exportMetrics,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -173,9 +173,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
                     .setSelectAllMetrics(!allSelected);
               },
               child: Text(
-                allSelected
-                    ? (l10n?.exportDeselectAll ?? 'Deselect All')
-                    : (l10n?.exportSelectAll ?? 'Select All'),
+                allSelected ? (l10n.exportDeselectAll) : l10n.exportSelectAll,
               ),
             ),
           ],
@@ -218,8 +216,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    l10n?.exportMatchingRecords(state.matchingRecordCount) ??
-                        '${state.matchingRecordCount} records selected',
+                    l10n.exportMatchingRecords(state.matchingRecordCount),
                     style: theme.textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                       color: theme.colorScheme.onSurface,
@@ -249,8 +246,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
                     child: Text(
                       state.errorMessage ==
                               'Select at least one metric to export.'
-                          ? (l10n?.exportNoMetricsSelected ??
-                                state.errorMessage!)
+                          ? (l10n.exportNoMetricsSelected)
                           : state.errorMessage!,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onErrorContainer,
@@ -279,7 +275,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
                   ),
                 )
               : const Icon(Icons.share_outlined),
-          label: Text(l10n?.exportAndShare ?? 'Export & Share'),
+          label: Text(l10n.exportAndShare),
           style: FilledButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 14),
           ),
@@ -289,15 +285,14 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
         const SizedBox(height: 12),
 
         Text(
-          l10n?.csvImportSection ?? 'Import Data',
+          l10n.csvImportSection,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),
         const SizedBox(height: 4),
         Text(
-          l10n?.csvImportSubtitle ??
-              'Restore glucose measurements from a CSV file',
+          l10n.csvImportSubtitle,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -317,9 +312,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
                 )
               : const Icon(Icons.file_upload_outlined),
           label: Text(
-            _isImporting
-                ? (l10n?.csvImportAnalyzing ?? 'Analyzing file...')
-                : (l10n?.csvImportPickFile ?? 'Select CSV File'),
+            _isImporting ? (l10n.csvImportAnalyzing) : l10n.csvImportPickFile,
           ),
           style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 14),
@@ -356,19 +349,19 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
   }
 
   Future<void> _handleExport(BuildContext context) async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final success = await ref.read(exportProvider.notifier).exportAndShare();
     if (success && context.mounted) {
       AppSnackBar.show(
         context,
-        message: l10n?.exportSuccess ?? 'Export completed successfully',
+        message: l10n.exportSuccess,
         type: SnackBarType.success,
       );
     }
   }
 
   Future<void> _handleImport(BuildContext context) async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     setState(() => _isImporting = true);
     try {
       final picked = await FilePicker.pickFile(
@@ -403,17 +396,14 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
           if (failure != null || count == null) {
             AppSnackBar.show(
               context,
-              message:
-                  l10n?.csvImportErrorInvalid ??
-                  'Could not parse this file. Check the CSV format.',
+              message: l10n.csvImportErrorInvalid,
               type: SnackBarType.error,
             );
           } else {
             ref.invalidate(exportProvider);
             AppSnackBar.show(
               context,
-              message:
-                  l10n?.csvImportSuccess(count) ?? 'Imported $count readings',
+              message: l10n.csvImportSuccess(count),
               type: SnackBarType.success,
             );
           }
@@ -422,8 +412,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
       if (context.mounted) {
         AppSnackBar.show(
           context,
-          message:
-              l10n?.csvImportErrorPick ?? 'Could not open the file picker.',
+          message: l10n.csvImportErrorPick,
           type: SnackBarType.error,
         );
       }
@@ -432,42 +421,22 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
     }
   }
 
-  String _importErrorMessage(AppLocalizations? l10n, CsvErrorType errorType) {
+  String _importErrorMessage(AppLocalizations l10n, CsvErrorType errorType) {
     return switch (errorType) {
-      CsvErrorType.fileTooLarge =>
-        l10n?.csvImportErrorTooLarge ?? 'File is too large (maximum 5 MB)',
-      CsvErrorType.invalidFormat =>
-        l10n?.csvImportErrorInvalid ??
-            'Could not parse this file. Check the CSV format.',
-      CsvErrorType.noEntries =>
-        l10n?.csvImportErrorEmpty ??
-            'No valid glucose readings found in this file.',
+      CsvErrorType.fileTooLarge => l10n.csvImportErrorTooLarge,
+      CsvErrorType.invalidFormat => l10n.csvImportErrorInvalid,
+      CsvErrorType.noEntries => l10n.csvImportErrorEmpty,
     };
   }
 
-  (IconData, String) _metricInfo(MetricType type, AppLocalizations? l10n) {
+  (IconData, String) _metricInfo(MetricType type, AppLocalizations l10n) {
     return switch (type) {
-      MetricType.glucose => (
-        Icons.water_drop_outlined,
-        l10n?.glucose ?? 'Glucose',
-      ),
-      MetricType.hba1c => (Icons.biotech_outlined, l10n?.hba1c ?? 'HbA1c'),
-      MetricType.bloodPressure => (
-        Icons.favorite_outline,
-        l10n?.bloodPressure ?? 'Blood Pressure',
-      ),
-      MetricType.ketones => (
-        Icons.science_outlined,
-        l10n?.ketones ?? 'Ketones',
-      ),
-      MetricType.cholesterol => (
-        Icons.bubble_chart_outlined,
-        l10n?.cholesterol ?? 'Cholesterol',
-      ),
-      MetricType.weight => (
-        Icons.monitor_weight_outlined,
-        l10n?.weight ?? 'Weight',
-      ),
+      MetricType.glucose => (Icons.water_drop_outlined, l10n.glucose),
+      MetricType.hba1c => (Icons.biotech_outlined, l10n.hba1c),
+      MetricType.bloodPressure => (Icons.favorite_outline, l10n.bloodPressure),
+      MetricType.ketones => (Icons.science_outlined, l10n.ketones),
+      MetricType.cholesterol => (Icons.bubble_chart_outlined, l10n.cholesterol),
+      MetricType.weight => (Icons.monitor_weight_outlined, l10n.weight),
     };
   }
 }

@@ -15,7 +15,7 @@ class OnboardingPrivacyStep extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final acknowledged = ref.watch(
       onboardingProvider.select((draft) => draft.privacyAcknowledged),
     );
@@ -33,7 +33,7 @@ class OnboardingPrivacyStep extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingPrivacyTitle ?? 'Your data stays yours',
+            l10n.onboardingPrivacyTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -41,8 +41,7 @@ class OnboardingPrivacyStep extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            l10n?.onboardingPrivacySubtitle ??
-                'Measurements and diagnostic logs are stored only on this device — no account required, no remote tracking, no ads.',
+            l10n.onboardingPrivacySubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -50,7 +49,7 @@ class OnboardingPrivacyStep extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           CheckboxListTile(
-            title: Text(l10n?.onboardingPrivacyAcknowledge ?? 'I understand'),
+            title: Text(l10n.onboardingPrivacyAcknowledge),
             value: acknowledged,
             onChanged: (value) {
               if (value == true) {

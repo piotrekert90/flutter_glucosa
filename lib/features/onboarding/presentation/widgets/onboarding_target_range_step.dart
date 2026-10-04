@@ -24,7 +24,7 @@ class OnboardingTargetRangeStep extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final draft = ref.watch(onboardingProvider);
 
     const presets = [
@@ -40,7 +40,7 @@ class OnboardingTargetRangeStep extends ConsumerWidget {
         children: [
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingRangeTitle ?? 'Choose your target range',
+            l10n.onboardingRangeTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -48,8 +48,7 @@ class OnboardingTargetRangeStep extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            l10n?.onboardingRangeSubtitle ??
-                'Readings inside this range count as Time in Range',
+            l10n.onboardingRangeSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),

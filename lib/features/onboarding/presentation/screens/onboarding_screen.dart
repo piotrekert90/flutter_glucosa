@@ -27,11 +27,11 @@ class OnboardingScreen extends ConsumerWidget {
 
   void _next(BuildContext context, WidgetRef ref) {
     final draft = ref.read(onboardingProvider);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     if (draft.step == 0 && draft.name.trim().isEmpty) {
       AppSnackBar.show(
         context,
-        message: l10n?.errorValidation ?? 'Invalid value',
+        message: l10n.errorValidation,
         type: SnackBarType.error,
       );
       return;
@@ -39,9 +39,7 @@ class OnboardingScreen extends ConsumerWidget {
     if (draft.step == 7 && !draft.privacyAcknowledged) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.onboardingPrivacyRequired ??
-            'Please acknowledge the privacy notice to continue',
+        message: l10n.onboardingPrivacyRequired,
         type: SnackBarType.error,
       );
       return;
@@ -51,7 +49,7 @@ class OnboardingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final draft = ref.watch(onboardingProvider);
 
     return Scaffold(
@@ -60,13 +58,12 @@ class OnboardingScreen extends ConsumerWidget {
         leading: draft.step > 0
             ? IconButton(
                 icon: const Icon(Icons.arrow_back_rounded),
-                tooltip: l10n?.onboardingBack ?? 'Back',
+                tooltip: l10n.onboardingBack,
                 onPressed: () => ref.read(onboardingProvider.notifier).back(),
               )
             : null,
         title: Text(
-          l10n?.onboardingStepOf(draft.step + 1, OnboardingDraft.totalSteps) ??
-              'Step ${draft.step + 1} of ${OnboardingDraft.totalSteps}',
+          l10n.onboardingStepOf(draft.step + 1, OnboardingDraft.totalSteps),
         ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(4),
@@ -99,7 +96,7 @@ class OnboardingScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(16),
                 child: FilledButton(
                   onPressed: () => _next(context, ref),
-                  child: Text(l10n?.onboardingNext ?? 'Next'),
+                  child: Text(l10n.onboardingNext),
                 ),
               ),
           ],

@@ -21,7 +21,7 @@ class OnboardingHealthSyncStep extends ConsumerWidget {
   String _platformLabel() => Platform.isIOS ? 'Apple Health' : 'Health Connect';
 
   Future<void> _toggle(BuildContext context, WidgetRef ref, bool enable) async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final notifier = ref.read(onboardingProvider.notifier);
     if (!enable) {
       notifier.setHealthSyncEnabled(false);
@@ -36,9 +36,7 @@ class OnboardingHealthSyncStep extends ConsumerWidget {
       } else {
         AppSnackBar.show(
           context,
-          message:
-              l10n?.healthSyncUnavailable ??
-              'Health service is not available on this device',
+          message: l10n.healthSyncUnavailable,
           type: SnackBarType.error,
         );
       }
@@ -49,9 +47,7 @@ class OnboardingHealthSyncStep extends ConsumerWidget {
       if (!context.mounted) return;
       AppSnackBar.show(
         context,
-        message:
-            l10n?.healthSyncNoPermissions ??
-            'Health permissions were not granted',
+        message: l10n.healthSyncNoPermissions,
         type: SnackBarType.error,
       );
       return;
@@ -62,7 +58,7 @@ class OnboardingHealthSyncStep extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final enabled = ref.watch(
       onboardingProvider.select((draft) => draft.healthSyncEnabled),
     );
@@ -81,7 +77,7 @@ class OnboardingHealthSyncStep extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            l10n?.onboardingHealthTitle(platform) ?? 'Sync with $platform',
+            l10n.onboardingHealthTitle(platform),
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -89,8 +85,7 @@ class OnboardingHealthSyncStep extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            l10n?.onboardingHealthSubtitle(platform) ??
-                'Exchange glucose readings with $platform automatically. You can change this later in Settings.',
+            l10n.onboardingHealthSubtitle(platform),
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -98,7 +93,7 @@ class OnboardingHealthSyncStep extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           SwitchListTile.adaptive(
-            title: Text(l10n?.onboardingHealthEnable ?? 'Enable health sync'),
+            title: Text(l10n.onboardingHealthEnable),
             value: enabled,
             onChanged: (value) => _toggle(context, ref, value),
           ),

@@ -7,11 +7,13 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DiabetesTypeL10n', () {
-    test('returns fallback english strings when l10n is null', () {
-      expect(DiabetesType.type1.label(null), equals('Type 1'));
-      expect(DiabetesType.type2.label(null), equals('Type 2'));
-      expect(DiabetesType.gestational.label(null), equals('Gestational'));
-      expect(DiabetesType.lada.label(null), equals('LADA'));
+    test('returns english strings from localizations', () {
+      final l10n = lookupAppLocalizations(const Locale('en'));
+
+      expect(DiabetesType.type1.label(l10n), equals('Type 1'));
+      expect(DiabetesType.type2.label(l10n), equals('Type 2'));
+      expect(DiabetesType.gestational.label(l10n), equals('Gestational'));
+      expect(DiabetesType.lada.label(l10n), equals('LADA'));
     });
 
     test('returns localized strings when l10n is provided', () {
