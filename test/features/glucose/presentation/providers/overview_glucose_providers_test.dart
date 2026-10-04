@@ -13,18 +13,34 @@ import 'package:mocktail/mocktail.dart';
 class MockGlucoseReadingRepository extends Mock
     implements GlucoseReadingRepository {}
 
+final _now = DateTime.now();
+
 final _reading1 = GlucoseReading(
   id: 1,
   readingMgDl: 100,
   mealContext: MealContext.fasting,
-  createdAt: DateTime(2026, 10, 1, 8, 0),
+  createdAt: _now.subtract(const Duration(days: 10)),
 );
 
 final _reading2 = GlucoseReading(
   id: 2,
   readingMgDl: 154,
   mealContext: MealContext.afterBreakfast,
-  createdAt: DateTime(2026, 10, 2, 9, 0),
+  createdAt: _now.subtract(const Duration(days: 5)),
+);
+
+final _reading3 = GlucoseReading(
+  id: 3,
+  readingMgDl: 127,
+  mealContext: MealContext.beforeDinner,
+  createdAt: _now.subtract(const Duration(days: 1)),
+);
+
+final _oldReading = GlucoseReading(
+  id: 4,
+  readingMgDl: 250,
+  mealContext: MealContext.bedtime,
+  createdAt: _now.subtract(const Duration(days: 95)),
 );
 
 void main() {
@@ -111,24 +127,48 @@ void main() {
       expect(result, isNull);
     });
 
-    test('calculates correct estimated HbA1c based on readings', () async {
-      // Average of 100 and 154 = 127 mg/dL
-      // ADAG formula: (127 + 46.7) / 28.7 = 173.7 / 28.7 ≈ 6.05%
-      when(
-        () => mockRepo.watchAll(),
-      ).thenAnswer((_) => Stream.value([_reading1, _reading2]));
+    test(
+      'returns null when fewer than 3 readings exist in the 90-day window',
+      () async {
+        when(
+          () => mockRepo.watchAll(),
+        ).thenAnswer((_) => Stream.value([_reading1, _reading2]));
 
-      container = ProviderContainer(
-        overrides: [
-          glucoseReadingRepositoryProvider.overrideWithValue(mockRepo),
-        ],
-      );
-      container.listen(estimatedHbA1cProvider, (_, _) {});
+        container = ProviderContainer(
+          overrides: [
+            glucoseReadingRepositoryProvider.overrideWithValue(mockRepo),
+          ],
+        );
+        container.listen(estimatedHbA1cProvider, (_, _) {});
 
-      final result = await container.read(estimatedHbA1cProvider.future);
+        final result = await container.read(estimatedHbA1cProvider.future);
 
-      expect(result, isNotNull);
-      expect(result!, closeTo(6.05, 0.05));
-    });
+        expect(result, isNull);
+      },
+    );
+
+    test(
+      'calculates correct estimated HbA1c excluding readings older than 90 days',
+      () async {
+        // Readings: 100, 154, 127 within 90 days. _oldReading (250, 95 days old) is excluded.
+        // Average of 100, 154, and 127 = 381 / 3 = 127 mg/dL
+        // ADAG formula: (127 + 46.7) / 28.7 = 173.7 / 28.7 ≈ 6.05%
+        when(() => mockRepo.watchAll()).thenAnswer(
+          (_) => Stream.value([_reading1, _reading2, _reading3, _oldReading]),
+        );
+
+        container = ProviderContainer(
+          overrides: [
+            glucoseReadingRepositoryProvider.overrideWithValue(mockRepo),
+          ],
+        );
+        container.listen(estimatedHbA1cProvider, (_, _) {});
+
+        final result = await container.read(estimatedHbA1cProvider.future);
+
+        expect(result, isNotNull);
+        expect(result!, closeTo(6.05, 0.05));
+      },
+    );
   });
 }

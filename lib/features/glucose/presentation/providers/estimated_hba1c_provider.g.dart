@@ -8,23 +8,23 @@ part of 'estimated_hba1c_provider.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Future provider calculating estimated HbA1c percentage from the average of all glucose readings.
+/// Future provider calculating estimated HbA1c percentage from the 90-day average of glucose readings.
 ///
-/// Returns `null` if no glucose readings exist in the database.
+/// Returns `null` if fewer than [minReadingsForEstimatedHbA1c] readings exist within the last 90 days.
 
 @ProviderFor(estimatedHbA1c)
 final estimatedHbA1cProvider = EstimatedHbA1cProvider._();
 
-/// Future provider calculating estimated HbA1c percentage from the average of all glucose readings.
+/// Future provider calculating estimated HbA1c percentage from the 90-day average of glucose readings.
 ///
-/// Returns `null` if no glucose readings exist in the database.
+/// Returns `null` if fewer than [minReadingsForEstimatedHbA1c] readings exist within the last 90 days.
 
 final class EstimatedHbA1cProvider
     extends $FunctionalProvider<AsyncValue<double?>, double?, FutureOr<double?>>
     with $FutureModifier<double?>, $FutureProvider<double?> {
-  /// Future provider calculating estimated HbA1c percentage from the average of all glucose readings.
+  /// Future provider calculating estimated HbA1c percentage from the 90-day average of glucose readings.
   ///
-  /// Returns `null` if no glucose readings exist in the database.
+  /// Returns `null` if fewer than [minReadingsForEstimatedHbA1c] readings exist within the last 90 days.
   EstimatedHbA1cProvider._()
     : super(
         from: null,
@@ -50,4 +50,4 @@ final class EstimatedHbA1cProvider
   }
 }
 
-String _$estimatedHbA1cHash() => r'6881ebb6aa8c1c33a952b08575a6430552ec0aa3';
+String _$estimatedHbA1cHash() => r'87b7edcf229ef2cbe550dc75e3c49c99377e879c';

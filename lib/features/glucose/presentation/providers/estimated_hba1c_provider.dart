@@ -5,9 +5,15 @@ import 'glucose_reading_list_notifier.dart';
 
 part 'estimated_hba1c_provider.g.dart';
 
-/// Future provider calculating estimated HbA1c percentage from the average of all glucose readings.
+/// Evaluation window in days corresponding to red blood cell turnover.
+const int estimatedHbA1cWindowDays = 90;
+
+/// Minimum number of glucose measurements within the 90-day window required to estimate HbA1c.
+const int minReadingsForEstimatedHbA1c = 3;
+
+/// Future provider calculating estimated HbA1c percentage from the 90-day average of glucose readings.
 ///
-/// Returns `null` if no glucose readings exist in the database.
+/// Returns `null` if fewer than [minReadingsForEstimatedHbA1c] readings exist within the last 90 days.
 @riverpod
 Future<double?> estimatedHbA1c(Ref ref) async {
   final readings = await ref.watch(glucoseReadingListProvider.future);
@@ -15,10 +21,21 @@ Future<double?> estimatedHbA1c(Ref ref) async {
     return null;
   }
 
-  final totalMgDl = readings.fold<int>(
+  final cutoff = DateTime.now().subtract(
+    const Duration(days: estimatedHbA1cWindowDays),
+  );
+  final recentReadings = readings
+      .where((reading) => reading.createdAt.isAfter(cutoff))
+      .toList();
+
+  if (recentReadings.length < minReadingsForEstimatedHbA1c) {
+    return null;
+  }
+
+  final totalMgDl = recentReadings.fold<int>(
     0,
     (acc, reading) => acc + reading.readingMgDl,
   );
-  final averageMgDl = totalMgDl / readings.length;
+  final averageMgDl = totalMgDl / recentReadings.length;
   return GlucoseConverter.glucoseToEstimatedHbA1c(averageMgDl);
 }

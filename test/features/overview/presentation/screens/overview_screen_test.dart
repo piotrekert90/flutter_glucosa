@@ -26,7 +26,7 @@ final _sampleReading = GlucoseReading(
   id: 1,
   readingMgDl: 120,
   mealContext: MealContext.fasting,
-  createdAt: DateTime(2026, 10, 2, 8, 0),
+  createdAt: DateTime.now().subtract(const Duration(hours: 2)),
   notes: 'Fasting reading',
 );
 
@@ -51,7 +51,21 @@ void main() {
       () => mockGlucoseRepo.watchLatest(),
     ).thenAnswer((_) => Stream.value(latestReading));
     when(() => mockGlucoseRepo.watchAll()).thenAnswer(
-      (_) => Stream.value(latestReading != null ? [latestReading] : []),
+      (_) => Stream.value(
+        latestReading != null
+            ? [
+                latestReading,
+                latestReading.copyWith(
+                  id: 2,
+                  createdAt: DateTime.now().subtract(const Duration(days: 1)),
+                ),
+                latestReading.copyWith(
+                  id: 3,
+                  createdAt: DateTime.now().subtract(const Duration(days: 2)),
+                ),
+              ]
+            : [],
+      ),
     );
 
     return ProviderScope(
