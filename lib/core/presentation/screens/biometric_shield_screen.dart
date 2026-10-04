@@ -40,16 +40,12 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
       _isUnlocking = true;
     });
 
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     try {
       final result = await BiometricService.instance.authenticate(
-        localizedReason:
-            l10n?.biometricReason ??
-            'Unlock Glucosa to access your blood glucose records',
-        authMessages: l10n != null
-            ? BiometricService.createAuthMessages(l10n)
-            : const [],
+        localizedReason: l10n.biometricReason,
+        authMessages: BiometricService.createAuthMessages(l10n),
       );
 
       if (result == BiometricAuthResult.success) {
@@ -75,9 +71,8 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
         );
         if (context.mounted) {
           final message = result == BiometricAuthResult.lockedOut
-              ? (l10n?.biometricLockedOut ?? 'Biometrics temporarily locked.')
-              : (l10n?.biometricNotAvailable ??
-                    'Biometric authentication is not available.');
+              ? (l10n.biometricLockedOut)
+              : l10n.biometricNotAvailable;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(message)));
@@ -100,33 +95,28 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
 
   Future<void> _offerLockRecovery(
     BuildContext context,
-    AppLocalizations? l10n,
+    AppLocalizations l10n,
   ) async {
     final disable = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
         scrollable: true,
-        title: Text(
-          l10n?.biometricLockRecoveryTitle ?? 'Biometrics Unavailable',
-        ),
+        title: Text(l10n.biometricLockRecoveryTitle),
         content: SizedBox(
           width: 320,
-          child: Text(
-            l10n?.biometricLockRecoveryMessage ??
-                'Biometric authentication cannot be completed because credentials are not set up or have been disabled. Would you like to disable the biometric lock to regain access?',
-          ),
+          child: Text(l10n.biometricLockRecoveryMessage),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(l10n?.cancel ?? 'Cancel'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, true),
             style: TextButton.styleFrom(
               foregroundColor: Theme.of(dialogContext).colorScheme.error,
             ),
-            child: Text(l10n?.biometricLockRecoveryDisable ?? 'Disable Lock'),
+            child: Text(l10n.biometricLockRecoveryDisable),
           ),
         ],
       ),
@@ -146,7 +136,7 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -159,7 +149,7 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Semantics(
-                  label: l10n?.biometricUnlockTitle ?? 'Unlock Glucosa',
+                  label: l10n.biometricUnlockTitle,
                   child: Icon(
                     Icons.lock_outline,
                     size: 80,
@@ -170,7 +160,7 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
                 Semantics(
                   header: true,
                   child: Text(
-                    l10n?.biometricUnlockTitle ?? 'Unlock Glucosa',
+                    l10n.biometricUnlockTitle,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -179,8 +169,7 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  l10n?.biometricUnlockDescription ??
-                      'Authentication required to protect your medical information.',
+                  l10n.biometricUnlockDescription,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
@@ -193,7 +182,7 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
                   ),
                   onPressed: _isUnlocking ? null : () => _handleUnlock(context),
                   icon: const Icon(Icons.fingerprint),
-                  label: Text(l10n?.biometricUnlockButton ?? 'Unlock'),
+                  label: Text(l10n.biometricUnlockButton),
                 ),
               ],
             ),

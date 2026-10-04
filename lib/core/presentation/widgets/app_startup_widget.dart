@@ -72,7 +72,7 @@ class AppStartupErrorWidget extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       home: Builder(
         builder: (innerContext) {
-          final l10n = AppLocalizations.of(innerContext);
+          final l10n = AppLocalizations.of(innerContext)!;
           final colorScheme = Theme.of(innerContext).colorScheme;
           return Scaffold(
             body: Center(
@@ -88,7 +88,7 @@ class AppStartupErrorWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      l10n?.initializationFailed ?? 'Initialization Failed',
+                      l10n.initializationFailed,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -108,7 +108,7 @@ class AppStartupErrorWidget extends StatelessWidget {
                     FilledButton.icon(
                       onPressed: onRetry,
                       icon: const Icon(Icons.refresh),
-                      label: Text(l10n?.tryAgain ?? 'Try again'),
+                      label: Text(l10n.tryAgain),
                     ),
                   ],
                 ),

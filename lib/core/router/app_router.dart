@@ -55,7 +55,7 @@ GoRouter appRouter(Ref ref) {
               GoRouterState state,
               StatefulNavigationShell navigationShell,
             ) {
-              final l10n = AppLocalizations.of(context);
+              final l10n = AppLocalizations.of(context)!;
               return AdaptiveNavigationScaffold(
                 body: navigationShell,
                 currentIndex: navigationShell.currentIndex,
@@ -67,22 +67,22 @@ GoRouter appRouter(Ref ref) {
                   AdaptiveNavigationDestination(
                     icon: const Icon(Icons.dashboard_outlined),
                     selectedIcon: const Icon(Icons.dashboard),
-                    label: l10n?.navOverview ?? 'Overview',
+                    label: l10n.navOverview,
                   ),
                   AdaptiveNavigationDestination(
                     icon: const Icon(Icons.calendar_month_outlined),
                     selectedIcon: const Icon(Icons.calendar_month),
-                    label: l10n?.tabCalendar ?? 'Calendar',
+                    label: l10n.tabCalendar,
                   ),
                   AdaptiveNavigationDestination(
                     icon: const Icon(Icons.history_outlined),
                     selectedIcon: const Icon(Icons.history),
-                    label: l10n?.navHistory ?? 'History',
+                    label: l10n.navHistory,
                   ),
                   AdaptiveNavigationDestination(
                     icon: const Icon(Icons.settings_outlined),
                     selectedIcon: const Icon(Icons.settings),
-                    label: l10n?.navSettings ?? 'Settings',
+                    label: l10n.navSettings,
                   ),
                 ],
               );
@@ -260,14 +260,9 @@ GoRouter appRouter(Ref ref) {
       ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) {
-      final l10n = AppLocalizations.of(context);
+      final l10n = AppLocalizations.of(context)!;
       return Scaffold(
-        body: Center(
-          child: Text(
-            l10n?.pageNotFound(state.uri.toString()) ??
-                'Page not found: ${state.uri}',
-          ),
-        ),
+        body: Center(child: Text(l10n.pageNotFound(state.uri.toString()))),
       );
     },
   );

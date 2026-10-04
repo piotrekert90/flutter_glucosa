@@ -27,37 +27,37 @@ class AddReadingBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     final options = <_MetricOption>[
       _MetricOption(
         icon: Icons.water_drop_outlined,
-        label: l10n?.glucose ?? 'Blood Glucose',
+        label: l10n.glucose,
         route: AppRoute.addGlucose,
       ),
       _MetricOption(
         icon: Icons.science_outlined,
-        label: l10n?.hba1c ?? 'HbA1c',
+        label: l10n.hba1c,
         route: AppRoute.addHba1c,
       ),
       _MetricOption(
         icon: Icons.favorite_outline,
-        label: l10n?.bloodPressure ?? 'Blood Pressure',
+        label: l10n.bloodPressure,
         route: AppRoute.addBloodPressure,
       ),
       _MetricOption(
         icon: Icons.biotech_outlined,
-        label: l10n?.ketones ?? 'Ketones',
+        label: l10n.ketones,
         route: AppRoute.addKetones,
       ),
       _MetricOption(
         icon: Icons.monitor_heart_outlined,
-        label: l10n?.cholesterol ?? 'Cholesterol',
+        label: l10n.cholesterol,
         route: AppRoute.addCholesterol,
       ),
       _MetricOption(
         icon: Icons.monitor_weight_outlined,
-        label: l10n?.weight ?? 'Weight',
+        label: l10n.weight,
         route: AppRoute.addWeight,
       ),
     ];
@@ -70,7 +70,7 @@ class AddReadingBottomSheet extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
             child: Text(
-              l10n?.addReading ?? 'Add reading',
+              l10n.addReading,
               style: Theme.of(
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),

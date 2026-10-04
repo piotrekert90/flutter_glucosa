@@ -23,9 +23,9 @@ class AppErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final buttonLabel = retryLabel ?? l10n?.retry ?? 'Retry';
-    final text = l10n?.errorPrefix(message) ?? 'Error: $message';
+    final l10n = AppLocalizations.of(context)!;
+    final buttonLabel = retryLabel ?? l10n.retry;
+    final text = l10n.errorPrefix(message);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
