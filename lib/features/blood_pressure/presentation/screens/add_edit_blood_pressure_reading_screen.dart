@@ -150,41 +150,36 @@ class _AddEditBloodPressureReadingScreenState
     if (!mounted) return;
     setState(() => _isSaving = false);
 
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     if (success) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.bpSavedSuccess ??
-            'Blood pressure measurement saved successfully',
+        message: l10n.bpSavedSuccess,
         type: SnackBarType.success,
       );
       Navigator.of(context).pop();
     } else {
       AppSnackBar.show(
         context,
-        message: failure != null && l10n != null
+        message: failure != null
             ? failure.toUserMessage(l10n)
-            : (l10n?.genericError ?? 'Failed to save measurement'),
+            : l10n.genericError,
         type: SnackBarType.error,
       );
     }
   }
 
   Future<void> _delete() async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(l10n?.deleteBloodPressure ?? 'Delete Blood Pressure'),
-        content: Text(
-          l10n?.deleteBloodPressureConfirm ??
-              'Are you sure you want to delete this blood pressure reading?',
-        ),
+        title: Text(l10n.deleteBloodPressure),
+        content: Text(l10n.deleteBloodPressureConfirm),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(l10n?.cancel ?? 'Cancel'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             style: FilledButton.styleFrom(
@@ -192,7 +187,7 @@ class _AddEditBloodPressureReadingScreenState
               foregroundColor: Theme.of(ctx).colorScheme.onError,
             ),
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l10n?.delete ?? 'Delete'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
@@ -210,18 +205,16 @@ class _AddEditBloodPressureReadingScreenState
     if (success) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.bpDeletedSuccess ??
-            'Blood pressure measurement deleted successfully',
+        message: l10n.bpDeletedSuccess,
         type: SnackBarType.success,
       );
       Navigator.of(context).pop();
     } else {
       AppSnackBar.show(
         context,
-        message: failure != null && l10n != null
+        message: failure != null
             ? failure.toUserMessage(l10n)
-            : (l10n?.genericError ?? 'Failed to delete measurement'),
+            : l10n.genericError,
         type: SnackBarType.error,
       );
     }
@@ -229,11 +222,9 @@ class _AddEditBloodPressureReadingScreenState
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
-    final title = isEditMode
-        ? (l10n?.editBloodPressure ?? 'Edit Blood Pressure')
-        : (l10n?.addBloodPressure ?? 'Log Blood Pressure');
+    final title = isEditMode ? (l10n.editBloodPressure) : l10n.addBloodPressure;
 
     if (isEditMode) {
       final detailAsync = ref.watch(
@@ -246,15 +237,13 @@ class _AddEditBloodPressureReadingScreenState
         ),
         error: (err, _) => Scaffold(
           appBar: AppBar(title: Text(title)),
-          body: Center(child: Text(l10n?.genericError ?? 'An error occurred')),
+          body: Center(child: Text(l10n.genericError)),
         ),
         data: (reading) {
           if (reading == null) {
             return Scaffold(
               appBar: AppBar(title: Text(title)),
-              body: Center(
-                child: Text(l10n?.errorNotFound ?? 'Reading not found'),
-              ),
+              body: Center(child: Text(l10n.errorNotFound)),
             );
           }
           _populateFromReading(reading);
@@ -269,7 +258,7 @@ class _AddEditBloodPressureReadingScreenState
   Widget _buildScaffold(
     BuildContext context,
     ThemeData theme,
-    AppLocalizations? l10n,
+    AppLocalizations l10n,
     String title,
   ) {
     final dateFormat = DateFormat.yMMMd();
@@ -282,7 +271,7 @@ class _AddEditBloodPressureReadingScreenState
           if (isEditMode)
             IconButton(
               icon: const Icon(Icons.delete_outline),
-              tooltip: l10n?.deleteBloodPressure ?? 'Delete Blood Pressure',
+              tooltip: l10n.deleteBloodPressure,
               onPressed: _isSaving ? null : _delete,
             ),
         ],
@@ -299,8 +288,8 @@ class _AddEditBloodPressureReadingScreenState
                   controller: _systolicController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: l10n?.systolicLabel ?? 'Systolic',
-                    hintText: l10n?.systolicHint ?? 'e.g. 120',
+                    labelText: l10n.systolicLabel,
+                    hintText: l10n.systolicHint,
                     suffixText: 'mmHg',
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.favorite_outline),
@@ -309,7 +298,7 @@ class _AddEditBloodPressureReadingScreenState
                     if (val == null ||
                         val.trim().isEmpty ||
                         int.tryParse(val.trim()) == null) {
-                      return l10n?.errorValidation ?? 'Invalid value';
+                      return l10n.errorValidation;
                     }
                     return null;
                   },
@@ -320,8 +309,8 @@ class _AddEditBloodPressureReadingScreenState
                   controller: _diastolicController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: l10n?.diastolicLabel ?? 'Diastolic',
-                    hintText: l10n?.diastolicHint ?? 'e.g. 80',
+                    labelText: l10n.diastolicLabel,
+                    hintText: l10n.diastolicHint,
                     suffixText: 'mmHg',
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.favorite_border_outlined),
@@ -330,7 +319,7 @@ class _AddEditBloodPressureReadingScreenState
                     if (val == null ||
                         val.trim().isEmpty ||
                         int.tryParse(val.trim()) == null) {
-                      return l10n?.errorValidation ?? 'Invalid value';
+                      return l10n.errorValidation;
                     }
                     return null;
                   },
@@ -362,8 +351,8 @@ class _AddEditBloodPressureReadingScreenState
                   controller: _notesController,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    labelText: l10n?.notes ?? 'Notes',
-                    hintText: l10n?.notesHint ?? 'Optional clinical comments',
+                    labelText: l10n.notes,
+                    hintText: l10n.notesHint,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.notes_outlined),
                   ),
@@ -379,7 +368,7 @@ class _AddEditBloodPressureReadingScreenState
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Icon(Icons.save_outlined),
-                  label: Text(l10n?.save ?? 'Save'),
+                  label: Text(l10n.save),
                 ),
               ],
             ),

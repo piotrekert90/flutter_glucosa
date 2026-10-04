@@ -145,40 +145,36 @@ class _AddEditHbA1cReadingScreenState
     if (!mounted) return;
     setState(() => _isSaving = false);
 
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     if (success) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.hba1cSavedSuccess ?? 'HbA1c measurement saved successfully',
+        message: l10n.hba1cSavedSuccess,
         type: SnackBarType.success,
       );
       Navigator.of(context).pop();
     } else {
       AppSnackBar.show(
         context,
-        message: failure != null && l10n != null
+        message: failure != null
             ? failure.toUserMessage(l10n)
-            : (l10n?.genericError ?? 'Failed to save measurement'),
+            : l10n.genericError,
         type: SnackBarType.error,
       );
     }
   }
 
   Future<void> _delete() async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(l10n?.deleteHba1c ?? 'Delete HbA1c'),
-        content: Text(
-          l10n?.deleteHba1cConfirm ??
-              'Are you sure you want to delete this HbA1c reading?',
-        ),
+        title: Text(l10n.deleteHba1c),
+        content: Text(l10n.deleteHba1cConfirm),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(l10n?.cancel ?? 'Cancel'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             style: FilledButton.styleFrom(
@@ -186,7 +182,7 @@ class _AddEditHbA1cReadingScreenState
               foregroundColor: Theme.of(ctx).colorScheme.onError,
             ),
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l10n?.delete ?? 'Delete'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
@@ -204,18 +200,16 @@ class _AddEditHbA1cReadingScreenState
     if (success) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.hba1cDeletedSuccess ??
-            'HbA1c measurement deleted successfully',
+        message: l10n.hba1cDeletedSuccess,
         type: SnackBarType.success,
       );
       Navigator.of(context).pop();
     } else {
       AppSnackBar.show(
         context,
-        message: failure != null && l10n != null
+        message: failure != null
             ? failure.toUserMessage(l10n)
-            : (l10n?.genericError ?? 'Failed to delete measurement'),
+            : l10n.genericError,
         type: SnackBarType.error,
       );
     }
@@ -224,14 +218,12 @@ class _AddEditHbA1cReadingScreenState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final profileAsync = ref.watch(userProfileProvider);
     final preferredUnit =
         profileAsync.value?.preferredHbA1cUnit ?? HbA1cUnit.percentage;
 
-    final title = isEditMode
-        ? (l10n?.editHba1c ?? 'Edit HbA1c')
-        : (l10n?.addHba1c ?? 'Log HbA1c');
+    final title = isEditMode ? (l10n.editHba1c) : l10n.addHba1c;
 
     if (isEditMode) {
       final detailAsync = ref.watch(
@@ -244,15 +236,13 @@ class _AddEditHbA1cReadingScreenState
         ),
         error: (err, _) => Scaffold(
           appBar: AppBar(title: Text(title)),
-          body: Center(child: Text(l10n?.genericError ?? 'An error occurred')),
+          body: Center(child: Text(l10n.genericError)),
         ),
         data: (reading) {
           if (reading == null) {
             return Scaffold(
               appBar: AppBar(title: Text(title)),
-              body: Center(
-                child: Text(l10n?.errorNotFound ?? 'Reading not found'),
-              ),
+              body: Center(child: Text(l10n.errorNotFound)),
             );
           }
           _populateFromReading(reading, preferredUnit);
@@ -267,7 +257,7 @@ class _AddEditHbA1cReadingScreenState
   Widget _buildScaffold(
     BuildContext context,
     ThemeData theme,
-    AppLocalizations? l10n,
+    AppLocalizations l10n,
     HbA1cUnit unit,
     String title,
   ) {
@@ -281,7 +271,7 @@ class _AddEditHbA1cReadingScreenState
           if (isEditMode)
             IconButton(
               icon: const Icon(Icons.delete_outline),
-              tooltip: l10n?.deleteHba1c ?? 'Delete HbA1c',
+              tooltip: l10n.deleteHba1c,
               onPressed: _isSaving ? null : _delete,
             ),
         ],
@@ -300,36 +290,34 @@ class _AddEditHbA1cReadingScreenState
                     decimal: true,
                   ),
                   decoration: InputDecoration(
-                    labelText: l10n?.hba1c ?? 'HbA1c',
-                    hintText: l10n?.hba1cValueHint ?? 'e.g. 6.5',
+                    labelText: l10n.hba1c,
+                    hintText: l10n.hba1cValueHint,
                     suffixText: unit.displayName,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.biotech_outlined),
                   ),
                   validator: (val) {
                     if (val == null || val.trim().isEmpty) {
-                      return l10n?.errorValidation ?? 'Invalid value';
+                      return l10n.errorValidation;
                     }
                     final numVal = double.tryParse(
                       val.trim().replaceAll(',', '.'),
                     );
                     if (numVal == null || numVal <= 0) {
-                      return l10n?.errorValidation ?? 'Invalid value';
+                      return l10n.errorValidation;
                     }
                     if (unit == HbA1cUnit.mmolMol) {
                       final error = ReadingValidator.validateHbA1cMmolMol(
                         numVal,
                       );
-                      return l10n != null
-                          ? ReadingValidationL10n.translate(error, l10n)
-                          : error;
+                      return ReadingValidationL10n.translate(error, l10n) ??
+                          error;
                     }
                     final error = ReadingValidator.validateHbA1cPercentage(
                       numVal,
                     );
-                    return l10n != null
-                        ? ReadingValidationL10n.translate(error, l10n)
-                        : error;
+                    return ReadingValidationL10n.translate(error, l10n) ??
+                        error;
                   },
                 ),
                 const SizedBox(height: 16),
@@ -359,8 +347,8 @@ class _AddEditHbA1cReadingScreenState
                   controller: _notesController,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    labelText: l10n?.notes ?? 'Notes',
-                    hintText: l10n?.notesHint ?? 'Optional clinical comments',
+                    labelText: l10n.notes,
+                    hintText: l10n.notesHint,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.notes_outlined),
                   ),
@@ -376,7 +364,7 @@ class _AddEditHbA1cReadingScreenState
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Icon(Icons.save_outlined),
-                  label: Text(l10n?.save ?? 'Save'),
+                  label: Text(l10n.save),
                 ),
               ],
             ),

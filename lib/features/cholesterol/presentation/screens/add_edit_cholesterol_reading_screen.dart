@@ -105,9 +105,9 @@ class _AddEditCholesterolReadingScreenState
     }
   }
 
-  String? _integerValidator(String? val, AppLocalizations? l10n) {
+  String? _integerValidator(String? val, AppLocalizations l10n) {
     if (val == null || val.trim().isEmpty || int.tryParse(val.trim()) == null) {
-      return l10n?.errorValidation ?? 'Invalid value';
+      return l10n.errorValidation;
     }
     return null;
   }
@@ -163,41 +163,36 @@ class _AddEditCholesterolReadingScreenState
     if (!mounted) return;
     setState(() => _isSaving = false);
 
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     if (success) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.cholesterolSavedSuccess ??
-            'Cholesterol measurement saved successfully',
+        message: l10n.cholesterolSavedSuccess,
         type: SnackBarType.success,
       );
       Navigator.of(context).pop();
     } else {
       AppSnackBar.show(
         context,
-        message: failure != null && l10n != null
+        message: failure != null
             ? failure.toUserMessage(l10n)
-            : (l10n?.genericError ?? 'Failed to save measurement'),
+            : l10n.genericError,
         type: SnackBarType.error,
       );
     }
   }
 
   Future<void> _delete() async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(l10n?.deleteCholesterol ?? 'Delete Cholesterol'),
-        content: Text(
-          l10n?.deleteCholesterolConfirm ??
-              'Are you sure you want to delete this cholesterol reading?',
-        ),
+        title: Text(l10n.deleteCholesterol),
+        content: Text(l10n.deleteCholesterolConfirm),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(l10n?.cancel ?? 'Cancel'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             style: FilledButton.styleFrom(
@@ -205,7 +200,7 @@ class _AddEditCholesterolReadingScreenState
               foregroundColor: Theme.of(ctx).colorScheme.onError,
             ),
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l10n?.delete ?? 'Delete'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
@@ -223,18 +218,16 @@ class _AddEditCholesterolReadingScreenState
     if (success) {
       AppSnackBar.show(
         context,
-        message:
-            l10n?.cholesterolDeletedSuccess ??
-            'Cholesterol measurement deleted successfully',
+        message: l10n.cholesterolDeletedSuccess,
         type: SnackBarType.success,
       );
       Navigator.of(context).pop();
     } else {
       AppSnackBar.show(
         context,
-        message: failure != null && l10n != null
+        message: failure != null
             ? failure.toUserMessage(l10n)
-            : (l10n?.genericError ?? 'Failed to delete measurement'),
+            : l10n.genericError,
         type: SnackBarType.error,
       );
     }
@@ -242,11 +235,9 @@ class _AddEditCholesterolReadingScreenState
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
-    final title = isEditMode
-        ? (l10n?.editCholesterol ?? 'Edit Cholesterol')
-        : (l10n?.addCholesterol ?? 'Log Cholesterol');
+    final title = isEditMode ? (l10n.editCholesterol) : l10n.addCholesterol;
 
     if (isEditMode) {
       final detailAsync = ref.watch(
@@ -259,15 +250,13 @@ class _AddEditCholesterolReadingScreenState
         ),
         error: (err, _) => Scaffold(
           appBar: AppBar(title: Text(title)),
-          body: Center(child: Text(l10n?.genericError ?? 'An error occurred')),
+          body: Center(child: Text(l10n.genericError)),
         ),
         data: (reading) {
           if (reading == null) {
             return Scaffold(
               appBar: AppBar(title: Text(title)),
-              body: Center(
-                child: Text(l10n?.errorNotFound ?? 'Reading not found'),
-              ),
+              body: Center(child: Text(l10n.errorNotFound)),
             );
           }
           _populateFromReading(reading);
@@ -282,7 +271,7 @@ class _AddEditCholesterolReadingScreenState
   Widget _buildScaffold(
     BuildContext context,
     ThemeData theme,
-    AppLocalizations? l10n,
+    AppLocalizations l10n,
     String title,
   ) {
     final dateFormat = DateFormat.yMMMd();
@@ -295,7 +284,7 @@ class _AddEditCholesterolReadingScreenState
           if (isEditMode)
             IconButton(
               icon: const Icon(Icons.delete_outline),
-              tooltip: l10n?.deleteCholesterol ?? 'Delete Cholesterol',
+              tooltip: l10n.deleteCholesterol,
               onPressed: _isSaving ? null : _delete,
             ),
         ],
@@ -312,8 +301,8 @@ class _AddEditCholesterolReadingScreenState
                   controller: _totalController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: l10n?.totalCholesterolLabel ?? 'Total',
-                    hintText: l10n?.cholesterolValueHint ?? 'e.g. 190',
+                    labelText: l10n.totalCholesterolLabel,
+                    hintText: l10n.cholesterolValueHint,
                     suffixText: 'mg/dL',
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.bloodtype_outlined),
@@ -326,8 +315,8 @@ class _AddEditCholesterolReadingScreenState
                   controller: _ldlController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: l10n?.ldlLabel ?? 'LDL',
-                    hintText: l10n?.cholesterolValueHint ?? 'e.g. 190',
+                    labelText: l10n.ldlLabel,
+                    hintText: l10n.cholesterolValueHint,
                     suffixText: 'mg/dL',
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.trending_down_outlined),
@@ -340,8 +329,8 @@ class _AddEditCholesterolReadingScreenState
                   controller: _hdlController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: l10n?.hdlLabel ?? 'HDL',
-                    hintText: l10n?.cholesterolValueHint ?? 'e.g. 190',
+                    labelText: l10n.hdlLabel,
+                    hintText: l10n.cholesterolValueHint,
                     suffixText: 'mg/dL',
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.trending_up_outlined),
@@ -375,8 +364,8 @@ class _AddEditCholesterolReadingScreenState
                   controller: _notesController,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    labelText: l10n?.notes ?? 'Notes',
-                    hintText: l10n?.notesHint ?? 'Optional clinical comments',
+                    labelText: l10n.notes,
+                    hintText: l10n.notesHint,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.notes_outlined),
                   ),
@@ -392,7 +381,7 @@ class _AddEditCholesterolReadingScreenState
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Icon(Icons.save_outlined),
-                  label: Text(l10n?.save ?? 'Save'),
+                  label: Text(l10n.save),
                 ),
               ],
             ),
