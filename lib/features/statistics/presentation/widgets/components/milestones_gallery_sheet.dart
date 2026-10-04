@@ -33,7 +33,7 @@ class MilestonesGallerySheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     final unlockedCount = milestones.where((m) => m.isUnlocked).length;
     final totalCount = milestones.length;
@@ -79,17 +79,13 @@ class MilestonesGallerySheet extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            l10n?.milestonesGallery ?? 'Achievements Gallery',
+                            l10n.milestonesGallery,
                             style: Theme.of(context).textTheme.titleLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            l10n?.milestonesUnlocked(
-                                  unlockedCount,
-                                  totalCount,
-                                ) ??
-                                '$unlockedCount of $totalCount unlocked',
+                            l10n.milestonesUnlocked(unlockedCount, totalCount),
                             style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(color: cs.onSurfaceVariant),
                           ),
@@ -98,7 +94,7 @@ class MilestonesGallerySheet extends StatelessWidget {
                     ),
                     IconButton(
                       icon: const Icon(Icons.close_rounded),
-                      tooltip: l10n?.close ?? 'Close',
+                      tooltip: l10n.close,
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ],
@@ -133,9 +129,7 @@ class MilestonesGallerySheet extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              l10n != null
-                                  ? category.localizedName(l10n)
-                                  : category.name,
+                              category.localizedName(l10n),
                               style: Theme.of(context).textTheme.titleSmall
                                   ?.copyWith(fontWeight: FontWeight.bold),
                             ),

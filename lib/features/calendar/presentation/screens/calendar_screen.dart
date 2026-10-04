@@ -75,7 +75,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final glucoseAsync = ref.watch(glucoseReadingListProvider);
     final profileAsync = ref.watch(userProfileProvider);
 
@@ -85,9 +85,9 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     final preferredUnit = profile?.preferredGlucoseUnit ?? GlucoseUnit.mgDl;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n?.tabCalendar ?? 'Calendar')),
+      appBar: AppBar(title: Text(l10n.tabCalendar)),
       floatingActionButton: FloatingActionButton(
-        tooltip: l10n?.addReading ?? 'Add Reading',
+        tooltip: l10n.addReading,
         onPressed: () => showAddReadingBottomSheet(context),
         child: const Icon(Icons.add_rounded),
       ),

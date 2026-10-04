@@ -15,7 +15,7 @@ class CalendarDayEmptyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Card(
       elevation: 0,
@@ -39,7 +39,7 @@ class CalendarDayEmptyCard extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              l10n?.noEntriesForDate ?? 'No readings on this day',
+              l10n.noEntriesForDate,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: colorScheme.onSurface,
@@ -48,8 +48,7 @@ class CalendarDayEmptyCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              l10n?.noEntriesForDateSubtitle ??
-                  'Tap the button below to add your first reading for this date.',
+              l10n.noEntriesForDateSubtitle,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: colorScheme.onSurfaceVariant,
               ),
@@ -61,7 +60,7 @@ class CalendarDayEmptyCard extends StatelessWidget {
               child: FilledButton.icon(
                 onPressed: () => context.push(AppRoute.addGlucose.path),
                 icon: const Icon(Icons.add),
-                label: Text(l10n?.addReading ?? 'Add Reading'),
+                label: Text(l10n.addReading),
               ),
             ),
           ],

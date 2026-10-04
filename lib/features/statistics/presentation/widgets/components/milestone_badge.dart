@@ -22,19 +22,15 @@ class MilestoneBadge extends StatelessWidget {
     final inRangeColor = isDark
         ? AppFeedbackTheme.successForegroundDark
         : AppFeedbackTheme.successForegroundLight;
-    final l10n = AppLocalizations.of(context);
-    final title = l10n != null
-        ? milestone.type.localizedTitle(l10n)
-        : milestone.type.name;
-    final description = l10n != null
-        ? milestone.type.localizedDescription(l10n)
-        : '';
+    final l10n = AppLocalizations.of(context)!;
+    final title = milestone.type.localizedTitle(l10n);
+    final description = milestone.type.localizedDescription(l10n);
     final isUnlocked = milestone.isUnlocked;
 
     return Semantics(
       button: true,
       label:
-          '$title: ${isUnlocked ? (l10n?.milestoneUnlockedDate('') ?? 'Unlocked') : (l10n?.milestoneLocked ?? 'Locked')}',
+          '$title: ${isUnlocked ? (l10n.milestoneUnlockedDate('')) : l10n.milestoneLocked}',
       child: InkWell(
         onTap: () => _showDetailDialog(
           context,
@@ -117,14 +113,14 @@ class MilestoneBadge extends StatelessWidget {
 
   void _showDetailDialog(
     BuildContext context,
-    AppLocalizations? l10n,
+    AppLocalizations l10n,
     ColorScheme cs,
     Color inRangeColor,
     String title,
     String description,
   ) {
     final progressPct = (milestone.progress * 100).round();
-    final unlockedDateStr = milestone.unlockedDate != null && l10n != null
+    final unlockedDateStr = milestone.unlockedDate != null
         ? DateFormat.yMMMd(l10n.localeName).format(milestone.unlockedDate!)
         : null;
 
@@ -157,9 +153,9 @@ class MilestoneBadge extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  unlockedDateStr != null && l10n != null
+                  unlockedDateStr != null
                       ? l10n.milestoneUnlockedDate(unlockedDateStr)
-                      : (l10n?.milestoneLocked ?? 'Unlocked'),
+                      : l10n.milestoneLocked,
                   style: TextStyle(
                     color: inRangeColor,
                     fontWeight: FontWeight.bold,
@@ -176,8 +172,7 @@ class MilestoneBadge extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               Text(
-                l10n?.milestoneProgress(progressPct) ??
-                    '$progressPct% completed',
+                l10n.milestoneProgress(progressPct),
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall?.copyWith(color: cs.onSurfaceVariant),
@@ -188,7 +183,7 @@ class MilestoneBadge extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogCtx).pop(),
-            child: Text(l10n?.close ?? 'Close'),
+            child: Text(l10n.close),
           ),
         ],
       ),

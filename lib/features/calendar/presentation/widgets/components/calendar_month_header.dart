@@ -28,7 +28,7 @@ class CalendarMonthHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final locale = Localizations.localeOf(context).toString();
     final rawMonthYear = DateFormat.yMMMM(locale).format(focusedMonth);
     final monthYearStr = rawMonthYear.isNotEmpty
@@ -63,7 +63,7 @@ class CalendarMonthHeader extends StatelessWidget {
                 TextButton.icon(
                   onPressed: onJumpToToday,
                   icon: const Icon(Icons.today_outlined, size: 18),
-                  label: Text(l10n?.jumpToToday ?? 'Today'),
+                  label: Text(l10n.jumpToToday),
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     minimumSize: const Size(48, 48),
@@ -83,7 +83,7 @@ class CalendarMonthHeader extends StatelessWidget {
                   iconSize: 20,
                   icon: Icon(isRtl ? Icons.chevron_right : Icons.chevron_left),
                   onPressed: onPreviousMonth,
-                  tooltip: l10n?.previousMonth ?? 'Previous month',
+                  tooltip: l10n.previousMonth,
                   color: colorScheme.onSurface,
                 ),
               ),
@@ -100,7 +100,7 @@ class CalendarMonthHeader extends StatelessWidget {
                   iconSize: 20,
                   icon: Icon(isRtl ? Icons.chevron_left : Icons.chevron_right),
                   onPressed: onNextMonth,
-                  tooltip: l10n?.nextMonth ?? 'Next month',
+                  tooltip: l10n.nextMonth,
                   color: colorScheme.onSurface,
                 ),
               ),

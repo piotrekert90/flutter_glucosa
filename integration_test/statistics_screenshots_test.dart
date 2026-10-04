@@ -32,7 +32,7 @@ void main() {
   });
 
   Widget buildAdaptiveScaffold(BuildContext context, Widget body, int index) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     return AdaptiveNavigationScaffold(
       body: body,
       currentIndex: index,
@@ -41,22 +41,22 @@ void main() {
         AdaptiveNavigationDestination(
           icon: const Icon(Icons.dashboard_outlined),
           selectedIcon: const Icon(Icons.dashboard),
-          label: l10n?.navOverview ?? 'Overview',
+          label: l10n.navOverview,
         ),
         AdaptiveNavigationDestination(
           icon: const Icon(Icons.calendar_month_outlined),
           selectedIcon: const Icon(Icons.calendar_month),
-          label: l10n?.tabCalendar ?? 'Calendar',
+          label: l10n.tabCalendar,
         ),
         AdaptiveNavigationDestination(
           icon: const Icon(Icons.history_outlined),
           selectedIcon: const Icon(Icons.history),
-          label: l10n?.navHistory ?? 'History',
+          label: l10n.navHistory,
         ),
         AdaptiveNavigationDestination(
           icon: const Icon(Icons.settings_outlined),
           selectedIcon: const Icon(Icons.settings),
-          label: l10n?.navSettings ?? 'Settings',
+          label: l10n.navSettings,
         ),
       ],
     );
@@ -169,14 +169,12 @@ void main() {
                 showNotificationIcon: true,
                 child: Builder(
                   builder: (context) {
-                    final l10n = AppLocalizations.of(context);
+                    final l10n = AppLocalizations.of(context)!;
                     final cs = Theme.of(context).colorScheme;
-                    final title = l10n != null
-                        ? milestone.type.localizedTitle(l10n)
-                        : milestone.type.name;
-                    final description = l10n != null
-                        ? milestone.type.localizedDescription(l10n)
-                        : '';
+                    final title = milestone.type.localizedTitle(l10n);
+                    final description = milestone.type.localizedDescription(
+                      l10n,
+                    );
 
                     return Stack(
                       children: [
@@ -241,8 +239,7 @@ void main() {
                                 ),
                                 const SizedBox(height: 16),
                                 if (milestone.isUnlocked &&
-                                    milestone.unlockedDate != null &&
-                                    l10n != null) ...[
+                                    milestone.unlockedDate != null) ...[
                                   Text(
                                     DateFormat.yMMMMd(
                                       l10n.localeName,
@@ -270,7 +267,7 @@ void main() {
                             actions: [
                               TextButton(
                                 onPressed: () {},
-                                child: Text(l10n?.close ?? 'OK'),
+                                child: Text(l10n.close),
                               ),
                             ],
                           ),

@@ -51,7 +51,7 @@ class CalendarDayCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     Color textColor;
     if (isFuture) {
@@ -90,13 +90,8 @@ class CalendarDayCell extends StatelessWidget {
         statuses.every((s) => s == GlucoseStatus.inRange);
 
     final semanticLabel = allInRange
-        ? l10n?.calendarDaySemanticsGoalAchieved(
-                dateFormatted,
-                readings.length,
-              ) ??
-              '$dateFormatted, ${readings.length} readings, all in target'
-        : l10n?.calendarDaySemantics(dateFormatted, readings.length) ??
-              '$dateFormatted, ${readings.length} readings';
+        ? l10n.calendarDaySemanticsGoalAchieved(dateFormatted, readings.length)
+        : l10n.calendarDaySemantics(dateFormatted, readings.length);
 
     Widget buildIndicator() {
       if (readings.isEmpty) return const SizedBox.shrink();

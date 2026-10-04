@@ -16,7 +16,7 @@ class MilestonesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final unlockedCount = milestones.where((m) => m.isUnlocked).length;
     final totalCount = milestones.length;
 
@@ -34,7 +34,7 @@ class MilestonesCard extends StatelessWidget {
     return Semantics(
       container: true,
       label:
-          '${l10n?.milestones ?? "Milestones"}, ${l10n?.milestonesUnlocked(unlockedCount, totalCount) ?? "$unlockedCount of $totalCount"}',
+          '${l10n.milestones}, ${l10n.milestonesUnlocked(unlockedCount, totalCount)}',
       child: Card(
         margin: EdgeInsets.zero,
         elevation: 0,
@@ -58,7 +58,7 @@ class MilestonesCard extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        l10n?.milestones ?? 'Milestones',
+                        l10n.milestones,
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(
                               fontWeight: FontWeight.bold,

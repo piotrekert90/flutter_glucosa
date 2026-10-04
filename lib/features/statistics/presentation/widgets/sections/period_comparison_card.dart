@@ -46,7 +46,7 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
     final inRangeColor = isDark
         ? AppFeedbackTheme.successForegroundDark
         : AppFeedbackTheme.successForegroundLight;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     final comparison =
         widget.comparisonOverride ??
@@ -59,8 +59,7 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
 
     return Semantics(
       container: true,
-      label:
-          '${l10n?.periodComparison ?? "Period Comparison"}: $_selectedDays days',
+      label: '${l10n.periodComparison}: $_selectedDays days',
       child: Card(
         margin: EdgeInsets.zero,
         elevation: 0,
@@ -82,7 +81,7 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      l10n?.periodComparison ?? 'Period Comparison',
+                      l10n.periodComparison,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: cs.onSurface,
@@ -111,8 +110,7 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          l10n?.insufficientComparisonData ??
-                              'More data needed in both periods to compare',
+                          l10n.insufficientComparisonData,
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: cs.onSurfaceVariant),
                         ),
@@ -142,7 +140,7 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                 const SizedBox(height: 12),
                 _buildComparisonRow(
                   context,
-                  title: l10n?.meanGlucose ?? 'Mean Glucose',
+                  title: l10n.meanGlucose,
                   currentVal: _formatGlucose(
                     comparison.currentPeriod.meanGlucoseMgDl,
                   ),
@@ -160,7 +158,7 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                 const Divider(height: 16),
                 _buildComparisonRow(
                   context,
-                  title: l10n?.timeInRangeShort ?? 'Time in Range',
+                  title: l10n.timeInRangeShort,
                   currentVal:
                       '${(comparison.currentPeriod.tirPercentage ?? 0).toStringAsFixed(0)}%',
                   previousVal:
@@ -175,7 +173,7 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                 const Divider(height: 16),
                 _buildComparisonRow(
                   context,
-                  title: l10n?.hypoIncidentsLabel ?? 'Hypo Events',
+                  title: l10n.hypoIncidentsLabel,
                   currentVal: '${comparison.currentPeriod.hypoCount}',
                   previousVal: '${comparison.previousPeriod.hypoCount}',
                   delta:
@@ -193,12 +191,12 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
     );
   }
 
-  Widget _buildPeriodSegmentedButton(ColorScheme cs, AppLocalizations? l10n) {
+  Widget _buildPeriodSegmentedButton(ColorScheme cs, AppLocalizations l10n) {
     return SegmentedButton<int>(
       segments: [
-        ButtonSegment(value: 7, label: Text(l10n?.rollingDays7 ?? '7d')),
-        ButtonSegment(value: 14, label: Text(l10n?.rollingDays14 ?? '14d')),
-        ButtonSegment(value: 30, label: Text(l10n?.rollingDays30 ?? '30d')),
+        ButtonSegment(value: 7, label: Text(l10n.rollingDays7)),
+        ButtonSegment(value: 14, label: Text(l10n.rollingDays14)),
+        ButtonSegment(value: 30, label: Text(l10n.rollingDays30)),
       ],
       selected: {_selectedDays},
       onSelectionChanged: (set) {

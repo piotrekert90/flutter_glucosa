@@ -33,7 +33,7 @@ class CalendarSelectedDaySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final locale = Localizations.localeOf(context).toString();
     final formattedSelectedDate = DateFormat.MMMMd(locale).format(selectedDate);
 
@@ -44,8 +44,7 @@ class CalendarSelectedDaySection extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              l10n?.entriesFromDate(formattedSelectedDate) ??
-                  'Readings for $formattedSelectedDate',
+              l10n.entriesFromDate(formattedSelectedDate),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.onSurface,
@@ -61,8 +60,7 @@ class CalendarSelectedDaySection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                l10n?.readingsCountPill(dayReadings.length) ??
-                    '${dayReadings.length} readings',
+                l10n.readingsCountPill(dayReadings.length),
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,

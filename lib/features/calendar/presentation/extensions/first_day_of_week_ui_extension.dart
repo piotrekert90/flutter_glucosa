@@ -4,11 +4,11 @@ import '../../../../l10n/app_localizations.dart';
 /// Presentation extension on [FirstDayOfWeek] providing localized display labels.
 extension FirstDayOfWeekUiExtension on FirstDayOfWeek {
   /// Returns the localized display label for this [FirstDayOfWeek] preference.
-  String label(AppLocalizations? l10n) {
+  String label(AppLocalizations l10n) {
     return switch (this) {
-      FirstDayOfWeek.system => l10n?.firstDayOfWeekSystem ?? 'System default',
-      FirstDayOfWeek.monday => l10n?.firstDayOfWeekMonday ?? 'Monday',
-      FirstDayOfWeek.sunday => l10n?.firstDayOfWeekSunday ?? 'Sunday',
+      FirstDayOfWeek.system => l10n.firstDayOfWeekSystem,
+      FirstDayOfWeek.monday => l10n.firstDayOfWeekMonday,
+      FirstDayOfWeek.sunday => l10n.firstDayOfWeekSunday,
     };
   }
 }

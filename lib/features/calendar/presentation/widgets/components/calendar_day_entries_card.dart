@@ -43,7 +43,7 @@ class CalendarDayEntriesCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final statuses = readings
@@ -92,8 +92,7 @@ class CalendarDayEntriesCard extends ConsumerWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    l10n?.allReadingsInRangeBanner ??
-                        'All readings within target range',
+                    l10n.allReadingsInRangeBanner,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: successFg,
@@ -206,7 +205,7 @@ class CalendarDayEntriesCard extends ConsumerWidget {
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Text(
-                                        status.localizedName(l10n!),
+                                        status.localizedName(l10n),
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelSmall
@@ -375,7 +374,7 @@ class CalendarDayEntriesCard extends ConsumerWidget {
         FilledButton.icon(
           onPressed: () => context.push(AppRoute.addGlucose.path),
           icon: const Icon(Icons.add),
-          label: Text(l10n?.addAnotherReading ?? 'Add Another Reading'),
+          label: Text(l10n.addAnotherReading),
         ),
       ],
     );
@@ -386,26 +385,23 @@ class CalendarDayEntriesCard extends ConsumerWidget {
     WidgetRef ref,
     int readingId,
   ) async {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: Text(l10n?.deleteReadingConfirmationTitle ?? 'Delete Reading'),
-        content: Text(
-          l10n?.deleteReadingConfirmationMessage ??
-              'Are you sure you want to delete this reading? This action cannot be undone.',
-        ),
+        title: Text(l10n.deleteReadingConfirmationTitle),
+        content: Text(l10n.deleteReadingConfirmationMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(l10n?.cancel ?? 'Cancel'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, true),
             style: TextButton.styleFrom(
               foregroundColor: Theme.of(dialogContext).colorScheme.error,
             ),
-            child: Text(l10n?.delete ?? 'Delete'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
@@ -418,10 +414,9 @@ class CalendarDayEntriesCard extends ConsumerWidget {
       if (!success && context.mounted) {
         AppSnackBar.show(
           context,
-          message: failure != null && l10n != null
+          message: failure != null
               ? failure.toUserMessage(l10n)
-              : (l10n?.failedToDeleteGlucoseReading ??
-                    'Failed to delete reading'),
+              : l10n.failedToDeleteGlucoseReading,
           type: SnackBarType.error,
         );
       }

@@ -24,15 +24,15 @@ class HabitsActivityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
-    final streakLabel = l10n?.streakDays(streak) ?? '$streak days';
-    final bestStreakLabel = l10n?.streakDays(bestStreak) ?? '$bestStreak days';
+    final streakLabel = l10n.streakDays(streak);
+    final bestStreakLabel = l10n.streakDays(bestStreak);
 
     return Semantics(
       container: true,
       label:
-          '${l10n?.habitsAndStreaks ?? "Habits & Streaks"}: ${l10n?.currentStreak ?? "Current"}: $streakLabel, ${l10n?.bestStreak ?? "Best"}: $bestStreakLabel, ${l10n?.monthlyCompliance ?? "Compliance"}: $compliancePct%',
+          '${l10n.habitsAndStreaks}: ${l10n.currentStreak}: $streakLabel, ${l10n.bestStreak}: $bestStreakLabel, ${l10n.monthlyCompliance}: $compliancePct%',
       child: Card(
         margin: EdgeInsets.zero,
         elevation: 0,
@@ -49,7 +49,7 @@ class HabitsActivityCard extends StatelessWidget {
                   Icon(Icons.event_repeat_rounded, size: 24, color: cs.primary),
                   const SizedBox(width: 8),
                   Text(
-                    l10n?.habitsAndStreaks ?? 'Habits & Streaks',
+                    l10n.habitsAndStreaks,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: cs.onSurface,
@@ -65,7 +65,7 @@ class HabitsActivityCard extends StatelessWidget {
                       context,
                       icon: Icons.local_fire_department_rounded,
                       iconColor: cs.primary,
-                      title: l10n?.currentStreak ?? 'Current',
+                      title: l10n.currentStreak,
                       value: streakLabel,
                     ),
                   ),
@@ -75,7 +75,7 @@ class HabitsActivityCard extends StatelessWidget {
                       context,
                       icon: Icons.emoji_events_rounded,
                       iconColor: cs.tertiary,
-                      title: l10n?.bestStreak ?? 'Best',
+                      title: l10n.bestStreak,
                       value: bestStreakLabel,
                     ),
                   ),
@@ -85,7 +85,7 @@ class HabitsActivityCard extends StatelessWidget {
                       context,
                       icon: Icons.pie_chart_rounded,
                       iconColor: cs.secondary,
-                      title: l10n?.monthlyCompliance ?? 'Compliance',
+                      title: l10n.monthlyCompliance,
                       value: '$compliancePct%',
                     ),
                   ),
