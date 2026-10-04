@@ -431,7 +431,7 @@
   "@bpStatusHigh": {
     "description": "Status badge label for high blood pressure level"
   },
-  "bpStatusCrisis": "高血圧緊急症 (≥180/≥120 mmHg — 医師に相談)",
+  "bpStatusCrisis": "高血圧緊急症 (最高血圧 ≥180 / 最低血圧 ≥120 mmHg — 医師に相談)",
   "@bpStatusCrisis": {
     "description": "Status badge label for hypertensive crisis level"
   },

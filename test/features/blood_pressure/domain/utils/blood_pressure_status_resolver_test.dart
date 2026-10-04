@@ -95,6 +95,8 @@ void main() {
     test(
       'verifies exact boundary between high and crisis (179 vs 180 and 119 vs 120)',
       () {
+        // Inclusive crisis threshold (>= 180 / >= 120) is a conscious
+        // conservative deviation from the strict AHA definition (> 180 / > 120).
         // Exactly 179/119 -> high
         expect(
           BloodPressureStatusResolver.resolve(

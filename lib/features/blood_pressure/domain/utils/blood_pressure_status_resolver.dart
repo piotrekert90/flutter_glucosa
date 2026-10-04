@@ -1,6 +1,11 @@
 import '../enums/blood_pressure_status.dart';
 
 /// Pure Dart utility resolving clinical blood pressure categories according to AHA/ACC guidelines.
+///
+/// Conscious deviation from the strict AHA crisis definition (higher than 180
+/// and/or higher than 120): the crisis threshold is inclusive (>= 180 or
+/// >= 120) as a conservative choice, so borderline readings surface the
+/// emergency warning instead of being classified as merely high.
 abstract final class BloodPressureStatusResolver {
   /// Evaluates blood pressure from [systolicMmHg] and [diastolicMmHg].
   ///

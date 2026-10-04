@@ -112,7 +112,7 @@
   "bpStatusNormal": "W normie (<120/80)",
   "bpStatusElevated": "Podwyższone (120-129/<80)",
   "bpStatusHigh": "Wysokie (≥130/80)",
-  "bpStatusCrisis": "Kryzys (≥180/≥120 mmHg — skonsultuj z lekarzem)",
+  "bpStatusCrisis": "Kryzys (Skurczowe ≥180 / Rozkurczowe ≥120 mmHg — skonsultuj z lekarzem)",
   "addBloodPressure": "Dodaj ciśnienie",
   "editBloodPressure": "Edytuj ciśnienie",
   "deleteBloodPressure": "Usuń ciśnienie",

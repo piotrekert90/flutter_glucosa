@@ -431,7 +431,7 @@
   "@bpStatusHigh": {
     "description": "Status badge label for high blood pressure level"
   },
-  "bpStatusCrisis": "Crisi (≥180/≥120 mmHg — consultare un medico)",
+  "bpStatusCrisis": "Crisi (Sistolica ≥180 / Diastolica ≥120 mmHg — consultare un medico)",
   "@bpStatusCrisis": {
     "description": "Status badge label for hypertensive crisis level"
   },
