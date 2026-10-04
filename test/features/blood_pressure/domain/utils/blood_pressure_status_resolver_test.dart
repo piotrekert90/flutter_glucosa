@@ -38,7 +38,7 @@ void main() {
       );
     });
 
-    test('resolves high when systolic >= 130 or diastolic >= 80', () {
+    test('resolves high when systolic 130-179 or diastolic 80-119', () {
       // Systolic high, diastolic normal
       expect(
         BloodPressureStatusResolver.resolve(
@@ -62,6 +62,33 @@ void main() {
           diastolicMmHg: 95,
         ),
         BloodPressureStatus.high,
+      );
+    });
+
+    test('resolves crisis when systolic >= 180 or diastolic >= 120', () {
+      // Systolic crisis
+      expect(
+        BloodPressureStatusResolver.resolve(
+          systolicMmHg: 180,
+          diastolicMmHg: 85,
+        ),
+        BloodPressureStatus.crisis,
+      );
+      // Diastolic crisis
+      expect(
+        BloodPressureStatusResolver.resolve(
+          systolicMmHg: 125,
+          diastolicMmHg: 120,
+        ),
+        BloodPressureStatus.crisis,
+      );
+      // Both crisis
+      expect(
+        BloodPressureStatusResolver.resolve(
+          systolicMmHg: 200,
+          diastolicMmHg: 130,
+        ),
+        BloodPressureStatus.crisis,
       );
     });
   });

@@ -15,6 +15,8 @@ extension BloodPressureStatusUiExtension on BloodPressureStatus {
         return l10n.bpStatusElevated;
       case BloodPressureStatus.high:
         return l10n.bpStatusHigh;
+      case BloodPressureStatus.crisis:
+        return l10n.bpStatusCrisis;
     }
   }
 
@@ -31,6 +33,7 @@ extension BloodPressureStatusUiExtension on BloodPressureStatus {
             ? AppFeedbackTheme.warningForegroundDark
             : AppFeedbackTheme.warningForegroundLight;
       case BloodPressureStatus.high:
+      case BloodPressureStatus.crisis:
         return isDark
             ? AppFeedbackTheme.errorForegroundDark
             : AppFeedbackTheme.errorForegroundLight;
@@ -50,6 +53,7 @@ extension BloodPressureStatusUiExtension on BloodPressureStatus {
             ? AppFeedbackTheme.warningBackgroundDark
             : AppFeedbackTheme.warningBackgroundLight;
       case BloodPressureStatus.high:
+      case BloodPressureStatus.crisis:
         return isDark
             ? AppFeedbackTheme.errorBackgroundDark
             : AppFeedbackTheme.errorBackgroundLight;
