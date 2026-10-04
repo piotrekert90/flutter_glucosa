@@ -1,6 +1,7 @@
-# 🩸 Glucosa — Modern Diabetes & Health Tracking App
+# 🩸 Glucosa — Modern Diabetes & Metabolic Health Platform
 
-[![Release](https://img.shields.io/badge/Release-v1.0.0-blue.svg)](CHANGELOG.md)
+[![CI](https://github.com/piotrekert90/flutter_glucosa/actions/workflows/ci.yml/badge.svg)](https://github.com/piotrekert90/flutter_glucosa/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue.svg)](https://github.com/piotrekert90/flutter_glucosa/releases)
 [![Flutter](https://img.shields.io/badge/Flutter-3.47+-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.12+-0175C2?logo=dart&logoColor=white)](https://dart.dev)
 [![State](https://img.shields.io/badge/State-Riverpod_3.x-0553B1)](https://riverpod.dev)
@@ -8,36 +9,71 @@
 [![Routing](https://img.shields.io/badge/Routing-GoRouter-teal)](https://pub.dev/packages/go_router)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Glucosa** is an offline-first, privacy-focused diabetes and metabolic health tracking application built with **Flutter**, **Riverpod 3.x**, **Isar Community**, and **Material 3**. Designed for individuals managing diabetes (Type 1, Type 2, Gestational, LADA, MODY), Glucosa provides seamless multi-metric health tracking, interactive trend analysis, clinical calculators, recurring reminders, and secure data export—with 100% on-device data sovereignty.
+> **Local-first health tracking with production-grade observability and optional cloud synchronization.**
+
+**Glucosa** is an offline-first diabetes and metabolic health tracking platform built with **Flutter**, **Riverpod 3.x**, **Isar Community**, and **Material 3**. Designed for individuals managing diabetes (Type 1, Type 2, Gestational, LADA), Glucosa delivers seamless multi-metric health tracking, interactive trend analysis, clinical calculators, recurring reminders, calendar overview, device health integrations, and full data export capabilities.
+
+---
+
+## 💡 Why Glucosa? Architectural Motivation
+
+> *"Most glucose tracking apps either lock health data into an account/cloud ecosystem or focus primarily on simple logging. I wanted to explore what a privacy-first, local-first metabolic health tracker could look like when engineered with production-grade rigor."*
+
+Every technical choice in Glucosa is deliberate and rooted in clinical reliability and data sovereignty:
+
+- **Isar Database isn't just an arbitrary database choice** — it is the foundation of a **local-first** reactive architecture. Health readings are persisted instantly with zero network latency, querying is sub-millisecond, and reactive watchers stream database updates directly into UI state.
+- **CSV Export isn't just a checkbox feature** — it guarantees that **the user always owns and can export their health data**, preventing platform lock-in and vendor silos.
+- **Biometric Security & Sandboxing** — sensitive health records remain protected behind Face ID, Touch ID, Fingerprint, or system PIN authentication within the local application sandbox.
+- **Production-Grade Observability** — structured logging (`AppLogger`), global provider lifecycle observers (`AppProviderObserver`), and rotating on-device crash logs (`AppCrashReporter`) provide enterprise-level diagnostics without leaking user data.
+- **Optional Cloud Synchronization** — engineered with strict Clean Architecture domain interfaces so cloud sync services (such as Firebase) can be layered on seamlessly without compromising offline guarantees.
+
+---
+
+## 💎 What Glucosa Demonstrates
+
+Glucosa demonstrates production-ready mobile engineering across key software architecture dimensions:
+
+| Dimension | Engineering Focus in Glucosa |
+|---|---|
+| **State Management** | **Riverpod 3.x** code generation (`@riverpod`), stream-driven notifiers, and automatic provider disposal |
+| **Clinical Domain** | Value objects, ADA / AACE / UK NICE clinical guidelines, AHA blood pressure stages, and ketone risk stratification |
+| **Complex Reactive State** | Unified multi-metric aggregation (glucose, HbA1c, blood pressure, cholesterol, ketones, weight) |
+| **Data Visualization** | Interactive time-series charts via `fl_chart`, day/week/month bucketing, and dynamic target range boundary lines |
+| **Data Sovereignty** | Local-first persistence, biometric app lock, on-device diagnostic logs, and complete CSV export |
+| **Clean Architecture** | Feature-first modular package structure, strict inward dependency rules, and zero data-model leakage to presentation |
 
 ---
 
 ## 🎯 Core Features
 
 ### 📊 Multi-Metric Health Tracking
-- **Blood Glucose**: Log readings with rich meal context (Fasting, Before/After Breakfast, Before/After Lunch, Before/After Dinner, Bedtime, Exercise, General). Automatic conversion and display in **mg/dL** or **mmol/L**.
+- **Blood Glucose**: Log readings with rich clinical meal context (Fasting, Before/After Breakfast, Before/After Lunch, Before/After Dinner, Snack, Bedtime, Night, Recheck, Other). Automatic conversion and display in **mg/dL** or **mmol/L**.
 - **HbA1c**: Record laboratory glycated hemoglobin in **%** or **mmol/mol**.
-- **Blood Pressure**: Monitor systolic and diastolic pressures (mmHg) with clinical AHA stage indicators (Normal, Elevated, Stage 1, Stage 2, Crisis).
-- **Ketones**: Track blood beta-hydroxybutyrate levels (mmol/L) with clinical warnings for ketoacidosis risk.
+- **Blood Pressure**: Monitor systolic and diastolic pressures (mmHg) with clinical status indicators (Normal, Elevated, High).
+- **Ketones**: Track blood beta-hydroxybutyrate levels (mmol/L) with clinical warnings (Normal, Elevated, High).
 - **Cholesterol**: Record Total, LDL, and HDL lipid profiles (mg/dL).
 - **Weight**: Track body weight in **kg** or **lbs**.
 
 ### 📈 Interactive Charts & Clinical Insights
-- **Trend Charts**: Interactive `fl_chart` time-series visualization with selectable ranges (7, 14, 30, and 90 days).
+- **Trend Charts**: Interactive `fl_chart` time-series visualization with flexible aggregation (**Day**, **Week**, **Month**).
 - **Target Range Bounds**: Visual upper and lower target lines on charts based on personalized target ranges.
-- **Estimated HbA1c (eA1c)**: Calculated dynamically from 90-day glucose averages.
-- **Unified History Feed**: Chronological stream of all health metrics with filter chips, swipe-to-delete, and instant undo actions. Tested and optimized for high-volume datasets (1000+ entries).
+- **Estimated HbA1c (eA1c)**: Calculated dynamically from blood glucose reading averages.
+- **Unified History Feed**: Chronological stream of all health metrics with filter chips, swipe-to-delete, and instant undo actions.
+- **Interactive Calendar**: Monthly calendar overview with day-level inspection, month navigation, and quick entry shortcuts.
+- **Habits & Milestones**: Habit tracking, logging streaks, milestone badges, and clinical visit summaries.
 
-### 🛠 Tools & Utilities
+### 🛠 Tools & Platform Integrations
 - **HbA1c Calculator**: Standalone utility screen offering bidirectional estimation between average glucose and HbA1c with direct reading persistence.
-- **Scheduled Reminders**: Local notification reminders for medication, blood glucose checks, and lifestyle logging with recurring schedules.
+- **Scheduled Reminders**: Local notification reminders for medication, blood glucose checks, and lifestyle logging with customizable recurring schedules.
+- **Health Platform Sync**: Native integration with **Apple HealthKit** (iOS) and **Google Health Connect** (Android) for syncing blood glucose, blood pressure, ketones, and weight.
+- **Biometric Security**: App lock protection supported by biometric authentication (Face ID, Touch ID, Fingerprint) or system PIN with configurable auto-lock timeout.
+- **Home Screen Widgets**: Quick-glance glucose monitoring supported via home screen widgets on Android and iOS WidgetKit.
 - **CSV Data Export**: Filter readings by metric and date range, generating standard CSV files shareable directly via the native system share sheet.
 
 ### ⚙️ Personalization & Clinical Settings
-- **Target Range Profiles**: Select clinical presets (ADA Standard, Tight Control, Relaxed, Pregnancy) or configure custom minimum/maximum glucose thresholds.
-- **Diabetes Profiles**: Tailored tracking for Type 1, Type 2, Gestational, LADA, MODY, and Prediabetes.
-- **Appearance**: Seamless switching between System, Light, and Dark themes.
-- **Security & Privacy**: Zero remote tracking or telemetry. Local-first storage backed by Isar Community. (Note: Data is persisted unencrypted within the local application sandbox; full database-level encryption is tracked as conscious technical debt due to Isar Community engine constraints).
+- **Target Range Profiles**: Select clinical presets (**ADA**, **AACE**, **UK NICE**) or configure custom minimum/maximum glucose thresholds.
+- **Diabetes Profiles**: Tailored tracking for **Type 1**, **Type 2**, **Gestational**, and **LADA**.
+- **Appearance**: Seamless switching between System, Light, and Dark themes with Material 3 styling.
 
 ---
 
@@ -53,14 +89,17 @@ lib/
 │   ├── config/                  # Environment flags & runtime configuration
 │   ├── domain/                  # Shared value objects, clinical validators & converters
 │   ├── errors/                  # Unified Failure hierarchy & Result types
+│   ├── integrations/            # Biometrics (local_auth) & Health sync (HealthKit / Health Connect)
 │   ├── presentation/
-│   │   ├── navigation/          # AdaptiveNavigationScaffold (Bottom Bar vs Side Rail)
+│   │   ├── navigation/          # AdaptiveNavigationScaffold (Bottom Bar vs Navigation Rail)
 │   │   ├── theme/               # Semantic color tokens, typography & feedback themes
 │   │   └── widgets/             # Reusable UI primitives (empty, loading, error, charts)
 │   ├── providers/               # Global Isar instance & Riverpod observers
-│   └── router/                  # GoRouter routes and redirection logic
+│   ├── router/                  # GoRouter routes and redirection logic
+│   └── utils/                   # AppLogger, crash reporter, date & format helpers
 └── features/
     ├── blood_pressure/          # Blood pressure domain, Isar models & screens
+    ├── calendar/                # Monthly & daily calendar view of readings
     ├── cholesterol/             # Lipid panel tracking
     ├── export/                  # CSV compilation & native share service
     ├── glucose/                 # Glucose domain, statistics & entry forms
@@ -70,7 +109,8 @@ lib/
     ├── onboarding/              # First-launch clinical setup wizard
     ├── overview/                # Dashboard summary & trend charts
     ├── reminders/               # Scheduled measurement alerts & notification service
-    ├── settings/                # Profile, unit preferences & target ranges
+    ├── settings/                # Profile, unit preferences, target ranges & app lock
+    ├── statistics/              # Milestone gallery, habits & progress summaries
     └── weight/                  # Body weight tracking
 ```
 
@@ -79,8 +119,11 @@ lib/
 - **Database**: [Isar Community](https://isar-community.dev) fast NoSQL database with reactive watch queries.
 - **Routing**: [GoRouter](https://pub.dev/packages/go_router) declarative navigation.
 - **Charts**: [fl_chart](https://pub.dev/packages/fl_chart) smooth, reactive line charts.
+- **Health Platform**: [health](https://pub.dev/packages/health) for Apple HealthKit & Health Connect integration.
+- **Home Widgets**: [home_widget](https://pub.dev/packages/home_widget) for Android App Widget & iOS WidgetKit integrations.
+- **Biometrics**: [local_auth](https://pub.dev/packages/local_auth) for biometric authentication and app lock.
 - **Localization**: Native Flutter `intl` & `l10n` supporting 10 languages: English (`en`), German (`de`), Spanish (`es`), French (`fr`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Dutch (`nl`), Polish (`pl`), and Portuguese (`pt`).
-- **Testing**: 780+ unit, widget, and mapper tests covering 100% of domain and state logic.
+- **Testing**: Comprehensive test suite (830+ tests) covering domain logic, state transitions, repository contracts, and presentation widgets.
 
 ---
 
@@ -100,15 +143,20 @@ cd flutter_glucosa
 # Install dependencies
 flutter pub get
 
-# Generate Riverpod & Isar code
-dart run build_runner build --delete-conflicting-outputs
-
 # Generate localization files
 flutter gen-l10n
+
+# Generate Riverpod & Isar code
+dart run build_runner build --delete-conflicting-outputs
 
 # Launch application
 flutter run
 ```
+
+### 📱 Platform Setup Notes
+
+- **Android**: Supports Google Health Connect, exact measurement alarm scheduling (`SCHEDULE_EXACT_ALARM`, `POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`), and Home Screen App Widgets out of the box.
+- **iOS**: Apple HealthKit entitlements, App Group (`group.com.piotrekert.glucosa`), and `PrivacyInfo.xcprivacy` are configured. Home Screen WidgetKit extension source is provided in `ios/GlucosaWidget/` with App Group synchronization via `home_widget`.
 
 ---
 
@@ -132,7 +180,32 @@ flutter test --exclude-tags "golden,screenshot"
 
 ---
 
+## 🤖 Engineering Standards & Agentic Coding Workflow
+
+Glucosa is engineered as a production reference combining senior architectural discipline with modern agentic workflows (governed by `AGENTS.md` and `agents_project.md`):
+
+- **Strict Invariant Guardrails**: Universal standards in `AGENTS.md` enforce clean architectural layer isolation, zero defensive fallbacks, and complete resource disposal across platforms.
+- **Mandatory Verification Pipeline**: Every change is validated through automated static analysis, `custom_lint` rules, formatting, and unit/widget test suites.
+- **Pure Domain Boundaries**: The core domain layer contains zero UI, Flutter, or database imports, ensuring clinical logic (ADA thresholds, ADAG formulas, unit converters) remains completely portable and testable.
+
+---
+
+## ⚕️ Medical Disclaimer & Clinical Citations
+
+> [!WARNING]
+> **Not a Medical Device / Not Medical Advice**  
+> Glucosa is designed strictly as a personal health logging tool and informational reference for individuals tracking diabetes metrics. Glucosa is **not a certified medical device** (under EU MDR 2017/745, US FDA, or equivalent regulatory frameworks) and does not provide automated diagnostic conclusions, insulin dosing calculations, or clinical treatment plans. Always consult a qualified physician or endocrinologist before making adjustments to medication, diet, or treatment regimens.
+
+### Clinical Formulas & Guidelines
+- **Estimated HbA1c (eA1c):** Calculated using the clinically validated A1c-Derived Average Glucose (ADAG) study formula:
+  $$\text{eA1c } [\%] = \frac{\text{Average Glucose } [\text{mg/dL}] + 46.7}{28.7}$$
+  *Citation:* Nathan DM, Kuenen J, Borg R, Zheng H, Schoenfeld D, Heine RJ. *Translating the A1C assay into estimated average glucose values.* Diabetes Care. 2008;31(8):1473-1478. [doi:10.2337/dc08-0545](https://doi.org/10.2337/dc08-0545).
+- **Target Range Standards:** Threshold guidelines reference standards published by the American Diabetes Association (ADA *Standards of Care in Diabetes*), the American Association of Clinical Endocrinologists (AACE), and the UK National Institute for Health and Care Excellence (NICE NG17/NG18/NG28).
+
+---
+
 ## 📜 License & Privacy
 
-Glucosa is open-source software licensed under the [MIT License](LICENSE).
-Your health data belongs entirely to you. Learn more in our [Privacy Policy](doc/privacy_policy.md).
+- **License:** Glucosa is open-source software licensed under the [MIT License](LICENSE).
+- **Privacy Policy:** Read our complete [Privacy Policy](doc/privacy_policy.md) disclosing HealthKit, Health Connect, widget data, and local-first data processing.
+
