@@ -9,37 +9,29 @@
 [![Routing](https://img.shields.io/badge/Routing-GoRouter-teal)](https://pub.dev/packages/go_router)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **Local-first metabolic health tracking engineered with clean architecture and strict privacy guarantees.**
+> **Local-first metabolic health tracking built with Flutter, Riverpod, and on-device storage.**
 
-**Glucosa** is an offline-first diabetes and metabolic health tracking platform built with **Flutter**, **Riverpod 3.x**, **Isar Community**, and **Material 3**. Designed for individuals managing diabetes (Type 1, Type 2, Gestational, LADA), Glucosa delivers multi-metric health tracking, trend analysis, clinical calculators, recurring reminders, calendar overview, device health integrations, and complete data export capabilities.
-
----
-
-## 💡 Why Glucosa? Architectural Motivation
-
-> *"Most glucose tracking apps either lock health data into a proprietary cloud account or focus solely on basic logging. Glucosa demonstrates what a privacy-preserving, local-first metabolic health tracker looks like when engineered with clean architecture."*
-
-Every technical choice in Glucosa is deliberate and rooted in clinical reliability and data sovereignty:
-
-- **Isar Database isn't just an arbitrary database choice** — it is the foundation of a **local-first** reactive architecture. Health readings are persisted instantly with zero network latency, querying is sub-millisecond, and reactive watchers stream database updates directly into UI state.
-- **CSV Export & Import as the Authoritative Backup Pathway** — with Android cloud auto-backup explicitly disabled (`allowBackup="false"`), health records remain on-device; complete CSV export and import guarantee the user always owns and can migrate their health data without vendor silos.
-- **Biometric Security & Sandboxing** — sensitive health records remain protected behind Face ID, Touch ID, Fingerprint, or system PIN authentication within the local application sandbox.
-- **Structured Observability** — logging (`AppLogger`), global provider lifecycle observers (`AppProviderObserver`), and rotating on-device crash logs (`AppCrashReporter`) provide diagnostics without leaking user data.
+**Glucosa** is an offline-first diabetes and metabolic health tracking application built with **Flutter**, **Riverpod 3.x**, **Isar Community**, and **Material 3**. Designed for individuals managing diabetes (Type 1, Type 2, Gestational, LADA), Glucosa provides multi-metric tracking, trend analysis, clinical calculators, recurring reminders, calendar overview, device health integrations, and CSV data export/import.
 
 ---
 
-## 💎 What Glucosa Demonstrates
+## 🏛️ Architecture & Design Principles
 
-Glucosa demonstrates production-ready mobile engineering across key software architecture dimensions:
+The technical design focuses on clinical reliability and data privacy:
 
-| Dimension | Engineering Focus in Glucosa |
+- **Local-first storage** — Health data is stored locally in an on-device Isar database with zero network dependencies or remote servers.
+- **Data portability** — With Android cloud backup explicitly disabled (`allowBackup="false"`), complete CSV export and import serve as the primary path for backups and migration.
+- **Biometric security** — Optional app lock using device biometrics (Face ID, Touch ID, Fingerprint) or system PIN.
+- **Local diagnostics** — Diagnostic logs (`AppLogger`) and crash records (`AppCrashReporter`) are stored exclusively on-device.
+
+| Dimension | Implementation |
 |---|---|
 | **State Management** | **Riverpod 3.x** code generation (`@riverpod`), stream-driven notifiers, and automatic provider disposal |
 | **Clinical Domain** | Value objects, ADA / AACE / UK NICE clinical guidelines, AHA blood pressure stages (Normal, Elevated, High, Crisis), and ketone risk stratification |
-| **Complex Reactive State** | Unified multi-metric aggregation (glucose, HbA1c, blood pressure, cholesterol, ketones, weight) |
+| **Reactive State** | Unified multi-metric aggregation (glucose, HbA1c, blood pressure, cholesterol, ketones, weight) |
 | **Data Visualization** | Interactive time-series charts via `fl_chart`, day/week/month bucketing, and dynamic target range boundary lines |
-| **Data Sovereignty** | Local-first persistence, biometric app lock, on-device diagnostic logs, and complete CSV export/import |
-| **Clean Architecture** | Feature-first modular package structure, strict inward dependency rules, and zero data-model leakage to presentation |
+| **Data Privacy** | Local-first persistence, biometric app lock, on-device diagnostic logs, and CSV export/import |
+| **Clean Architecture** | Feature-first modular package structure, strict inward dependency rules, and domain layer isolated from UI and database |
 
 ---
 
@@ -179,13 +171,13 @@ flutter test --exclude-tags "golden,screenshot"
 
 ---
 
-## 🤖 Engineering Standards & Agentic Coding Workflow
+## 🤖 Development Standards & Workflow
 
-Glucosa is engineered as a production reference combining senior architectural discipline with modern agentic workflows (governed by `AGENTS.md` and `agents_project.md`):
+The codebase follows conventions defined in `AGENTS.md` and `agents_project.md`:
 
-- **Strict Invariant Guardrails**: Universal standards in `AGENTS.md` enforce clean architectural layer isolation, zero defensive fallbacks, and complete resource disposal across platforms.
+- **Layer Isolation**: Universal standards in `AGENTS.md` maintain clean architectural layer boundaries and explicit resource disposal.
 - **Mandatory Verification Pipeline**: Every change is validated through automated static analysis, `custom_lint` rules, formatting, and unit/widget test suites.
-- **Pure Domain Boundaries**: The core domain layer contains zero UI, Flutter, or database imports, ensuring clinical logic (ADA thresholds, ADAG formulas, unit converters) remains completely portable and testable.
+- **Pure Domain Boundaries**: The core domain layer contains zero UI, Flutter, or database dependencies, ensuring clinical logic (ADA thresholds, ADAG formulas, unit converters) remains portable and testable.
 
 ---
 
