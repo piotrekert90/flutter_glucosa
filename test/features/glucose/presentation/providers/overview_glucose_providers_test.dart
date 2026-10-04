@@ -13,34 +13,34 @@ import 'package:mocktail/mocktail.dart';
 class MockGlucoseReadingRepository extends Mock
     implements GlucoseReadingRepository {}
 
-final _now = DateTime.now();
+final _fixedNow = DateTime(2026, 10, 4, 12, 0);
 
 final _reading1 = GlucoseReading(
   id: 1,
   readingMgDl: 100,
   mealContext: MealContext.fasting,
-  createdAt: _now.subtract(const Duration(days: 10)),
+  createdAt: _fixedNow.subtract(const Duration(days: 10)),
 );
 
 final _reading2 = GlucoseReading(
   id: 2,
   readingMgDl: 154,
   mealContext: MealContext.afterBreakfast,
-  createdAt: _now.subtract(const Duration(days: 5)),
+  createdAt: _fixedNow.subtract(const Duration(days: 5)),
 );
 
 final _reading3 = GlucoseReading(
   id: 3,
   readingMgDl: 127,
   mealContext: MealContext.beforeDinner,
-  createdAt: _now.subtract(const Duration(days: 1)),
+  createdAt: _fixedNow.subtract(const Duration(days: 1)),
 );
 
 final _oldReading = GlucoseReading(
   id: 4,
   readingMgDl: 250,
   mealContext: MealContext.bedtime,
-  createdAt: _now.subtract(const Duration(days: 95)),
+  createdAt: _fixedNow.subtract(const Duration(days: 95)),
 );
 
 void main() {
@@ -118,6 +118,7 @@ void main() {
       container = ProviderContainer(
         overrides: [
           glucoseReadingRepositoryProvider.overrideWithValue(mockRepo),
+          estimatedHbA1cClockProvider.overrideWithValue(_fixedNow),
         ],
       );
       container.listen(estimatedHbA1cProvider, (_, _) {});
@@ -137,6 +138,7 @@ void main() {
         container = ProviderContainer(
           overrides: [
             glucoseReadingRepositoryProvider.overrideWithValue(mockRepo),
+            estimatedHbA1cClockProvider.overrideWithValue(_fixedNow),
           ],
         );
         container.listen(estimatedHbA1cProvider, (_, _) {});
@@ -160,6 +162,7 @@ void main() {
         container = ProviderContainer(
           overrides: [
             glucoseReadingRepositoryProvider.overrideWithValue(mockRepo),
+            estimatedHbA1cClockProvider.overrideWithValue(_fixedNow),
           ],
         );
         container.listen(estimatedHbA1cProvider, (_, _) {});
