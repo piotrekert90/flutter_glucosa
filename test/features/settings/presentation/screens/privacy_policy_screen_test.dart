@@ -23,6 +23,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Privacy Policy'), findsOneWidget);
-    expect(find.text('contact@example.com'), findsOneWidget);
+    expect(find.text('piotrekert90@gmail.com'), findsOneWidget);
   });
 }

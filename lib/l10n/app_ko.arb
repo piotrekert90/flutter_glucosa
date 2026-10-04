@@ -175,7 +175,7 @@
   "@privacyPolicySection1Title": {
     "description": "Title of section 1 in privacy policy"
   },
-  "privacyPolicySection1Body": "모든 작업과 설정은 사용자의 기기에만 남습니다.",
+  "privacyPolicySection1Body": "모든 건강 측정값과 설정은 사용자의 실제 기기에만 남습니다.",
   "@privacyPolicySection1Body": {
     "description": "Body of section 1 in privacy policy"
   },
@@ -183,15 +183,15 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "안정성 향상을 위해 개인 정보가 없는 익명의 충돌 로그를 수집할 수 있습니다.",
+  "privacyPolicySection2Body": "충돌 및 진단 로그는 문제 해결을 위해 기기 내에만 저장되며 외부 서버로 전송되지 않습니다.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },
-  "privacyPolicySection3Title": "하드웨어 키 보안",
+  "privacyPolicySection3Title": "샌드박싱 및 생체 인증 보안",
   "@privacyPolicySection3Title": {
     "description": "Title of section 3 in privacy policy"
   },
-  "privacyPolicySection3Body": "민감한 기기 상태에는 시스템 샌드박싱과 키체인을 사용합니다.",
+  "privacyPolicySection3Body": "건강 데이터는 운영체제 샌드박스와 선택적 생체 인식 잠금으로 안전하게 보호됩니다.",
   "@privacyPolicySection3Body": {
     "description": "Body of section 3 in privacy policy"
   },
@@ -1654,7 +1654,7 @@
   "@onboardingPrivacyTitle": {
     "description": "Title of onboarding privacy step"
   },
-  "onboardingPrivacySubtitle": "측정값은 이 기기에만 저장됩니다. 익명의 충돌 보고서는 버그 수정에 도움이 됩니다 — 계정 없음, 추적 없음, 광고 없음.",
+  "onboardingPrivacySubtitle": "측정값과 진단 로그는 이 기기에만 저장됩니다 — 계정 불필요, 원격 추적 없음, 광고 없음.",
   "@onboardingPrivacySubtitle": {
     "description": "Subtitle of onboarding privacy step"
   },

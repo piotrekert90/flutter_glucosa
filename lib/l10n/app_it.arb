@@ -175,7 +175,7 @@
   "@privacyPolicySection1Title": {
     "description": "Title of section 1 in privacy policy"
   },
-  "privacyPolicySection1Body": "Tutte le attività e le impostazioni restano sul tuo dispositivo.",
+  "privacyPolicySection1Body": "Tutte le misurazioni della salute e le impostazioni restano sul tuo dispositivo fisico.",
   "@privacyPolicySection1Body": {
     "description": "Body of section 1 in privacy policy"
   },
@@ -183,15 +183,15 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "È possibile raccogliere log anonimi degli arresti per migliorare l'affidabilità, senza dati personali.",
+  "privacyPolicySection2Body": "I log di arresto anomalo e di diagnostica sono archiviati esclusivamente sul dispositivo per la risoluzione dei problemi e non vengono mai inviati a server esterni.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },
-  "privacyPolicySection3Title": "Sicurezza hardware",
+  "privacyPolicySection3Title": "Sandboxing e sicurezza biometrica",
   "@privacyPolicySection3Title": {
     "description": "Title of section 3 in privacy policy"
   },
-  "privacyPolicySection3Body": "Gli stati sensibili usano sandbox di sistema e portachiavi nativi.",
+  "privacyPolicySection3Body": "I tuoi dati sanitari sono protetti all'interno della sandbox del sistema operativo e dal blocco biometrico opzionale.",
   "@privacyPolicySection3Body": {
     "description": "Body of section 3 in privacy policy"
   },
@@ -1654,7 +1654,7 @@
   "@onboardingPrivacyTitle": {
     "description": "Title of onboarding privacy step"
   },
-  "onboardingPrivacySubtitle": "Le misurazioni restano solo su questo dispositivo. I report anonimi dei crash aiutano a correggere i bug: niente account, niente tracciamento, niente pubblicità.",
+  "onboardingPrivacySubtitle": "Le misurazioni e i registri diagnostici restano solo su questo dispositivo — nessun account richiesto, nessun tracciamento remoto, niente pubblicità.",
   "@onboardingPrivacySubtitle": {
     "description": "Subtitle of onboarding privacy step"
   },

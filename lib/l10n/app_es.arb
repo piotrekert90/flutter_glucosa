@@ -175,7 +175,7 @@
   "@privacyPolicySection1Title": {
     "description": "Title of section 1 in privacy policy"
   },
-  "privacyPolicySection1Body": "Todas las tareas y ajustes permanecen en tu dispositivo.",
+  "privacyPolicySection1Body": "Todas las mediciones de salud y ajustes permanecen en tu dispositivo físico.",
   "@privacyPolicySection1Body": {
     "description": "Body of section 1 in privacy policy"
   },
@@ -183,15 +183,15 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Se pueden recoger registros anónimos de fallos para mejorar la fiabilidad, sin datos personales.",
+  "privacyPolicySection2Body": "Los registros de fallos y diagnóstico se almacenan exclusivamente en tu dispositivo para resolución de problemas y nunca se envían a servidores externos.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },
-  "privacyPolicySection3Title": "Seguridad del hardware",
+  "privacyPolicySection3Title": "Aislamiento y seguridad biométrica",
   "@privacyPolicySection3Title": {
     "description": "Title of section 3 in privacy policy"
   },
-  "privacyPolicySection3Body": "Los estados sensibles usan el aislamiento del sistema y el llavero nativos.",
+  "privacyPolicySection3Body": "Tus registros de salud están protegidos dentro del aislamiento del sistema operativo y el bloqueo biométrico opcional.",
   "@privacyPolicySection3Body": {
     "description": "Body of section 3 in privacy policy"
   },
@@ -1654,7 +1654,7 @@
   "@onboardingPrivacyTitle": {
     "description": "Title of onboarding privacy step"
   },
-  "onboardingPrivacySubtitle": "Las mediciones quedan solo en este dispositivo. Los informes anónimos de fallos ayudan a corregir errores: sin cuenta, sin rastreo, sin anuncios.",
+  "onboardingPrivacySubtitle": "Las mediciones y registros de diagnóstico se guardan solo en este dispositivo — sin necesidad de cuenta, sin rastreo remoto, sin anuncios.",
   "@onboardingPrivacySubtitle": {
     "description": "Subtitle of onboarding privacy step"
   },

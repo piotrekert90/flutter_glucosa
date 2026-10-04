@@ -175,7 +175,7 @@
   "@privacyPolicySection1Title": {
     "description": "Title of section 1 in privacy policy"
   },
-  "privacyPolicySection1Body": "All tasks and settings remain on your physical device.",
+  "privacyPolicySection1Body": "All health measurements and settings remain on your physical device.",
   "@privacyPolicySection1Body": {
     "description": "Body of section 1 in privacy policy"
   },
@@ -183,15 +183,15 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Anonymous crash logs may be collected to help improve application reliability without containing personal information.",
+  "privacyPolicySection2Body": "Crash and diagnostic logs are stored exclusively on your device for troubleshooting and are never transmitted to external servers.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },
-  "privacyPolicySection3Title": "Hardware Key Security",
+  "privacyPolicySection3Title": "Sandboxing & Biometric Security",
   "@privacyPolicySection3Title": {
     "description": "Title of section 3 in privacy policy"
   },
-  "privacyPolicySection3Body": "Sensitive device states utilize system-native sandboxing and keychain facilities.",
+  "privacyPolicySection3Body": "Your health records are protected within the operating system sandbox and optional biometric app lock.",
   "@privacyPolicySection3Body": {
     "description": "Body of section 3 in privacy policy"
   },
@@ -1654,7 +1654,7 @@
   "@onboardingPrivacyTitle": {
     "description": "Title of onboarding privacy step"
   },
-  "onboardingPrivacySubtitle": "Measurements are stored only on this device. Anonymous crash reports help fix bugs — no account, no tracking, no ads.",
+  "onboardingPrivacySubtitle": "Measurements and diagnostic logs are stored only on this device — no account required, no remote tracking, no ads.",
   "@onboardingPrivacySubtitle": {
     "description": "Subtitle of onboarding privacy step"
   },

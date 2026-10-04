@@ -219,7 +219,7 @@ class _LicensesScreenState extends State<LicensesScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        l10n?.appTitle ?? 'Flutter Boilerplate',
+                        l10n?.appTitle ?? 'Glucosa',
                         style: theme.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: colorScheme.onSurface,

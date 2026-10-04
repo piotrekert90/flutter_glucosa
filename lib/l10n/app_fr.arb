@@ -175,7 +175,7 @@
   "@privacyPolicySection1Title": {
     "description": "Title of section 1 in privacy policy"
   },
-  "privacyPolicySection1Body": "Toutes les tâches et préférences restent sur ton appareil.",
+  "privacyPolicySection1Body": "Toutes les mesures de santé et préférences restent sur ton appareil physique.",
   "@privacyPolicySection1Body": {
     "description": "Body of section 1 in privacy policy"
   },
@@ -183,15 +183,15 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Des journaux de plantage anonymes peuvent être collectés pour améliorer la fiabilité, sans données personnelles.",
+  "privacyPolicySection2Body": "Les journaux de plantage et de diagnostic sont stockés exclusivement sur ton appareil pour le dépannage et ne sont jamais transmis à des serveurs externes.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },
-  "privacyPolicySection3Title": "Sécurité matérielle",
+  "privacyPolicySection3Title": "Bac à sable & sécurité biométrique",
   "@privacyPolicySection3Title": {
     "description": "Title of section 3 in privacy policy"
   },
-  "privacyPolicySection3Body": "Les états sensibles utilisent le bac à sable système et le trousseau natifs.",
+  "privacyPolicySection3Body": "Tes données de santé sont protégées dans le bac à sable du système d'exploitation et par le verrouillage biométrique optionnel.",
   "@privacyPolicySection3Body": {
     "description": "Body of section 3 in privacy policy"
   },
@@ -1654,7 +1654,7 @@
   "@onboardingPrivacyTitle": {
     "description": "Title of onboarding privacy step"
   },
-  "onboardingPrivacySubtitle": "Les mesures restent uniquement sur cet appareil. Les rapports de plantage anonymes aident à corriger les bugs — sans compte, sans suivi, sans pubs.",
+  "onboardingPrivacySubtitle": "Les mesures et journaux de diagnostic sont stockés uniquement sur cet appareil — sans compte requis, sans suivi distant, sans publicité.",
   "@onboardingPrivacySubtitle": {
     "description": "Subtitle of onboarding privacy step"
   },

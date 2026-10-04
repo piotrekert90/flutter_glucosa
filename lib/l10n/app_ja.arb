@@ -175,7 +175,7 @@
   "@privacyPolicySection1Title": {
     "description": "Title of section 1 in privacy policy"
   },
-  "privacyPolicySection1Body": "すべてのタスクと設定はあなたのデバイスに残ります。",
+  "privacyPolicySection1Body": "すべての健康測定値と設定はあなたの端末に残ります。",
   "@privacyPolicySection1Body": {
     "description": "Body of section 1 in privacy policy"
   },
@@ -183,15 +183,15 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "信頼性向上のため匿名のクラッシュログを収集する場合がありますが、個人情報は含まれません。",
+  "privacyPolicySection2Body": "クラッシュログおよび診断ログはトラブルシューティング用に端末内にのみ保存され、外部サーバーに送信されることはありません。",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },
-  "privacyPolicySection3Title": "ハードウェアセキュリティ",
+  "privacyPolicySection3Title": "サンドボックスと生体認証セキュリティ",
   "@privacyPolicySection3Title": {
     "description": "Title of section 3 in privacy policy"
   },
-  "privacyPolicySection3Body": "機密性の高いデバイス状態にはシステムのサンドボックスとキーチェーンを使用します。",
+  "privacyPolicySection3Body": "健康データはOSのサンドボックスおよび任意の生体認証アプリロックによって保護されます。",
   "@privacyPolicySection3Body": {
     "description": "Body of section 3 in privacy policy"
   },
@@ -1654,7 +1654,7 @@
   "@onboardingPrivacyTitle": {
     "description": "Title of onboarding privacy step"
   },
-  "onboardingPrivacySubtitle": "測定値はこのデバイスにのみ保存されます。匿名のクラッシュレポートは不具合修正に役立ちます — アカウントなし、追跡なし、広告なし。",
+  "onboardingPrivacySubtitle": "測定値と診断ログはこの端末にのみ保存されます — アカウント不要、リモート追跡なし、広告なし。",
   "@onboardingPrivacySubtitle": {
     "description": "Subtitle of onboarding privacy step"
   },

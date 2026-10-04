@@ -175,7 +175,7 @@
   "@privacyPolicySection1Title": {
     "description": "Title of section 1 in privacy policy"
   },
-  "privacyPolicySection1Body": "Alle Aufgaben und Einstellungen bleiben auf deinem Gerät.",
+  "privacyPolicySection1Body": "Alle Gesundheitsmessungen und Einstellungen bleiben auf deinem physischen Gerät.",
   "@privacyPolicySection1Body": {
     "description": "Body of section 1 in privacy policy"
   },
@@ -183,15 +183,15 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Anonyme Absturzprotokolle können gesammelt werden, um die Zuverlässigkeit der App zu verbessern, ohne persönliche Daten zu enthalten.",
+  "privacyPolicySection2Body": "Absturz- und Diagnoseprotokolle werden ausschließlich zur Fehlerbehebung auf deinem Gerät gespeichert und nicht an externe Server übertragen.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },
-  "privacyPolicySection3Title": "Hardware-Schlüsselsicherheit",
+  "privacyPolicySection3Title": "Sandboxing & biometrische Sicherheit",
   "@privacyPolicySection3Title": {
     "description": "Title of section 3 in privacy policy"
   },
-  "privacyPolicySection3Body": "Sensible Gerätezustände nutzen systemeigene Sandboxing- und Schlüsselbund-Funktionen.",
+  "privacyPolicySection3Body": "Deine Gesundheitsdaten sind durch die Sandbox des Betriebssystems und eine optionale biometrische App-Sperre geschützt.",
   "@privacyPolicySection3Body": {
     "description": "Body of section 3 in privacy policy"
   },
@@ -1654,7 +1654,7 @@
   "@onboardingPrivacyTitle": {
     "description": "Title of onboarding privacy step"
   },
-  "onboardingPrivacySubtitle": "Messungen werden nur auf diesem Gerät gespeichert. Anonyme Absturzberichte helfen, Fehler zu beheben — kein Konto, kein Tracking, keine Werbung.",
+  "onboardingPrivacySubtitle": "Messungen und Diagnoseprotokolle werden nur auf diesem Gerät gespeichert — kein Konto erforderlich, kein Remote-Tracking, keine Werbung.",
   "@onboardingPrivacySubtitle": {
     "description": "Subtitle of onboarding privacy step"
   },

@@ -175,7 +175,7 @@
   "@privacyPolicySection1Title": {
     "description": "Title of section 1 in privacy policy"
   },
-  "privacyPolicySection1Body": "Todas as tarefas e definições ficam no teu dispositivo.",
+  "privacyPolicySection1Body": "Todas as medições de saúde e definições ficam no teu dispositivo físico.",
   "@privacyPolicySection1Body": {
     "description": "Body of section 1 in privacy policy"
   },
@@ -183,15 +183,15 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Podem ser recolhidos registos anónimos de falhas para melhorar a fiabilidade, sem dados pessoais.",
+  "privacyPolicySection2Body": "Os registos de falhas e de diagnóstico são guardados exclusivamente no teu dispositivo para resolução de problemas e nunca são transmitidos a servidores externos.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },
-  "privacyPolicySection3Title": "Segurança do hardware",
+  "privacyPolicySection3Title": "Isolamento e segurança biométrica",
   "@privacyPolicySection3Title": {
     "description": "Title of section 3 in privacy policy"
   },
-  "privacyPolicySection3Body": "Os estados sensíveis usam isolamento do sistema e chaveiro nativos.",
+  "privacyPolicySection3Body": "Os teus registos de saúde estão protegidos dentro da sandbox do sistema operativo e pelo bloqueio biométrico opcional.",
   "@privacyPolicySection3Body": {
     "description": "Body of section 3 in privacy policy"
   },
@@ -1654,7 +1654,7 @@
   "@onboardingPrivacyTitle": {
     "description": "Title of onboarding privacy step"
   },
-  "onboardingPrivacySubtitle": "As medições ficam só neste dispositivo. Os relatórios anónimos de falhas ajudam a corrigir erros: sem conta, sem rastreio, sem anúncios.",
+  "onboardingPrivacySubtitle": "As medições e registos de diagnóstico ficam apenas neste dispositivo — sem conta necessária, sem rastreio remoto, sem anúncios.",
   "@onboardingPrivacySubtitle": {
     "description": "Subtitle of onboarding privacy step"
   },

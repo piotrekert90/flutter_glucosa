@@ -7,8 +7,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 void main() {
   testWidgets('LicensesScreen renders app bar and header info', (tester) async {
     final packageInfo = PackageInfo(
-      appName: 'Flutter Boilerplate',
-      packageName: 'com.example.flutter_riverpod_boilerplate',
+      appName: 'Glucosa',
+      packageName: 'com.piotrekert.glucosa',
       version: '1.0.0',
       buildNumber: '1',
     );

@@ -6,8 +6,8 @@ import '../providers/onboarding_notifier.dart';
 
 /// Eighth onboarding step presenting transparent data-privacy information.
 ///
-/// All health data stays on the device; only anonymized crash logs support
-/// diagnostics. Advancing requires acknowledging the notice.
+/// All health data and diagnostic logs stay on the device.
+/// Advancing requires acknowledging the notice.
 class OnboardingPrivacyStep extends ConsumerWidget {
   /// Creates an [OnboardingPrivacyStep].
   const OnboardingPrivacyStep({super.key});
@@ -42,7 +42,7 @@ class OnboardingPrivacyStep extends ConsumerWidget {
           const SizedBox(height: 8),
           Text(
             l10n?.onboardingPrivacySubtitle ??
-                'Measurements are stored only on this device. Anonymous crash reports help fix bugs — no account, no tracking, no ads.',
+                'Measurements and diagnostic logs are stored only on this device — no account required, no remote tracking, no ads.',
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),

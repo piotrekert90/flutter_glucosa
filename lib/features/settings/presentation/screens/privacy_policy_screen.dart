@@ -11,7 +11,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
   Future<void> _sendContactEmail(BuildContext context) async {
     final uri = Uri(
       scheme: 'mailto',
-      path: 'contact@example.com',
+      path: 'piotrekert90@gmail.com',
       queryParameters: <String, String>{'subject': 'Privacy Policy Inquiry'},
     );
     try {
@@ -89,7 +89,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    l10n?.appTitle ?? 'Flutter Boilerplate',
+                                    l10n?.appTitle ?? 'Glucosa',
                                     style: theme.textTheme.titleLarge?.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: colorScheme.onSurface,
@@ -130,7 +130,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                       'Local-First Data Storage',
                   body:
                       l10n?.privacyPolicySection1Body ??
-                      'All tasks and settings remain on your physical device.',
+                      'All health measurements and settings remain on your physical device.',
                 ),
                 const SizedBox(height: 12),
                 _PrivacySectionCard(
@@ -140,17 +140,17 @@ class PrivacyPolicyScreen extends StatelessWidget {
                       'Diagnostics & Crash Reports',
                   body:
                       l10n?.privacyPolicySection2Body ??
-                      'Anonymous crash logs may be collected to help improve reliability.',
+                      'Crash and diagnostic logs are stored exclusively on your device for troubleshooting and are never transmitted to external servers.',
                 ),
                 const SizedBox(height: 12),
                 _PrivacySectionCard(
                   icon: Icons.lock_outline,
                   title:
                       l10n?.privacyPolicySection3Title ??
-                      'Hardware Key Security',
+                      'Sandboxing & Biometric Security',
                   body:
                       l10n?.privacyPolicySection3Body ??
-                      'Sensitive device states utilize system-native sandboxing and keychain facilities.',
+                      'Your health records are protected within the operating system sandbox and optional biometric app lock.',
                 ),
                 const SizedBox(height: 12),
                 _PrivacySectionCard(
@@ -206,7 +206,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                         FilledButton.tonalIcon(
                           onPressed: () => _sendContactEmail(context),
                           icon: const Icon(Icons.send_outlined, size: 18),
-                          label: const Text('contact@example.com'),
+                          label: const Text('piotrekert90@gmail.com'),
                         ),
                       ],
                     ),

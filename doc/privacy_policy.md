@@ -1,21 +1,66 @@
 # Privacy Policy
 
-**Last Updated:** October 2, 2026
+**Last Updated:** October 3, 2026
 
-Glucosa is designed from the ground up to respect your privacy and secure your personal health records. This policy outlines how your health and diabetes monitoring data is handled.
+**Glucosa** is engineered with a **local-first** architecture to ensure you retain ownership and control over your metabolic health records. This Privacy Policy discloses how your personal health data is processed, stored, and protected.
 
-## 1. Local-First Data Storage
-All user data generated within the app is stored locally on your device. We do not transmit, sell, or sync your personal data to any remote servers without your explicit knowledge and action.
+---
 
-## 2. Telemetry and Diagnostic Data
-If enabled, anonymous diagnostic and crash logs may be collected solely for the purpose of identifying defects and improving app stability. No personally identifiable information (PII) or user content is captured in crash reports.
+## 1. Local-First Data Persistence
 
-## 3. Third-Party Services
-The application may utilize system-level capabilities (such as notifications or local authentication). These services operate locally within your device's operating system sandbox.
+All health measurements (blood glucose, HbA1c, blood pressure, ketones, cholesterol, and weight) and personal profile settings are stored primarily on your physical device using an embedded local database (Isar Community) within the operating system's application sandbox. Your data remains on your device unless you explicitly choose to export or synchronize it.
 
-## 4. Data Control and Deletion
-Because all data resides locally on your device, you have complete ownership and control over your records. You may export or permanently delete your data at any time by clearing application data or uninstalling the app.
+---
 
-## 5. Contact
-If you have any questions or concerns regarding this Privacy Policy, please contact:
-**privacy@example.com**
+## 2. Platform Health Integrations (Apple Health & Google Health Connect)
+
+Glucosa provides optional bidirectional integration with native platform health repositories:
+- **Apple HealthKit (iOS)**
+- **Google Health Connect (Android)**
+
+When you grant permissions, Glucosa accesses only the specific health metric types you explicitly authorize (blood glucose, blood pressure, ketones, and body weight):
+- **Read Access:** Used solely to display and aggregate historical health measurements within the application.
+- **Write Access:** Used solely to export measurements logged inside Glucosa to your system health store upon your request.
+- Glucosa **does not** transfer, sell, or use data received from HealthKit or Health Connect for advertising, marketing, or data broker purposes.
+
+---
+
+## 3. Home Screen Widgets
+
+Glucosa offers optional home screen widgets to provide quick glanceability of recent glucose levels:
+- Widget data is populated locally via secure inter-process communication (`home_widget`) on your device.
+- Because widget contents may be visible when your device is unlocked, you can configure or remove widgets from your home screen at any time.
+
+---
+
+## 4. Biometric Authentication & App Lock
+
+Glucosa offers optional biometric app lock (Face ID, Touch ID, or Android BiometricPrompt) and system PIN authentication (`local_auth`):
+- All biometric verification is handled exclusively by your device's native hardware security enclave.
+- Glucosa never accesses, collects, or stores your biometric raw data, fingerprints, or facial profiles.
+
+---
+
+## 5. Diagnostic Logging & Crash Reports
+
+- **On-Device Logging:** Glucosa maintains an on-device rotating diagnostic crash log (`crash_log.txt`, capped at 1 MB) to assist with troubleshooting application defects.
+- **Privacy Preservation:** Diagnostic logs record technical stack traces and exception types; they never contain personal health measurements, patient names, notes, or credentials.
+- **Optional Cloud Telemetry:** If remote crash reporting or cloud synchronization services (such as Firebase) are enabled, data transmission is strictly encrypted in transit (TLS 1.3) and limited to non-PII operational diagnostics unless explicit cloud backup is activated by the user.
+
+---
+
+## 6. Data Ownership, Portability & Deletion
+
+Your health data belongs entirely to you:
+- **Export:** You can export all your health records at any time using the built-in CSV export tool via the native system share sheet.
+- **Deletion:** You can permanently delete your data at any time by clearing application data in your device system settings or uninstalling the application.
+
+---
+
+## 7. Contact & Inquiries
+
+If you have questions, feedback, or concerns regarding this Privacy Policy or your data, please contact the developer:
+
+**Piotr Ekert**  
+Email: **piotrekert90@gmail.com**  
+GitHub: [https://github.com/piotrekert90/flutter_glucosa](https://github.com/piotrekert90/flutter_glucosa)

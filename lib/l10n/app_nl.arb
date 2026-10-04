@@ -175,7 +175,7 @@
   "@privacyPolicySection1Title": {
     "description": "Title of section 1 in privacy policy"
   },
-  "privacyPolicySection1Body": "Alle taken en instellingen blijven op je apparaat.",
+  "privacyPolicySection1Body": "Alle gezondheidsmetingen en instellingen blijven op je fysieke apparaat.",
   "@privacyPolicySection1Body": {
     "description": "Body of section 1 in privacy policy"
   },
@@ -183,15 +183,15 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Anonieme crashlogboeken kunnen worden verzameld om de betrouwbaarheid te verbeteren, zonder persoonlijke gegevens.",
+  "privacyPolicySection2Body": "Crash- en diagnoselogboeken worden uitsluitend op je apparaat opgeslagen voor probleemoplossing en nooit verzonden naar externe servers.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },
-  "privacyPolicySection3Title": "Hardwarebeveiliging",
+  "privacyPolicySection3Title": "Sandboxing & biometrische beveiliging",
   "@privacyPolicySection3Title": {
     "description": "Title of section 3 in privacy policy"
   },
-  "privacyPolicySection3Body": "Gevoelige apparaattoestanden gebruiken systeem-sandboxing en sleutelhanger.",
+  "privacyPolicySection3Body": "Je gezondheidsgegevens worden beschermd binnen de sandbox van het besturingssysteem en de optionele biometrische app-vergrendeling.",
   "@privacyPolicySection3Body": {
     "description": "Body of section 3 in privacy policy"
   },
@@ -1654,7 +1654,7 @@
   "@onboardingPrivacyTitle": {
     "description": "Title of onboarding privacy step"
   },
-  "onboardingPrivacySubtitle": "Metingen blijven alleen op dit apparaat. Anonieme crashrapporten helpen fouten te herstellen — geen account, geen tracking, geen advertenties.",
+  "onboardingPrivacySubtitle": "Metingen en diagnoselogboeken blijven alleen op dit apparaat — geen account vereist, geen tracking op afstand, geen advertenties.",
   "@onboardingPrivacySubtitle": {
     "description": "Subtitle of onboarding privacy step"
   },
