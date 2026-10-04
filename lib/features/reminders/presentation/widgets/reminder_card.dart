@@ -124,7 +124,10 @@ class ReminderCard extends StatelessWidget {
 
   (IconData, String) _metricInfo(MetricType type, AppLocalizations? l10n) {
     return switch (type) {
-      MetricType.glucose => (Icons.water_drop_outlined, 'Glucose'),
+      MetricType.glucose => (
+        Icons.water_drop_outlined,
+        l10n?.glucose ?? 'Glucose',
+      ),
       MetricType.hba1c => (Icons.biotech_outlined, l10n?.hba1c ?? 'HbA1c'),
       MetricType.bloodPressure => (
         Icons.favorite_outline,

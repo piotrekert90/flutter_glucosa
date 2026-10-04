@@ -1770,6 +1770,9 @@
   "@glucoseUnitMmolLDescription": {
     "description": "Full description for mmol/L glucose unit"
   },
+  "notificationChannelName": "Lembretes de medição",
+  "notificationChannelDescription": "Notificações agendadas lembrando você de registrar medições de saúde",
+  "notificationReminderBody": "Hora de registrar sua medição de {metric}.",
   "validationGlucoseRequired": "O valor de glicose é obrigatório",
   "validationGlucosePositive": "O valor de glicose deve ser positivo",
   "validationGlucoseRangeMgDl": "A glicemia deve estar entre 20 e 600 mg/dL",

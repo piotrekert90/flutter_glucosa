@@ -1770,6 +1770,9 @@
   "@glucoseUnitMmolLDescription": {
     "description": "Full description for mmol/L glucose unit"
   },
+  "notificationChannelName": "측정 알림",
+  "notificationChannelDescription": "건강 측정치 입력을 알려주는 정기 알림",
+  "notificationReminderBody": "{metric} 측정치를 기록할 시간입니다.",
   "validationGlucoseRequired": "혈당 값을 입력해야 합니다",
   "validationGlucosePositive": "혈당 값은 양수여야 합니다",
   "validationGlucoseRangeMgDl": "혈당 측정치는 20~600 mg/dL 사이여야 합니다",

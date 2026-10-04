@@ -1,10 +1,14 @@
+import 'dart:ui';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../../../core/config/app_environment.dart';
+import '../../../../core/domain/enums/metric_type.dart';
 import '../../../../core/utils/app_logger.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/reminder.dart';
 import '../../domain/services/notification_service.dart';
 
@@ -14,12 +18,16 @@ class NotificationServiceImpl implements NotificationService {
 
   /// Optional timezone resolver for testing and platform override.
   final Future<String> Function()? timezoneProvider;
+
+  /// Optional localizations provider for testing and platform override.
+  final AppLocalizations Function()? localizationsProvider;
   bool _initialized = false;
 
-  /// Creates a [NotificationServiceImpl] with optional [_plugin] and [timezoneProvider] for testing.
+  /// Creates a [NotificationServiceImpl] with optional [_plugin], [timezoneProvider], and [localizationsProvider].
   NotificationServiceImpl({
     FlutterLocalNotificationsPlugin? plugin,
     this.timezoneProvider,
+    this.localizationsProvider,
   }) : _plugin = plugin ?? FlutterLocalNotificationsPlugin();
 
   @override
@@ -109,12 +117,15 @@ class NotificationServiceImpl implements NotificationService {
       scheduledDate = scheduledDate.add(const Duration(days: 1));
     }
 
+    final l10n = localizationsProvider != null
+        ? localizationsProvider!()
+        : lookupAppLocalizations(PlatformDispatcher.instance.locale);
+
     final notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
         AppConfig.notificationChannelId,
-        'Measurement Reminders',
-        channelDescription:
-            'Scheduled notifications reminding you to log health measurements',
+        l10n.notificationChannelName,
+        channelDescription: l10n.notificationChannelDescription,
         importance: Importance.high,
         priority: Priority.high,
       ),
@@ -147,6 +158,7 @@ class NotificationServiceImpl implements NotificationService {
         scheduledDate: scheduledDate,
         notificationDetails: notificationDetails,
         scheduleMode: scheduleMode,
+        l10n: l10n,
       );
     } catch (e, st) {
       if (scheduleMode == AndroidScheduleMode.exactAllowWhileIdle) {
@@ -160,6 +172,7 @@ class NotificationServiceImpl implements NotificationService {
           scheduledDate: scheduledDate,
           notificationDetails: notificationDetails,
           scheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+          l10n: l10n,
         );
       } else {
         rethrow;
@@ -172,11 +185,13 @@ class NotificationServiceImpl implements NotificationService {
     required tz.TZDateTime scheduledDate,
     required NotificationDetails notificationDetails,
     required AndroidScheduleMode scheduleMode,
+    required AppLocalizations l10n,
   }) {
+    final metricName = _metricLabel(reminder.metricType, l10n);
     return _plugin.zonedSchedule(
       id: reminder.id,
       title: reminder.label,
-      body: 'Time to log your ${reminder.metricType.name} measurement.',
+      body: l10n.notificationReminderBody(metricName),
       scheduledDate: scheduledDate,
       notificationDetails: notificationDetails,
       androidScheduleMode: scheduleMode,
@@ -184,6 +199,17 @@ class NotificationServiceImpl implements NotificationService {
           ? null
           : DateTimeComponents.time,
     );
+  }
+
+  String _metricLabel(MetricType type, AppLocalizations l10n) {
+    return switch (type) {
+      MetricType.glucose => l10n.glucose,
+      MetricType.hba1c => l10n.hba1c,
+      MetricType.bloodPressure => l10n.bloodPressure,
+      MetricType.ketones => l10n.ketones,
+      MetricType.cholesterol => l10n.cholesterol,
+      MetricType.weight => l10n.weight,
+    };
   }
 
   @override

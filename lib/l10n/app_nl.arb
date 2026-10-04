@@ -1770,6 +1770,9 @@
   "@glucoseUnitMmolLDescription": {
     "description": "Full description for mmol/L glucose unit"
   },
+  "notificationChannelName": "Metingsherinneringen",
+  "notificationChannelDescription": "Geplande meldingen die u eraan herinneren gezondheidsmetingen vast te leggen",
+  "notificationReminderBody": "Tijd om uw {metric}-meting vast te leggen.",
   "validationGlucoseRequired": "Glucosewaarde is verplicht",
   "validationGlucosePositive": "Glucosewaarde moet positief zijn",
   "validationGlucoseRangeMgDl": "Glucosemeting moet tussen 20 en 600 mg/dL liggen",

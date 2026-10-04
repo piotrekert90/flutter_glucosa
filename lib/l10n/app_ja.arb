@@ -1770,6 +1770,9 @@
   "@glucoseUnitMmolLDescription": {
     "description": "Full description for mmol/L glucose unit"
   },
+  "notificationChannelName": "測定リマインダー",
+  "notificationChannelDescription": "健康測定値の記録を促す定期通知",
+  "notificationReminderBody": "{metric}の測定値を記録する時間です。",
   "validationGlucoseRequired": "血糖値の入力は必須です",
   "validationGlucosePositive": "血糖値は正の数値である必要があります",
   "validationGlucoseRangeMgDl": "血糖値は20〜600 mg/dLの範囲である必要があります",

@@ -1770,6 +1770,23 @@
   "@glucoseUnitMmolLDescription": {
     "description": "Full description for mmol/L glucose unit"
   },
+  "notificationChannelName": "Measurement Reminders",
+  "@notificationChannelName": {
+    "description": "Android notification channel name for measurement reminders"
+  },
+  "notificationChannelDescription": "Scheduled notifications reminding you to log health measurements",
+  "@notificationChannelDescription": {
+    "description": "Android notification channel description for measurement reminders"
+  },
+  "notificationReminderBody": "Time to log your {metric} measurement.",
+  "@notificationReminderBody": {
+    "description": "Notification body text reminding user to record a health metric",
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      }
+    }
+  },
   "validationGlucoseRequired": "Glucose value is required",
   "@validationGlucoseRequired": {
     "description": "Validation error when glucose value is omitted"
