@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/presentation/theme/app_feedback_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/cholesterol_reading.dart';
+import '../../domain/utils/cholesterol_status_resolver.dart';
+import '../extensions/cholesterol_status_ui_extension.dart';
 
 /// Presentation card displaying an individual [CholesterolReading] with clinical status badge.
 class CholesterolReadingCard extends StatelessWidget {
@@ -19,34 +20,16 @@ class CholesterolReadingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     final displayValue = reading.totalMgDl.toString();
     const unitLabel = 'mg/dL';
 
     final formattedDate = DateFormat.yMMMd().format(reading.createdAt);
 
-    // Clinical status badge based on total cholesterol:
-    // Normal (<200), Borderline (200-239), High (≥240).
-    final Color badgeColor;
-    final String badgeLabel;
-    if (reading.totalMgDl < 200) {
-      badgeColor = isDark
-          ? AppFeedbackTheme.successForegroundDark
-          : AppFeedbackTheme.successForegroundLight;
-      badgeLabel = l10n?.cholesterolStatusNormal ?? 'Normal (<200)';
-    } else if (reading.totalMgDl < 240) {
-      badgeColor = isDark
-          ? AppFeedbackTheme.warningForegroundDark
-          : AppFeedbackTheme.warningForegroundLight;
-      badgeLabel = l10n?.cholesterolStatusElevated ?? 'Borderline (200-239)';
-    } else {
-      badgeColor = isDark
-          ? AppFeedbackTheme.errorForegroundDark
-          : AppFeedbackTheme.errorForegroundLight;
-      badgeLabel = l10n?.cholesterolStatusHigh ?? 'High (≥240)';
-    }
+    final status = CholesterolStatusResolver.resolve(reading.totalMgDl);
+    final badgeColor = status.foregroundColor(context);
+    final badgeLabel = status.localizedName(l10n);
 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
