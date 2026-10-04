@@ -52,7 +52,7 @@ final class WidgetSyncObserverProvider
 }
 
 String _$widgetSyncObserverHash() =>
-    r'7ba8915a66ddaa307e1ce2c7893b816863572bb4';
+    r'c949e831cd131cede9653a4a9b87884fbbc94591';
 
 /// Observer pushing glucose updates to native home screen widgets.
 ///
