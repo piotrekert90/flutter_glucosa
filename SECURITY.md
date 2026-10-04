@@ -22,6 +22,6 @@ If you believe you have discovered a security vulnerability in this project, ple
 
 ## Security Architecture Highlights
 
-- **Local-First & Offline:** Application data remains strictly on the device unless explicitly exported or synchronized by the user.
-- **Hardware-Backed Protection:** Sensitive keychains and tokens utilize platform-native hardware security modules (Android Keystore / iOS Keychain).
-- **Privacy-First Telemetry:** Any telemetry or analytics must never include raw personal information, credentials, or sensitive user data.
+- **Local-First Data Isolation:** Health readings are persisted locally within the protected operating system sandbox and are never transmitted without explicit user action.
+- **Hardware-Backed Biometrics & Secure Storage:** Biometric authentication leverages the platform hardware security enclave (Android BiometricPrompt / iOS LocalAuthentication), while sensitive flags and keys are backed by platform secure storage (Android Keystore / iOS Keychain via `flutter_secure_storage`).
+- **Privacy-Preserving Diagnostics:** Diagnostic crash logs are stored strictly on-device in a rotating local file (`crash_log.txt`) and never contain personal health measurements, patient names, notes, or credentials.
