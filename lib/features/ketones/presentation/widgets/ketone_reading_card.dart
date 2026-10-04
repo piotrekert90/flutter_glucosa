@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/presentation/theme/app_feedback_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/ketone_reading.dart';
+import '../../domain/utils/ketone_status_resolver.dart';
+import '../extensions/ketone_status_ui_extension.dart';
 
 /// Presentation card displaying an individual [KetoneReading] with clinical status badge.
 class KetoneReadingCard extends StatelessWidget {
@@ -19,34 +20,16 @@ class KetoneReadingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     final displayValue = reading.readingMmolL.toStringAsFixed(1);
     const unitLabel = 'mmol/L';
 
     final formattedDate = DateFormat.yMMMd().format(reading.createdAt);
 
-    // Clinical status badge per audit ketone levels:
-    // Normal (<0.6), Elevated (0.6-1.5), High (>1.5, incl. DKA risk).
-    final Color badgeColor;
-    final String badgeLabel;
-    if (reading.readingMmolL < 0.6) {
-      badgeColor = isDark
-          ? AppFeedbackTheme.successForegroundDark
-          : AppFeedbackTheme.successForegroundLight;
-      badgeLabel = l10n?.ketoneStatusNormal ?? 'Normal (<0.6)';
-    } else if (reading.readingMmolL <= 1.5) {
-      badgeColor = isDark
-          ? AppFeedbackTheme.warningForegroundDark
-          : AppFeedbackTheme.warningForegroundLight;
-      badgeLabel = l10n?.ketoneStatusElevated ?? 'Elevated (0.6-1.5)';
-    } else {
-      badgeColor = isDark
-          ? AppFeedbackTheme.errorForegroundDark
-          : AppFeedbackTheme.errorForegroundLight;
-      badgeLabel = l10n?.ketoneStatusHigh ?? 'High (>1.5)';
-    }
+    final status = KetoneStatusResolver.resolve(reading.readingMmolL);
+    final badgeColor = status.foregroundColor(context);
+    final badgeLabel = status.localizedName(l10n);
 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
