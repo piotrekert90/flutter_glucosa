@@ -100,7 +100,9 @@ void main() {
       notifier.selectGlucoseUnit(GlucoseUnit.mmolL);
       notifier.selectRangePreset(GlucoseRangePreset.ukNice);
 
-      final (success, failure) = await notifier.complete();
+      final (success, failure) = await notifier.complete(
+        reminderLabel: 'Glucose check',
+      );
 
       expect(success, isTrue);
       expect(failure, isNull);

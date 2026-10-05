@@ -109,7 +109,7 @@ class _OnboardingCsvImportStepState
     } else {
       AppSnackBar.show(
         context,
-        message: failure?.message ?? 'Failed to save profile',
+        message: failure?.message ?? l10n.failedToSaveProfile,
         type: SnackBarType.error,
       );
     }

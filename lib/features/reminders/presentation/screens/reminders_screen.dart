@@ -133,7 +133,7 @@ class RemindersScreen extends ConsumerWidget {
                         AppSnackBar.show(
                           context,
                           message:
-                              failure?.message ?? 'Failed to update reminder',
+                              failure?.message ?? l10n.failedToUpdateReminder,
                           type: SnackBarType.error,
                         );
                       }
@@ -316,7 +316,7 @@ class RemindersScreen extends ConsumerWidget {
                                   context,
                                   message:
                                       failure?.message ??
-                                      'Failed to save reminder',
+                                      l10n.failedToSaveReminder,
                                   type: SnackBarType.error,
                                 );
                               }

@@ -179,7 +179,7 @@ class Onboarding extends _$Onboarding {
   /// Also stores the optional baseline glucose reading and creates the
   /// configured daily reminder labeled [reminderLabel]. Returns the first
   /// failure encountered, if any.
-  Future<CommandResult> complete({String? reminderLabel}) async {
+  Future<CommandResult> complete({required String reminderLabel}) async {
     final range = switch (state.rangePreset) {
       GlucoseRangePreset.ada => const GlucoseTargetRange.ada(),
       GlucoseRangePreset.aace => const GlucoseTargetRange.aace(),
@@ -220,7 +220,7 @@ class Onboarding extends _$Onboarding {
           .read(reminderRepositoryProvider)
           .add(
             Reminder(
-              label: reminderLabel ?? 'Glucose check',
+              label: reminderLabel,
               metricType: MetricType.glucose,
               hourOfDay: state.reminderHour!,
               minute: state.reminderMinute!,

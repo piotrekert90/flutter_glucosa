@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../theme/app_chart_theme.dart';
+import '../../../l10n/app_localizations.dart';
 
 /// Single data series rendered by [GlucosaLineChart].
 class ChartLineSeries {
@@ -67,6 +68,7 @@ class GlucosaLineChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final nonEmpty = series.where((s) => s.spots.isNotEmpty).toList();
     if (nonEmpty.isEmpty) return const SizedBox.shrink();
 
@@ -76,7 +78,7 @@ class GlucosaLineChart extends StatelessWidget {
 
     return Semantics(
       container: true,
-      label: semanticLabel ?? 'Trend chart with $pointCount data points',
+      label: semanticLabel ?? l10n.trendChartSemantics(pointCount),
       child: SizedBox(
         height: height,
         child: LineChart(

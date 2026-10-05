@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/presentation/theme/app_chart_theme.dart';
 import 'package:flutter_glucosa/core/presentation/widgets/glucosa_line_chart.dart';
+import 'package:flutter_glucosa/l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const _spots = [FlSpot(0, 110), FlSpot(1, 150), FlSpot(2, 130)];
@@ -27,6 +28,8 @@ void main() {
     ) async {
       await tester.pumpWidget(
         const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: GlucosaLineChart(
               series: [ChartLineSeries(spots: _spots, color: Colors.blue)],
@@ -53,6 +56,8 @@ void main() {
 
       await tester.pumpWidget(
         const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: GlucosaLineChart(
               series: [
@@ -76,6 +81,8 @@ void main() {
     testWidgets('renders nothing when all series are empty', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: GlucosaLineChart(series: [], xLabels: []),
           ),
@@ -89,6 +96,8 @@ void main() {
     testWidgets('renders single point without crashing', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: GlucosaLineChart(
               series: [
