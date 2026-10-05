@@ -8,6 +8,7 @@ import '../../../../core/presentation/widgets/app_empty_view.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
+import '../../../../core/router/app_routes.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../blood_pressure/domain/entities/blood_pressure_reading.dart';
 import '../../../blood_pressure/presentation/providers/blood_pressure_reading_list_notifier.dart';
@@ -228,37 +229,55 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
         final reading = entry.reading as GlucoseReading;
         return GlucoseReadingCard(
           reading: reading,
-          onTap: () => context.push('/glucose/edit/${reading.id}'),
+          onTap: () => context.pushNamed(
+            AppRoute.editGlucose.name,
+            pathParameters: {'id': '${reading.id}'},
+          ),
         );
       case MetricType.hba1c:
         final reading = entry.reading as HbA1cReading;
         return HbA1cReadingCard(
           reading: reading,
-          onTap: () => context.push('/hba1c/edit/${reading.id}'),
+          onTap: () => context.pushNamed(
+            AppRoute.editHba1c.name,
+            pathParameters: {'id': '${reading.id}'},
+          ),
         );
       case MetricType.bloodPressure:
         final reading = entry.reading as BloodPressureReading;
         return BloodPressureReadingCard(
           reading: reading,
-          onTap: () => context.push('/blood-pressure/edit/${reading.id}'),
+          onTap: () => context.pushNamed(
+            AppRoute.editBloodPressure.name,
+            pathParameters: {'id': '${reading.id}'},
+          ),
         );
       case MetricType.ketones:
         final reading = entry.reading as KetoneReading;
         return KetoneReadingCard(
           reading: reading,
-          onTap: () => context.push('/ketones/edit/${reading.id}'),
+          onTap: () => context.pushNamed(
+            AppRoute.editKetones.name,
+            pathParameters: {'id': '${reading.id}'},
+          ),
         );
       case MetricType.cholesterol:
         final reading = entry.reading as CholesterolReading;
         return CholesterolReadingCard(
           reading: reading,
-          onTap: () => context.push('/cholesterol/edit/${reading.id}'),
+          onTap: () => context.pushNamed(
+            AppRoute.editCholesterol.name,
+            pathParameters: {'id': '${reading.id}'},
+          ),
         );
       case MetricType.weight:
         final reading = entry.reading as WeightReading;
         return WeightReadingCard(
           reading: reading,
-          onTap: () => context.push('/weight/edit/${reading.id}'),
+          onTap: () => context.pushNamed(
+            AppRoute.editWeight.name,
+            pathParameters: {'id': '${reading.id}'},
+          ),
         );
     }
   }
