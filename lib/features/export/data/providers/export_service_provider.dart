@@ -6,7 +6,7 @@ import '../../../glucose/data/providers/glucose_reading_repository_provider.dart
 import '../../../hba1c/data/providers/hba1c_reading_repository_provider.dart';
 import '../../../ketones/data/providers/ketone_reading_repository_provider.dart';
 import '../../../weight/data/providers/weight_reading_repository_provider.dart';
-import '../../data/services/export_service_impl.dart';
+import '../services/export_service_impl.dart';
 import '../../domain/services/export_service.dart';
 
 part 'export_service_provider.g.dart';

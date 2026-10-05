@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/router/app_router.dart';
 import 'package:flutter_glucosa/core/router/app_routes.dart';
-import 'package:flutter_glucosa/features/export/presentation/providers/export_service_provider.dart';
+import 'package:flutter_glucosa/features/export/data/providers/export_service_provider.dart';
 import 'package:flutter_glucosa/features/export/presentation/screens/export_screen.dart';
 import 'package:flutter_glucosa/features/calendar/presentation/screens/calendar_screen.dart';
 import 'package:flutter_glucosa/features/glucose/data/providers/glucose_reading_repository_provider.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_glucosa/features/hba1c/data/providers/hba1c_reading_repo
 import 'package:flutter_glucosa/features/hba1c/presentation/screens/hba1c_calculator_screen.dart';
 import 'package:flutter_glucosa/features/history/presentation/screens/history_screen.dart';
 import 'package:flutter_glucosa/features/overview/presentation/screens/overview_screen.dart';
-import 'package:flutter_glucosa/features/reminders/presentation/providers/reminder_repository_provider.dart';
+import 'package:flutter_glucosa/features/reminders/data/providers/reminder_repository_provider.dart';
 import 'package:flutter_glucosa/features/reminders/presentation/screens/reminders_screen.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';

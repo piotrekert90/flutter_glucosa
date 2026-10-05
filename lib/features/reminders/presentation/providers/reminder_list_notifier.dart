@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/result.dart';
 import '../../domain/entities/reminder.dart';
-import 'reminder_repository_provider.dart';
+import '../../data/providers/reminder_repository_provider.dart';
 
 part 'reminder_list_notifier.g.dart';
 

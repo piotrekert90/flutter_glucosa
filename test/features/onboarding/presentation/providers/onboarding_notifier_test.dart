@@ -1,7 +1,7 @@
 import 'package:flutter_glucosa/core/domain/enums/enums.dart';
 import 'package:flutter_glucosa/features/glucose/data/providers/glucose_reading_repository_provider.dart';
 import 'package:flutter_glucosa/features/onboarding/presentation/providers/onboarding_notifier.dart';
-import 'package:flutter_glucosa/features/reminders/presentation/providers/reminder_repository_provider.dart';
+import 'package:flutter_glucosa/features/reminders/data/providers/reminder_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
 import 'package:flutter_glucosa/features/settings/domain/repositories/user_profile_repository.dart';

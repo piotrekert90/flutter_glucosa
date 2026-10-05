@@ -10,7 +10,7 @@ import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../glucose/domain/services/csv_glucose_importer.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../providers/csv_import_service_provider.dart';
+import '../../data/providers/csv_import_service_provider.dart';
 import '../providers/export_notifier.dart';
 import '../providers/export_state.dart';
 import '../widgets/csv_import_preview_dialog.dart';

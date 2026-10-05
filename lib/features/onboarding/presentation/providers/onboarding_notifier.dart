@@ -5,7 +5,7 @@ import '../../../../core/domain/value_objects/glucose_target_range.dart';
 import '../../../../core/errors/result.dart';
 import '../../../glucose/data/providers/glucose_reading_repository_provider.dart';
 import '../../../glucose/domain/entities/glucose_reading.dart';
-import '../../../reminders/presentation/providers/reminder_repository_provider.dart';
+import '../../../reminders/data/providers/reminder_repository_provider.dart';
 import '../../../reminders/domain/entities/reminder.dart';
 import '../../../settings/data/providers/user_profile_repository_provider.dart';
 import '../../../settings/domain/entities/user_profile.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/domain/enums/metric_type.dart';
 import 'package:flutter_glucosa/features/reminders/domain/entities/reminder.dart';
 import 'package:flutter_glucosa/features/reminders/domain/repositories/reminder_repository.dart';
-import 'package:flutter_glucosa/features/reminders/presentation/providers/reminder_repository_provider.dart';
+import 'package:flutter_glucosa/features/reminders/data/providers/reminder_repository_provider.dart';
 import 'package:flutter_glucosa/features/reminders/presentation/screens/reminders_screen.dart';
 import 'package:flutter_glucosa/features/reminders/presentation/widgets/reminder_card.dart';
 import 'package:flutter_glucosa/l10n/app_localizations.dart';

@@ -5,7 +5,7 @@ import 'package:flutter_glucosa/core/domain/enums/metric_type.dart';
 import 'package:flutter_glucosa/core/domain/enums/weight_unit.dart';
 import 'package:flutter_glucosa/features/export/domain/models/date_range_filter.dart';
 import 'package:flutter_glucosa/features/export/presentation/providers/export_notifier.dart';
-import 'package:flutter_glucosa/features/export/presentation/providers/export_service_provider.dart';
+import 'package:flutter_glucosa/features/export/data/providers/export_service_provider.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

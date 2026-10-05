@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../export/presentation/providers/csv_import_service_provider.dart';
+import '../../../export/data/providers/csv_import_service_provider.dart';
 import '../../../export/presentation/widgets/csv_import_preview_dialog.dart';
 import '../../../glucose/domain/services/csv_glucose_importer.dart';
 import '../providers/onboarding_notifier.dart';

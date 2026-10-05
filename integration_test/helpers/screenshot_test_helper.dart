@@ -17,7 +17,7 @@ import 'package:flutter_glucosa/features/hba1c/domain/entities/hba1c_reading.dar
 import 'package:flutter_glucosa/features/ketones/data/providers/ketone_reading_repository_provider.dart';
 import 'package:flutter_glucosa/features/ketones/domain/entities/ketone_reading.dart';
 import 'package:flutter_glucosa/features/reminders/domain/entities/reminder.dart';
-import 'package:flutter_glucosa/features/reminders/presentation/providers/reminder_repository_provider.dart';
+import 'package:flutter_glucosa/features/reminders/data/providers/reminder_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
 import 'package:flutter_glucosa/features/weight/data/providers/weight_reading_repository_provider.dart';

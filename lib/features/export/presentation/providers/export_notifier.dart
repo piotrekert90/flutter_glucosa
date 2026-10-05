@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/domain/enums/metric_type.dart';
 import '../../../settings/data/providers/user_profile_repository_provider.dart';
 import '../../domain/models/date_range_filter.dart';
-import 'export_service_provider.dart';
+import '../../data/providers/export_service_provider.dart';
 import 'export_state.dart';
 
 part 'export_notifier.g.dart';

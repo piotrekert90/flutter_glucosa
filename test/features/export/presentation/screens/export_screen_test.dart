@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_glucosa/features/export/presentation/providers/export_service_provider.dart';
+import 'package:flutter_glucosa/features/export/data/providers/export_service_provider.dart';
 import 'package:flutter_glucosa/features/export/presentation/screens/export_screen.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';

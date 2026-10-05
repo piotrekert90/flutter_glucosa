@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/providers/isar_provider.dart';
-import '../../data/repositories/reminder_repository_impl.dart';
+import '../repositories/reminder_repository_impl.dart';
 import '../../domain/repositories/reminder_repository.dart';
 import 'notification_service_provider.dart';
 
