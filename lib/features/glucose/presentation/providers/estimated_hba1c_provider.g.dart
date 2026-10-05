@@ -9,16 +9,25 @@ part of 'estimated_hba1c_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 /// Clock provider supplying the current timestamp, overridable in tests.
+///
+/// Invalidates itself at the next local midnight so the 90-day window of
+/// [estimatedHbA1c] keeps sliding while the app stays open across days.
 
 @ProviderFor(estimatedHbA1cClock)
 final estimatedHbA1cClockProvider = EstimatedHbA1cClockProvider._();
 
 /// Clock provider supplying the current timestamp, overridable in tests.
+///
+/// Invalidates itself at the next local midnight so the 90-day window of
+/// [estimatedHbA1c] keeps sliding while the app stays open across days.
 
 final class EstimatedHbA1cClockProvider
     extends $FunctionalProvider<DateTime, DateTime, DateTime>
     with $Provider<DateTime> {
   /// Clock provider supplying the current timestamp, overridable in tests.
+  ///
+  /// Invalidates itself at the next local midnight so the 90-day window of
+  /// [estimatedHbA1c] keeps sliding while the app stays open across days.
   EstimatedHbA1cClockProvider._()
     : super(
         from: null,
@@ -53,7 +62,7 @@ final class EstimatedHbA1cClockProvider
 }
 
 String _$estimatedHbA1cClockHash() =>
-    r'31ae7092e12caeb493c93a64f695cfef30620ff4';
+    r'26ccc5e9a701314514513b0fb2c3da9a78cb3673';
 
 /// Future provider calculating estimated HbA1c percentage from the 90-day average of glucose readings.
 ///
