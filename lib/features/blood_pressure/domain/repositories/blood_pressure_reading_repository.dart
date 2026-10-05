@@ -17,6 +17,16 @@ abstract interface class BloodPressureReadingRepository {
   /// Retrieves all recorded blood pressure measurements in descending chronological order.
   Future<List<BloodPressureReading>> getAll();
 
+  /// Retrieves blood pressure measurements recorded within [start] to [end]
+  /// (inclusive) in descending chronological order, using the `createdAt` index.
+  ///
+  /// [start] Lower bound of the interval.
+  /// [end] Upper bound of the interval.
+  Future<List<BloodPressureReading>> getByDateRange(
+    DateTime start,
+    DateTime end,
+  );
+
   /// Retrieves a single blood pressure measurement by its [id].
   ///
   /// [id] Primary identifier of the reading.

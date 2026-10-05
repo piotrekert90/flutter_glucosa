@@ -17,6 +17,13 @@ abstract interface class HbA1cReadingRepository {
   /// Retrieves all recorded HbA1c measurements in descending chronological order.
   Future<List<HbA1cReading>> getAll();
 
+  /// Retrieves HbA1c measurements recorded within [start] to [end]
+  /// (inclusive) in descending chronological order, using the `createdAt` index.
+  ///
+  /// [start] Lower bound of the interval.
+  /// [end] Upper bound of the interval.
+  Future<List<HbA1cReading>> getByDateRange(DateTime start, DateTime end);
+
   /// Retrieves a single HbA1c measurement by its [id].
   ///
   /// [id] Primary identifier of the reading.

@@ -17,6 +17,13 @@ abstract interface class GlucoseReadingRepository {
   /// Retrieves all recorded blood glucose measurements in descending chronological order.
   Future<List<GlucoseReading>> getAll();
 
+  /// Retrieves blood glucose measurements recorded within [start] to [end]
+  /// (inclusive) in descending chronological order, using the `createdAt` index.
+  ///
+  /// [start] Lower bound of the interval.
+  /// [end] Upper bound of the interval.
+  Future<List<GlucoseReading>> getByDateRange(DateTime start, DateTime end);
+
   /// Retrieves a single blood glucose measurement by its [id].
   ///
   /// [id] Primary identifier of the reading.

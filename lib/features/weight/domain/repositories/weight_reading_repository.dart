@@ -17,6 +17,13 @@ abstract interface class WeightReadingRepository {
   /// Retrieves all recorded weight measurements in descending chronological order.
   Future<List<WeightReading>> getAll();
 
+  /// Retrieves weight measurements recorded within [start] to [end]
+  /// (inclusive) in descending chronological order, using the `createdAt` index.
+  ///
+  /// [start] Lower bound of the interval.
+  /// [end] Upper bound of the interval.
+  Future<List<WeightReading>> getByDateRange(DateTime start, DateTime end);
+
   /// Retrieves a single weight measurement by its [id].
   ///
   /// [id] Primary identifier of the reading.

@@ -17,6 +17,13 @@ abstract interface class CholesterolReadingRepository {
   /// Retrieves all recorded cholesterol measurements in descending chronological order.
   Future<List<CholesterolReading>> getAll();
 
+  /// Retrieves cholesterol measurements recorded within [start] to [end]
+  /// (inclusive) in descending chronological order, using the `createdAt` index.
+  ///
+  /// [start] Lower bound of the interval.
+  /// [end] Upper bound of the interval.
+  Future<List<CholesterolReading>> getByDateRange(DateTime start, DateTime end);
+
   /// Retrieves a single cholesterol measurement by its [id].
   ///
   /// [id] Primary identifier of the reading.
