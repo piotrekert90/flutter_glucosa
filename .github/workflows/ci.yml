@@ -82,6 +82,8 @@ jobs:
         run: dart run custom_lint
 
       - name: Run unit and widget tests
+        env:
+          LD_LIBRARY_PATH: ${{ github.workspace }}
         run: flutter test --coverage --exclude-tags "golden,screenshot"
 
       - name: Build Android Debug APK
