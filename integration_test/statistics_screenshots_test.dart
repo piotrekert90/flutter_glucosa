@@ -88,8 +88,10 @@ void main() {
             await tester.pump();
             await tester.pump(const Duration(milliseconds: 300));
 
-            // Scroll down so habits and milestone section are prominent
-            final scrollable = find.byType(SingleChildScrollView);
+            // Scroll down so habits and milestone section are prominent.
+            // NOTE: nested chip rows are scrollable too — the page scroll
+            // is the outermost match.
+            final scrollable = find.byType(SingleChildScrollView).first;
             if (scrollable.evaluate().isNotEmpty) {
               await tester.drag(scrollable, const Offset(0, -350));
               await tester.pumpAndSettle();
@@ -309,7 +311,7 @@ void main() {
             await tester.pump();
             await tester.pump(const Duration(milliseconds: 300));
 
-            final scrollable = find.byType(SingleChildScrollView);
+            final scrollable = find.byType(SingleChildScrollView).first;
             expect(scrollable, findsOneWidget);
 
             for (int i = 0; i < 4; i++) {
