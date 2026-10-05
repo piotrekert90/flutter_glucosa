@@ -13,6 +13,16 @@
 
 **Glucosa** is an offline-first diabetes and metabolic health tracking application built with **Flutter**, **Riverpod 3.x**, **Isar Community**, and **Material 3**. Designed for individuals managing diabetes (Type 1, Type 2, Gestational, LADA), Glucosa provides multi-metric tracking, trend analysis, clinical calculators, recurring reminders, calendar overview, device health integrations, and CSV data export/import.
 
+## 📸 Screenshots
+
+| Overview | History | Statistics |
+|:---:|:---:|:---:|
+| <img src="doc/screenshots/overview.png" width="220" alt="Overview"> | <img src="doc/screenshots/history.png" width="220" alt="History"> | <img src="doc/screenshots/statistics.png" width="220" alt="Statistics"> |
+
+| Calendar | Reminders | Settings |
+|:---:|:---:|:---:|
+| <img src="doc/screenshots/calendar.png" width="220" alt="Calendar"> | <img src="doc/screenshots/reminders.png" width="220" alt="Reminders"> | <img src="doc/screenshots/settings.png" width="220" alt="Settings"> |
+
 ---
 
 ## 🏛️ Architecture & Design Principles
