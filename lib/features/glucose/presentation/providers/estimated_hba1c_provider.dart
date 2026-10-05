@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/domain/utils/glucose_converter.dart';
@@ -12,8 +14,17 @@ const int estimatedHbA1cWindowDays = 90;
 const int minReadingsForEstimatedHbA1c = 3;
 
 /// Clock provider supplying the current timestamp, overridable in tests.
+///
+/// Invalidates itself at the next local midnight so the 90-day window of
+/// [estimatedHbA1c] keeps sliding while the app stays open across days.
 @riverpod
-DateTime estimatedHbA1cClock(Ref ref) => DateTime.now();
+DateTime estimatedHbA1cClock(Ref ref) {
+  final now = DateTime.now();
+  final nextMidnight = DateTime(now.year, now.month, now.day + 1);
+  final timer = Timer(nextMidnight.difference(now), ref.invalidateSelf);
+  ref.onDispose(timer.cancel);
+  return now;
+}
 
 /// Future provider calculating estimated HbA1c percentage from the 90-day average of glucose readings.
 ///
