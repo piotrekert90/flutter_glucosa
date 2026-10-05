@@ -25,12 +25,18 @@ class App extends ConsumerStatefulWidget {
   ConsumerState<App> createState() => _AppState();
 }
 
-class _AppState extends ConsumerState<App> {
+class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
   BiometricLockObserver? _biometricObserver;
+
+  /// Whether the app is currently backgrounded. When true and the biometric
+  /// lock feature is enabled, an opaque overlay hides health data from the
+  /// OS task-switcher snapshot, independent of the authentication grace period.
+  bool _obscured = false;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _biometricObserver = BiometricLockObserver(
       isBiometricLockEnabled: () =>
           ref.read(userProfileProvider).value?.isBiometricLockEnabled ?? false,
@@ -43,8 +49,20 @@ class _AppState extends ConsumerState<App> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _biometricObserver?.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final obscured =
+        state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.hidden;
+    if (obscured != _obscured) {
+      setState(() => _obscured = obscured);
+    }
   }
 
   @override
@@ -69,12 +87,20 @@ class _AppState extends ConsumerState<App> {
         profile?.themeMode ?? UserThemeMode.system,
       ),
       builder: (context, child) {
+        final hideForPrivacy =
+            _obscured && (profile?.isBiometricLockEnabled ?? false);
         return Stack(
           children: [
             if (child != null)
               ExcludeSemantics(
                 excluding: isLocked,
                 child: AbsorbPointer(absorbing: isLocked, child: child),
+              ),
+            if (hideForPrivacy && !isLocked)
+              Positioned.fill(
+                child: ColoredBox(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                ),
               ),
             if (isLocked) const BiometricShieldScreen(),
           ],

@@ -112,7 +112,20 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
             child: Text(l10n.cancel),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
+            onPressed: () async {
+              final result = await BiometricService.instance.authenticate(
+                localizedReason: l10n.biometricReason,
+                authMessages: BiometricService.createAuthMessages(l10n),
+              );
+              if (!dialogContext.mounted) return;
+              if (result == BiometricAuthResult.success) {
+                Navigator.pop(dialogContext, true);
+              } else {
+                ScaffoldMessenger.of(dialogContext).showSnackBar(
+                  SnackBar(content: Text(l10n.biometricNotAvailable)),
+                );
+              }
+            },
             style: TextButton.styleFrom(
               foregroundColor: Theme.of(dialogContext).colorScheme.error,
             ),

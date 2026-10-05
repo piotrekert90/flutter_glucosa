@@ -151,12 +151,19 @@ void main() {
     });
 
     testWidgets(
-      'terminal failure opens lock recovery dialog and user can disable lock',
+      'recovery disable requires fresh authentication before disabling lock',
       (tester) async {
+        var calls = 0;
         LocalAuthPlatform.instance = FakeLocalAuthPlatform(
-          supportsBiometrics: false,
-          deviceSupported: false,
-          enrolledBiometrics: const [],
+          authenticateHandler: () async {
+            calls++;
+            if (calls == 1) {
+              throw const LocalAuthException(
+                code: LocalAuthExceptionCode.noBiometricsEnrolled,
+              );
+            }
+            return true;
+          },
         );
 
         final container = ProviderContainer(
@@ -180,6 +187,36 @@ void main() {
         expect(profile.isBiometricLockEnabled, isFalse);
       },
     );
+
+    testWidgets('recovery disable stays locked when re-authentication fails', (
+      tester,
+    ) async {
+      LocalAuthPlatform.instance = FakeLocalAuthPlatform(
+        supportsBiometrics: false,
+        deviceSupported: false,
+        enrolledBiometrics: const [],
+      );
+
+      final container = ProviderContainer(
+        overrides: [
+          userProfileRepositoryProvider.overrideWithValue(repository),
+        ],
+      );
+      addTearDown(container.dispose);
+      container.read(biometricLockProvider.notifier).setLocked(true);
+
+      await tester.pumpWidget(buildTestWidget(container: container));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsOneWidget);
+
+      await tester.tap(find.widgetWithText(TextButton, 'Disable Lock'));
+      await tester.pumpAndSettle();
+
+      expect(container.read(biometricLockProvider), isTrue);
+      final profile = await repository.get();
+      expect(profile.isBiometricLockEnabled, isTrue);
+    });
 
     testWidgets('terminal failure dialog can be dismissed with cancel', (
       tester,
