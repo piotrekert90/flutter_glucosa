@@ -124,7 +124,7 @@ lib/
 - **Home Widgets**: [home_widget](https://pub.dev/packages/home_widget) for Android AppWidget support.
 - **Biometrics**: [local_auth](https://pub.dev/packages/local_auth) for biometric authentication and app lock.
 - **Localization**: Native Flutter `intl` & `l10n` supporting 10 languages: English (`en`), German (`de`), Spanish (`es`), French (`fr`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Dutch (`nl`), Polish (`pl`), and Portuguese (`pt`).
-- **Testing**: Comprehensive test suite (830+ tests) covering domain logic, state transitions, repository contracts, and presentation widgets.
+- **Testing**: Comprehensive test suite (840+ tests) covering domain logic, state transitions, repository contracts, and presentation widgets.
 
 ---
 

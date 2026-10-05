@@ -16,7 +16,7 @@ Initial production release of **Glucosa**, a local-first metabolic health and di
 * **Multi-Metric Health Tracking:**
   * **Blood Glucose:** Log measurements in mg/dL or mmol/L with rich clinical meal context (`beforeBreakfast`, `afterBreakfast`, `beforeLunch`, `afterLunch`, `beforeDinner`, `afterDinner`, `snack`, `bedtime`, `night`, `fasting`, `recheck`, `other`).
   * **HbA1c:** Record laboratory glycated hemoglobin in NGSP (%) or IFCC (mmol/mol) with automatic bidirectional conversion.
-  * **Blood Pressure:** Track systolic and diastolic readings (mmHg) with clinical status indicators (`Normal`, `Elevated`, `High`).
+  * **Blood Pressure:** Track systolic and diastolic readings (mmHg) with clinical status indicators (`Normal`, `Elevated`, `High`, `Crisis`).
   * **Blood Ketones:** Monitor beta-hydroxybutyrate levels (mmol/L) with clinical threshold categorization.
   * **Cholesterol Panel:** Record Total, LDL, and HDL lipid profiles (mg/dL).
   * **Body Weight:** Track body weight with automatic kg and lbs unit conversion.
@@ -49,4 +49,4 @@ Initial production release of **Glucosa**, a local-first metabolic health and di
 * **State Management:** Riverpod 3.x with code generation (`@riverpod`), stream-driven notifiers piped from Isar watchers, and automatic provider lifecycle disposal.
 * **Local Persistence:** High-performance local NoSQL database via `isar_community` with zero network overhead.
 * **Production Observability:** Structured logging via `AppLogger`, global provider lifecycle tracking via `AppProviderObserver`, and rotating on-device crash logs via `AppCrashReporter`.
-* **Testing:** Comprehensive test suite of 780+ unit, widget, and integration tests covering domain logic, clinical converters, and presentation widgets.
+* **Testing:** Comprehensive test suite of 840+ unit, widget, and integration tests covering domain logic, clinical converters, and presentation widgets.
