@@ -373,17 +373,23 @@ class _StatsRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _StatItem(
-          label: l10n.statAverage,
-          value: '${format(stats.average)} $unitLabel',
+        Expanded(
+          child: _StatItem(
+            label: l10n.statAverage,
+            value: '${format(stats.average)} $unitLabel',
+          ),
         ),
-        _StatItem(
-          label: l10n.statMin,
-          value: '${format(stats.min)} $unitLabel',
+        Expanded(
+          child: _StatItem(
+            label: l10n.statMin,
+            value: '${format(stats.min)} $unitLabel',
+          ),
         ),
-        _StatItem(
-          label: l10n.statMax,
-          value: '${format(stats.max)} $unitLabel',
+        Expanded(
+          child: _StatItem(
+            label: l10n.statMax,
+            value: '${format(stats.max)} $unitLabel',
+          ),
         ),
       ],
     );
@@ -410,12 +416,14 @@ class _StatItem extends StatelessWidget {
           style: theme.textTheme.labelSmall?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
+          textAlign: TextAlign.center,
         ),
         Text(
           value,
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
           ),
+          textAlign: TextAlign.center,
         ),
       ],
     );
@@ -482,18 +490,21 @@ class _TimeRangeChips extends StatelessWidget {
       (label: l10n.timeRangeMonth, type: ChartTimeRange.month),
     ];
 
-    return Row(
-      children: [
-        for (final chip in chips)
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: ChoiceChip(
-              label: Text(chip.label),
-              selected: selected == chip.type,
-              onSelected: (_) => onSelected(chip.type),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (final chip in chips)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: ChoiceChip(
+                label: Text(chip.label),
+                selected: selected == chip.type,
+                onSelected: (_) => onSelected(chip.type),
+              ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }

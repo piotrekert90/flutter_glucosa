@@ -88,8 +88,12 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                       ),
                     ),
                   ),
-                  _buildPeriodSegmentedButton(cs, l10n),
                 ],
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                child: _buildPeriodSegmentedButton(cs, l10n),
               ),
               const SizedBox(height: 12),
               if (!comparison.hasComparisonData)
