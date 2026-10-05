@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/domain/enums/metric_type.dart';
+import '../../../../core/presentation/extensions/failure_ui_extension.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../core/presentation/widgets/app_empty_view.dart';
@@ -34,9 +35,9 @@ class RemindersScreen extends ConsumerWidget {
       body: ClampedLayout(
         child: remindersAsync.when(
           loading: () => const Center(child: AppLoadingIndicator()),
-          error: (error, _) => Center(
+          error: (_, _) => Center(
             child: AppErrorView(
-              message: error.toString(),
+              message: l10n.genericError,
               onRetry: () => ref.invalidate(reminderListProvider),
             ),
           ),
@@ -132,8 +133,9 @@ class RemindersScreen extends ConsumerWidget {
                       if (!success && context.mounted) {
                         AppSnackBar.show(
                           context,
-                          message:
-                              failure?.message ?? l10n.failedToUpdateReminder,
+                          message: failure != null
+                              ? failure.toUserMessage(l10n)
+                              : l10n.failedToUpdateReminder,
                           type: SnackBarType.error,
                         );
                       }
@@ -314,9 +316,9 @@ class RemindersScreen extends ConsumerWidget {
                               } else {
                                 AppSnackBar.show(
                                   context,
-                                  message:
-                                      failure?.message ??
-                                      l10n.failedToSaveReminder,
+                                  message: failure != null
+                                      ? failure.toUserMessage(l10n)
+                                      : l10n.failedToSaveReminder,
                                   type: SnackBarType.error,
                                 );
                               }

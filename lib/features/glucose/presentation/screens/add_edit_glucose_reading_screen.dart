@@ -8,6 +8,7 @@ import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../core/domain/utils/meal_context_detector.dart';
 import '../../../../core/domain/utils/reading_validator.dart';
+import '../../../../core/presentation/extensions/failure_ui_extension.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/utils/reading_validation_l10n.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
@@ -184,11 +185,11 @@ class _AddEditGlucoseReadingScreenState
     } else {
       AppSnackBar.show(
         context,
-        message:
-            failure?.message ??
-            (isEditMode
-                ? l10n.failedToUpdateGlucoseReading
-                : l10n.failedToAddGlucoseReading),
+        message: failure != null
+            ? failure.toUserMessage(l10n)
+            : (isEditMode
+                  ? l10n.failedToUpdateGlucoseReading
+                  : l10n.failedToAddGlucoseReading),
         type: SnackBarType.error,
       );
     }
@@ -242,7 +243,9 @@ class _AddEditGlucoseReadingScreenState
     } else {
       AppSnackBar.show(
         context,
-        message: failure?.message ?? l10n.failedToDeleteGlucoseReading,
+        message: failure != null
+            ? failure.toUserMessage(l10n)
+            : l10n.failedToDeleteGlucoseReading,
         type: SnackBarType.error,
       );
     }
