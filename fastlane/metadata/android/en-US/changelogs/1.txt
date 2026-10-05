@@ -1,0 +1,4 @@
+• 🩸 Initial release: offline-first diabetes and metabolic health tracking.
+• 📊 Multi-metric logging: glucose, HbA1c, blood pressure, cholesterol, ketones and weight with trend charts.
+• 🔔 Local reminders, calendar overview, CSV export/import and optional biometric app lock.
+• 🔒 Your data stays on your device — no account, no servers.

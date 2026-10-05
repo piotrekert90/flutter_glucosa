@@ -1,0 +1,4 @@
+• 🩸 Pierwsze wydanie: lokalne śledzenie cukrzycy i zdrowia metabolicznego bez konta i serwerów.
+• 📊 Pomiary glukozy, HbA1c, ciśnienia, cholesterolu, ketonów i masy ciała wraz z wykresami trendów.
+• 🔔 Lokalne przypomnienia, kalendarz, eksport/import CSV oraz opcjonalna blokada biometryczna.
+• 🔒 Twoje dane zostają na Twoim urządzeniu.
