@@ -55,7 +55,7 @@ The technical design focuses on clinical reliability and data privacy:
 
 ### 🛠 Tools & Platform Integrations
 - **HbA1c Calculator**: Standalone utility screen offering bidirectional estimation between average glucose and HbA1c with direct reading persistence.
-- **Scheduled Reminders**: Local notification reminders for medication, blood glucose checks, and lifestyle logging with customizable recurring schedules.
+- **Scheduled Reminders**: Local notification reminders for medication, blood glucose checks, and lifestyle logging with customizable recurring schedules. On Android, reminders use inexact scheduling by default (an exact alarm is used only when the system permits it), so delivery can slip by a few minutes under battery optimization.
 - **Health Platform Sync**: Native integration with **Apple HealthKit** (iOS) and **Google Health Connect** (Android) for syncing blood glucose, blood pressure, ketones, and weight.
 - **Biometric Security**: App lock protection supported by biometric authentication (Face ID, Touch ID, Fingerprint) or system PIN with configurable auto-lock timeout.
 - **Home Screen Widgets**: Quick-glance glucose monitoring supported via Android AppWidgets.
@@ -70,7 +70,7 @@ The technical design focuses on clinical reliability and data privacy:
 
 ## 🏗 Architecture & Engineering
 
-Glucosa adheres strictly to **Clean Architecture** organized with a **feature-first** package structure:
+Glucosa follows **Clean Architecture** organized with a **feature-first** package structure:
 
 ```text
 lib/
