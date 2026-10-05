@@ -14,7 +14,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.piotrekert.glucosa"
+    namespace = "com.ekerstudio.glucosa"
     // Ensures compatibility with plugins and AndroidX dependencies requiring compileSdk 37+
     compileSdk = maxOf(flutter.compileSdkVersion, 37)
     ndkVersion = flutter.ndkVersion
@@ -27,7 +27,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.piotrekert.glucosa"
+        applicationId = "com.ekerstudio.glucosa"
         // You can update the following values to match your application needs.
         // Health Connect and health plugin require minimum Android API 26 (Android 8.0)
         minSdk = maxOf(flutter.minSdkVersion, 26)

@@ -110,7 +110,7 @@ Map<String, Object> buildWidgetPayload({
 /// widgets on iOS (WidgetKit) and Android (AppWidgetProvider).
 class WidgetSyncService {
   /// Shared App Group identifier for the WidgetKit extension.
-  static const String appGroupId = 'group.com.piotrekert.glucosa';
+  static const String appGroupId = 'group.com.ekerstudio.glucosa';
 
   /// Android compact widget provider class name.
   static const String androidWidgetName = 'GlucosaAppWidgetProvider';

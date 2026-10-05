@@ -147,7 +147,7 @@ flutter run
 ### 📱 Platform Setup Notes
 
 - **Android**: Supports Google Health Connect, notification scheduling, and Home Screen AppWidgets out of the box.
-- **iOS**: Apple HealthKit entitlements, App Group (`group.com.piotrekert.glucosa`), and `PrivacyInfo.xcprivacy` are configured.
+- **iOS**: Apple HealthKit entitlements, App Group (`group.com.ekerstudio.glucosa`), and `PrivacyInfo.xcprivacy` are configured.
 
 ---
 

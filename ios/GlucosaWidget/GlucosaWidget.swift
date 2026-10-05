@@ -5,12 +5,12 @@ import WidgetKit
 //  1. Add a Widget Extension target named "GlucosaWidget" (File → New → Target).
 //  2. Set its Bundle Identifier to "<Runner bundle id>.GlucosaWidget".
 //  3. Enable the App Groups capability on BOTH the Runner and GlucosaWidget
-//     targets with group "group.com.piotrekert.glucosa".
+//     targets with group "group.com.ekerstudio.glucosa".
 //  4. Assign GlucosaWidget.entitlements to the extension target.
 // The Flutter side pushes data via WidgetSyncService (home_widget plugin),
 // which writes into the shared UserDefaults suite read below.
 
-private let appGroupId = "group.com.piotrekert.glucosa"
+private let appGroupId = "group.com.ekerstudio.glucosa"
 
 private func statusColor(for status: String) -> Color {
     switch status {
