@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../core/integrations/health/health_metric.dart';
-import '../../../../../core/integrations/health/health_service_provider.dart';
 import '../../../../../core/presentation/utils/app_snackbar.dart';
-import '../../../../glucose/data/providers/glucose_health_sync_coordinator_provider.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../domain/entities/user_profile.dart';
-import '../../providers/user_profile_notifier.dart';
+import '../../providers/health_sync_notifier.dart';
 import 'custom_settings_tile.dart';
 import 'custom_settings_toggle.dart';
 import 'health_connect_install_dialog.dart';
@@ -32,8 +29,6 @@ class HealthSyncSection extends ConsumerStatefulWidget {
 }
 
 class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
-  bool _isSyncing = false;
-
   String get _platformLabel =>
       Platform.isIOS ? 'Apple Health' : 'Health Connect';
 
@@ -41,6 +36,7 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final profile = widget.profile;
+    final isSyncing = ref.watch(healthSyncProvider).isSyncing;
 
     final lastSyncText = profile.lastHealthSyncAt != null
         ? (l10n.healthSyncLast(
@@ -65,10 +61,10 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
             icon: Icons.sync_rounded,
             title: l10n.healthSyncNow,
             valueText: lastSyncText,
-            showChevron: !_isSyncing,
-            onTap: _isSyncing ? null : () => _syncNow(),
+            showChevron: !isSyncing,
+            onTap: isSyncing ? null : () => _syncNow(),
           ),
-          if (_isSyncing) ...[
+          if (isSyncing) ...[
             const SizedBox(height: 8),
             const LinearProgressIndicator(minHeight: 2),
           ],
@@ -78,33 +74,39 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
   }
 
   Future<void> _toggleHealthSync(bool enable) async {
-    if (!enable) {
-      await ref
-          .read(userProfileProvider.notifier)
-          .updateHealthSyncEnabled(false);
-      return;
-    }
-
-    if (!context.mounted) return;
+    final readiness = await ref
+        .read(healthSyncProvider.notifier)
+        .setEnabled(enable);
+    if (!mounted) return;
+    if (readiness == HealthSyncReadiness.ready) return;
     final l10n = AppLocalizations.of(context)!;
-
-    final service = ref.read(healthServiceProvider);
-    if (!await service.isHealthApiAvailable()) {
-      if (!mounted) return;
-      if (Platform.isAndroid) {
+    switch (readiness) {
+      case HealthSyncReadiness.needsInstall:
         await HealthConnectInstallDialog.show(context);
-      } else {
+      case HealthSyncReadiness.unavailable:
         AppSnackBar.show(
           context,
           message: l10n.healthSyncUnavailable,
           type: SnackBarType.error,
         );
-      }
-      return;
+      case HealthSyncReadiness.noPermissions:
+        AppSnackBar.show(
+          context,
+          message: l10n.healthSyncNoPermissions,
+          type: SnackBarType.error,
+        );
+      case HealthSyncReadiness.ready:
+        break;
     }
+  }
 
-    if (!await service.requestPermissions({HealthMetric.bloodGlucose})) {
-      if (!mounted) return;
+  Future<void> _syncNow() async {
+    final result = await ref
+        .read(healthSyncProvider.notifier)
+        .syncNow(lastSyncAt: widget.profile.lastHealthSyncAt);
+    if (!mounted) return;
+    final l10n = AppLocalizations.of(context)!;
+    if (result == null) {
       AppSnackBar.show(
         context,
         message: l10n.healthSyncNoPermissions,
@@ -112,40 +114,13 @@ class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
       );
       return;
     }
-
-    await ref.read(userProfileProvider.notifier).updateHealthSyncEnabled(true);
-  }
-
-  Future<void> _syncNow() async {
-    setState(() => _isSyncing = true);
-    try {
-      final result = await ref
-          .read(glucoseHealthSyncCoordinatorProvider)
-          .sync(lastSyncTime: widget.profile.lastHealthSyncAt);
-      if (!mounted) return;
-      final l10n = AppLocalizations.of(context)!;
-      if (result == null) {
-        AppSnackBar.show(
-          context,
-          message: l10n.healthSyncNoPermissions,
-          type: SnackBarType.error,
-        );
-        return;
-      }
-      await ref
-          .read(userProfileProvider.notifier)
-          .updateLastHealthSyncAt(DateTime.now());
-      if (!mounted) return;
-      AppSnackBar.show(
-        context,
-        message: l10n.healthSyncSuccess(
-          result.importedCount,
-          result.exportedCount,
-        ),
-        type: SnackBarType.success,
-      );
-    } finally {
-      if (mounted) setState(() => _isSyncing = false);
-    }
+    AppSnackBar.show(
+      context,
+      message: l10n.healthSyncSuccess(
+        result.importedCount,
+        result.exportedCount,
+      ),
+      type: SnackBarType.success,
+    );
   }
 }
