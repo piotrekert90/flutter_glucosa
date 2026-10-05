@@ -23,7 +23,7 @@ void main() {
   setUp(() {
     PackageInfo.setMockInitialValues(
       appName: 'Glucosa',
-      packageName: 'com.piotrekert.glucosa',
+      packageName: 'com.ekerstudio.glucosa',
       version: '1.0.0',
       buildNumber: '1',
       buildSignature: '',

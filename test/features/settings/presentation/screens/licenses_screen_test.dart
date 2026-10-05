@@ -8,7 +8,7 @@ void main() {
   testWidgets('LicensesScreen renders app bar and header info', (tester) async {
     final packageInfo = PackageInfo(
       appName: 'Glucosa',
-      packageName: 'com.piotrekert.glucosa',
+      packageName: 'com.ekerstudio.glucosa',
       version: '1.0.0',
       buildNumber: '1',
     );
