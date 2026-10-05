@@ -19,7 +19,13 @@ void main() {
       await tester.runAsync(
         () => Future<void>.delayed(const Duration(milliseconds: 5)),
       );
-      await tester.pump(const Duration(hours: 25));
+      // Advance just past the next local midnight: exactly one refresh
+      // fires no matter what wall-clock time the test runs at.
+      final now = DateTime.now();
+      final nextMidnight = DateTime(now.year, now.month, now.day + 1);
+      await tester.pump(
+        nextMidnight.difference(DateTime.now()) + const Duration(minutes: 1),
+      );
 
       expect(refreshes, 1);
       final second = container.read(estimatedHbA1cClockProvider);
