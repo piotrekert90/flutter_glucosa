@@ -64,7 +64,10 @@ enum AppRoute {
   export('/export', 'export'),
 
   /// Route for the standalone HbA1c conversion calculator utility.
-  hba1cCalculator('/hba1c-calculator', 'hba1c_calculator');
+  hba1cCalculator('/hba1c-calculator', 'hba1c_calculator'),
+
+  /// Fallback route shown when the user profile cannot load at startup.
+  startupError('/startup-error', 'startup_error');
 
   const AppRoute(this.path, this.name);
 

@@ -22,6 +22,7 @@ import '../../features/settings/presentation/screens/settings_screen.dart';
 import '../../features/settings/presentation/providers/user_profile_notifier.dart';
 import '../../l10n/app_localizations.dart';
 import '../presentation/navigation/adaptive_navigation_scaffold.dart';
+import '../presentation/screens/startup_error_screen.dart';
 import 'app_routes.dart';
 
 part 'app_router.g.dart';
@@ -31,14 +32,20 @@ part 'app_router.g.dart';
 GoRouter appRouter(Ref ref) {
   // Rebuilds the router when the profile changes so the onboarding
   // redirect guard below always evaluates the latest completion flag.
-  final profile = ref.watch(userProfileProvider).value;
+  final profileAsync = ref.watch(userProfileProvider);
+  final profile = profileAsync.value;
   return GoRouter(
     initialLocation: AppRoute.overview.path,
     debugLogDiagnostics: kDebugMode,
     redirect: (BuildContext context, GoRouterState state) {
       final location = state.matchedLocation;
       final isOnboardingRoute = location == AppRoute.onboarding.path;
+      final isStartupErrorRoute = location == AppRoute.startupError.path;
+      if (profileAsync.hasError) {
+        return isStartupErrorRoute ? null : AppRoute.startupError.path;
+      }
       if (profile == null) return null;
+      if (isStartupErrorRoute) return AppRoute.overview.path;
       if (!profile.isOnboardingCompleted && !isOnboardingRoute) {
         return AppRoute.onboarding.path;
       }
@@ -257,6 +264,12 @@ GoRouter appRouter(Ref ref) {
         name: AppRoute.hba1cCalculator.name,
         builder: (BuildContext context, GoRouterState state) =>
             const HbA1cCalculatorScreen(),
+      ),
+      GoRoute(
+        path: AppRoute.startupError.path,
+        name: AppRoute.startupError.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const StartupErrorScreen(),
       ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) {
