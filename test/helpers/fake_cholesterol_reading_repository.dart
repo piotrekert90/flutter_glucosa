@@ -52,6 +52,17 @@ class FakeCholesterolReadingRepository implements CholesterolReadingRepository {
   }
 
   @override
+  Future<List<CholesterolReading>> getByDateRange(
+    DateTime start,
+    DateTime end,
+  ) async {
+    if (shouldFail) throw const DatabaseFailure('Fake failure');
+    return _readings
+        .where((r) => !r.createdAt.isBefore(start) && !r.createdAt.isAfter(end))
+        .toList();
+  }
+
+  @override
   Future<CholesterolReading?> getById(int id) async {
     if (shouldFail) throw const DatabaseFailure('Fake failure');
     try {

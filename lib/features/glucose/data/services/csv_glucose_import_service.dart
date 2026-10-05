@@ -44,7 +44,13 @@ class CsvGlucoseImportService {
         return const CsvAnalysisFailure(CsvErrorType.noEntries);
       }
 
-      final existing = await repository.getAll();
+      var minCsvDate = parsed.validEntries.first.createdAt;
+      var maxCsvDate = minCsvDate;
+      for (final entry in parsed.validEntries) {
+        if (entry.createdAt.isBefore(minCsvDate)) minCsvDate = entry.createdAt;
+        if (entry.createdAt.isAfter(maxCsvDate)) maxCsvDate = entry.createdAt;
+      }
+      final existing = await repository.getByDateRange(minCsvDate, maxCsvDate);
       final existingTimestamps = {for (final r in existing) r.createdAt};
 
       final fresh = <GlucoseReading>[];

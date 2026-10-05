@@ -56,6 +56,16 @@ class FakeGlucoseReadingRepository implements GlucoseReadingRepository {
   }
 
   @override
+  Future<List<GlucoseReading>> getByDateRange(
+    DateTime start,
+    DateTime end,
+  ) async {
+    return _sorted()
+        .where((r) => !r.createdAt.isBefore(start) && !r.createdAt.isAfter(end))
+        .toList();
+  }
+
+  @override
   Future<GlucoseReading?> getById(int id) async {
     return _readings.where((r) => r.id == id).firstOrNull;
   }

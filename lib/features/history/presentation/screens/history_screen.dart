@@ -39,6 +39,14 @@ class HistoryScreen extends ConsumerStatefulWidget {
 }
 
 class _HistoryScreenState extends ConsumerState<HistoryScreen> {
+  /// Rolling window rendered by the history list; older records remain in
+  /// the database and exports. Repository-level date-range queries
+  /// (`getByDateRange`) back this window for targeted fetches.
+  static const Duration _historyWindow = Duration(days: 365);
+
+  /// Upper bound on merged in-memory entries to avoid unbounded heap growth.
+  static const int _maxVisibleEntries = 1000;
+
   /// Currently selected metric filter, or `null` to show all metrics.
   MetricType? _filter;
 
@@ -107,9 +115,14 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                     cholesterolAsync.value ?? const [],
                     weightAsync.value ?? const [],
                   );
+                  final cutoff = DateTime.now().subtract(_historyWindow);
+                  final windowed = entries
+                      .where((e) => e.createdAt.isAfter(cutoff))
+                      .take(_maxVisibleEntries)
+                      .toList();
                   final visible = _filter == null
-                      ? entries
-                      : entries.where((e) => e.type == _filter).toList();
+                      ? windowed
+                      : windowed.where((e) => e.type == _filter).toList();
 
                   if (visible.isEmpty) {
                     return AppEmptyView(
