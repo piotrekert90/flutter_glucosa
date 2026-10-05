@@ -11,7 +11,7 @@ part of 'widget_sync_observer.dart';
 /// Observer pushing glucose updates to native home screen widgets.
 ///
 /// Listens to the glucose readings stream and user profile changes, keeping
-/// WidgetKit / AppWidget payloads fresh after every write, edit, or delete.
+/// AppWidget payloads fresh after every write, edit, or delete.
 /// Labels are resolved through [lookupAppLocalizations] using the platform
 /// locale, so no [BuildContext] is required. Kept alive by [App].
 
@@ -21,7 +21,7 @@ final widgetSyncObserverProvider = WidgetSyncObserverProvider._();
 /// Observer pushing glucose updates to native home screen widgets.
 ///
 /// Listens to the glucose readings stream and user profile changes, keeping
-/// WidgetKit / AppWidget payloads fresh after every write, edit, or delete.
+/// AppWidget payloads fresh after every write, edit, or delete.
 /// Labels are resolved through [lookupAppLocalizations] using the platform
 /// locale, so no [BuildContext] is required. Kept alive by [App].
 final class WidgetSyncObserverProvider
@@ -29,7 +29,7 @@ final class WidgetSyncObserverProvider
   /// Observer pushing glucose updates to native home screen widgets.
   ///
   /// Listens to the glucose readings stream and user profile changes, keeping
-  /// WidgetKit / AppWidget payloads fresh after every write, edit, or delete.
+  /// AppWidget payloads fresh after every write, edit, or delete.
   /// Labels are resolved through [lookupAppLocalizations] using the platform
   /// locale, so no [BuildContext] is required. Kept alive by [App].
   WidgetSyncObserverProvider._()
@@ -57,7 +57,7 @@ String _$widgetSyncObserverHash() =>
 /// Observer pushing glucose updates to native home screen widgets.
 ///
 /// Listens to the glucose readings stream and user profile changes, keeping
-/// WidgetKit / AppWidget payloads fresh after every write, edit, or delete.
+/// AppWidget payloads fresh after every write, edit, or delete.
 /// Labels are resolved through [lookupAppLocalizations] using the platform
 /// locale, so no [BuildContext] is required. Kept alive by [App].
 
