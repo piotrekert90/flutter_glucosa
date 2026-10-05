@@ -150,7 +150,7 @@ void main() {
     });
 
     test(
-      'passes biometricOnly false with sticky auth and error dialogs enabled',
+      'passes biometricOnly false with background-resilient auth via public API',
       () async {
         await BiometricService.instance.authenticate(
           localizedReason: 'Unlock to view your glucose data',
@@ -160,7 +160,9 @@ void main() {
         expect(options, isNotNull);
         expect(options!.biometricOnly, isFalse);
         expect(options.stickyAuth, isTrue);
-        expect(options.useErrorDialogs, isTrue);
+        // local_auth 3.x hardcodes useErrorDialogs to false so errors
+        // surface as exceptions mapped by BiometricService instead.
+        expect(options.useErrorDialogs, isFalse);
       },
     );
 
