@@ -64,6 +64,23 @@ class BloodPressureReadingRepositoryImpl
   }
 
   @override
+  Future<List<BloodPressureReading>> getByDateRange(
+    DateTime start,
+    DateTime end,
+  ) async {
+    try {
+      final models = await _isar.bloodPressureReadingModels
+          .where()
+          .createdAtBetween(start, end)
+          .sortByCreatedAtDesc()
+          .findAll();
+      return models.map((m) => m.toDomain()).toList();
+    } catch (e) {
+      throw DatabaseFailure('Failed to load BP readings by date: $e');
+    }
+  }
+
+  @override
   Future<BloodPressureReading?> getById(int id) async {
     try {
       final model = await _isar.bloodPressureReadingModels.get(id);

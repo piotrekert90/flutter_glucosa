@@ -65,6 +65,23 @@ class CholesterolReadingRepositoryImpl implements CholesterolReadingRepository {
   }
 
   @override
+  Future<List<CholesterolReading>> getByDateRange(
+    DateTime start,
+    DateTime end,
+  ) async {
+    try {
+      final models = await _isar.cholesterolReadingModels
+          .where()
+          .createdAtBetween(start, end)
+          .sortByCreatedAtDesc()
+          .findAll();
+      return models.map((m) => m.toDomain()).toList();
+    } catch (e) {
+      throw DatabaseFailure('Failed to load cholesterol readings by date: $e');
+    }
+  }
+
+  @override
   Future<CholesterolReading?> getById(int id) async {
     try {
       final model = await _isar.cholesterolReadingModels.get(id);

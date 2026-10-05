@@ -65,6 +65,23 @@ class KetoneReadingRepositoryImpl implements KetoneReadingRepository {
   }
 
   @override
+  Future<List<KetoneReading>> getByDateRange(
+    DateTime start,
+    DateTime end,
+  ) async {
+    try {
+      final models = await _isar.ketoneReadingModels
+          .where()
+          .createdAtBetween(start, end)
+          .sortByCreatedAtDesc()
+          .findAll();
+      return models.map((m) => m.toDomain()).toList();
+    } catch (e) {
+      throw DatabaseFailure('Failed to load ketone readings by date: $e');
+    }
+  }
+
+  @override
   Future<KetoneReading?> getById(int id) async {
     try {
       final model = await _isar.ketoneReadingModels.get(id);

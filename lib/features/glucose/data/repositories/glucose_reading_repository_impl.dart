@@ -65,6 +65,23 @@ class GlucoseReadingRepositoryImpl implements GlucoseReadingRepository {
   }
 
   @override
+  Future<List<GlucoseReading>> getByDateRange(
+    DateTime start,
+    DateTime end,
+  ) async {
+    try {
+      final models = await _isar.glucoseReadingModels
+          .where()
+          .createdAtBetween(start, end)
+          .sortByCreatedAtDesc()
+          .findAll();
+      return models.map((m) => m.toDomain()).toList();
+    } catch (e) {
+      throw DatabaseFailure('Failed to load glucose readings by date: $e');
+    }
+  }
+
+  @override
   Future<GlucoseReading?> getById(int id) async {
     try {
       final model = await _isar.glucoseReadingModels.get(id);

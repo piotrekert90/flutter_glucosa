@@ -63,6 +63,23 @@ class HbA1cReadingRepositoryImpl implements HbA1cReadingRepository {
   }
 
   @override
+  Future<List<HbA1cReading>> getByDateRange(
+    DateTime start,
+    DateTime end,
+  ) async {
+    try {
+      final models = await _isar.hbA1cReadingModels
+          .where()
+          .createdAtBetween(start, end)
+          .sortByCreatedAtDesc()
+          .findAll();
+      return models.map((m) => m.toDomain()).toList();
+    } catch (e) {
+      throw DatabaseFailure('Failed to load HbA1c readings by date: $e');
+    }
+  }
+
+  @override
   Future<HbA1cReading?> getById(int id) async {
     try {
       final model = await _isar.hbA1cReadingModels.get(id);

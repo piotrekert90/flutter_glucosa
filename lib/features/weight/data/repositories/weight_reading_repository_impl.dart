@@ -65,6 +65,23 @@ class WeightReadingRepositoryImpl implements WeightReadingRepository {
   }
 
   @override
+  Future<List<WeightReading>> getByDateRange(
+    DateTime start,
+    DateTime end,
+  ) async {
+    try {
+      final models = await _isar.weightReadingModels
+          .where()
+          .createdAtBetween(start, end)
+          .sortByCreatedAtDesc()
+          .findAll();
+      return models.map((m) => m.toDomain()).toList();
+    } catch (e) {
+      throw DatabaseFailure('Failed to load weight readings by date: $e');
+    }
+  }
+
+  @override
   Future<WeightReading?> getById(int id) async {
     try {
       final model = await _isar.weightReadingModels.get(id);
