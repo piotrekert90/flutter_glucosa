@@ -12,7 +12,7 @@ part 'widget_sync_observer.g.dart';
 /// Observer pushing glucose updates to native home screen widgets.
 ///
 /// Listens to the glucose readings stream and user profile changes, keeping
-/// WidgetKit / AppWidget payloads fresh after every write, edit, or delete.
+/// AppWidget payloads fresh after every write, edit, or delete.
 /// Labels are resolved through [lookupAppLocalizations] using the platform
 /// locale, so no [BuildContext] is required. Kept alive by [App].
 @riverpod

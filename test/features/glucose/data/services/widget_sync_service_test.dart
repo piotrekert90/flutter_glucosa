@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_glucosa/features/glucose/data/services/widget_sync_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -164,5 +166,38 @@ void main() {
         await service.initialize();
       },
     );
+
+    test('writes nothing to the shared container on iOS', () async {
+      TestWidgetsFlutterBinding.ensureInitialized();
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      final calls = <String>[];
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(const MethodChannel('home_widget'), (
+            call,
+          ) async {
+            calls.add(call.method);
+            return null;
+          });
+      addTearDown(() {
+        debugDefaultTargetPlatformOverride = null;
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(const MethodChannel('home_widget'), null);
+      });
+
+      const service = WidgetSyncService();
+      await service.initialize();
+      await service.updateWidgetData(
+        readings: const [],
+        unit: GlucoseUnit.mgDl,
+        targetRange: targetRange,
+        headerTitle: 'Glucosa',
+        noDataLabel: 'No readings',
+        tapToAddLabel: 'Tap to add',
+        todayLabel: 'Today',
+      );
+      await service.clearWidgetData();
+
+      expect(calls, isEmpty);
+    });
   });
 }

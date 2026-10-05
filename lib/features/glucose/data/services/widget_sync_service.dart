@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -107,9 +108,12 @@ Map<String, Object> buildWidgetPayload({
 }
 
 /// Service synchronizing the latest glucose reading with native home screen
-/// widgets on iOS (WidgetKit) and Android (AppWidgetProvider).
+/// widgets (Android AppWidgetProvider).
+///
+/// iOS currently ships no widget extension, so every operation is a no-op
+/// there and no glucose data is written to the shared App Group container.
 class WidgetSyncService {
-  /// Shared App Group identifier for the WidgetKit extension.
+  /// Shared App Group identifier reserved for a future iOS widget extension.
   static const String appGroupId = 'group.com.ekerstudio.glucosa';
 
   /// Android compact widget provider class name.
@@ -118,14 +122,17 @@ class WidgetSyncService {
   /// Android full-size widget provider class name.
   static const String androidFullWidgetName = 'GlucosaFullAppWidgetProvider';
 
-  /// iOS WidgetKit extension kind.
+  /// iOS WidgetKit extension kind (reserved, no extension is shipped yet).
   static const String iOSWidgetName = 'GlucosaWidget';
 
   /// Creates a [WidgetSyncService].
   const WidgetSyncService();
 
+  bool get _isSupportedPlatform => defaultTargetPlatform != TargetPlatform.iOS;
+
   /// Configures the App Group identifier used by the iOS widget extension.
   Future<void> initialize() async {
+    if (!_isSupportedPlatform) return;
     try {
       await HomeWidget.setAppGroupId(appGroupId);
     } catch (e, stack) {
@@ -149,6 +156,7 @@ class WidgetSyncService {
     String? localeName,
     bool hideSensitiveData = false,
   }) async {
+    if (!_isSupportedPlatform) return;
     try {
       final payload = buildWidgetPayload(
         readings: readings,
@@ -185,6 +193,7 @@ class WidgetSyncService {
 
   /// Clears widget storage on database wipe.
   Future<void> clearWidgetData() async {
+    if (!_isSupportedPlatform) return;
     try {
       await Future.wait([
         HomeWidget.saveWidgetData<bool>('has_data', false),
