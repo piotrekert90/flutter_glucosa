@@ -26,10 +26,6 @@
       }
     }
   },
-  "settings": "設定",
-  "@settings": {
-    "description": "Settings label"
-  },
   "settingsTitle": "設定",
   "@settingsTitle": {
     "description": "Title displayed on the settings screen app bar"
@@ -97,10 +93,6 @@
   "close": "閉じる",
   "@close": {
     "description": "Close button label"
-  },
-  "add": "追加",
-  "@add": {
-    "description": "Add button label"
   },
   "save": "保存",
   "@save": {
@@ -266,10 +258,6 @@
   "mealContext": "食事の状況",
   "@mealContext": {
     "description": "Label for meal context selector"
-  },
-  "dateTime": "日時",
-  "@dateTime": {
-    "description": "Label for date and time picker"
   },
   "notes": "メモ",
   "@notes": {
@@ -1771,27 +1759,125 @@
     "description": "Full description for mmol/L glucose unit"
   },
   "notificationChannelName": "測定リマインダー",
+  "@notificationChannelName": {
+    "description": "Android notification channel name for measurement reminders"
+  },
   "notificationChannelDescription": "健康測定値の記録を促す定期通知",
+  "@notificationChannelDescription": {
+    "description": "Android notification channel description for measurement reminders"
+  },
   "notificationReminderBody": "{metric}の測定値を記録する時間です。",
+  "@notificationReminderBody": {
+    "description": "Notification body text reminding user to record a health metric",
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      }
+    }
+  },
   "validationGlucoseRequired": "血糖値の入力は必須です",
+  "@validationGlucoseRequired": {
+    "description": "Validation error when glucose value is omitted"
+  },
   "validationGlucosePositive": "血糖値は正の数値である必要があります",
+  "@validationGlucosePositive": {
+    "description": "Validation error when glucose value is zero or negative"
+  },
   "validationGlucoseRangeMgDl": "血糖値は20〜600 mg/dLの範囲である必要があります",
+  "@validationGlucoseRangeMgDl": {
+    "description": "Validation error when glucose value is outside 20-600 mg/dL"
+  },
   "validationGlucoseRangeMmolL": "血糖値は1.1〜33.3 mmol/Lの範囲である必要があります",
+  "@validationGlucoseRangeMmolL": {
+    "description": "Validation error when glucose value is outside 1.1-33.3 mmol/L"
+  },
   "validationHbA1cRequired": "HbA1cの入力は必須です",
+  "@validationHbA1cRequired": {
+    "description": "Validation error when HbA1c value is omitted"
+  },
   "validationHbA1cPositive": "HbA1cは正の数値である必要があります",
+  "@validationHbA1cPositive": {
+    "description": "Validation error when HbA1c value is zero or negative"
+  },
   "validationHbA1cRangePercentage": "HbA1cは3.0%〜20.0%の範囲である必要があります",
+  "@validationHbA1cRangePercentage": {
+    "description": "Validation error when HbA1c percentage is outside 3.0-20.0%"
+  },
   "validationHbA1cRangeMmolMol": "HbA1cは9〜195 mmol/molの範囲である必要があります",
+  "@validationHbA1cRangeMmolMol": {
+    "description": "Validation error when HbA1c mmol/mol is outside 9-195"
+  },
   "validationBpRequired": "収縮期と拡張期の両方の血圧値が必要です",
+  "@validationBpRequired": {
+    "description": "Validation error when systolic or diastolic pressure is omitted"
+  },
   "validationBpSystolicRange": "収縮期血圧は60〜300 mmHgの範囲である必要があります",
+  "@validationBpSystolicRange": {
+    "description": "Validation error when systolic pressure is outside 60-300 mmHg"
+  },
   "validationBpDiastolicRange": "拡張期血圧は30〜200 mmHgの範囲である必要があります",
+  "@validationBpDiastolicRange": {
+    "description": "Validation error when diastolic pressure is outside 30-200 mmHg"
+  },
   "validationBpSystolicGreaterThanDiastolic": "収縮期血圧は拡張期血圧より高い必要があります",
+  "@validationBpSystolicGreaterThanDiastolic": {
+    "description": "Validation error when systolic pressure is <= diastolic pressure"
+  },
   "validationKetonesRequired": "ケトン値の入力は必須です",
+  "@validationKetonesRequired": {
+    "description": "Validation error when ketone value is omitted"
+  },
   "validationKetonesRange": "ケトン値は0.0〜25.0 mmol/Lの範囲である必要があります",
+  "@validationKetonesRange": {
+    "description": "Validation error when ketone value is outside 0.0-25.0 mmol/L"
+  },
   "validationCholesterolRequired": "総コレステロール、LDL、HDLの値がすべて必要です",
+  "@validationCholesterolRequired": {
+    "description": "Validation error when cholesterol values are omitted"
+  },
   "validationCholesterolTotalRange": "総コレステロールは50〜500 mg/dLの範囲である必要があります",
+  "@validationCholesterolTotalRange": {
+    "description": "Validation error when total cholesterol is outside 50-500 mg/dL"
+  },
   "validationCholesterolLdlRange": "LDLコレステロールは20〜400 mg/dLの範囲である必要があります",
+  "@validationCholesterolLdlRange": {
+    "description": "Validation error when LDL cholesterol is outside 20-400 mg/dL"
+  },
   "validationCholesterolHdlRange": "HDLコレステロールは10〜150 mg/dLの範囲である必要があります",
+  "@validationCholesterolHdlRange": {
+    "description": "Validation error when HDL cholesterol is outside 10-150 mg/dL"
+  },
   "validationWeightRequired": "体重の入力は必須です",
+  "@validationWeightRequired": {
+    "description": "Validation error when weight value is omitted"
+  },
   "validationWeightRangeKg": "体重は10〜500 kgの範囲である必要があります",
-  "validationWeightRangeLbs": "体重は22〜1102 lbsの範囲である必要があります"
+  "@validationWeightRangeKg": {
+    "description": "Validation error when weight is outside 10-500 kg"
+  },
+  "validationWeightRangeLbs": "体重は22〜1102 lbsの範囲である必要があります",
+  "@validationWeightRangeLbs": {
+    "description": "Validation error when weight is outside 22-1102 lbs"
+  },
+  "failedToSaveProfile": "プロフィールを保存できませんでした",
+  "@failedToSaveProfile": {
+    "description": "Error message shown when saving the user profile fails"
+  },
+  "failedToUpdateReminder": "リマインダーを更新できませんでした",
+  "@failedToUpdateReminder": {
+    "description": "Error message shown when updating a reminder fails"
+  },
+  "failedToSaveReminder": "リマインダーを保存できませんでした",
+  "@failedToSaveReminder": {
+    "description": "Error message shown when saving a reminder fails"
+  },
+  "trendChartSemantics": "{count}件のデータを含む推移グラフ",
+  "@trendChartSemantics": {
+    "description": "Accessibility label for the glucose trend chart",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -26,10 +26,6 @@
       }
     }
   },
-  "settings": "설정",
-  "@settings": {
-    "description": "Settings label"
-  },
   "settingsTitle": "설정",
   "@settingsTitle": {
     "description": "Title displayed on the settings screen app bar"
@@ -97,10 +93,6 @@
   "close": "닫기",
   "@close": {
     "description": "Close button label"
-  },
-  "add": "추가",
-  "@add": {
-    "description": "Add button label"
   },
   "save": "저장",
   "@save": {
@@ -266,10 +258,6 @@
   "mealContext": "식사 상황",
   "@mealContext": {
     "description": "Label for meal context selector"
-  },
-  "dateTime": "날짜 및 시간",
-  "@dateTime": {
-    "description": "Label for date and time picker"
   },
   "notes": "메모",
   "@notes": {
@@ -1771,27 +1759,125 @@
     "description": "Full description for mmol/L glucose unit"
   },
   "notificationChannelName": "측정 알림",
+  "@notificationChannelName": {
+    "description": "Android notification channel name for measurement reminders"
+  },
   "notificationChannelDescription": "건강 측정치 입력을 알려주는 정기 알림",
+  "@notificationChannelDescription": {
+    "description": "Android notification channel description for measurement reminders"
+  },
   "notificationReminderBody": "{metric} 측정치를 기록할 시간입니다.",
+  "@notificationReminderBody": {
+    "description": "Notification body text reminding user to record a health metric",
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      }
+    }
+  },
   "validationGlucoseRequired": "혈당 값을 입력해야 합니다",
+  "@validationGlucoseRequired": {
+    "description": "Validation error when glucose value is omitted"
+  },
   "validationGlucosePositive": "혈당 값은 양수여야 합니다",
+  "@validationGlucosePositive": {
+    "description": "Validation error when glucose value is zero or negative"
+  },
   "validationGlucoseRangeMgDl": "혈당 측정치는 20~600 mg/dL 사이여야 합니다",
+  "@validationGlucoseRangeMgDl": {
+    "description": "Validation error when glucose value is outside 20-600 mg/dL"
+  },
   "validationGlucoseRangeMmolL": "혈당 측정치는 1.1~33.3 mmol/L 사이여야 합니다",
+  "@validationGlucoseRangeMmolL": {
+    "description": "Validation error when glucose value is outside 1.1-33.3 mmol/L"
+  },
   "validationHbA1cRequired": "HbA1c 값을 입력해야 합니다",
+  "@validationHbA1cRequired": {
+    "description": "Validation error when HbA1c value is omitted"
+  },
   "validationHbA1cPositive": "HbA1c 값은 양수여야 합니다",
+  "@validationHbA1cPositive": {
+    "description": "Validation error when HbA1c value is zero or negative"
+  },
   "validationHbA1cRangePercentage": "HbA1c는 3.0%~20.0% 사이여야 합니다",
+  "@validationHbA1cRangePercentage": {
+    "description": "Validation error when HbA1c percentage is outside 3.0-20.0%"
+  },
   "validationHbA1cRangeMmolMol": "HbA1c는 9~195 mmol/mol 사이여야 합니다",
+  "@validationHbA1cRangeMmolMol": {
+    "description": "Validation error when HbA1c mmol/mol is outside 9-195"
+  },
   "validationBpRequired": "수축기 및 이완기 혈압을 모두 입력해야 합니다",
+  "@validationBpRequired": {
+    "description": "Validation error when systolic or diastolic pressure is omitted"
+  },
   "validationBpSystolicRange": "수축기 혈압은 60~300 mmHg 사이여야 합니다",
+  "@validationBpSystolicRange": {
+    "description": "Validation error when systolic pressure is outside 60-300 mmHg"
+  },
   "validationBpDiastolicRange": "이완기 혈압은 30~200 mmHg 사이여야 합니다",
+  "@validationBpDiastolicRange": {
+    "description": "Validation error when diastolic pressure is outside 30-200 mmHg"
+  },
   "validationBpSystolicGreaterThanDiastolic": "수축기 혈압은 이완기 혈압보다 높아야 합니다",
+  "@validationBpSystolicGreaterThanDiastolic": {
+    "description": "Validation error when systolic pressure is <= diastolic pressure"
+  },
   "validationKetonesRequired": "케톤 값을 입력해야 합니다",
+  "@validationKetonesRequired": {
+    "description": "Validation error when ketone value is omitted"
+  },
   "validationKetonesRange": "케톤 값은 0.0~25.0 mmol/L 사이여야 합니다",
+  "@validationKetonesRange": {
+    "description": "Validation error when ketone value is outside 0.0-25.0 mmol/L"
+  },
   "validationCholesterolRequired": "총 콜레스테ロール, LDL, HDL 값을 모두 입력해야 합니다",
+  "@validationCholesterolRequired": {
+    "description": "Validation error when cholesterol values are omitted"
+  },
   "validationCholesterolTotalRange": "총 콜레스테ロール은 50~500 mg/dL 사이여야 합니다",
+  "@validationCholesterolTotalRange": {
+    "description": "Validation error when total cholesterol is outside 50-500 mg/dL"
+  },
   "validationCholesterolLdlRange": "LDL 콜레스테ロール은 20~400 mg/dL 사이여야 합니다",
+  "@validationCholesterolLdlRange": {
+    "description": "Validation error when LDL cholesterol is outside 20-400 mg/dL"
+  },
   "validationCholesterolHdlRange": "HDL 콜레스테ロール은 10~150 mg/dL 사이여야 합니다",
+  "@validationCholesterolHdlRange": {
+    "description": "Validation error when HDL cholesterol is outside 10-150 mg/dL"
+  },
   "validationWeightRequired": "체중을 입력해야 합니다",
+  "@validationWeightRequired": {
+    "description": "Validation error when weight value is omitted"
+  },
   "validationWeightRangeKg": "체중은 10~500 kg 사이여야 합니다",
-  "validationWeightRangeLbs": "체중은 22~1102 lbs 사이여야 합니다"
+  "@validationWeightRangeKg": {
+    "description": "Validation error when weight is outside 10-500 kg"
+  },
+  "validationWeightRangeLbs": "체중은 22~1102 lbs 사이여야 합니다",
+  "@validationWeightRangeLbs": {
+    "description": "Validation error when weight is outside 22-1102 lbs"
+  },
+  "failedToSaveProfile": "프로필을 저장하지 못했습니다",
+  "@failedToSaveProfile": {
+    "description": "Error message shown when saving the user profile fails"
+  },
+  "failedToUpdateReminder": "리마인더를 업데이트하지 못했습니다",
+  "@failedToUpdateReminder": {
+    "description": "Error message shown when updating a reminder fails"
+  },
+  "failedToSaveReminder": "리마인더를 저장하지 못했습니다",
+  "@failedToSaveReminder": {
+    "description": "Error message shown when saving a reminder fails"
+  },
+  "trendChartSemantics": "{count}개의 데이터 포인트가 있는 추세 차트",
+  "@trendChartSemantics": {
+    "description": "Accessibility label for the glucose trend chart",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

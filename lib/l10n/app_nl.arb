@@ -26,10 +26,6 @@
       }
     }
   },
-  "settings": "Instellingen",
-  "@settings": {
-    "description": "Settings label"
-  },
   "settingsTitle": "Instellingen",
   "@settingsTitle": {
     "description": "Title displayed on the settings screen app bar"
@@ -97,10 +93,6 @@
   "close": "Sluiten",
   "@close": {
     "description": "Close button label"
-  },
-  "add": "Toevoegen",
-  "@add": {
-    "description": "Add button label"
   },
   "save": "Opslaan",
   "@save": {
@@ -266,10 +258,6 @@
   "mealContext": "Maaltijdcontext",
   "@mealContext": {
     "description": "Label for meal context selector"
-  },
-  "dateTime": "Datum en tijd",
-  "@dateTime": {
-    "description": "Label for date and time picker"
   },
   "notes": "Notities",
   "@notes": {
@@ -1771,27 +1759,125 @@
     "description": "Full description for mmol/L glucose unit"
   },
   "notificationChannelName": "Metingsherinneringen",
+  "@notificationChannelName": {
+    "description": "Android notification channel name for measurement reminders"
+  },
   "notificationChannelDescription": "Geplande meldingen die u eraan herinneren gezondheidsmetingen vast te leggen",
+  "@notificationChannelDescription": {
+    "description": "Android notification channel description for measurement reminders"
+  },
   "notificationReminderBody": "Tijd om uw {metric}-meting vast te leggen.",
+  "@notificationReminderBody": {
+    "description": "Notification body text reminding user to record a health metric",
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      }
+    }
+  },
   "validationGlucoseRequired": "Glucosewaarde is verplicht",
+  "@validationGlucoseRequired": {
+    "description": "Validation error when glucose value is omitted"
+  },
   "validationGlucosePositive": "Glucosewaarde moet positief zijn",
+  "@validationGlucosePositive": {
+    "description": "Validation error when glucose value is zero or negative"
+  },
   "validationGlucoseRangeMgDl": "Glucosemeting moet tussen 20 en 600 mg/dL liggen",
+  "@validationGlucoseRangeMgDl": {
+    "description": "Validation error when glucose value is outside 20-600 mg/dL"
+  },
   "validationGlucoseRangeMmolL": "Glucosemeting moet tussen 1,1 en 33,3 mmol/L liggen",
+  "@validationGlucoseRangeMmolL": {
+    "description": "Validation error when glucose value is outside 1.1-33.3 mmol/L"
+  },
   "validationHbA1cRequired": "HbA1c-waarde is verplicht",
+  "@validationHbA1cRequired": {
+    "description": "Validation error when HbA1c value is omitted"
+  },
   "validationHbA1cPositive": "HbA1c-waarde moet positief zijn",
+  "@validationHbA1cPositive": {
+    "description": "Validation error when HbA1c value is zero or negative"
+  },
   "validationHbA1cRangePercentage": "HbA1c moet tussen 3,0% en 20,0% liggen",
+  "@validationHbA1cRangePercentage": {
+    "description": "Validation error when HbA1c percentage is outside 3.0-20.0%"
+  },
   "validationHbA1cRangeMmolMol": "HbA1c moet tussen 9 en 195 mmol/mol liggen",
+  "@validationHbA1cRangeMmolMol": {
+    "description": "Validation error when HbA1c mmol/mol is outside 9-195"
+  },
   "validationBpRequired": "Zowel systolische als diastolische waarden zijn verplicht",
+  "@validationBpRequired": {
+    "description": "Validation error when systolic or diastolic pressure is omitted"
+  },
   "validationBpSystolicRange": "Systolische druk moet tussen 60 en 300 mmHg liggen",
+  "@validationBpSystolicRange": {
+    "description": "Validation error when systolic pressure is outside 60-300 mmHg"
+  },
   "validationBpDiastolicRange": "Diastolische druk moet tussen 30 en 200 mmHg liggen",
+  "@validationBpDiastolicRange": {
+    "description": "Validation error when diastolic pressure is outside 30-200 mmHg"
+  },
   "validationBpSystolicGreaterThanDiastolic": "Systolische druk moet hoger zijn dan diastolische druk",
+  "@validationBpSystolicGreaterThanDiastolic": {
+    "description": "Validation error when systolic pressure is <= diastolic pressure"
+  },
   "validationKetonesRequired": "Ketonenwaarde is verplicht",
+  "@validationKetonesRequired": {
+    "description": "Validation error when ketone value is omitted"
+  },
   "validationKetonesRange": "Ketonenwaarde moet tussen 0,0 en 25,0 mmol/L liggen",
+  "@validationKetonesRange": {
+    "description": "Validation error when ketone value is outside 0.0-25.0 mmol/L"
+  },
   "validationCholesterolRequired": "Totaal-, LDL- en HDL-cholesterolwaarden zijn verplicht",
+  "@validationCholesterolRequired": {
+    "description": "Validation error when cholesterol values are omitted"
+  },
   "validationCholesterolTotalRange": "Totaal cholesterol moet tussen 50 en 500 mg/dL liggen",
+  "@validationCholesterolTotalRange": {
+    "description": "Validation error when total cholesterol is outside 50-500 mg/dL"
+  },
   "validationCholesterolLdlRange": "LDL-cholesterol moet tussen 20 en 400 mg/dL liggen",
+  "@validationCholesterolLdlRange": {
+    "description": "Validation error when LDL cholesterol is outside 20-400 mg/dL"
+  },
   "validationCholesterolHdlRange": "HDL-cholesterol moet tussen 10 en 150 mg/dL liggen",
+  "@validationCholesterolHdlRange": {
+    "description": "Validation error when HDL cholesterol is outside 10-150 mg/dL"
+  },
   "validationWeightRequired": "Gewicht is verplicht",
+  "@validationWeightRequired": {
+    "description": "Validation error when weight value is omitted"
+  },
   "validationWeightRangeKg": "Gewicht moet tussen 10 en 500 kg liggen",
-  "validationWeightRangeLbs": "Gewicht moet tussen 22 en 1102 lbs liggen"
+  "@validationWeightRangeKg": {
+    "description": "Validation error when weight is outside 10-500 kg"
+  },
+  "validationWeightRangeLbs": "Gewicht moet tussen 22 en 1102 lbs liggen",
+  "@validationWeightRangeLbs": {
+    "description": "Validation error when weight is outside 22-1102 lbs"
+  },
+  "failedToSaveProfile": "Profiel kon niet worden opgeslagen",
+  "@failedToSaveProfile": {
+    "description": "Error message shown when saving the user profile fails"
+  },
+  "failedToUpdateReminder": "Herinnering kon niet worden bijgewerkt",
+  "@failedToUpdateReminder": {
+    "description": "Error message shown when updating a reminder fails"
+  },
+  "failedToSaveReminder": "Herinnering kon niet worden opgeslagen",
+  "@failedToSaveReminder": {
+    "description": "Error message shown when saving a reminder fails"
+  },
+  "trendChartSemantics": "Trendgrafiek met {count} gegevenspunten",
+  "@trendChartSemantics": {
+    "description": "Accessibility label for the glucose trend chart",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -26,10 +26,6 @@
       }
     }
   },
-  "settings": "Ajustes",
-  "@settings": {
-    "description": "Settings label"
-  },
   "settingsTitle": "Ajustes",
   "@settingsTitle": {
     "description": "Title displayed on the settings screen app bar"
@@ -97,10 +93,6 @@
   "close": "Cerrar",
   "@close": {
     "description": "Close button label"
-  },
-  "add": "Añadir",
-  "@add": {
-    "description": "Add button label"
   },
   "save": "Guardar",
   "@save": {
@@ -266,10 +258,6 @@
   "mealContext": "Contexto de comida",
   "@mealContext": {
     "description": "Label for meal context selector"
-  },
-  "dateTime": "Fecha y hora",
-  "@dateTime": {
-    "description": "Label for date and time picker"
   },
   "notes": "Notas",
   "@notes": {
@@ -1771,27 +1759,125 @@
     "description": "Full description for mmol/L glucose unit"
   },
   "notificationChannelName": "Recordatorios de medición",
+  "@notificationChannelName": {
+    "description": "Android notification channel name for measurement reminders"
+  },
   "notificationChannelDescription": "Notificaciones programadas que le recuerdan registrar mediciones de salud",
+  "@notificationChannelDescription": {
+    "description": "Android notification channel description for measurement reminders"
+  },
   "notificationReminderBody": "Hora de registrar su medición de {metric}.",
+  "@notificationReminderBody": {
+    "description": "Notification body text reminding user to record a health metric",
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      }
+    }
+  },
   "validationGlucoseRequired": "El valor de glucosa es obligatorio",
+  "@validationGlucoseRequired": {
+    "description": "Validation error when glucose value is omitted"
+  },
   "validationGlucosePositive": "El valor de glucosa debe ser positivo",
+  "@validationGlucosePositive": {
+    "description": "Validation error when glucose value is zero or negative"
+  },
   "validationGlucoseRangeMgDl": "La lectura de glucosa debe estar entre 20 y 600 mg/dL",
+  "@validationGlucoseRangeMgDl": {
+    "description": "Validation error when glucose value is outside 20-600 mg/dL"
+  },
   "validationGlucoseRangeMmolL": "La lectura de glucosa debe estar entre 1.1 y 33.3 mmol/L",
+  "@validationGlucoseRangeMmolL": {
+    "description": "Validation error when glucose value is outside 1.1-33.3 mmol/L"
+  },
   "validationHbA1cRequired": "El valor de HbA1c es obligatorio",
+  "@validationHbA1cRequired": {
+    "description": "Validation error when HbA1c value is omitted"
+  },
   "validationHbA1cPositive": "El valor de HbA1c debe ser positivo",
+  "@validationHbA1cPositive": {
+    "description": "Validation error when HbA1c value is zero or negative"
+  },
   "validationHbA1cRangePercentage": "La HbA1c debe estar entre 3.0% y 20.0%",
+  "@validationHbA1cRangePercentage": {
+    "description": "Validation error when HbA1c percentage is outside 3.0-20.0%"
+  },
   "validationHbA1cRangeMmolMol": "La HbA1c debe estar entre 9 y 195 mmol/mol",
+  "@validationHbA1cRangeMmolMol": {
+    "description": "Validation error when HbA1c mmol/mol is outside 9-195"
+  },
   "validationBpRequired": "Se requieren valores sistólicos y diastólicos",
+  "@validationBpRequired": {
+    "description": "Validation error when systolic or diastolic pressure is omitted"
+  },
   "validationBpSystolicRange": "La presión sistólica debe estar entre 60 y 300 mmHg",
+  "@validationBpSystolicRange": {
+    "description": "Validation error when systolic pressure is outside 60-300 mmHg"
+  },
   "validationBpDiastolicRange": "La presión diastólica debe estar entre 30 y 200 mmHg",
+  "@validationBpDiastolicRange": {
+    "description": "Validation error when diastolic pressure is outside 30-200 mmHg"
+  },
   "validationBpSystolicGreaterThanDiastolic": "La presión sistólica debe ser mayor que la diastólica",
+  "@validationBpSystolicGreaterThanDiastolic": {
+    "description": "Validation error when systolic pressure is <= diastolic pressure"
+  },
   "validationKetonesRequired": "El valor de cetonas es obligatorio",
+  "@validationKetonesRequired": {
+    "description": "Validation error when ketone value is omitted"
+  },
   "validationKetonesRange": "El valor de cetonas debe estar entre 0.0 y 25.0 mmol/L",
+  "@validationKetonesRange": {
+    "description": "Validation error when ketone value is outside 0.0-25.0 mmol/L"
+  },
   "validationCholesterolRequired": "Se requieren valores de colesterol total, LDL y HDL",
+  "@validationCholesterolRequired": {
+    "description": "Validation error when cholesterol values are omitted"
+  },
   "validationCholesterolTotalRange": "El colesterol total debe estar entre 50 y 500 mg/dL",
+  "@validationCholesterolTotalRange": {
+    "description": "Validation error when total cholesterol is outside 50-500 mg/dL"
+  },
   "validationCholesterolLdlRange": "El colesterol LDL debe estar entre 20 y 400 mg/dL",
+  "@validationCholesterolLdlRange": {
+    "description": "Validation error when LDL cholesterol is outside 20-400 mg/dL"
+  },
   "validationCholesterolHdlRange": "El colesterol HDL debe estar entre 10 y 150 mg/dL",
+  "@validationCholesterolHdlRange": {
+    "description": "Validation error when HDL cholesterol is outside 10-150 mg/dL"
+  },
   "validationWeightRequired": "El peso es obligatorio",
+  "@validationWeightRequired": {
+    "description": "Validation error when weight value is omitted"
+  },
   "validationWeightRangeKg": "El peso debe estar entre 10 y 500 kg",
-  "validationWeightRangeLbs": "El peso debe estar entre 22 y 1102 lbs"
+  "@validationWeightRangeKg": {
+    "description": "Validation error when weight is outside 10-500 kg"
+  },
+  "validationWeightRangeLbs": "El peso debe estar entre 22 y 1102 lbs",
+  "@validationWeightRangeLbs": {
+    "description": "Validation error when weight is outside 22-1102 lbs"
+  },
+  "failedToSaveProfile": "No se pudo guardar el perfil",
+  "@failedToSaveProfile": {
+    "description": "Error message shown when saving the user profile fails"
+  },
+  "failedToUpdateReminder": "No se pudo actualizar el recordatorio",
+  "@failedToUpdateReminder": {
+    "description": "Error message shown when updating a reminder fails"
+  },
+  "failedToSaveReminder": "No se pudo guardar el recordatorio",
+  "@failedToSaveReminder": {
+    "description": "Error message shown when saving a reminder fails"
+  },
+  "trendChartSemantics": "Gráfico de tendencia con {count} puntos de datos",
+  "@trendChartSemantics": {
+    "description": "Accessibility label for the glucose trend chart",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

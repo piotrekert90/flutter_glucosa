@@ -26,10 +26,6 @@
       }
     }
   },
-  "settings": "Settings",
-  "@settings": {
-    "description": "Settings label"
-  },
   "settingsTitle": "Settings",
   "@settingsTitle": {
     "description": "Title displayed on the settings screen app bar"
@@ -97,10 +93,6 @@
   "close": "Close",
   "@close": {
     "description": "Close button label"
-  },
-  "add": "Add",
-  "@add": {
-    "description": "Add button label"
   },
   "save": "Save",
   "@save": {
@@ -266,10 +258,6 @@
   "mealContext": "Meal Context",
   "@mealContext": {
     "description": "Label for meal context selector"
-  },
-  "dateTime": "Date & Time",
-  "@dateTime": {
-    "description": "Label for date and time picker"
   },
   "notes": "Notes",
   "@notes": {
@@ -1870,5 +1858,26 @@
   "validationWeightRangeLbs": "Weight must be between 22 and 1102 lbs",
   "@validationWeightRangeLbs": {
     "description": "Validation error when weight is outside 22-1102 lbs"
+  },
+  "failedToSaveProfile": "Failed to save profile",
+  "@failedToSaveProfile": {
+    "description": "Error message shown when saving the user profile fails"
+  },
+  "failedToUpdateReminder": "Failed to update reminder",
+  "@failedToUpdateReminder": {
+    "description": "Error message shown when updating a reminder fails"
+  },
+  "failedToSaveReminder": "Failed to save reminder",
+  "@failedToSaveReminder": {
+    "description": "Error message shown when saving a reminder fails"
+  },
+  "trendChartSemantics": "Trend chart with {count} data points",
+  "@trendChartSemantics": {
+    "description": "Accessibility label for the glucose trend chart",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }
