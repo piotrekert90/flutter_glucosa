@@ -175,7 +175,7 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Crash- en diagnoselogboeken worden uitsluitend op je apparaat opgeslagen voor probleemoplossing en nooit verzonden naar externe servers.",
+  "privacyPolicySection2Body": "Crash- en diagnoselogboeken worden lokaal op je apparaat bewaard voor probleemoplossing. Basale app-gebruikstats en crashtelemetrie kunnen ook naar Firebase worden verzonden voor betrouwbaarheid en debugging. Je gezondheidsgegevens blijven op je apparaat totdat je ze expliciet exporteert of synchroniseert met HealthKit/Health Connect.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },

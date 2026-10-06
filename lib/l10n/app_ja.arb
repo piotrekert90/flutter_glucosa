@@ -175,7 +175,7 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "クラッシュログおよび診断ログはトラブルシューティング用に端末内にのみ保存され、外部サーバーに送信されることはありません。",
+  "privacyPolicySection2Body": "クラッシュログおよび診断ログはトラブルシューティングのために端末内にローカル保存されます。基本的なアプリ利用統計とクラッシュのテレメトリも、信頼性向上とデバッグのためにFirebaseに送信される場合があります。HealthKit / Health Connect で明示的にエクスポートまたは同期しない限り、健康データは端末内に保管されます。",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },

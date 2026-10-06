@@ -6,7 +6,8 @@ import '../providers/onboarding_notifier.dart';
 
 /// Eighth onboarding step presenting transparent data-privacy information.
 ///
-/// All health data and diagnostic logs stay on the device.
+/// Health data stays local by default, while limited diagnostic telemetry may be
+/// sent to Firebase for app reliability and debugging.
 /// Advancing requires acknowledging the notice.
 class OnboardingPrivacyStep extends ConsumerWidget {
   /// Creates an [OnboardingPrivacyStep].

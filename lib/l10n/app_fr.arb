@@ -175,7 +175,7 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Les journaux de plantage et de diagnostic sont stockés exclusivement sur ton appareil pour le dépannage et ne sont jamais transmis à des serveurs externes.",
+  "privacyPolicySection2Body": "Les journaux de plantage et de diagnostic sont stockés localement sur ton appareil pour le dépannage. Des analyses d’utilisation de base et de la télémétrie de plantage peuvent également être envoyées à Firebase pour la fiabilité et le débogage. Tes données de santé restent sur l’appareil tant que tu ne les exportes ou ne les synchronises pas explicitement avec HealthKit/Health Connect.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },

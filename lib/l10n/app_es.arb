@@ -175,7 +175,7 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Los registros de fallos y diagnóstico se almacenan exclusivamente en tu dispositivo para resolución de problemas y nunca se envían a servidores externos.",
+  "privacyPolicySection2Body": "Los registros de fallos y diagnóstico se almacenan localmente en tu dispositivo para resolución de problemas. También pueden enviarse métricas básicas de uso y telemetría de fallos a Firebase para mejorar la fiabilidad y depurar errores. Tus datos de salud permanecen en el dispositivo salvo que los exportes o sincronices explícitamente con HealthKit/Health Connect.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },

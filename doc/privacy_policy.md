@@ -46,7 +46,7 @@ Glucosa offers optional biometric app lock (Face ID, Touch ID, or Android Biomet
 
 - **On-Device Logging:** Glucosa maintains an on-device rotating diagnostic crash log (`crash_log.txt`, capped at 1 MB) to assist with troubleshooting application defects.
 - **Privacy Preservation:** Diagnostic logs record technical stack traces and exception types; they never contain personal health measurements, patient names, notes, or credentials.
-- **Zero Cloud Transmission:** Diagnostic logs remain strictly on your physical device. No logs, analytics, or telemetry are transmitted to remote servers.
+- **Limited Cloud Diagnostics:** For app reliability and debugging, basic crash and usage telemetry may be transmitted to Firebase Crashlytics/Analytics. Health readings and user profile data remain on-device unless you explicitly export or sync them through Apple Health or Google Health Connect.
 
 ---
 

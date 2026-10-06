@@ -175,7 +175,7 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Os registos de falhas e de diagnóstico são guardados exclusivamente no teu dispositivo para resolução de problemas e nunca são transmitidos a servidores externos.",
+  "privacyPolicySection2Body": "Os registos de falhas e de diagnóstico são guardados localmente no teu dispositivo para resolução de problemas. Também podem ser enviados à Firebase dados básicos de utilização da app e telemetria de falhas para melhorar a fiabilidade e a depuração. Os teus dados de saúde permanecem no dispositivo, a menos que os exportes ou sincronizes explicitamente com HealthKit/Health Connect.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },

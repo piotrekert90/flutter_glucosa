@@ -175,7 +175,7 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "I log di arresto anomalo e di diagnostica sono archiviati esclusivamente sul dispositivo per la risoluzione dei problemi e non vengono mai inviati a server esterni.",
+  "privacyPolicySection2Body": "I log di arresto anomalo e di diagnostica sono archiviati localmente sul dispositivo per la risoluzione dei problemi. Possono anche essere inviate metriche di base sull’uso dell’app e telemetria sugli arresti a Firebase per migliorare l’affidabilità e il debug. I tuoi dati sanitari restano sul dispositivo finché non li esporti o sincronizzi esplicitamente con HealthKit/Health Connect.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },

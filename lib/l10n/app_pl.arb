@@ -174,7 +174,7 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Dzienniki awarii i diagnostyczne są przechowywane wyłącznie na Twoim urządzeniu i nie są przesyłane na zewnętrzne serwery.",
+  "privacyPolicySection2Body": "Dzienniki awarii i diagnostyczne są przechowywane lokalnie na Twoim urządzeniu w celu rozwiązywania problemów. Podstawowe dane o użyciu aplikacji i telemetria awarii mogą być również wysyłane do Firebase w celach niezawodności i debugowania. Twoje dane zdrowotne pozostają na urządzeniu, chyba że jawnie je wyeksportujesz lub zsynchronizujesz z HealthKit/Health Connect.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },

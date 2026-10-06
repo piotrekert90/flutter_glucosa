@@ -175,7 +175,7 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Absturz- und Diagnoseprotokolle werden ausschließlich zur Fehlerbehebung auf deinem Gerät gespeichert und nicht an externe Server übertragen.",
+  "privacyPolicySection2Body": "Absturz- und Diagnoseprotokolle werden lokal auf deinem Gerät für die Fehlerbehebung gespeichert. Grundlegende App-Nutzungsdaten und Absturztelemetrie können ebenfalls an Firebase für Zuverlässigkeit und Fehlersuche gesendet werden. Deine Gesundheitsdaten bleiben auf dem Gerät, sofern du sie nicht ausdrücklich exportierst oder mit HealthKit/Health Connect synchronisierst.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },

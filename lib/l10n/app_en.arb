@@ -175,7 +175,7 @@
   "@privacyPolicySection2Title": {
     "description": "Title of section 2 in privacy policy"
   },
-  "privacyPolicySection2Body": "Crash and diagnostic logs are stored exclusively on your device for troubleshooting and are never transmitted to external servers.",
+  "privacyPolicySection2Body": "Crash and diagnostic logs are stored locally on your device for troubleshooting. Basic app-usage analytics and crash telemetry may also be transmitted to Firebase for reliability and debugging. Your health readings remain on-device unless you explicitly export or synchronize them with HealthKit/Health Connect.",
   "@privacyPolicySection2Body": {
     "description": "Body of section 2 in privacy policy"
   },

@@ -29,10 +29,10 @@
 
 The technical design focuses on clinical reliability and data privacy:
 
-- **Local-first storage** — Health data is stored locally in an on-device Isar database with zero network dependencies or remote servers.
+- **Local-first storage** — Health data remains on-device in an Isar database unless you explicitly export or sync it through a platform integration.
 - **Data portability** — With Android cloud backup explicitly disabled (`allowBackup="false"`), complete CSV export and import serve as the primary path for backups and migration.
 - **Biometric security** — Optional app lock using device biometrics (Face ID, Touch ID, Fingerprint) or system PIN.
-- **Local diagnostics** — Diagnostic logs (`AppLogger`) and crash records (`AppCrashReporter`) are stored exclusively on-device.
+- **Operational diagnostics** — Crash and usage telemetry may be sent to Firebase for reliability and debugging, while raw health readings stay on-device by default.
 
 | Dimension | Implementation |
 |---|---|
@@ -40,7 +40,7 @@ The technical design focuses on clinical reliability and data privacy:
 | **Clinical Domain** | Value objects, ADA / AACE / UK NICE clinical guidelines, AHA blood pressure stages (Normal, Elevated, High, Crisis), and ketone risk stratification |
 | **Reactive State** | Unified multi-metric aggregation (glucose, HbA1c, blood pressure, cholesterol, ketones, weight) |
 | **Data Visualization** | Interactive time-series charts via `fl_chart`, day/week/month bucketing, and dynamic target range boundary lines |
-| **Data Privacy** | Local-first persistence, biometric app lock, on-device diagnostic logs, and CSV export/import |
+| **Data Privacy** | Local-first persistence, biometric app lock, explicit export/sync control, and limited Firebase diagnostics for app reliability |
 | **Clean Architecture** | Feature-first modular package structure, strict inward dependency rules, and domain layer isolated from UI and database |
 
 ---
