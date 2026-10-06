@@ -1,6 +1,8 @@
 import 'dart:ui' as ui;
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,6 +25,8 @@ Future<void> initializeFirebaseIfEnabled() async {
   }
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  await FirebaseAnalytics.instance.logAppOpen();
 }
 
 /// Main entrypoint function for the application.
@@ -49,6 +53,7 @@ Future<void> main() async {
       reason: 'FlutterError: ${details.context?.toDescription()}',
       fatal: true,
     );
+    FirebaseCrashlytics.instance.recordFlutterFatalError(details);
   };
 
   ui.PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
@@ -58,6 +63,7 @@ Future<void> main() async {
       reason: 'Unhandled asynchronous platform error',
       fatal: true,
     );
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
 
