@@ -59,7 +59,7 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
 
     return Semantics(
       container: true,
-      label: '${l10n.periodComparison}: $_selectedDays days',
+      label: l10n.periodComparisonSemantics(_selectedDays),
       child: Card(
         margin: EdgeInsets.zero,
         elevation: 0,
@@ -134,7 +134,7 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                       ),
                     ),
                     Text(
-                      'vs ${comparison.previousPeriod.label}',
+                      l10n.versusLabel(comparison.previousPeriod.label),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: cs.onSurfaceVariant,
                       ),

@@ -43,7 +43,7 @@ class _OnboardingWelcomeStepState extends ConsumerState<OnboardingWelcomeStep> {
         children: [
           const SizedBox(height: 24),
           Icon(
-            Icons.water_drop_rounded,
+            Icons.water_drop_outlined,
             size: 72,
             color: theme.colorScheme.primary,
           ),
@@ -66,7 +66,9 @@ class _OnboardingWelcomeStepState extends ConsumerState<OnboardingWelcomeStep> {
           const SizedBox(height: 32),
           TextField(
             controller: _controller,
+            autofocus: true,
             textCapitalization: TextCapitalization.words,
+            textInputAction: TextInputAction.done,
             decoration: InputDecoration(
               labelText: l10n.onboardingNameLabel,
               hintText: l10n.onboardingNameHint,

@@ -38,12 +38,16 @@ class MilestonesGallerySheet extends StatelessWidget {
     final unlockedCount = milestones.where((m) => m.isUnlocked).length;
     final totalCount = milestones.length;
 
-    const categories = [
+    const allCategories = [
       MilestoneCategory.goals,
       MilestoneCategory.streaks,
       MilestoneCategory.routines,
       MilestoneCategory.special,
     ];
+    // Drop empty categories up front so separators never pad gaps.
+    final categories = allCategories
+        .where((c) => milestones.any((m) => m.type.category == c))
+        .toList();
 
     return DraggableScrollableSheet(
       initialChildSize: 0.85,
@@ -112,10 +116,6 @@ class MilestonesGallerySheet extends StatelessWidget {
                     final categoryMilestones = milestones
                         .where((m) => m.type.category == category)
                         .toList();
-
-                    if (categoryMilestones.isEmpty) {
-                      return const SizedBox.shrink();
-                    }
 
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

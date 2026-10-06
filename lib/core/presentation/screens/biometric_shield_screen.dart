@@ -5,6 +5,7 @@ import '../../../features/settings/presentation/providers/user_profile_notifier.
 import '../../../l10n/app_localizations.dart';
 import '../../integrations/biometrics/biometric_lock_provider.dart';
 import '../../integrations/biometrics/biometric_service.dart';
+import '../../presentation/utils/app_snackbar.dart';
 import '../../utils/app_logger.dart';
 import '../../utils/crash_reporter.dart';
 
@@ -73,9 +74,7 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
           final message = result == BiometricAuthResult.lockedOut
               ? (l10n.biometricLockedOut)
               : l10n.biometricNotAvailable;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(message)));
+          AppSnackBar.show(context, message: message, type: SnackBarType.error);
         }
       }
     } catch (e, stack) {
@@ -121,8 +120,10 @@ class _BiometricShieldScreenState extends ConsumerState<BiometricShieldScreen> {
               if (result == BiometricAuthResult.success) {
                 Navigator.pop(dialogContext, true);
               } else {
-                ScaffoldMessenger.of(dialogContext).showSnackBar(
-                  SnackBar(content: Text(l10n.biometricNotAvailable)),
+                AppSnackBar.show(
+                  dialogContext,
+                  message: l10n.biometricNotAvailable,
+                  type: SnackBarType.error,
                 );
               }
             },

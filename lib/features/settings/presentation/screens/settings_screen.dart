@@ -120,6 +120,7 @@ class SettingsScreen extends ConsumerWidget {
                   icon: Icons.track_changes_outlined,
                   title: l10n.targetRange,
                   valueText: _targetRangeLabel(
+                    l10n,
                     profile.targetRange,
                     profile.preferredGlucoseUnit,
                   ),
@@ -184,6 +185,7 @@ class SettingsScreen extends ConsumerWidget {
                   icon: Icons.delete_forever_outlined,
                   title: l10n.wipeDataTitle,
                   subtitle: l10n.wipeDataDescription,
+                  isError: true,
                   onTap: () => _handleWipeData(context, ref),
                 ),
                 const SizedBox(height: 12),
@@ -215,11 +217,14 @@ class SettingsScreen extends ConsumerWidget {
                 FutureBuilder<PackageInfo>(
                   future: PackageInfo.fromPlatform(),
                   builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const SizedBox.shrink();
+                    }
                     final version = snapshot.data?.version ?? '1.0.0';
                     return CustomSettingsTile(
                       icon: Icons.info_outline,
                       title: l10n.version,
-                      valueText: 'v$version',
+                      valueText: l10n.appVersionLabel(version),
                       showChevron: false,
                     );
                   },
@@ -254,7 +259,11 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  String _targetRangeLabel(GlucoseTargetRange range, GlucoseUnit unit) {
+  String _targetRangeLabel(
+    AppLocalizations l10n,
+    GlucoseTargetRange range,
+    GlucoseUnit unit,
+  ) {
     final presetName = range.preset.displayName;
     if (unit == GlucoseUnit.mmolL) {
       final minMmol = GlucoseConverter.mgDlToMmolL(
@@ -263,9 +272,19 @@ class SettingsScreen extends ConsumerWidget {
       final maxMmol = GlucoseConverter.mgDlToMmolL(
         range.maxMgDl,
       ).toStringAsFixed(1);
-      return '$minMmol–$maxMmol mmol/L ($presetName)';
+      return l10n.targetRangeValue(
+        minMmol,
+        maxMmol,
+        unit.displayName,
+        presetName,
+      );
     }
-    return '${range.minMgDl}–${range.maxMgDl} mg/dL ($presetName)';
+    return l10n.targetRangeValue(
+      range.minMgDl.toString(),
+      range.maxMgDl.toString(),
+      unit.displayName,
+      presetName,
+    );
   }
 
   void _showEditNameDialog(
@@ -367,8 +386,9 @@ class SettingsScreen extends ConsumerWidget {
       currentValue: currentUnit,
       items: HbA1cUnit.values,
       itemLabel: (unit) => unit.displayName,
-      itemSubtitle: (unit) =>
-          unit == HbA1cUnit.percentage ? 'NGSP (%)' : 'IFCC (mmol/mol)',
+      itemSubtitle: (unit) => unit == HbA1cUnit.percentage
+          ? (l10n.hba1cUnitNgspDescription)
+          : l10n.hba1cUnitIfccDescription,
       onSelected: (selected) async {
         final (success, failure) = await ref
             .read(userProfileProvider.notifier)
@@ -398,8 +418,9 @@ class SettingsScreen extends ConsumerWidget {
       currentValue: currentUnit,
       items: WeightUnit.values,
       itemLabel: (unit) => unit.displayName,
-      itemSubtitle: (unit) =>
-          unit == WeightUnit.kilograms ? 'Kilograms (kg)' : 'Pounds (lbs)',
+      itemSubtitle: (unit) => unit == WeightUnit.kilograms
+          ? (l10n.weightUnitKgDescription)
+          : l10n.weightUnitLbsDescription,
       onSelected: (selected) async {
         final (success, failure) = await ref
             .read(userProfileProvider.notifier)
@@ -624,7 +645,7 @@ class SettingsScreen extends ConsumerWidget {
             context,
             message: failure != null
                 ? failure.toUserMessage(l10n)
-                : 'Failed to wipe data',
+                : l10n.wipeDataError,
             type: SnackBarType.error,
           );
         }

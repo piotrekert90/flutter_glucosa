@@ -26,33 +26,16 @@ class ReminderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final is24Hours = MediaQuery.alwaysUse24HourFormatOf(context);
-
-    final String formattedTime;
-    if (is24Hours) {
-      formattedTime =
-          '${reminder.hourOfDay.toString().padLeft(2, '0')}:${reminder.minute.toString().padLeft(2, '0')}';
-    } else {
-      final period = reminder.hourOfDay >= 12 ? 'PM' : 'AM';
-      final hour12 = reminder.hourOfDay % 12 == 0
-          ? 12
-          : reminder.hourOfDay % 12;
-      formattedTime =
-          '$hour12:${reminder.minute.toString().padLeft(2, '0')} $period';
-    }
-
     final l10n = AppLocalizations.of(context)!;
+    final formattedTime = TimeOfDay(
+      hour: reminder.hourOfDay,
+      minute: reminder.minute,
+    ).format(context);
+
     final (metricIcon, metricLabel) = _metricInfo(reminder.metricType, l10n);
 
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(
-          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
-        ),
-      ),
+      clipBehavior: Clip.antiAlias,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -103,8 +86,10 @@ class ReminderCard extends StatelessWidget {
                           _BadgeChip(
                             icon: reminder.isOneTime
                                 ? Icons.looks_one_outlined
-                                : Icons.repeat_rounded,
-                            label: reminder.isOneTime ? 'Once' : 'Daily',
+                                : Icons.repeat_outlined,
+                            label: reminder.isOneTime
+                                ? l10n.reminderOnce
+                                : l10n.reminderDaily,
                             isActive: reminder.isActive,
                           ),
                         ],
@@ -115,7 +100,13 @@ class ReminderCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 12),
-            Switch.adaptive(value: reminder.isActive, onChanged: onToggle),
+            Semantics(
+              label: l10n.reminderActiveToggle,
+              child: Switch.adaptive(
+                value: reminder.isActive,
+                onChanged: onToggle,
+              ),
+            ),
           ],
         ),
       ),

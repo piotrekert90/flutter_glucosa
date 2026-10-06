@@ -45,7 +45,7 @@ class CalendarSelectedDaySection extends StatelessWidget {
           Expanded(
             child: Text(
               l10n.entriesFromDate(formattedSelectedDate),
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.onSurface,
               ),

@@ -8,6 +8,7 @@ import '../../../../core/presentation/widgets/add_reading_bottom_sheet.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_top_bar.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../glucose/presentation/providers/glucose_reading_list_notifier.dart';
 import '../../../settings/presentation/providers/user_profile_notifier.dart';
@@ -106,10 +107,18 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
               ),
               child: glucoseAsync.when(
                 loading: () => const CalendarShimmerSkeleton(),
-                error: (error, _) => AppErrorView(
-                  message: error.toString(),
-                  onRetry: () => ref.invalidate(glucoseReadingListProvider),
-                ),
+                error: (error, stack) {
+                  AppLogger.error(
+                    'Failed to load calendar readings: $error',
+                    tag: 'CalendarScreen',
+                    error: error,
+                    stackTrace: stack,
+                  );
+                  return AppErrorView(
+                    message: l10n.genericError,
+                    onRetry: () => ref.invalidate(glucoseReadingListProvider),
+                  );
+                },
                 data: (readings) {
                   final dayReadings =
                       readings

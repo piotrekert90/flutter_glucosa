@@ -5,6 +5,7 @@ import '../../../../core/domain/enums/glucose_unit.dart';
 import '../../../../core/domain/enums/hba1c_unit.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
+import '../../../../core/presentation/extensions/failure_ui_extension.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../core/utils/app_logger.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -189,7 +190,7 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
       final notifier = ref.read(hbA1cReadingListProvider.notifier);
       final reading = HbA1cReading(
         readingPercentage: hba1cPercentage,
-        notes: 'Estimated from average glucose calculator',
+        notes: l10n.hba1cCalculatorAutoNote,
         createdAt: DateTime.now(),
       );
 
@@ -205,7 +206,9 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
         } else {
           AppSnackBar.show(
             context,
-            message: failure?.message ?? l10n.genericError,
+            message: failure != null
+                ? failure.toUserMessage(l10n)
+                : l10n.genericError,
             type: SnackBarType.error,
           );
         }
@@ -297,8 +300,8 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                         ),
                         decoration: InputDecoration(
                           hintText: _glucoseUnit == GlucoseUnit.mgDl
-                              ? 'e.g. 154'
-                              : 'e.g. 8.5',
+                              ? l10n.hba1cAvgGlucoseHintMgDl
+                              : l10n.hba1cAvgGlucoseHintMmolL,
                           suffixText: _glucoseUnit.displayName,
                           border: const OutlineInputBorder(),
                         ),
@@ -369,8 +372,8 @@ class _HbA1cCalculatorScreenState extends ConsumerState<HbA1cCalculatorScreen> {
                         ),
                         decoration: InputDecoration(
                           hintText: _hba1cUnit == HbA1cUnit.percentage
-                              ? 'e.g. 7.0'
-                              : 'e.g. 53',
+                              ? l10n.hba1cValueHintPercent
+                              : l10n.hba1cValueHintMmolMol,
                           suffixText: _hba1cUnit.displayName,
                           border: const OutlineInputBorder(),
                         ),

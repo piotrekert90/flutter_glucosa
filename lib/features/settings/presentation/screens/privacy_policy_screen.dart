@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../l10n/app_localizations.dart';
+
+/// Support contact address for privacy inquiries.
+const String kPrivacyContactEmail = 'piotrekert90@gmail.com';
 
 /// A native screen rendering the application privacy policy.
 class PrivacyPolicyScreen extends StatelessWidget {
@@ -9,21 +13,31 @@ class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});
 
   Future<void> _sendContactEmail(BuildContext context) async {
+    final l10n = AppLocalizations.of(context)!;
     final uri = Uri(
       scheme: 'mailto',
-      path: 'piotrekert90@gmail.com',
-      queryParameters: <String, String>{'subject': 'Privacy Policy Inquiry'},
+      path: kPrivacyContactEmail,
+      queryParameters: <String, String>{
+        'subject': l10n.privacyPolicyEmailSubject,
+      },
     );
     try {
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
+      } else if (context.mounted) {
+        AppSnackBar.show(
+          context,
+          message: l10n.privacyPolicyEmailError,
+          type: SnackBarType.error,
+        );
       }
     } catch (_) {
       if (context.mounted) {
-        final l10n = AppLocalizations.of(context)!;
-        ScaffoldMessenger.of(
+        AppSnackBar.show(
           context,
-        ).showSnackBar(SnackBar(content: Text(l10n.privacyPolicyEmailError)));
+          message: l10n.privacyPolicyEmailError,
+          type: SnackBarType.error,
+        );
       }
     }
   }

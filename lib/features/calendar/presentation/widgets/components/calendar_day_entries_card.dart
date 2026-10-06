@@ -129,18 +129,9 @@ class CalendarDayEntriesCard extends ConsumerWidget {
             ).format(reading.createdAt);
 
             return Card(
-              elevation: 0,
-              margin: EdgeInsets.zero,
-              color: colorScheme.surfaceContainerLow,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-                side: BorderSide(
-                  color: colorScheme.outlineVariant.withValues(alpha: 0.3),
-                  width: 1.0,
-                ),
-              ),
+              key: ValueKey(reading.id),
+              clipBehavior: Clip.antiAlias,
               child: InkWell(
-                borderRadius: BorderRadius.circular(16),
                 onTap: () => context.pushNamed(
                   AppRoute.editGlucose.name,
                   pathParameters: {'id': '${reading.id}'},
@@ -359,6 +350,8 @@ class CalendarDayEntriesCard extends ConsumerWidget {
                             reading.notes!.trim(),
                             style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(color: colorScheme.onSurfaceVariant),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],

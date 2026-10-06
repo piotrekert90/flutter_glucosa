@@ -29,8 +29,12 @@ class HealthSyncSection extends ConsumerStatefulWidget {
 }
 
 class _HealthSyncSectionState extends ConsumerState<HealthSyncSection> {
-  String get _platformLabel =>
-      Platform.isIOS ? 'Apple Health' : 'Health Connect';
+  String get _platformLabel {
+    final l10n = AppLocalizations.of(context)!;
+    return Platform.isIOS
+        ? l10n.healthSyncAppleHealth
+        : l10n.healthSyncHealthConnect;
+  }
 
   @override
   Widget build(BuildContext context) {

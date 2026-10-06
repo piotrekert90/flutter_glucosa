@@ -39,9 +39,15 @@ class OnboardingUnitsStep extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           PillSegmentedControl<GlucoseUnit>(
-            segments: const [
-              PillSegment(value: GlucoseUnit.mgDl, label: 'mg/dL'),
-              PillSegment(value: GlucoseUnit.mmolL, label: 'mmol/L'),
+            segments: [
+              PillSegment(
+                value: GlucoseUnit.mgDl,
+                label: GlucoseUnit.mgDl.displayName,
+              ),
+              PillSegment(
+                value: GlucoseUnit.mmolL,
+                label: GlucoseUnit.mmolL.displayName,
+              ),
             ],
             selected: draft.glucoseUnit,
             onChanged: (unit) =>

@@ -52,54 +52,69 @@ class OnboardingScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final draft = ref.watch(onboardingProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: draft.step > 0
-            ? IconButton(
-                icon: const Icon(Icons.arrow_back_rounded),
-                tooltip: l10n.onboardingBack,
-                onPressed: () => ref.read(onboardingProvider.notifier).back(),
-              )
-            : null,
-        title: Text(
-          l10n.onboardingStepOf(draft.step + 1, OnboardingDraft.totalSteps),
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(4),
-          child: LinearProgressIndicator(
-            value: (draft.step + 1) / OnboardingDraft.totalSteps,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        // System back steps through the wizard instead of exiting it.
+        ref.read(onboardingProvider.notifier).back();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: draft.step > 0
+              ? IconButton(
+                  icon: const Icon(Icons.arrow_back_rounded),
+                  tooltip: l10n.onboardingBack,
+                  onPressed: () => ref.read(onboardingProvider.notifier).back(),
+                )
+              : null,
+          title: Text(
+            l10n.onboardingStepOf(draft.step + 1, OnboardingDraft.totalSteps),
+          ),
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4),
+            child: Semantics(
+              label: l10n.onboardingProgressLabel(
+                draft.step + 1,
+                OnboardingDraft.totalSteps,
+              ),
+              value: '${draft.step + 1} of ${OnboardingDraft.totalSteps}',
+              child: LinearProgressIndicator(
+                value: (draft.step + 1) / OnboardingDraft.totalSteps,
+              ),
+            ),
           ),
         ),
-      ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: switch (draft.step) {
-                0 => const OnboardingWelcomeStep(),
-                1 => const OnboardingUnitsStep(),
-                2 => const OnboardingDiabetesStep(),
-                3 => const OnboardingTargetRangeStep(),
-                4 => const OnboardingHealthSyncStep(),
-                5 => const OnboardingReminderStep(),
-                6 => const OnboardingBiometricStep(),
-                7 => const OnboardingPrivacyStep(),
-                _ => OnboardingCsvImportStep(
-                  onCompleted: () => context.go(AppRoute.overview.path),
-                ),
-              },
-            ),
-            if (draft.step < OnboardingDraft.totalSteps - 1)
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: FilledButton(
-                  onPressed: () => _next(context, ref),
-                  child: Text(l10n.onboardingNext),
-                ),
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: switch (draft.step) {
+                  0 => const OnboardingWelcomeStep(),
+                  1 => const OnboardingUnitsStep(),
+                  2 => const OnboardingDiabetesStep(),
+                  3 => const OnboardingTargetRangeStep(),
+                  4 => const OnboardingHealthSyncStep(),
+                  5 => const OnboardingReminderStep(),
+                  6 => const OnboardingBiometricStep(),
+                  7 => const OnboardingPrivacyStep(),
+                  _ => OnboardingCsvImportStep(
+                    onCompleted: () => context.go(AppRoute.overview.path),
+                  ),
+                },
               ),
-          ],
+              if (draft.step < OnboardingDraft.totalSteps - 1)
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: FilledButton(
+                    onPressed: () => _next(context, ref),
+                    child: Text(l10n.onboardingNext),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

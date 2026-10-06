@@ -100,6 +100,7 @@ class CalendarGrid extends StatelessWidget {
         final isFuture = date.isAfter(todayEnd);
 
         return CalendarDayCell(
+          key: ValueKey(date.toIso8601String()),
           date: date,
           dayNumber: dayNumber,
           readings: dayReadings,

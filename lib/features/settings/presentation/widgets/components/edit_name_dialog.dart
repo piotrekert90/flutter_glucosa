@@ -36,6 +36,7 @@ class EditNameDialog extends StatefulWidget {
 
 class _EditNameDialogState extends State<EditNameDialog> {
   late final TextEditingController _controller;
+  String? _errorText;
 
   @override
   void initState() {
@@ -50,6 +51,11 @@ class _EditNameDialogState extends State<EditNameDialog> {
   }
 
   void _handleSave() {
+    final l10n = AppLocalizations.of(context)!;
+    if (_controller.text.trim().isEmpty) {
+      setState(() => _errorText = l10n.nameCannotBeEmpty);
+      return;
+    }
     widget.onSaved(_controller.text.trim());
     Navigator.of(context).pop();
   }
@@ -64,11 +70,16 @@ class _EditNameDialogState extends State<EditNameDialog> {
         controller: _controller,
         autofocus: true,
         textCapitalization: TextCapitalization.words,
+        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           labelText: l10n.name,
           hintText: l10n.nameHint,
+          errorText: _errorText,
           border: const OutlineInputBorder(),
         ),
+        onChanged: (_) {
+          if (_errorText != null) setState(() => _errorText = null);
+        },
         onSubmitted: (_) => _handleSave(),
       ),
       actions: [

@@ -34,6 +34,8 @@ class OnboardingReminderStep extends ConsumerWidget {
       ref.read(onboardingProvider.notifier).setReminderTime(null, null);
       return;
     }
+    // Enabling opens the time picker; cancelling it leaves the toggle
+    // off, which already reflects the resulting draft state.
     await _pickTime(context, ref);
   }
 

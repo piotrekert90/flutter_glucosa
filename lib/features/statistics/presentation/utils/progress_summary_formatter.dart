@@ -48,9 +48,9 @@ class ProgressSummaryFormatter {
     final targetMinStr = _formatValue(targetRange.minMgDl, unit);
     final targetMaxStr = _formatValue(targetRange.maxMgDl, unit);
     buffer.writeln(
-      '🎯 ${l10n.doctorSummaryTargetRangeLabel}: $targetMinStr – $targetMaxStr ${unit.displayName} (${targetRange.preset.name.toUpperCase()})',
+      '🎯 ${l10n.doctorSummaryTargetRangeLabel}: $targetMinStr – $targetMaxStr ${unit.displayName} (${targetRange.preset.displayName})',
     );
-    buffer.writeln('⏱️ Period: ${summary.label} ($windowDays days)');
+    buffer.writeln('⏱️ ${l10n.doctorSummaryPeriod(summary.label, windowDays)}');
     buffer.writeln('');
 
     // Glucose Metrics

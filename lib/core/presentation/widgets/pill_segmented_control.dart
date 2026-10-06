@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../l10n/app_localizations.dart';
+
 /// Segmented option for [PillSegmentedControl].
 class PillSegment<T extends Object> {
   /// Value selected when this segment is tapped.
@@ -40,10 +42,15 @@ class PillSegmentedControl<T extends Object> extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     assert(segments.isNotEmpty, 'PillSegmentedControl needs segments');
 
+    final selectedLabel =
+        AppLocalizations.of(context)?.selectedState ?? 'selected';
     return Semantics(
       container: true,
       label: segments
-          .map((s) => '${s.label}${s.value == selected ? ' (selected)' : ''}')
+          .map(
+            (s) =>
+                '${s.label}${s.value == selected ? ' ($selectedLabel)' : ''}',
+          )
           .join(', '),
       child: Container(
         padding: const EdgeInsets.all(4),
@@ -91,7 +98,8 @@ class _PillButton<T extends Object> extends StatelessWidget {
       selected: selected,
       label: segment.label,
       excludeSemantics: true,
-      child: GestureDetector(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
         onTap: onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),

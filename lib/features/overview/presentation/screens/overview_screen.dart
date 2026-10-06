@@ -6,6 +6,8 @@ import '../../../../core/presentation/widgets/add_reading_bottom_sheet.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_top_bar.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
+import '../../../../core/domain/enums/glucose_range_preset.dart';
+import '../../../../core/domain/enums/glucose_unit.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../glucose/presentation/providers/estimated_hba1c_provider.dart';
@@ -187,7 +189,7 @@ class OverviewScreen extends ConsumerWidget {
                                             ),
                                       ),
                                       Text(
-                                        'Estimated average glycated hemoglobin',
+                                        l10n.estimatedHbA1cSubtitle,
                                         style: theme.textTheme.bodySmall
                                             ?.copyWith(
                                               color: theme
@@ -256,14 +258,28 @@ class OverviewScreen extends ConsumerWidget {
                                         ?.targetRange
                                         .preset
                                         .displayName ??
-                                    'ADA',
+                                    GlucoseRangePreset.ada.displayName,
                                 style: theme.textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               const SizedBox(height: 2),
                               Text(
-                                '${profileAsync.value?.targetRange.minMgDl ?? 70} - ${profileAsync.value?.targetRange.maxMgDl ?? 180} ${profileAsync.value?.preferredGlucoseUnit.displayName ?? 'mg/dL'}',
+                                l10n.targetRangeValue(
+                                  '${profileAsync.value?.targetRange.minMgDl ?? 70}',
+                                  '${profileAsync.value?.targetRange.maxMgDl ?? 180}',
+                                  profileAsync
+                                          .value
+                                          ?.preferredGlucoseUnit
+                                          .displayName ??
+                                      GlucoseUnit.mgDl.displayName,
+                                  profileAsync
+                                          .value
+                                          ?.targetRange
+                                          .preset
+                                          .displayName ??
+                                      GlucoseRangePreset.ada.displayName,
+                                ),
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: theme.colorScheme.onSurfaceVariant,
                                 ),

@@ -105,7 +105,6 @@ class AppSnackBar {
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: foregroundColor,
                   fontWeight: FontWeight.w500,
-                  fontSize: 14,
                 ),
               ),
             ),

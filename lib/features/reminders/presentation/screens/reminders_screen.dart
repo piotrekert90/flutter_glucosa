@@ -53,7 +53,7 @@ class RemindersScreen extends ConsumerWidget {
             }
 
             return ListView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
               itemCount: reminders.length,
               itemBuilder: (context, index) {
                 final reminder = reminders[index];
@@ -63,7 +63,10 @@ class RemindersScreen extends ConsumerWidget {
                   background: Container(
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.only(right: 24),
-                    color: theme.colorScheme.error,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.error,
+                      borderRadius: BorderRadius.circular(28),
+                    ),
                     child: Icon(
                       Icons.delete_outline,
                       color: theme.colorScheme.onError,
@@ -79,11 +82,7 @@ class RemindersScreen extends ConsumerWidget {
                               TextButton(
                                 onPressed: () =>
                                     Navigator.of(dialogCtx).pop(false),
-                                child: Text(
-                                  MaterialLocalizations.of(
-                                    dialogCtx,
-                                  ).cancelButtonLabel,
-                                ),
+                                child: Text(l10n.cancel),
                               ),
                               FilledButton(
                                 style: FilledButton.styleFrom(
@@ -177,14 +176,13 @@ class RemindersScreen extends ConsumerWidget {
       isScrollControlled: true,
       useSafeArea: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
       ),
       builder: (sheetContext) {
         return StatefulBuilder(
           builder: (context, setSheetState) {
             final theme = Theme.of(context);
-            final timeFormatted =
-                '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
+            final timeFormatted = time.format(context);
 
             return Padding(
               padding: EdgeInsets.only(
@@ -209,6 +207,8 @@ class RemindersScreen extends ConsumerWidget {
                       const SizedBox(height: 16),
                       TextFormField(
                         initialValue: label,
+                        autofocus: !isEditing,
+                        textInputAction: TextInputAction.done,
                         decoration: InputDecoration(
                           labelText: l10n.reminderLabel,
                           hintText: l10n.reminderLabelHint,
@@ -262,7 +262,7 @@ class RemindersScreen extends ConsumerWidget {
                         items: MetricType.values.map((metric) {
                           return DropdownMenuItem(
                             value: metric,
-                            child: Text(_metricTitle(metric)),
+                            child: Text(_metricTitle(metric, l10n)),
                           );
                         }).toList(),
                         onChanged: (val) {
@@ -325,9 +325,7 @@ class RemindersScreen extends ConsumerWidget {
                             }
                           }
                         },
-                        child: Text(
-                          MaterialLocalizations.of(context).saveButtonLabel,
-                        ),
+                        child: Text(l10n.save),
                       ),
                     ],
                   ),
@@ -340,14 +338,14 @@ class RemindersScreen extends ConsumerWidget {
     );
   }
 
-  static String _metricTitle(MetricType type) {
+  static String _metricTitle(MetricType type, AppLocalizations l10n) {
     return switch (type) {
-      MetricType.glucose => 'Glucose',
-      MetricType.hba1c => 'HbA1c',
-      MetricType.bloodPressure => 'Blood Pressure',
-      MetricType.ketones => 'Ketones',
-      MetricType.cholesterol => 'Cholesterol',
-      MetricType.weight => 'Weight',
+      MetricType.glucose => l10n.glucose,
+      MetricType.hba1c => l10n.hba1c,
+      MetricType.bloodPressure => l10n.bloodPressure,
+      MetricType.ketones => l10n.ketones,
+      MetricType.cholesterol => l10n.cholesterol,
+      MetricType.weight => l10n.weight,
     };
   }
 }

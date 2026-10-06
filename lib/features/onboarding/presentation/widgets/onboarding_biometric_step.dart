@@ -83,7 +83,11 @@ class _OnboardingBiometricStepState
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 24),
-          Icon(Icons.fingerprint, size: 72, color: theme.colorScheme.primary),
+          Icon(
+            Icons.fingerprint_outlined,
+            size: 72,
+            color: theme.colorScheme.primary,
+          ),
           const SizedBox(height: 24),
           Text(
             l10n.onboardingBiometricTitle,
@@ -103,7 +107,7 @@ class _OnboardingBiometricStepState
           const SizedBox(height: 24),
           SwitchListTile.adaptive(
             title: Text(l10n.onboardingBiometricEnable),
-            value: enabled && _isAvailable,
+            value: enabled,
             onChanged: _isAvailable ? _toggle : null,
           ),
           if (!_isAvailable) ...[

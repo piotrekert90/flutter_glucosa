@@ -130,7 +130,7 @@ class HabitsActivityCard extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             title,
-            maxLines: 1,
+            maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(
               context,

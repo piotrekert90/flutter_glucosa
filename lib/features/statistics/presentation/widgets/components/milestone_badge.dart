@@ -26,11 +26,14 @@ class MilestoneBadge extends StatelessWidget {
     final title = milestone.type.localizedTitle(l10n);
     final description = milestone.type.localizedDescription(l10n);
     final isUnlocked = milestone.isUnlocked;
+    final unlockedDateStr = milestone.unlockedDate != null
+        ? DateFormat.yMMMd(l10n.localeName).format(milestone.unlockedDate!)
+        : null;
 
     return Semantics(
       button: true,
       label:
-          '$title: ${isUnlocked ? (l10n.milestoneUnlockedDate('')) : l10n.milestoneLocked}',
+          '$title: ${isUnlocked && unlockedDateStr != null ? l10n.milestoneUnlockedDate(unlockedDateStr) : l10n.milestoneLocked}',
       child: InkWell(
         onTap: () => _showDetailDialog(
           context,
@@ -139,7 +142,7 @@ class MilestoneBadge extends StatelessWidget {
             Text(
               description,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(dialogCtx).textTheme.bodyMedium,
             ),
             const SizedBox(height: 16),
             if (milestone.isUnlocked)
@@ -156,7 +159,7 @@ class MilestoneBadge extends StatelessWidget {
                   unlockedDateStr != null
                       ? l10n.milestoneUnlockedDate(unlockedDateStr)
                       : l10n.milestoneLocked,
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  style: Theme.of(dialogCtx).textTheme.labelMedium?.copyWith(
                     color: inRangeColor,
                     fontWeight: FontWeight.bold,
                   ),

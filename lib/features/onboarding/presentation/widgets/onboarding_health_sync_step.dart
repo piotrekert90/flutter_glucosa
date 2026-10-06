@@ -18,7 +18,12 @@ class OnboardingHealthSyncStep extends ConsumerWidget {
   /// Creates an [OnboardingHealthSyncStep].
   const OnboardingHealthSyncStep({super.key});
 
-  String _platformLabel() => Platform.isIOS ? 'Apple Health' : 'Health Connect';
+  String _platformLabel(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return Platform.isIOS
+        ? l10n.healthSyncAppleHealth
+        : l10n.healthSyncHealthConnect;
+  }
 
   Future<void> _toggle(BuildContext context, WidgetRef ref, bool enable) async {
     final l10n = AppLocalizations.of(context)!;
@@ -62,7 +67,7 @@ class OnboardingHealthSyncStep extends ConsumerWidget {
     final enabled = ref.watch(
       onboardingProvider.select((draft) => draft.healthSyncEnabled),
     );
-    final platform = _platformLabel();
+    final platform = _platformLabel(context);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
