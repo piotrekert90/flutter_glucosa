@@ -132,52 +132,57 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                     );
                   }
 
-                  return ListView.separated(
-                    // Bottom clearance for the end-float FAB so the last
-                    // entry is never obscured.
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 96),
-                    itemCount: visible.length,
-                    separatorBuilder: (_, _) => const SizedBox(height: 8),
-                    itemBuilder: (context, index) {
-                      final entry = visible[index];
-                      final id = _readingId(entry.reading);
-                      final theme = Theme.of(context);
-                      return Dismissible(
-                        key: ValueKey('${entry.type.name}_$id'),
-                        direction: DismissDirection.endToStart,
-                        background: Container(
-                          alignment: Alignment.centerRight,
-                          padding: const EdgeInsets.only(right: 20),
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.error,
-                            borderRadius: BorderRadius.circular(28),
+                  return RefreshIndicator(
+                    onRefresh: () async => _refreshAll(),
+                    child: ListView.separated(
+                      // Bottom clearance for the end-float FAB so the last
+                      // entry is never obscured.
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 96),
+                      itemCount: visible.length,
+                      separatorBuilder: (_, _) => const SizedBox(height: 8),
+                      itemBuilder: (context, index) {
+                        final entry = visible[index];
+                        final id = _readingId(entry.reading);
+                        final theme = Theme.of(context);
+                        return Dismissible(
+                          key: ValueKey('${entry.type.name}_$id'),
+                          direction: DismissDirection.endToStart,
+                          confirmDismiss: (_) =>
+                              _confirmDelete(context, entry.type),
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 20),
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.error,
+                              borderRadius: BorderRadius.circular(28),
+                            ),
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: theme.colorScheme.onError,
+                            ),
                           ),
-                          child: Icon(
-                            Icons.delete_outline,
-                            color: theme.colorScheme.onError,
-                          ),
-                        ),
-                        onDismissed: (_) async {
-                          await _deleteEntry(entry);
-                          if (context.mounted) {
-                            final l10n = AppLocalizations.of(context)!;
-                            ScaffoldMessenger.of(context).clearSnackBars();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  _deleteSuccessMessage(entry.type, l10n),
+                          onDismissed: (_) async {
+                            await _deleteEntry(entry);
+                            if (context.mounted) {
+                              final l10n = AppLocalizations.of(context)!;
+                              ScaffoldMessenger.of(context).clearSnackBars();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    _deleteSuccessMessage(entry.type, l10n),
+                                  ),
+                                  action: SnackBarAction(
+                                    label: l10n.undo,
+                                    onPressed: () => _restoreEntry(entry),
+                                  ),
                                 ),
-                                action: SnackBarAction(
-                                  label: l10n.undo,
-                                  onPressed: () => _restoreEntry(entry),
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                        child: _buildCard(context, entry),
-                      );
-                    },
+                              );
+                            }
+                          },
+                          child: _buildCard(context, entry),
+                        );
+                      },
+                    ),
                   );
                 },
               ),
@@ -354,6 +359,44 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
       MetricType.ketones => l10n.ketonesDeletedSuccess,
       MetricType.cholesterol => l10n.cholesterolDeletedSuccess,
       MetricType.weight => l10n.weightDeletedSuccess,
+    };
+  }
+
+  /// Shows the shared delete-confirmation dialog for [type].
+  Future<bool> _confirmDelete(BuildContext context, MetricType type) async {
+    final l10n = AppLocalizations.of(context)!;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(l10n.deleteReadingConfirmationTitle),
+        content: Text(_deleteConfirmMessage(type, l10n)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: Text(l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(dialogContext).colorScheme.error,
+            ),
+            child: Text(l10n.delete),
+          ),
+        ],
+      ),
+    );
+    return confirmed == true;
+  }
+
+  /// Returns the per-metric delete-confirmation message for [type].
+  String _deleteConfirmMessage(MetricType type, AppLocalizations l10n) {
+    return switch (type) {
+      MetricType.glucose => l10n.deleteReadingConfirmationMessage,
+      MetricType.hba1c => l10n.deleteHba1cConfirm,
+      MetricType.bloodPressure => l10n.deleteBloodPressureConfirm,
+      MetricType.ketones => l10n.deleteKetonesConfirm,
+      MetricType.cholesterol => l10n.deleteCholesterolConfirm,
+      MetricType.weight => l10n.deleteWeightConfirm,
     };
   }
 }

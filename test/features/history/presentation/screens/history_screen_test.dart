@@ -305,6 +305,11 @@ void main() {
       await tester.drag(find.byType(Dismissible), const Offset(-500, 0));
       await tester.pumpAndSettle();
 
+      // Swipe now asks for confirmation before deleting.
+      expect(find.text('Delete Reading'), findsOneWidget);
+      await tester.tap(find.text('Delete').last);
+      await tester.pumpAndSettle();
+
       verify(() => mockGlucoseRepo.delete(1)).called(1);
       expect(find.text('Undo'), findsOneWidget);
 
