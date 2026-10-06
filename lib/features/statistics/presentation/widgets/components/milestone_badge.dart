@@ -156,10 +156,9 @@ class MilestoneBadge extends StatelessWidget {
                   unlockedDateStr != null
                       ? l10n.milestoneUnlockedDate(unlockedDateStr)
                       : l10n.milestoneLocked,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: inRangeColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 13,
                   ),
                 ),
               )

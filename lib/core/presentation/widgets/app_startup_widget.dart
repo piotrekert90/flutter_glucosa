@@ -73,7 +73,8 @@ class AppStartupErrorWidget extends StatelessWidget {
       home: Builder(
         builder: (innerContext) {
           final l10n = AppLocalizations.of(innerContext)!;
-          final colorScheme = Theme.of(innerContext).colorScheme;
+          final theme = Theme.of(innerContext);
+          final colorScheme = theme.colorScheme;
           return Scaffold(
             body: Center(
               child: SingleChildScrollView(
@@ -89,8 +90,7 @@ class AppStartupErrorWidget extends StatelessWidget {
                     const SizedBox(height: 16),
                     Text(
                       l10n.initializationFailed,
-                      style: const TextStyle(
-                        fontSize: 20,
+                      style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
@@ -98,8 +98,7 @@ class AppStartupErrorWidget extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       message,
-                      style: TextStyle(
-                        fontSize: 14,
+                      style: theme.textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurfaceVariant,
                       ),
                       textAlign: TextAlign.center,

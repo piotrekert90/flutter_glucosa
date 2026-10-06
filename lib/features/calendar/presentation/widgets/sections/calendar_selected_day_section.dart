@@ -64,7 +64,6 @@ class CalendarSelectedDaySection extends StatelessWidget {
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,
-                  fontSize: 11,
                 ),
               ),
             ),

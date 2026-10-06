@@ -268,10 +268,9 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
             ),
             child: Text(
               delta,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: trendColor,
                 fontWeight: FontWeight.bold,
-                fontSize: 11,
               ),
             ),
           ),

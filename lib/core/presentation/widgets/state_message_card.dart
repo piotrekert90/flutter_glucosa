@@ -87,19 +87,7 @@ class StateMessageCard extends StatelessWidget {
                 FilledButton.icon(
                   onPressed: onButtonPressed,
                   icon: Icon(buttonIcon ?? Icons.add, size: 20),
-                  label: Text(
-                    buttonLabel!,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  style: FilledButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 14,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(999),
-                    ),
-                  ),
+                  label: Text(buttonLabel!),
                 ),
               ],
             ],

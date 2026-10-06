@@ -77,11 +77,11 @@ class MilestonesCard extends StatelessWidget {
                       ),
                       child: Text(
                         '$unlockedCount / $totalCount',
-                        style: TextStyle(
-                          color: cs.onPrimaryContainer,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
+                              color: cs.onPrimaryContainer,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                     ),
                     const SizedBox(width: 4),
