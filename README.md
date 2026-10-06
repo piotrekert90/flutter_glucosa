@@ -158,6 +158,7 @@ flutter run
 
 - **Android**: Supports Google Health Connect, notification scheduling, and Home Screen AppWidgets out of the box.
 - **iOS**: Apple HealthKit entitlements, App Group (`group.com.ekerstudio.glucosa`), and `PrivacyInfo.xcprivacy` are configured.
+- **Google Play preparation**: use the release checklist in [docs/google_play_release_checklist.md](docs/google_play_release_checklist.md) and the secure signing template at [android/key.properties.example](android/key.properties.example). No store upload is performed from this repository.
 
 ---
 

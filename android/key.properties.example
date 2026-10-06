@@ -1,0 +1,8 @@
+# Example signing configuration for local Android release builds.
+# Copy this file to android/key.properties and fill in the actual release values.
+# Never commit a real key.properties file or keystore into version control.
+
+storePassword=
+keyPassword=
+keyAlias=
+storeFile=../keystore/release-upload-keystore.jks
