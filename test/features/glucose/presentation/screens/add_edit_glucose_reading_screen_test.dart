@@ -81,7 +81,7 @@ void main() {
       expect(find.text('Add Glucose Reading'), findsOneWidget);
       expect(find.byType(TextFormField), findsNWidgets(2)); // Value & notes
       expect(find.text('Save'), findsOneWidget);
-      expect(find.byIcon(Icons.delete_outline_rounded), findsNothing);
+      expect(find.byIcon(Icons.delete_outline), findsNothing);
     });
 
     testWidgets('shows validation error when value is empty', (tester) async {
@@ -159,7 +159,7 @@ void main() {
       expect(find.text('Edit Glucose Reading'), findsOneWidget);
       expect(find.text('125'), findsOneWidget);
       expect(find.text('Post lunch walk'), findsOneWidget);
-      expect(find.byIcon(Icons.delete_outline_rounded), findsOneWidget);
+      expect(find.byIcon(Icons.delete_outline), findsOneWidget);
     });
 
     testWidgets('updates reading when save is pressed in edit mode', (
@@ -201,7 +201,7 @@ void main() {
       await tester.pumpWidget(createWidget(readingId: 10));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byIcon(Icons.delete_outline_rounded));
+      await tester.tap(find.byIcon(Icons.delete_outline));
       await tester.pumpAndSettle();
 
       expect(find.text('Delete Reading'), findsOneWidget);

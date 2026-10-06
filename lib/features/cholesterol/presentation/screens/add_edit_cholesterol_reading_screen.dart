@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -74,7 +75,7 @@ class _AddEditCholesterolReadingScreenState
       firstDate: DateTime(2000),
       lastDate: DateTime.now().add(const Duration(days: 1)),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       setState(() {
         _selectedDateTime = DateTime(
           picked.year,
@@ -92,7 +93,7 @@ class _AddEditCholesterolReadingScreenState
       context: context,
       initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       setState(() {
         _selectedDateTime = DateTime(
           _selectedDateTime.year,
@@ -170,7 +171,9 @@ class _AddEditCholesterolReadingScreenState
         message: l10n.cholesterolSavedSuccess,
         type: SnackBarType.success,
       );
-      Navigator.of(context).pop();
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     } else {
       AppSnackBar.show(
         context,
@@ -221,7 +224,9 @@ class _AddEditCholesterolReadingScreenState
         message: l10n.cholesterolDeletedSuccess,
         type: SnackBarType.success,
       );
-      Navigator.of(context).pop();
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     } else {
       AppSnackBar.show(
         context,
@@ -246,7 +251,7 @@ class _AddEditCholesterolReadingScreenState
       return detailAsync.when(
         loading: () => Scaffold(
           appBar: AppBar(title: Text(title)),
-          body: const AppLoadingIndicator(),
+          body: const Center(child: AppLoadingIndicator()),
         ),
         error: (err, _) => Scaffold(
           appBar: AppBar(title: Text(title)),
@@ -274,8 +279,9 @@ class _AddEditCholesterolReadingScreenState
     AppLocalizations l10n,
     String title,
   ) {
-    final dateFormat = DateFormat.yMMMd();
-    final timeFormat = DateFormat.jm();
+    final locale = Localizations.localeOf(context).toString();
+    final dateFormat = DateFormat.yMMMd(locale);
+    final timeFormat = DateFormat.jm(locale);
 
     return Scaffold(
       appBar: AppBar(
@@ -300,6 +306,8 @@ class _AddEditCholesterolReadingScreenState
                 TextFormField(
                   controller: _totalController,
                   keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     labelText: l10n.totalCholesterolLabel,
                     hintText: l10n.cholesterolValueHint,
@@ -314,6 +322,8 @@ class _AddEditCholesterolReadingScreenState
                 TextFormField(
                   controller: _ldlController,
                   keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     labelText: l10n.ldlLabel,
                     hintText: l10n.cholesterolValueHint,
@@ -328,6 +338,8 @@ class _AddEditCholesterolReadingScreenState
                 TextFormField(
                   controller: _hdlController,
                   keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     labelText: l10n.hdlLabel,
                     hintText: l10n.cholesterolValueHint,
@@ -363,11 +375,14 @@ class _AddEditCholesterolReadingScreenState
                 TextFormField(
                   controller: _notesController,
                   maxLines: 3,
+                  maxLength: 500,
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     labelText: l10n.notes,
                     hintText: l10n.notesHint,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.notes_outlined),
+                    alignLabelWithHint: true,
                   ),
                 ),
                 const SizedBox(height: 24),

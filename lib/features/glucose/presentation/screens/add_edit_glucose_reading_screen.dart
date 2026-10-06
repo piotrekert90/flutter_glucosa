@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -259,6 +260,14 @@ class _AddEditGlucoseReadingScreenState
         profileAsync.value?.preferredGlucoseUnit ?? GlucoseUnit.mgDl;
 
     if (isEditMode) {
+      // Wait for the profile so unit conversion in _populateFromReading
+      // never runs against a fallback unit.
+      if (profileAsync.isLoading) {
+        return Scaffold(
+          appBar: AppBar(title: Text(l10n.editGlucoseReading)),
+          body: const Center(child: AppLoadingIndicator()),
+        );
+      }
       final detailAsync = ref.watch(
         glucoseReadingDetailProvider(widget.readingId!),
       );
@@ -294,8 +303,9 @@ class _AddEditGlucoseReadingScreenState
     GlucoseUnit preferredUnit,
   ) {
     final theme = Theme.of(context);
-    final formattedDate = DateFormat.yMMMMd().format(_selectedDateTime);
-    final formattedTime = DateFormat.jm().format(_selectedDateTime);
+    final locale = Localizations.localeOf(context).toString();
+    final formattedDate = DateFormat.yMMMd(locale).format(_selectedDateTime);
+    final formattedTime = DateFormat.jm(locale).format(_selectedDateTime);
 
     return Scaffold(
       appBar: AppBar(
@@ -305,8 +315,8 @@ class _AddEditGlucoseReadingScreenState
         actions: [
           if (isEditMode)
             IconButton(
-              icon: const Icon(Icons.delete_outline_rounded),
-              tooltip: l10n.delete,
+              icon: const Icon(Icons.delete_outline),
+              tooltip: l10n.deleteGlucose,
               onPressed: _isSaving ? null : _onDelete,
             ),
         ],
@@ -324,6 +334,10 @@ class _AddEditGlucoseReadingScreenState
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
                   ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]')),
+                  ],
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     labelText: l10n.glucoseReadingValue,
                     hintText: l10n.glucoseValueHint,
@@ -378,17 +392,17 @@ class _AddEditGlucoseReadingScreenState
                     Expanded(
                       child: OutlinedButton.icon(
                         icon: const Icon(
-                          Icons.calendar_today_rounded,
+                          Icons.calendar_today_outlined,
                           size: 18,
                         ),
                         label: Text(formattedDate),
                         onPressed: _pickDate,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 12),
                     Expanded(
                       child: OutlinedButton.icon(
-                        icon: const Icon(Icons.access_time_rounded, size: 18),
+                        icon: const Icon(Icons.access_time_outlined, size: 18),
                         label: Text(formattedTime),
                         onPressed: _pickTime,
                       ),
@@ -401,10 +415,11 @@ class _AddEditGlucoseReadingScreenState
                   controller: _notesController,
                   maxLines: 3,
                   maxLength: 500,
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     labelText: l10n.notes,
                     hintText: l10n.notesHint,
-                    prefixIcon: const Icon(Icons.notes_rounded),
+                    prefixIcon: const Icon(Icons.notes_outlined),
                     alignLabelWithHint: true,
                   ),
                 ),
@@ -420,7 +435,7 @@ class _AddEditGlucoseReadingScreenState
                             color: theme.colorScheme.onPrimary,
                           ),
                         )
-                      : const Icon(Icons.save_rounded),
+                      : const Icon(Icons.save_outlined),
                   label: Text(l10n.save),
                   onPressed: _isSaving ? null : () => _onSave(preferredUnit),
                 ),

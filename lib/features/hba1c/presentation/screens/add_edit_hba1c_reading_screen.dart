@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/domain/enums/hba1c_unit.dart';
+import '../../../../core/domain/utils/decimal_parser.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../core/presentation/utils/picker_helpers.dart';
 import '../../../../core/domain/utils/reading_validator.dart';
@@ -80,7 +82,7 @@ class _AddEditHbA1cReadingScreenState
       firstDate: DateTime(2000),
       lastDate: DateTime.now().add(const Duration(days: 1)),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       setState(() {
         _selectedDateTime = DateTime(
           picked.year,
@@ -98,7 +100,7 @@ class _AddEditHbA1cReadingScreenState
       context: context,
       initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       setState(() {
         _selectedDateTime = DateTime(
           _selectedDateTime.year,
@@ -116,9 +118,17 @@ class _AddEditHbA1cReadingScreenState
 
     setState(() => _isSaving = true);
 
-    final rawValue =
-        double.tryParse(_valueController.text.trim().replaceAll(',', '.')) ??
-        0.0;
+    final rawValue = DecimalParser.parse(_valueController.text);
+    if (rawValue == null) {
+      if (!mounted) return;
+      setState(() => _isSaving = false);
+      AppSnackBar.show(
+        context,
+        message: AppLocalizations.of(context)!.errorValidation,
+        type: SnackBarType.error,
+      );
+      return;
+    }
     final double percentage;
     if (unit == HbA1cUnit.mmolMol) {
       percentage = GlucoseConverter.mmolMolToPercentage(rawValue);
@@ -152,7 +162,9 @@ class _AddEditHbA1cReadingScreenState
         message: l10n.hba1cSavedSuccess,
         type: SnackBarType.success,
       );
-      Navigator.of(context).pop();
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     } else {
       AppSnackBar.show(
         context,
@@ -203,7 +215,9 @@ class _AddEditHbA1cReadingScreenState
         message: l10n.hba1cDeletedSuccess,
         type: SnackBarType.success,
       );
-      Navigator.of(context).pop();
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     } else {
       AppSnackBar.show(
         context,
@@ -226,13 +240,21 @@ class _AddEditHbA1cReadingScreenState
     final title = isEditMode ? (l10n.editHba1c) : l10n.addHba1c;
 
     if (isEditMode) {
+      // Wait for the profile so unit conversion in _populateFromReading
+      // never runs against a fallback unit.
+      if (profileAsync.isLoading) {
+        return Scaffold(
+          appBar: AppBar(title: Text(title)),
+          body: const AppLoadingIndicator(),
+        );
+      }
       final detailAsync = ref.watch(
         hbA1cReadingDetailProvider(widget.readingId!),
       );
       return detailAsync.when(
         loading: () => Scaffold(
           appBar: AppBar(title: Text(title)),
-          body: const AppLoadingIndicator(),
+          body: const Center(child: AppLoadingIndicator()),
         ),
         error: (err, _) => Scaffold(
           appBar: AppBar(title: Text(title)),
@@ -261,8 +283,9 @@ class _AddEditHbA1cReadingScreenState
     HbA1cUnit unit,
     String title,
   ) {
-    final dateFormat = DateFormat.yMMMd();
-    final timeFormat = DateFormat.jm();
+    final locale = Localizations.localeOf(context).toString();
+    final dateFormat = DateFormat.yMMMd(locale);
+    final timeFormat = DateFormat.jm(locale);
 
     return Scaffold(
       appBar: AppBar(
@@ -289,6 +312,10 @@ class _AddEditHbA1cReadingScreenState
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
                   ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]')),
+                  ],
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     labelText: l10n.hba1c,
                     hintText: l10n.hba1cValueHint,
@@ -300,9 +327,7 @@ class _AddEditHbA1cReadingScreenState
                     if (val == null || val.trim().isEmpty) {
                       return l10n.errorValidation;
                     }
-                    final numVal = double.tryParse(
-                      val.trim().replaceAll(',', '.'),
-                    );
+                    final numVal = DecimalParser.parse(val);
                     if (numVal == null || numVal <= 0) {
                       return l10n.errorValidation;
                     }
@@ -346,11 +371,14 @@ class _AddEditHbA1cReadingScreenState
                 TextFormField(
                   controller: _notesController,
                   maxLines: 3,
+                  maxLength: 500,
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     labelText: l10n.notes,
                     hintText: l10n.notesHint,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.notes_outlined),
+                    alignLabelWithHint: true,
                   ),
                 ),
                 const SizedBox(height: 24),

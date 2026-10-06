@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -71,7 +72,7 @@ class _AddEditBloodPressureReadingScreenState
       firstDate: DateTime(2000),
       lastDate: DateTime.now().add(const Duration(days: 1)),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       setState(() {
         _selectedDateTime = DateTime(
           picked.year,
@@ -89,7 +90,7 @@ class _AddEditBloodPressureReadingScreenState
       context: context,
       initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       setState(() {
         _selectedDateTime = DateTime(
           _selectedDateTime.year,
@@ -157,7 +158,9 @@ class _AddEditBloodPressureReadingScreenState
         message: l10n.bpSavedSuccess,
         type: SnackBarType.success,
       );
-      Navigator.of(context).pop();
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     } else {
       AppSnackBar.show(
         context,
@@ -208,7 +211,9 @@ class _AddEditBloodPressureReadingScreenState
         message: l10n.bpDeletedSuccess,
         type: SnackBarType.success,
       );
-      Navigator.of(context).pop();
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     } else {
       AppSnackBar.show(
         context,
@@ -233,7 +238,7 @@ class _AddEditBloodPressureReadingScreenState
       return detailAsync.when(
         loading: () => Scaffold(
           appBar: AppBar(title: Text(title)),
-          body: const AppLoadingIndicator(),
+          body: const Center(child: AppLoadingIndicator()),
         ),
         error: (err, _) => Scaffold(
           appBar: AppBar(title: Text(title)),
@@ -261,8 +266,9 @@ class _AddEditBloodPressureReadingScreenState
     AppLocalizations l10n,
     String title,
   ) {
-    final dateFormat = DateFormat.yMMMd();
-    final timeFormat = DateFormat.jm();
+    final locale = Localizations.localeOf(context).toString();
+    final dateFormat = DateFormat.yMMMd(locale);
+    final timeFormat = DateFormat.jm(locale);
 
     return Scaffold(
       appBar: AppBar(
@@ -287,6 +293,8 @@ class _AddEditBloodPressureReadingScreenState
                 TextFormField(
                   controller: _systolicController,
                   keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     labelText: l10n.systolicLabel,
                     hintText: l10n.systolicHint,
@@ -308,6 +316,8 @@ class _AddEditBloodPressureReadingScreenState
                 TextFormField(
                   controller: _diastolicController,
                   keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     labelText: l10n.diastolicLabel,
                     hintText: l10n.diastolicHint,
@@ -350,11 +360,14 @@ class _AddEditBloodPressureReadingScreenState
                 TextFormField(
                   controller: _notesController,
                   maxLines: 3,
+                  maxLength: 500,
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     labelText: l10n.notes,
                     hintText: l10n.notesHint,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.notes_outlined),
+                    alignLabelWithHint: true,
                   ),
                 ),
                 const SizedBox(height: 24),

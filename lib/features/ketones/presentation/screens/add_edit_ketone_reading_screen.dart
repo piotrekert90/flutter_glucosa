@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/domain/utils/reading_validator.dart';
+import '../../../../core/domain/utils/decimal_parser.dart';
 import '../../../../core/presentation/extensions/failure_ui_extension.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/utils/picker_helpers.dart';
@@ -68,7 +70,7 @@ class _AddEditKetoneReadingScreenState
       firstDate: DateTime(2000),
       lastDate: DateTime.now().add(const Duration(days: 1)),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       setState(() {
         _selectedDateTime = DateTime(
           picked.year,
@@ -86,7 +88,7 @@ class _AddEditKetoneReadingScreenState
       context: context,
       initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       setState(() {
         _selectedDateTime = DateTime(
           _selectedDateTime.year,
@@ -104,9 +106,17 @@ class _AddEditKetoneReadingScreenState
 
     setState(() => _isSaving = true);
 
-    final rawValue =
-        double.tryParse(_valueController.text.trim().replaceAll(',', '.')) ??
-        -1.0;
+    final rawValue = DecimalParser.parse(_valueController.text);
+    if (rawValue == null) {
+      if (!mounted) return;
+      setState(() => _isSaving = false);
+      AppSnackBar.show(
+        context,
+        message: AppLocalizations.of(context)!.errorValidation,
+        type: SnackBarType.error,
+      );
+      return;
+    }
 
     final notes = _notesController.text.trim().isEmpty
         ? null
@@ -134,7 +144,9 @@ class _AddEditKetoneReadingScreenState
         message: l10n.ketonesSavedSuccess,
         type: SnackBarType.success,
       );
-      Navigator.of(context).pop();
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     } else {
       AppSnackBar.show(
         context,
@@ -185,7 +197,9 @@ class _AddEditKetoneReadingScreenState
         message: l10n.ketonesDeletedSuccess,
         type: SnackBarType.success,
       );
-      Navigator.of(context).pop();
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     } else {
       AppSnackBar.show(
         context,
@@ -210,7 +224,7 @@ class _AddEditKetoneReadingScreenState
       return detailAsync.when(
         loading: () => Scaffold(
           appBar: AppBar(title: Text(title)),
-          body: const AppLoadingIndicator(),
+          body: const Center(child: AppLoadingIndicator()),
         ),
         error: (err, _) => Scaffold(
           appBar: AppBar(title: Text(title)),
@@ -238,8 +252,9 @@ class _AddEditKetoneReadingScreenState
     AppLocalizations l10n,
     String title,
   ) {
-    final dateFormat = DateFormat.yMMMd();
-    final timeFormat = DateFormat.jm();
+    final locale = Localizations.localeOf(context).toString();
+    final dateFormat = DateFormat.yMMMd(locale);
+    final timeFormat = DateFormat.jm(locale);
 
     return Scaffold(
       appBar: AppBar(
@@ -266,6 +281,10 @@ class _AddEditKetoneReadingScreenState
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
                   ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]')),
+                  ],
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     labelText: l10n.ketones,
                     hintText: l10n.ketonesValueHint,
@@ -277,9 +296,7 @@ class _AddEditKetoneReadingScreenState
                     if (val == null || val.trim().isEmpty) {
                       return l10n.errorValidation;
                     }
-                    final numVal = double.tryParse(
-                      val.trim().replaceAll(',', '.'),
-                    );
+                    final numVal = DecimalParser.parse(val);
                     if (numVal == null) {
                       return l10n.errorValidation;
                     }
@@ -313,11 +330,14 @@ class _AddEditKetoneReadingScreenState
                 TextFormField(
                   controller: _notesController,
                   maxLines: 3,
+                  maxLength: 500,
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     labelText: l10n.notes,
                     hintText: l10n.notesHint,
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.notes_outlined),
+                    alignLabelWithHint: true,
                   ),
                 ),
                 const SizedBox(height: 24),
