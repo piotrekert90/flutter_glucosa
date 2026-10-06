@@ -5,6 +5,7 @@ import 'package:flutter_glucosa/core/domain/enums/metric_type.dart';
 import 'package:flutter_glucosa/core/domain/enums/weight_unit.dart';
 import 'package:flutter_glucosa/features/export/domain/models/date_range_filter.dart';
 import 'package:flutter_glucosa/features/export/presentation/providers/export_notifier.dart';
+import 'package:flutter_glucosa/features/export/presentation/providers/export_state.dart';
 import 'package:flutter_glucosa/features/export/data/providers/export_service_provider.dart';
 import 'package:flutter_glucosa/features/settings/data/providers/user_profile_repository_provider.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
@@ -48,7 +49,7 @@ void main() {
     expect(state.dateRange, isNull);
     expect(state.selectedMetrics.length, MetricType.values.length);
     expect(state.isExporting, isFalse);
-    expect(state.errorMessage, isNull);
+    expect(state.error, isNull);
   });
 
   test(
@@ -141,7 +142,7 @@ void main() {
       final state = container.read(exportProvider).value!;
 
       expect(success, isFalse);
-      expect(state.errorMessage, contains('at least one metric'));
+      expect(state.error, ExportError.emptyMetrics);
       expect(fakeExportService.exportAndShareCallCount, 0);
     });
 
@@ -156,7 +157,7 @@ void main() {
 
         expect(success, isTrue);
         expect(state.isExporting, isFalse);
-        expect(state.errorMessage, isNull);
+        expect(state.error, isNull);
         expect(fakeExportService.exportAndShareCallCount, 1);
         expect(fakeExportService.lastGlucoseUnit, GlucoseUnit.mmolL);
         expect(fakeExportService.lastHbA1cUnit, HbA1cUnit.mmolMol);
@@ -184,7 +185,8 @@ void main() {
 
         expect(success, isFalse);
         expect(state.isExporting, isFalse);
-        expect(state.errorMessage, contains('Share sheet unavailable'));
+        expect(state.error, ExportError.exportFailed);
+        expect(state.errorDetails, contains('Share sheet unavailable'));
       },
     );
   });

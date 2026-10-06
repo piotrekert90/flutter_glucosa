@@ -1,12 +1,9 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../export/data/providers/csv_import_service_provider.dart';
-import '../../../export/presentation/widgets/csv_import_preview_dialog.dart';
-import '../../../glucose/domain/services/csv_glucose_importer.dart';
+import '../../../glucose/presentation/utils/csv_import_coordinator.dart';
 import '../providers/onboarding_notifier.dart';
 
 /// Ninth and final onboarding step offering CSV migration before finishing.
@@ -33,66 +30,16 @@ class _OnboardingCsvImportStepState
   int? _importedCount;
 
   Future<void> _pickAndImport() async {
-    final l10n = AppLocalizations.of(context)!;
     setState(() => _isAnalyzing = true);
     try {
-      final picked = await FilePicker.pickFile(
-        type: FileType.custom,
-        allowedExtensions: ['csv'],
-      );
-      final path = picked?.path;
-      if (path == null) return;
+      final count = await CsvImportCoordinator.pickAnalyzeConfirm(context, ref);
       if (!mounted) return;
-
-      final service = ref.read(csvGlucoseImportServiceProvider);
-      final outcome = await service.analyzeFile(path);
-      if (!mounted) return;
-
-      switch (outcome) {
-        case CsvAnalysisFailure(:final errorType):
-          AppSnackBar.show(
-            context,
-            message: _errorMessage(l10n, errorType),
-            type: SnackBarType.error,
-          );
-        case CsvAnalysisSuccess(:final analysis):
-          final confirmed = await CsvImportPreviewDialog.show(
-            context,
-            analysis: analysis,
-          );
-          if (!confirmed || !mounted) return;
-          final (count, failure) = await service.confirmImport(
-            analysis.validEntries,
-          );
-          if (!mounted) return;
-          if (failure != null || count == null) {
-            AppSnackBar.show(
-              context,
-              message: l10n.csvImportErrorInvalid,
-              type: SnackBarType.error,
-            );
-          } else {
-            setState(() => _importedCount = count);
-          }
+      if (count != null) {
+        setState(() => _importedCount = count);
       }
-    } catch (_) {
-      if (!mounted) return;
-      AppSnackBar.show(
-        context,
-        message: l10n.csvImportErrorPick,
-        type: SnackBarType.error,
-      );
     } finally {
       if (mounted) setState(() => _isAnalyzing = false);
     }
-  }
-
-  String _errorMessage(AppLocalizations l10n, CsvErrorType errorType) {
-    return switch (errorType) {
-      CsvErrorType.fileTooLarge => l10n.csvImportErrorTooLarge,
-      CsvErrorType.invalidFormat => l10n.csvImportErrorInvalid,
-      CsvErrorType.noEntries => l10n.csvImportErrorEmpty,
-    };
   }
 
   Future<void> _finish() async {
@@ -154,7 +101,7 @@ class _OnboardingCsvImportStepState
               children: [
                 ListTile(
                   leading: const Icon(Icons.person_outlined),
-                  title: Text(draft.name.isEmpty ? '—' : draft.name),
+                  title: Text(draft.name.isEmpty ? l10n.notSet : draft.name),
                 ),
                 if (_importedCount != null)
                   ListTile(

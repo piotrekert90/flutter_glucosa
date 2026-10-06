@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../glucose/domain/services/csv_glucose_importer.dart';
+import '../../domain/services/csv_glucose_importer.dart';
 import '../../../../l10n/app_localizations.dart';
 
 /// Modal dialog summarizing the result of a dry-run CSV analysis.

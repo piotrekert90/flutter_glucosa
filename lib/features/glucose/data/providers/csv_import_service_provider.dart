@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../glucose/data/providers/glucose_reading_repository_provider.dart';
-import '../../../glucose/data/services/csv_glucose_import_service.dart';
+import 'glucose_reading_repository_provider.dart';
+import '../services/csv_glucose_import_service.dart';
 
 part 'csv_import_service_provider.g.dart';
 

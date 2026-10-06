@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/domain/enums/metric_type.dart';
@@ -8,12 +7,10 @@ import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
-import '../../../glucose/domain/services/csv_glucose_importer.dart';
+import '../../../glucose/presentation/utils/csv_import_coordinator.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../data/providers/csv_import_service_provider.dart';
 import '../providers/export_notifier.dart';
 import '../providers/export_state.dart';
-import '../widgets/csv_import_preview_dialog.dart';
 
 /// Screen enabling users to configure and export their health measurement data to CSV.
 class ExportScreen extends ConsumerWidget {
@@ -95,7 +92,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
               onSelected: (selected) {
                 if (selected) {
                   setState(() => _activePreset = _DatePreset.allTime);
-                  ref.read(exportProvider.notifier).setDateRange(null);
+                  ref.read(exportProvider.notifier).setLastDaysPreset(null);
                 }
               },
             ),
@@ -105,12 +102,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
               onSelected: (selected) {
                 if (selected) {
                   setState(() => _activePreset = _DatePreset.last7Days);
-                  final now = DateTime.now();
-                  final range = DateTimeRange(
-                    start: now.subtract(const Duration(days: 7)),
-                    end: now,
-                  );
-                  ref.read(exportProvider.notifier).setDateRange(range);
+                  ref.read(exportProvider.notifier).setLastDaysPreset(7);
                 }
               },
             ),
@@ -120,12 +112,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
               onSelected: (selected) {
                 if (selected) {
                   setState(() => _activePreset = _DatePreset.last30Days);
-                  final now = DateTime.now();
-                  final range = DateTimeRange(
-                    start: now.subtract(const Duration(days: 30)),
-                    end: now,
-                  );
-                  ref.read(exportProvider.notifier).setDateRange(range);
+                  ref.read(exportProvider.notifier).setLastDaysPreset(30);
                 }
               },
             ),
@@ -135,19 +122,14 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
               onSelected: (selected) {
                 if (selected) {
                   setState(() => _activePreset = _DatePreset.last90Days);
-                  final now = DateTime.now();
-                  final range = DateTimeRange(
-                    start: now.subtract(const Duration(days: 90)),
-                    end: now,
-                  );
-                  ref.read(exportProvider.notifier).setDateRange(range);
+                  ref.read(exportProvider.notifier).setLastDaysPreset(90);
                 }
               },
             ),
             ChoiceChip(
               label: Text(
                 _activePreset == _DatePreset.custom && state.dateRange != null
-                    ? _formatCustomRange(state.dateRange!)
+                    ? _formatCustomRange(context, state.dateRange!)
                     : l10n.exportCustomRange,
               ),
               selected: _activePreset == _DatePreset.custom,
@@ -228,7 +210,7 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
           ),
         ),
 
-        if (state.errorMessage != null) ...[
+        if (state.error != null) ...[
           const SizedBox(height: 12),
           Card(
             elevation: 0,
@@ -244,10 +226,11 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                      state.errorMessage ==
-                              'Select at least one metric to export.'
-                          ? (l10n.exportNoMetricsSelected)
-                          : state.errorMessage!,
+                      switch (state.error!) {
+                        ExportError.emptyMetrics =>
+                          l10n.exportNoMetricsSelected,
+                        ExportError.exportFailed => l10n.genericError,
+                      },
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onErrorContainer,
                       ),
@@ -343,8 +326,8 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
     }
   }
 
-  String _formatCustomRange(DateTimeRange range) {
-    final format = DateFormat('MMM d');
+  String _formatCustomRange(BuildContext context, DateTimeRange range) {
+    final format = DateFormat.yMMMd(Localizations.localeOf(context).toString());
     return '${format.format(range.start)} - ${format.format(range.end)}';
   }
 
@@ -364,69 +347,19 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
     final l10n = AppLocalizations.of(context)!;
     setState(() => _isImporting = true);
     try {
-      final picked = await FilePicker.pickFile(
-        type: FileType.custom,
-        allowedExtensions: ['csv'],
-      );
-      final path = picked?.path;
-      if (path == null) return;
+      final count = await CsvImportCoordinator.pickAnalyzeConfirm(context, ref);
       if (!context.mounted) return;
-
-      final service = ref.read(csvGlucoseImportServiceProvider);
-      final outcome = await service.analyzeFile(path);
-      if (!context.mounted) return;
-
-      switch (outcome) {
-        case CsvAnalysisFailure(:final errorType):
-          AppSnackBar.show(
-            context,
-            message: _importErrorMessage(l10n, errorType),
-            type: SnackBarType.error,
-          );
-        case CsvAnalysisSuccess(:final analysis):
-          final confirmed = await CsvImportPreviewDialog.show(
-            context,
-            analysis: analysis,
-          );
-          if (!confirmed || !context.mounted) return;
-          final (count, failure) = await service.confirmImport(
-            analysis.validEntries,
-          );
-          if (!context.mounted) return;
-          if (failure != null || count == null) {
-            AppSnackBar.show(
-              context,
-              message: l10n.csvImportErrorInvalid,
-              type: SnackBarType.error,
-            );
-          } else {
-            ref.invalidate(exportProvider);
-            AppSnackBar.show(
-              context,
-              message: l10n.csvImportSuccess(count),
-              type: SnackBarType.success,
-            );
-          }
-      }
-    } catch (_) {
-      if (context.mounted) {
+      if (count != null) {
+        ref.invalidate(exportProvider);
         AppSnackBar.show(
           context,
-          message: l10n.csvImportErrorPick,
-          type: SnackBarType.error,
+          message: l10n.csvImportSuccess(count),
+          type: SnackBarType.success,
         );
       }
     } finally {
       if (mounted) setState(() => _isImporting = false);
     }
-  }
-
-  String _importErrorMessage(AppLocalizations l10n, CsvErrorType errorType) {
-    return switch (errorType) {
-      CsvErrorType.fileTooLarge => l10n.csvImportErrorTooLarge,
-      CsvErrorType.invalidFormat => l10n.csvImportErrorInvalid,
-      CsvErrorType.noEntries => l10n.csvImportErrorEmpty,
-    };
   }
 
   (IconData, String) _metricInfo(MetricType type, AppLocalizations l10n) {

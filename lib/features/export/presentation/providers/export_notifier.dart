@@ -55,7 +55,7 @@ class ExportNotifier extends _$ExportNotifier {
       current.copyWith(
         dateRange: range,
         clearDateRange: range == null,
-        clearErrorMessage: true,
+        clearError: true,
       ),
     );
 
@@ -78,7 +78,7 @@ class ExportNotifier extends _$ExportNotifier {
     }
 
     state = AsyncData(
-      current.copyWith(selectedMetrics: updated, clearErrorMessage: true),
+      current.copyWith(selectedMetrics: updated, clearError: true),
     );
 
     await _updateMatchingRecordCount(
@@ -95,7 +95,7 @@ class ExportNotifier extends _$ExportNotifier {
     final updated = selectAll ? MetricType.values.toSet() : <MetricType>{};
 
     state = AsyncData(
-      current.copyWith(selectedMetrics: updated, clearErrorMessage: true),
+      current.copyWith(selectedMetrics: updated, clearError: true),
     );
 
     await _updateMatchingRecordCount(
@@ -110,15 +110,11 @@ class ExportNotifier extends _$ExportNotifier {
   Future<bool> exportAndShare() async {
     final current = state.value ?? const ExportState();
     if (current.selectedMetrics.isEmpty) {
-      state = AsyncData(
-        current.copyWith(errorMessage: 'Select at least one metric to export.'),
-      );
+      state = AsyncData(current.copyWith(error: ExportError.emptyMetrics));
       return false;
     }
 
-    state = AsyncData(
-      current.copyWith(isExporting: true, clearErrorMessage: true),
-    );
+    state = AsyncData(current.copyWith(isExporting: true, clearError: true));
 
     try {
       final exportService = ref.read(exportServiceProvider);
@@ -134,20 +130,34 @@ class ExportNotifier extends _$ExportNotifier {
         weightUnit: profile.preferredWeightUnit,
       );
       state = AsyncData(
-        (state.value ?? current).copyWith(
-          isExporting: false,
-          clearErrorMessage: true,
-        ),
+        (state.value ?? current).copyWith(isExporting: false, clearError: true),
       );
       return true;
     } catch (e) {
       state = AsyncData(
         (state.value ?? current).copyWith(
           isExporting: false,
-          errorMessage: e.toString(),
+          error: ExportError.exportFailed,
+          errorDetails: e.toString(),
         ),
       );
       return false;
     }
+  }
+
+  /// Sets a rolling date-range preset ending now.
+  ///
+  /// [days] Length of the window, or `null` to include all records.
+  Future<void> setLastDaysPreset(int? days) async {
+    if (days == null) {
+      return setDateRange(null);
+    }
+    final now = DateTime.now();
+    return setDateRange(
+      DateTimeRange(
+        start: now.subtract(Duration(days: days)),
+        end: now,
+      ),
+    );
   }
 }

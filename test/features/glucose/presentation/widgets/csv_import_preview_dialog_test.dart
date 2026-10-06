@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/domain/enums/meal_context.dart';
-import 'package:flutter_glucosa/features/export/presentation/widgets/csv_import_preview_dialog.dart';
+import 'package:flutter_glucosa/features/glucose/presentation/widgets/csv_import_preview_dialog.dart';
 import 'package:flutter_glucosa/features/glucose/domain/entities/glucose_reading.dart';
 import 'package:flutter_glucosa/features/glucose/domain/services/csv_glucose_importer.dart';
 import 'package:flutter_glucosa/l10n/app_localizations.dart';
