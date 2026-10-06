@@ -42,6 +42,19 @@ class GlucoseTargetRange {
       minMgDl = min,
       maxMgDl = max;
 
+  /// Resolves clinical bounds for a selectable [preset].
+  ///
+  /// [GlucoseRangePreset.custom] without explicit bounds resolves to ADA
+  /// bounds; callers with custom thresholds should use [GlucoseTargetRange.custom].
+  factory GlucoseTargetRange.fromPreset(GlucoseRangePreset preset) {
+    return switch (preset) {
+      GlucoseRangePreset.ada => const GlucoseTargetRange.ada(),
+      GlucoseRangePreset.aace => const GlucoseTargetRange.aace(),
+      GlucoseRangePreset.ukNice => const GlucoseTargetRange.ukNice(),
+      GlucoseRangePreset.custom => const GlucoseTargetRange.ada(),
+    };
+  }
+
   /// Returns a copy of this range with optional updated values.
   GlucoseTargetRange copyWith({
     GlucoseRangePreset? preset,

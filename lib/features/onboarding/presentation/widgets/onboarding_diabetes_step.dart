@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/domain/enums/enums.dart';
+import '../../../../core/domain/utils/decimal_parser.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../core/domain/utils/reading_validator.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -35,30 +36,19 @@ class _OnboardingDiabetesStepState
   void _onBaselineChanged(String raw) {
     final notifier = ref.read(onboardingProvider.notifier);
     final draft = ref.read(onboardingProvider);
-    final trimmed = raw.trim();
-    if (trimmed.isEmpty) {
-      setState(() => _baselineError = null);
-      notifier.updateBaselineMgDl(null);
-      return;
-    }
-    final normalized = trimmed.replaceAll(',', '.');
-    final value = double.tryParse(normalized);
-    if (value == null) {
-      setState(() {
-        final l10n = AppLocalizations.of(context)!;
-        _baselineError = l10n.onboardingBaselineInvalid;
-      });
-      notifier.updateBaselineMgDl(null);
-      return;
-    }
+    final value = DecimalParser.parse(raw);
     final isMmolL = draft.glucoseUnit == GlucoseUnit.mmolL;
-    final valid = isMmolL
-        ? ReadingValidator.isValidGlucoseMmolL(value)
-        : ReadingValidator.isValidGlucoseMgDl(value);
+    final valid =
+        value != null &&
+        (isMmolL
+            ? ReadingValidator.isValidGlucoseMmolL(value)
+            : ReadingValidator.isValidGlucoseMgDl(value));
     if (!valid) {
       setState(() {
         final l10n = AppLocalizations.of(context)!;
-        _baselineError = l10n.onboardingBaselineInvalid;
+        _baselineError = value == null && raw.trim().isEmpty
+            ? null
+            : l10n.onboardingBaselineInvalid;
       });
       notifier.updateBaselineMgDl(null);
       return;

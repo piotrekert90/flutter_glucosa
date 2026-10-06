@@ -1,20 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../../l10n/app_localizations.dart';
-
-/// Aggregated package license entry holding the package name and its license texts.
-class PackageLicense {
-  /// The name of the package.
-  final String packageName;
-
-  /// The paragraphs of license text for this package.
-  final List<String> paragraphs;
-
-  /// Creates a [PackageLicense].
-  const PackageLicense({required this.packageName, required this.paragraphs});
-}
+import '../../domain/entities/package_license.dart';
+import '../../domain/services/package_license_loader.dart';
+import '../../../../core/presentation/widgets/app_error_view.dart';
+import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 
 /// A native, offline-accessible screen displaying open-source software licenses.
 class LicensesScreen extends StatefulWidget {
@@ -30,7 +21,7 @@ class LicensesScreen extends StatefulWidget {
 
 class _LicensesScreenState extends State<LicensesScreen> {
   late final Future<PackageInfo> _packageInfoFuture;
-  late final Future<List<PackageLicense>> _licensesFuture;
+  late Future<List<PackageLicense>> _licensesFuture;
 
   @override
   void initState() {
@@ -38,28 +29,14 @@ class _LicensesScreenState extends State<LicensesScreen> {
     _packageInfoFuture = widget.packageInfo != null
         ? Future.value(widget.packageInfo!)
         : PackageInfo.fromPlatform();
-    _licensesFuture = _loadLicenses();
+    _licensesFuture = PackageLicenseLoader.loadLicenses();
   }
 
-  static Future<List<PackageLicense>> _loadLicenses() async {
-    final packageMap = <String, List<String>>{};
-
-    await for (final entry in LicenseRegistry.licenses) {
-      final text = entry.paragraphs.map((p) => p.text).join('\n\n');
-      for (final package in entry.packages) {
-        packageMap.putIfAbsent(package, () => <String>[]).add(text);
-      }
-    }
-
-    final sortedKeys = packageMap.keys.toList()
-      ..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
-
-    return sortedKeys
-        .map(
-          (pkg) =>
-              PackageLicense(packageName: pkg, paragraphs: packageMap[pkg]!),
-        )
-        .toList();
+  /// Recreates the load futures (retry entry point).
+  void _reload() {
+    setState(() {
+      _licensesFuture = PackageLicenseLoader.loadLicenses();
+    });
   }
 
   @override
@@ -79,16 +56,16 @@ class _LicensesScreenState extends State<LicensesScreen> {
               future: Future.wait([_packageInfoFuture, _licensesFuture]),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(child: AppLoadingIndicator());
                 }
 
                 if (snapshot.hasError ||
                     !snapshot.hasData ||
                     snapshot.data!.length < 2) {
                   return Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Text(l10n.errorDatabase),
+                    child: AppErrorView(
+                      message: l10n.genericError,
+                      onRetry: _reload,
                     ),
                   );
                 }
@@ -140,7 +117,7 @@ class _LicensesScreenState extends State<LicensesScreen> {
                             ),
                           ),
                           subtitle: Text(
-                            '${item.paragraphs.length} ${item.paragraphs.length == 1 ? "entry" : "entries"}',
+                            l10n.licenseEntriesCount(item.paragraphs.length),
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: colorScheme.onSurfaceVariant,
                             ),
@@ -154,7 +131,6 @@ class _LicensesScreenState extends State<LicensesScreen> {
                               child: SelectableText(
                                 item.paragraphs.join('\n\n---\n\n'),
                                 style: theme.textTheme.bodySmall?.copyWith(
-                                  fontFamily: 'monospace',
                                   color: colorScheme.onSurfaceVariant,
                                   height: 1.45,
                                 ),
@@ -226,7 +202,7 @@ class _LicensesScreenState extends State<LicensesScreen> {
                       if (version.isNotEmpty) ...[
                         const SizedBox(height: 2),
                         Text(
-                          'v$version',
+                          l10n.appVersionLabel(version),
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: colorScheme.onSurfaceVariant,
                             fontWeight: FontWeight.w500,
@@ -246,7 +222,7 @@ class _LicensesScreenState extends State<LicensesScreen> {
               runSpacing: 4,
               children: [
                 Text(
-                  '© ${DateTime.now().year}',
+                  l10n.copyrightYear(DateTime.now().year),
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                   ),
@@ -273,7 +249,7 @@ class _LicensesScreenState extends State<LicensesScreen> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  '$licenseCount open-source packages',
+                  l10n.licensePackageCount(licenseCount),
                   textAlign: TextAlign.center,
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: colorScheme.primary,

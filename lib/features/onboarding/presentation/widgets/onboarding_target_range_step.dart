@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/domain/enums/enums.dart';
+import '../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../core/domain/value_objects/glucose_target_range.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/onboarding_notifier.dart';
@@ -10,16 +11,6 @@ import '../providers/onboarding_notifier.dart';
 class OnboardingTargetRangeStep extends ConsumerWidget {
   /// Creates an [OnboardingTargetRangeStep].
   const OnboardingTargetRangeStep({super.key});
-
-  /// Resolves clinical bounds for selectable presets.
-  GlucoseTargetRange _rangeFor(GlucoseRangePreset preset) {
-    return switch (preset) {
-      GlucoseRangePreset.ada => const GlucoseTargetRange.ada(),
-      GlucoseRangePreset.aace => const GlucoseTargetRange.aace(),
-      GlucoseRangePreset.ukNice => const GlucoseTargetRange.ukNice(),
-      GlucoseRangePreset.custom => const GlucoseTargetRange.ada(),
-    };
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -62,8 +53,12 @@ class OnboardingTargetRangeStep extends ConsumerWidget {
                 label: SizedBox(
                   width: double.infinity,
                   child: Text(
-                    '${preset.displayName} '
-                    '(${_rangeFor(preset).minMgDl}–${_rangeFor(preset).maxMgDl} mg/dL)',
+                    _presetLabel(
+                      preset,
+                      GlucoseTargetRange.fromPreset(preset),
+                      draft.glucoseUnit,
+                      l10n,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -77,4 +72,29 @@ class OnboardingTargetRangeStep extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// Formats a preset chip label with unit-aware bounds.
+String _presetLabel(
+  GlucoseRangePreset preset,
+  GlucoseTargetRange range,
+  GlucoseUnit unit,
+  AppLocalizations l10n,
+) {
+  if (unit == GlucoseUnit.mmolL) {
+    final min = GlucoseConverter.mgDlToMmolL(range.minMgDl).toStringAsFixed(1);
+    final max = GlucoseConverter.mgDlToMmolL(range.maxMgDl).toStringAsFixed(1);
+    return l10n.targetRangePresetOption(
+      preset.displayName,
+      min,
+      max,
+      unit.displayName,
+    );
+  }
+  return l10n.targetRangePresetOption(
+    preset.displayName,
+    range.minMgDl.toString(),
+    range.maxMgDl.toString(),
+    unit.displayName,
+  );
 }

@@ -180,12 +180,7 @@ class Onboarding extends _$Onboarding {
   /// configured daily reminder labeled [reminderLabel]. Returns the first
   /// failure encountered, if any.
   Future<CommandResult> complete({required String reminderLabel}) async {
-    final range = switch (state.rangePreset) {
-      GlucoseRangePreset.ada => const GlucoseTargetRange.ada(),
-      GlucoseRangePreset.aace => const GlucoseTargetRange.aace(),
-      GlucoseRangePreset.ukNice => const GlucoseTargetRange.ukNice(),
-      GlucoseRangePreset.custom => const GlucoseTargetRange.ada(),
-    };
+    final range = GlucoseTargetRange.fromPreset(state.rangePreset);
     final profile = UserProfile(
       name: state.name.trim(),
       diabetesType: state.diabetesType,

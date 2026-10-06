@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../../../../../core/domain/enums/glucose_range_preset.dart';
 import '../../../../../core/domain/enums/glucose_unit.dart';
+import '../../../../../core/domain/utils/decimal_parser.dart';
 import '../../../../../core/domain/utils/glucose_converter.dart';
 import '../../../../../core/domain/value_objects/glucose_target_range.dart';
 import '../../../../../l10n/app_localizations.dart';
@@ -82,18 +83,10 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
   }
 
   String _presetLabel(GlucoseRangePreset preset, AppLocalizations l10n) {
-    final range = switch (preset) {
-      GlucoseRangePreset.ada => const GlucoseTargetRange.ada(),
-      GlucoseRangePreset.aace => const GlucoseTargetRange.aace(),
-      GlucoseRangePreset.ukNice => const GlucoseTargetRange.ukNice(),
-      GlucoseRangePreset.custom => null,
-    };
-
-    if (range == null) {
-      return preset == GlucoseRangePreset.custom
-          ? (l10n.targetRangeCustom)
-          : preset.displayName;
+    if (preset == GlucoseRangePreset.custom) {
+      return l10n.targetRangeCustom;
     }
+    final range = GlucoseTargetRange.fromPreset(preset);
 
     if (widget.preferredUnit == GlucoseUnit.mmolL) {
       final minMmol = GlucoseConverter.mgDlToMmolL(
@@ -102,29 +95,33 @@ class _TargetRangeDialogState extends State<TargetRangeDialog> {
       final maxMmol = GlucoseConverter.mgDlToMmolL(
         range.maxMgDl,
       ).toStringAsFixed(1);
-      return '${preset.displayName} ($minMmol–$maxMmol mmol/L)';
+      return l10n.targetRangePresetOption(
+        preset.displayName,
+        minMmol,
+        maxMmol,
+        widget.preferredUnit.displayName,
+      );
     }
 
-    return '${preset.displayName} (${range.minMgDl}–${range.maxMgDl} mg/dL)';
+    return l10n.targetRangePresetOption(
+      preset.displayName,
+      range.minMgDl.toString(),
+      range.maxMgDl.toString(),
+      widget.preferredUnit.displayName,
+    );
   }
 
   void _handleSave() {
     final l10n = AppLocalizations.of(context)!;
 
     if (_selectedPreset != GlucoseRangePreset.custom) {
-      final range = switch (_selectedPreset) {
-        GlucoseRangePreset.ada => const GlucoseTargetRange.ada(),
-        GlucoseRangePreset.aace => const GlucoseTargetRange.aace(),
-        GlucoseRangePreset.ukNice => const GlucoseTargetRange.ukNice(),
-        GlucoseRangePreset.custom => const GlucoseTargetRange.ada(),
-      };
-      widget.onSaved(range);
+      widget.onSaved(GlucoseTargetRange.fromPreset(_selectedPreset));
       Navigator.of(context).pop();
       return;
     }
 
-    final minParsed = double.tryParse(_minController.text.trim());
-    final maxParsed = double.tryParse(_maxController.text.trim());
+    final minParsed = DecimalParser.parse(_minController.text);
+    final maxParsed = DecimalParser.parse(_maxController.text);
 
     if (minParsed == null ||
         maxParsed == null ||
