@@ -205,7 +205,7 @@ void main() {
       // Two October readings average to a single monthly bucket.
       final data = chartData(tester);
       expect(data.lineBarsData.first.spots, hasLength(1));
-      expect(find.text('Oct 2026'), findsOneWidget);
+      expect(find.text('10/1'), findsOneWidget);
     });
 
     testWidgets('renders two series for blood pressure', (tester) async {

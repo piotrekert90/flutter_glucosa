@@ -132,8 +132,9 @@ class _MetricTrendCardState extends ConsumerState<MetricTrendCard> {
 
     final xLabels = <String>[];
     final seenLabels = <String>{};
+    final locale = Localizations.localeOf(context).toString();
     for (final point in grouped) {
-      final label = _xLabel(point);
+      final label = _xLabel(point, locale);
       // Day buckets key points by clock time only, so readings from
       // different days (or the same minute) would print identical axis
       // labels. Keep the first occurrence and blank repeats instead.
@@ -166,9 +167,21 @@ class _MetricTrendCardState extends ConsumerState<MetricTrendCard> {
     };
 
     final stats = ChartDataUtils.summarize(grouped);
+    String formatStat(double value) =>
+        _metric == MetricType.glucose &&
+            data.unitLabel == GlucoseUnit.mgDl.displayName
+        ? value.toStringAsFixed(0)
+        : value.toStringAsFixed(1);
     final semanticLabel = stats != null
-        ? '$metricLabel trend chart: Average ${stats.average.toStringAsFixed(1)} ${data.unitLabel}, min ${stats.min.toStringAsFixed(1)}, max ${stats.max.toStringAsFixed(1)} across ${grouped.length} readings'
-        : '$metricLabel trend chart';
+        ? l10n.metricTrendSemantics(
+            metricLabel,
+            formatStat(stats.average),
+            formatStat(stats.min),
+            formatStat(stats.max),
+            grouped.length,
+            data.unitLabel,
+          )
+        : l10n.trendChartSemantics(grouped.length);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -278,7 +291,7 @@ class _MetricTrendCardState extends ConsumerState<MetricTrendCard> {
             for (final r in readings)
               ChartDataPoint(time: r.createdAt, value: r.totalMgDl.toDouble()),
           ],
-          unitLabel: 'mg/dL',
+          unitLabel: GlucoseUnit.mgDl.displayName,
         );
       case MetricType.weight:
         final readings = ref.watch(weightReadingListProvider).value ?? [];
@@ -298,14 +311,13 @@ class _MetricTrendCardState extends ConsumerState<MetricTrendCard> {
   }
 
   /// Formats x-axis labels according to the selected time range.
-  String _xLabel(ChartDataPoint point) {
+  String _xLabel(ChartDataPoint point, String locale) {
     switch (_range) {
       case ChartTimeRange.day:
-        return DateFormat.Hm().format(point.time);
+        return DateFormat.Hm(locale).format(point.time);
       case ChartTimeRange.week:
-        return DateFormat.Md().format(point.time);
       case ChartTimeRange.month:
-        return DateFormat('MMM y').format(point.time);
+        return DateFormat.Md(locale).format(point.time);
     }
   }
 }
