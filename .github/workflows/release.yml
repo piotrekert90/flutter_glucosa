@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   build-release:
+    if: github.ref == 'refs/heads/release' || startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -51,6 +52,22 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Restore Firebase Android config
+        env:
+          FIREBASE_GOOGLE_SERVICES_JSON_BASE64: ${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON_BASE64 }}
+        run: |
+          if [ -n "$FIREBASE_GOOGLE_SERVICES_JSON_BASE64" ]; then
+            printf '%s' "$FIREBASE_GOOGLE_SERVICES_JSON_BASE64" | base64 --decode > android/app/google-services.json
+          elif [ ! -f "android/app/google-services.json" ]; then
+            mkdir -p android/app
+            printf '%s\n' '{"project_info":{"project_number":"1234567890","project_id":"dummy-ci-project","storage_bucket":"dummy-ci-project.appspot.com"},"client":[{"client_info":{"mobilesdk_app_id":"1:1234567890:android:dummyappid","android_client_info":{"package_name":"com.ekerstudio.glucosa"}},"oauth_client":[],"api_key":[{"current_key":"dummy_api_key"}],"services":{}},{"client_info":{"mobilesdk_app_id":"1:1234567890:android:dummyappid_debug","android_client_info":{"package_name":"com.ekerstudio.glucosa.dev"}},"oauth_client":[],"api_key":[{"current_key":"dummy_api_key"}],"services":{}}],"configuration_version":"1"}' > android/app/google-services.json
+          fi
+
+          if [ -f "android/app/google-services.json" ] && ! grep -q "com.ekerstudio.glucosa.dev" android/app/google-services.json; then
+            python3 -c "import copy, json; path='android/app/google-services.json'; data=json.load(open(path)); client=copy.deepcopy(data['client'][0]); client['client_info']['android_client_info']['package_name']='com.ekerstudio.glucosa.dev'; data['client'].append(client); json.dump(data, open(path, 'w'), indent=2)"
+          fi
+          printf '%s' "$FIREBASE_GOOGLE_SERVICES_JSON_BASE64" | base64 --decode > android/app/google-services.json
+
       - name: Cache Isar core binary
         id: cache-isar
         uses: actions/cache@v4
@@ -89,7 +106,7 @@ jobs:
           LD_LIBRARY_PATH: ${{ github.workspace }}
         run: flutter test --coverage --exclude-tags "golden,screenshot"
 
-      - name: Restore signing keystore (if configured)
+      - name: Restore signing keystore
         env:
           KEYSTORE_BASE64: ${{ secrets['KEYSTORE_BASE64'] }}
           KEYSTORE_PASSWORD: ${{ secrets['KEYSTORE_PASSWORD'] }}
@@ -97,12 +114,12 @@ jobs:
           KEY_PASSWORD: ${{ secrets['KEY_PASSWORD'] }}
         run: |
           if [ -z "$KEYSTORE_BASE64" ]; then
-            if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-              echo "❌ [ERROR] KEYSTORE_BASE64 secret is mandatory for tagged release builds (refs/tags/v*)."
-              exit 1
-            fi
-            echo "No keystore configured — building unsigned package for branch build"
+            echo "No keystore configured — building unsigned package"
             exit 0
+          fi
+          if [ -z "$KEYSTORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
+            echo "All Android signing secrets are required when KEYSTORE_BASE64 is configured."
+            exit 1
           fi
           echo "$KEYSTORE_BASE64" | base64 --decode > android/app/release.keystore
           echo "storeFile=release.keystore" >> android/key.properties
