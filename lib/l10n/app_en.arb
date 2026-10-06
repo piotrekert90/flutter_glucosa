@@ -1879,5 +1879,223 @@
         "type": "int"
       }
     }
+  },
+  "deleteGlucose": "Delete Glucose",
+  "@deleteGlucose": {
+    "description": "Tooltip for deleting a glucose reading"
+  },
+  "estimatedHbA1cSubtitle": "Estimated average glycated hemoglobin",
+  "@estimatedHbA1cSubtitle": {
+    "description": "Subtitle under the estimated HbA1c value"
+  },
+  "targetRangeValue": "{min}–{max} {unit} ({preset})",
+  "@targetRangeValue": {
+    "description": "Formatted target range value with unit and preset name",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      },
+      "preset": {
+        "type": "String"
+      }
+    }
+  },
+  "targetRangePresetOption": "{preset} ({min}–{max} {unit})",
+  "@targetRangePresetOption": {
+    "description": "Target range preset chip label with bounds",
+    "placeholders": {
+      "preset": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "hba1cAvgGlucoseHintMgDl": "e.g. 154",
+  "@hba1cAvgGlucoseHintMgDl": {
+    "description": "Hint for average glucose input in mg/dL"
+  },
+  "hba1cAvgGlucoseHintMmolL": "e.g. 8.5",
+  "@hba1cAvgGlucoseHintMmolL": {
+    "description": "Hint for average glucose input in mmol/L"
+  },
+  "hba1cValueHintPercent": "e.g. 7.0",
+  "@hba1cValueHintPercent": {
+    "description": "Hint for HbA1c input in percent"
+  },
+  "hba1cValueHintMmolMol": "e.g. 53",
+  "@hba1cValueHintMmolMol": {
+    "description": "Hint for HbA1c input in mmol/mol"
+  },
+  "hba1cCalculatorAutoNote": "Estimated from average glucose calculator",
+  "@hba1cCalculatorAutoNote": {
+    "description": "Note attached to readings saved from the HbA1c calculator"
+  },
+  "metricTrendSemantics": "{metric} trend chart: average {average} {unit}, min {min}, max {max} across {count} readings",
+  "@metricTrendSemantics": {
+    "description": "Accessibility label for metric trend charts",
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      },
+      "average": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "licenseEntriesCount": "{count, plural, =1{1 entry} other{{count} entries}}",
+  "@licenseEntriesCount": {
+    "description": "License paragraph count per package",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "licensePackageCount": "{count, plural, =1{1 open-source package} other{{count} open-source packages}}",
+  "@licensePackageCount": {
+    "description": "Total open-source package count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "appVersionLabel": "v{version}",
+  "@appVersionLabel": {
+    "description": "Formatted app version",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "copyrightYear": "© {year}",
+  "@copyrightYear": {
+    "description": "Copyright line with year",
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingProgressLabel": "Setup progress: step {step} of {total}",
+  "@onboardingProgressLabel": {
+    "description": "Accessibility label for onboarding progress",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "wipeDataError": "Failed to wipe data",
+  "@wipeDataError": {
+    "description": "Error message shown when wiping data fails"
+  },
+  "periodComparisonSemantics": "Period comparison over the last {days} days",
+  "@periodComparisonSemantics": {
+    "description": "Accessibility label for period comparison card",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "doctorSummaryPeriod": "Period: {label} ({days} days)",
+  "@doctorSummaryPeriod": {
+    "description": "Period line in the shared doctor summary",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "hba1cUnitNgspDescription": "NGSP (%)",
+  "@hba1cUnitNgspDescription": {
+    "description": "Description of the HbA1c percentage unit"
+  },
+  "hba1cUnitIfccDescription": "IFCC (mmol/mol)",
+  "@hba1cUnitIfccDescription": {
+    "description": "Description of the HbA1c mmol/mol unit"
+  },
+  "weightUnitKgDescription": "Kilograms (kg)",
+  "@weightUnitKgDescription": {
+    "description": "Description of the kilogram weight unit"
+  },
+  "weightUnitLbsDescription": "Pounds (lbs)",
+  "@weightUnitLbsDescription": {
+    "description": "Description of the pound weight unit"
+  },
+  "healthSyncAppleHealth": "Apple Health",
+  "@healthSyncAppleHealth": {
+    "description": "Apple health platform name"
+  },
+  "healthSyncHealthConnect": "Health Connect",
+  "@healthSyncHealthConnect": {
+    "description": "Android health platform name"
+  },
+  "reminderOnce": "Once",
+  "@reminderOnce": {
+    "description": "Badge for one-time reminders"
+  },
+  "reminderDaily": "Daily",
+  "@reminderDaily": {
+    "description": "Badge for daily repeating reminders"
+  },
+  "reminderActiveToggle": "Reminder active toggle",
+  "@reminderActiveToggle": {
+    "description": "Semantics label for the reminder active switch"
+  },
+  "nameCannotBeEmpty": "Name cannot be empty",
+  "@nameCannotBeEmpty": {
+    "description": "Validation error for empty display names"
+  },
+  "privacyPolicyEmailSubject": "Privacy Policy Inquiry",
+  "@privacyPolicyEmailSubject": {
+    "description": "Subject line for privacy contact emails"
+  },
+  "versusLabel": "vs {label}",
+  "@versusLabel": {
+    "description": "Versus prefix for comparison labels",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "selectedState": "selected",
+  "@selectedState": {
+    "description": "Suffix for the selected option in accessibility labels"
   }
 }
