@@ -14,6 +14,7 @@ import '../../../../core/presentation/extensions/failure_ui_extension.dart';
 import '../../../../core/presentation/utils/app_snackbar.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
+import '../../../../core/presentation/widgets/app_top_bar.dart';
 import '../../../../core/utils/crash_reporter.dart';
 import '../../../../core/integrations/biometrics/biometric_service.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -44,7 +45,7 @@ class SettingsScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.settingsTitle)),
+      appBar: AppTopBar(title: l10n.settingsTitle),
       body: profileAsync.when(
         loading: () => const AppLoadingIndicator(),
         error: (error, _) => AppErrorView(

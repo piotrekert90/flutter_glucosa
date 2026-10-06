@@ -6,6 +6,7 @@ import '../../../../core/domain/value_objects/glucose_target_range.dart';
 import '../../../../core/presentation/theme/app_layout_tokens.dart';
 import '../../../../core/presentation/widgets/add_reading_bottom_sheet.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
+import '../../../../core/presentation/widgets/app_top_bar.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../glucose/presentation/providers/glucose_reading_list_notifier.dart';
@@ -85,7 +86,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     final preferredUnit = profile?.preferredGlucoseUnit ?? GlucoseUnit.mgDl;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.tabCalendar)),
+      appBar: AppTopBar(title: l10n.tabCalendar),
       floatingActionButton: FloatingActionButton(
         tooltip: l10n.addReading,
         onPressed: () => showAddReadingBottomSheet(context),

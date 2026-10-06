@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/presentation/widgets/add_reading_bottom_sheet.dart';
+import '../../../../core/presentation/widgets/app_top_bar.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -38,8 +39,8 @@ class OverviewScreen extends ConsumerWidget {
     final profileAsync = ref.watch(userProfileProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.navOverview),
+      appBar: AppTopBar(
+        title: l10n.navOverview,
         actions: [
           if (readingsAsync.value?.isNotEmpty ?? false)
             IconButton(

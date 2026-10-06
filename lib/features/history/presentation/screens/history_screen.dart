@@ -7,6 +7,7 @@ import '../../../../core/presentation/widgets/add_reading_bottom_sheet.dart';
 import '../../../../core/presentation/widgets/app_empty_view.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
 import '../../../../core/presentation/widgets/app_loading_indicator.dart';
+import '../../../../core/presentation/widgets/app_top_bar.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -79,7 +80,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.navHistory)),
+      appBar: AppTopBar(title: l10n.navHistory),
       floatingActionButton: FloatingActionButton(
         tooltip: l10n.addReading,
         onPressed: () => showAddReadingBottomSheet(context),
