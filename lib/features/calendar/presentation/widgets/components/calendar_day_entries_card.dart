@@ -185,12 +185,11 @@ class CalendarDayEntriesCard extends ConsumerWidget {
                                           timeStr,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyMedium
+                                              .bodySmall
                                               ?.copyWith(
                                                 color: colorScheme
                                                     .onSurfaceVariant,
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 13,
                                               ),
                                         ),
                                       ],
@@ -214,7 +213,6 @@ class CalendarDayEntriesCard extends ConsumerWidget {
                                                 context,
                                               ),
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 11,
                                             ),
                                       ),
                                     ),
@@ -233,10 +231,8 @@ class CalendarDayEntriesCard extends ConsumerWidget {
                                           .textTheme
                                           .headlineMedium
                                           ?.copyWith(
-                                            fontWeight: FontWeight.w800,
-                                            color: colorScheme.primary,
-                                            fontSize: 28,
-                                            letterSpacing: -0.5,
+                                            fontWeight: FontWeight.bold,
+                                            color: colorScheme.onSurface,
                                           ),
                                     ),
                                     const SizedBox(width: 4),
@@ -314,9 +310,12 @@ class CalendarDayEntriesCard extends ConsumerWidget {
                                       const SizedBox(width: 12),
                                       Text(
                                         l10n.delete,
-                                        style: TextStyle(
-                                          color: colorScheme.error,
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(
+                                              color: colorScheme.error,
+                                            ),
                                       ),
                                     ],
                                   ),

@@ -104,7 +104,7 @@ class GlucoseReadingCard extends ConsumerWidget {
                       ),
                       decoration: BoxDecoration(
                         color: statusBgColor,
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
                         status.localizedName(l10n),

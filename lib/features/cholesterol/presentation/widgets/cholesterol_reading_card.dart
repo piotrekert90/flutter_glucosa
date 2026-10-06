@@ -32,17 +32,9 @@ class CholesterolReadingCard extends StatelessWidget {
     final badgeLabel = status.localizedName(l10n);
 
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(
-          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
-        ),
-      ),
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -62,9 +54,8 @@ class CholesterolReadingCard extends StatelessWidget {
                   const SizedBox(width: 4),
                   Text(
                     unitLabel,
-                    style: theme.textTheme.bodyMedium?.copyWith(
+                    style: theme.textTheme.labelMedium?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
-                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   const Spacer(),

@@ -133,7 +133,9 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                   }
 
                   return ListView.separated(
-                    padding: const EdgeInsets.all(16),
+                    // Bottom clearance for the end-float FAB so the last
+                    // entry is never obscured.
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 96),
                     itemCount: visible.length,
                     separatorBuilder: (_, _) => const SizedBox(height: 8),
                     itemBuilder: (context, index) {
@@ -148,7 +150,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           decoration: BoxDecoration(
                             color: theme.colorScheme.error,
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(28),
                           ),
                           child: Icon(
                             Icons.delete_outline,
