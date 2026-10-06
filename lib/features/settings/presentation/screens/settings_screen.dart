@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -236,11 +238,13 @@ class SettingsScreen extends ConsumerWidget {
                     '${AppRoute.settings.path}/${AppRoute.licenses.path}',
                   ),
                 ),
-                CustomSettingsTile(
-                  icon: Icons.star_outline_rounded,
-                  title: l10n.rateApp,
-                  onTap: () => _rateApp(context),
-                ),
+                // Rate-app is Android-only until an App Store listing is wired.
+                if (!Platform.isIOS)
+                  CustomSettingsTile(
+                    icon: Icons.star_outline_rounded,
+                    title: l10n.rateApp,
+                    onTap: () => _rateApp(context),
+                  ),
                 const SizedBox(height: 24),
               ],
             ),
