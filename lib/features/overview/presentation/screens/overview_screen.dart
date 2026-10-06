@@ -128,7 +128,9 @@ class OverviewScreen extends ConsumerWidget {
                     padding: const EdgeInsets.all(16),
                     child: Text(
                       l10n.genericError,
-                      style: TextStyle(color: theme.colorScheme.error),
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.error,
+                      ),
                     ),
                   ),
                 ),
@@ -310,6 +312,9 @@ class OverviewScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 20),
               const DailyTipCard(),
+              // Clearance for the end-float FAB so trailing content
+              // (e.g. Period Comparison) is never obscured.
+              const SizedBox(height: 80),
             ],
           ),
         ),

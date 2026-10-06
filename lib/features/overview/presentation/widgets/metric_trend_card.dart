@@ -81,7 +81,9 @@ class _MetricTrendCardState extends ConsumerState<MetricTrendCard> {
                     padding: const EdgeInsets.all(16),
                     child: Text(
                       l10n.genericError,
-                      style: TextStyle(color: theme.colorScheme.error),
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.error,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   );
@@ -128,7 +130,15 @@ class _MetricTrendCardState extends ConsumerState<MetricTrendCard> {
       );
     }
 
-    final xLabels = grouped.map(_xLabel).toList();
+    final xLabels = <String>[];
+    final seenLabels = <String>{};
+    for (final point in grouped) {
+      final label = _xLabel(point);
+      // Day buckets key points by clock time only, so readings from
+      // different days (or the same minute) would print identical axis
+      // labels. Keep the first occurrence and blank repeats instead.
+      xLabels.add(seenLabels.add(label) ? label : '');
+    }
     final spots = [
       for (var i = 0; i < grouped.length; i++)
         FlSpot(i.toDouble(), grouped[i].value),
