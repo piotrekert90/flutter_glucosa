@@ -127,20 +127,13 @@ void main() {
 
     test('analyzeFile returns fileTooLarge above 5 MB limit', () async {
       final file = File('${tempDir.path}/big.csv');
-      final sink = file.openWrite();
-      sink.writeln('Date,Value');
-      const row = '2026-09-20,120\n';
-      // Use enough repetitions to definitively exceed the limit, then wait
-      // for the OS to flush and verify the actual size before proceeding.
-      // ignore: prefer_const_declarations — maxFileSizeBytes is cross-class constant and this analyzer version does not fold (maxFileSizeBytes ~/ length) at compile-time.
-      final reps =
-          (CsvGlucoseImportService.maxFileSizeBytes ~/ row.length) + 50;
-      for (int i = 0; i < reps; i++) {
-        sink.writeln('2026-09-20,120');
+      final handle = await file.open(mode: FileMode.writeOnly);
+      try {
+        await handle.setPosition(CsvGlucoseImportService.maxFileSizeBytes);
+        await handle.writeByte(0);
+      } finally {
+        await handle.close();
       }
-      await sink.close();
-      // Give the OS a moment to flush buffers before checking size.
-      await Future<void>.delayed(const Duration(milliseconds: 100));
 
       final actualSize = file.lengthSync();
       expect(
