@@ -22,6 +22,7 @@ import '../../../../core/integrations/biometrics/biometric_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../onboarding/presentation/extensions/diabetes_type_l10n.dart';
 import '../../../calendar/presentation/extensions/first_day_of_week_ui_extension.dart';
+import '../providers/telemetry_notifier.dart';
 import '../providers/user_profile_notifier.dart';
 import '../widgets/components/custom_settings_tile.dart';
 import '../widgets/components/custom_settings_toggle.dart';
@@ -180,6 +181,14 @@ class SettingsScreen extends ConsumerWidget {
                   value: profile.isBiometricLockEnabled,
                   onChanged: (value) =>
                       _toggleBiometricLock(context, ref, value),
+                ),
+                CustomSettingsToggle(
+                  icon: Icons.analytics_outlined,
+                  title: l10n.diagnosticsSharing,
+                  subtitle: l10n.diagnosticsSharingSubtitle,
+                  value: ref.watch(telemetryProvider),
+                  onChanged: (value) =>
+                      ref.read(telemetryProvider.notifier).setEnabled(value),
                 ),
                 CustomSettingsTile(
                   icon: Icons.delete_forever_outlined,

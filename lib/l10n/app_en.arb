@@ -58,6 +58,14 @@
   "@receivePushNotifications": {
     "description": "Subtitle for notifications toggle switch"
   },
+  "diagnosticsSharing": "Share diagnostics",
+  "@diagnosticsSharing": {
+    "description": "Label for Firebase diagnostics collection toggle switch"
+  },
+  "diagnosticsSharingSubtitle": "Send crash reports and usage diagnostics to Firebase",
+  "@diagnosticsSharingSubtitle": {
+    "description": "Subtitle for Firebase diagnostics collection toggle switch"
+  },
   "failedToUpdatePreferences": "Failed to update preferences",
   "@failedToUpdatePreferences": {
     "description": "Snackbar message when updating notification preference fails"

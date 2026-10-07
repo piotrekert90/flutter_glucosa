@@ -1,5 +1,7 @@
 {
   "de": [
+    "diagnosticsSharing",
+    "diagnosticsSharingSubtitle",
     "deleteGlucose",
     "estimatedHbA1cSubtitle",
     "targetRangeValue",
@@ -34,6 +36,8 @@
   ],
 
   "es": [
+    "diagnosticsSharing",
+    "diagnosticsSharingSubtitle",
     "deleteGlucose",
     "estimatedHbA1cSubtitle",
     "targetRangeValue",
@@ -68,6 +72,8 @@
   ],
 
   "fr": [
+    "diagnosticsSharing",
+    "diagnosticsSharingSubtitle",
     "deleteGlucose",
     "estimatedHbA1cSubtitle",
     "targetRangeValue",
@@ -102,6 +108,8 @@
   ],
 
   "it": [
+    "diagnosticsSharing",
+    "diagnosticsSharingSubtitle",
     "deleteGlucose",
     "estimatedHbA1cSubtitle",
     "targetRangeValue",
@@ -136,6 +144,8 @@
   ],
 
   "ja": [
+    "diagnosticsSharing",
+    "diagnosticsSharingSubtitle",
     "deleteGlucose",
     "estimatedHbA1cSubtitle",
     "targetRangeValue",
@@ -170,6 +180,8 @@
   ],
 
   "ko": [
+    "diagnosticsSharing",
+    "diagnosticsSharingSubtitle",
     "deleteGlucose",
     "estimatedHbA1cSubtitle",
     "targetRangeValue",
@@ -204,6 +216,8 @@
   ],
 
   "nl": [
+    "diagnosticsSharing",
+    "diagnosticsSharingSubtitle",
     "deleteGlucose",
     "estimatedHbA1cSubtitle",
     "targetRangeValue",
@@ -238,6 +252,8 @@
   ],
 
   "pl": [
+    "diagnosticsSharing",
+    "diagnosticsSharingSubtitle",
     "deleteGlucose",
     "estimatedHbA1cSubtitle",
     "targetRangeValue",
@@ -272,6 +288,8 @@
   ],
 
   "pt": [
+    "diagnosticsSharing",
+    "diagnosticsSharingSubtitle",
     "deleteGlucose",
     "estimatedHbA1cSubtitle",
     "targetRangeValue",

@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app.dart';
+import 'core/config/telemetry_settings.dart';
 import 'core/presentation/widgets/app_startup_widget.dart';
 import 'core/providers/app_provider_observer.dart';
 import 'core/utils/crash_reporter.dart';
@@ -26,6 +27,7 @@ Future<void> initializeFirebaseIfEnabled() async {
     return;
   }
 
+  await TelemetrySettings.load();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseAppCheck.instance.activate(
     providerAndroid: kDebugMode
@@ -35,8 +37,16 @@ Future<void> initializeFirebaseIfEnabled() async {
         ? const AppleDebugProvider()
         : const AppleDeviceCheckProvider(),
   );
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-  await FirebaseAnalytics.instance.logAppOpen();
+  final telemetryEnabled = TelemetrySettings.enabled;
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
+    telemetryEnabled,
+  );
+  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(
+    telemetryEnabled,
+  );
+  if (telemetryEnabled) {
+    await FirebaseAnalytics.instance.logAppOpen();
+  }
 }
 
 /// Main entrypoint function for the application.
@@ -63,7 +73,9 @@ Future<void> main() async {
       reason: 'FlutterError: ${details.context?.toDescription()}',
       fatal: true,
     );
-    FirebaseCrashlytics.instance.recordFlutterFatalError(details);
+    if (TelemetrySettings.enabled) {
+      FirebaseCrashlytics.instance.recordFlutterFatalError(details);
+    }
   };
 
   ui.PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
@@ -73,7 +85,9 @@ Future<void> main() async {
       reason: 'Unhandled asynchronous platform error',
       fatal: true,
     );
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    if (TelemetrySettings.enabled) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    }
     return true;
   };
 

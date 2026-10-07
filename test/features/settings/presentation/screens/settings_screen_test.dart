@@ -61,6 +61,11 @@ void main() {
     expect(find.text('Notifications'), findsOneWidget);
     expect(find.text('Security & Privacy'), findsOneWidget);
     expect(find.text('Biometric Lock'), findsOneWidget);
+    expect(find.text('Share diagnostics'), findsOneWidget);
+    expect(
+      find.text('Send crash reports and usage diagnostics to Firebase'),
+      findsOneWidget,
+    );
     expect(find.text('Wipe All Data'), findsOneWidget);
     expect(find.text('Tools'), findsOneWidget);
     expect(find.text('Reminders'), findsOneWidget);
