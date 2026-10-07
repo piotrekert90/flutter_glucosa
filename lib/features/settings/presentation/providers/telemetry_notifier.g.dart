@@ -52,7 +52,7 @@ final class TelemetryProvider extends $NotifierProvider<Telemetry, bool> {
   }
 }
 
-String _$telemetryHash() => r'599e08350ef6ef8433dbd75892a22ec2e33fd674';
+String _$telemetryHash() => r'f6faa9f174ec093673ff980f48d52813e925b7ce';
 
 /// Riverpod notifier exposing the diagnostics collection consent flag.
 ///
