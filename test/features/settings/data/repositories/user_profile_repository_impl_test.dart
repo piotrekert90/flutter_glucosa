@@ -3,12 +3,40 @@ import 'dart:async';
 import 'package:flutter_glucosa/core/domain/enums/enums.dart';
 import 'package:flutter_glucosa/core/domain/value_objects/glucose_target_range.dart';
 import 'package:flutter_glucosa/core/errors/failure.dart';
+import 'package:flutter_glucosa/features/blood_pressure/data/models/blood_pressure_reading_model.dart';
+import 'package:flutter_glucosa/features/cholesterol/data/models/cholesterol_reading_model.dart';
+import 'package:flutter_glucosa/features/glucose/data/models/glucose_reading_model.dart';
+import 'package:flutter_glucosa/features/hba1c/data/models/hba1c_reading_model.dart';
+import 'package:flutter_glucosa/features/ketones/data/models/ketone_reading_model.dart';
+import 'package:flutter_glucosa/features/reminders/data/models/reminder_model.dart';
 import 'package:flutter_glucosa/features/settings/data/models/user_profile_model.dart';
 import 'package:flutter_glucosa/features/settings/data/repositories/user_profile_repository_impl.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
+import 'package:flutter_glucosa/features/weight/data/models/weight_reading_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:isar_community/isar.dart';
 import 'package:mocktail/mocktail.dart';
+
+class MockGlucoseCollection extends Mock
+    implements IsarCollection<GlucoseReadingModel> {}
+
+class MockHbA1cCollection extends Mock
+    implements IsarCollection<HbA1cReadingModel> {}
+
+class MockBloodPressureCollection extends Mock
+    implements IsarCollection<BloodPressureReadingModel> {}
+
+class MockKetoneCollection extends Mock
+    implements IsarCollection<KetoneReadingModel> {}
+
+class MockCholesterolCollection extends Mock
+    implements IsarCollection<CholesterolReadingModel> {}
+
+class MockWeightCollection extends Mock
+    implements IsarCollection<WeightReadingModel> {}
+
+class MockReminderCollection extends Mock
+    implements IsarCollection<ReminderModel> {}
 
 class MockIsar extends Mock implements Isar {
   Object? writeTxnException;
@@ -305,6 +333,64 @@ void main() {
       expect(success, isFalse);
       expect(failure, isA<DatabaseFailure>());
       expect(failure?.message, contains('Unexpected error'));
+    });
+  });
+
+  group('UserProfileRepositoryImpl - wipeAllData()', () {
+    test('clears all collections and restores defaults', () async {
+      final glucose = MockGlucoseCollection();
+      final hba1c = MockHbA1cCollection();
+      final bloodPressure = MockBloodPressureCollection();
+      final ketone = MockKetoneCollection();
+      final cholesterol = MockCholesterolCollection();
+      final weight = MockWeightCollection();
+      final reminder = MockReminderCollection();
+      final List<IsarCollection> wipedCollections = [
+        glucose,
+        hba1c,
+        bloodPressure,
+        ketone,
+        cholesterol,
+        weight,
+        reminder,
+      ];
+      for (final collection in wipedCollections) {
+        when(() => collection.clear()).thenAnswer((_) async => 0);
+      }
+      when(
+        () => mockIsar.collection<GlucoseReadingModel>(),
+      ).thenReturn(glucose);
+      when(() => mockIsar.collection<HbA1cReadingModel>()).thenReturn(hba1c);
+      when(
+        () => mockIsar.collection<BloodPressureReadingModel>(),
+      ).thenReturn(bloodPressure);
+      when(() => mockIsar.collection<KetoneReadingModel>()).thenReturn(ketone);
+      when(
+        () => mockIsar.collection<CholesterolReadingModel>(),
+      ).thenReturn(cholesterol);
+      when(() => mockIsar.collection<WeightReadingModel>()).thenReturn(weight);
+      when(() => mockIsar.collection<ReminderModel>()).thenReturn(reminder);
+      when(() => mockCollection.clear()).thenAnswer((_) async => 0);
+      when(() => mockCollection.put(any())).thenAnswer((_) async => 0);
+
+      final (success, failure) = await repository.wipeAllData();
+
+      expect(success, isTrue);
+      expect(failure, isNull);
+      for (final collection in wipedCollections) {
+        verify(() => collection.clear()).called(1);
+      }
+      verify(() => mockCollection.clear()).called(1);
+      verify(() => mockCollection.put(any())).called(1);
+    });
+
+    test('returns (false, DatabaseFailure) on IsarError', () async {
+      mockIsar.writeTxnException = IsarError('wipe failed');
+
+      final (success, failure) = await repository.wipeAllData();
+
+      expect(success, isFalse);
+      expect(failure, isA<DatabaseFailure>());
     });
   });
 }

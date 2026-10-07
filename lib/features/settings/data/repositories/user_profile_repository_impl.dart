@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:isar_community/isar.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../../../../core/domain/enums/enums.dart';
 import '../../../../core/domain/value_objects/glucose_target_range.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/result.dart';
+import '../../../../core/utils/app_logger.dart';
+import '../../../../core/utils/crash_log.dart';
 import '../../../blood_pressure/data/models/blood_pressure_reading_model.dart';
 import '../../../cholesterol/data/models/cholesterol_reading_model.dart';
 import '../../../glucose/data/models/glucose_reading_model.dart';
@@ -238,11 +243,29 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
         await _isar.userProfileModels.clear();
         await _isar.userProfileModels.put(UserProfile.defaults().toModel());
       });
+      await _deleteCrashLog();
       return (true, null);
     } on IsarError catch (e) {
       return (false, DatabaseFailure(e.message));
     } catch (e) {
       return (false, DatabaseFailure('Unexpected error: $e'));
+    }
+  }
+
+  /// Deletes the on-device crash log so wiped diagnostics do not linger.
+  ///
+  /// Best-effort: a missing file or locked file only produces a debug log,
+  /// never a wipe failure. Native home-screen widget payloads refresh on the
+  /// next sync pass; full native cleanup additionally requires reinstall.
+  Future<void> _deleteCrashLog() async {
+    try {
+      final dir = await getApplicationDocumentsDirectory();
+      final file = File('${dir.path}/$crashLogFileName');
+      if (await file.exists()) {
+        await file.delete();
+      }
+    } catch (e) {
+      AppLogger.debug('Wipe could not delete crash log: $e');
     }
   }
 }
