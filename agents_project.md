@@ -46,6 +46,10 @@ Feature-First Clean Architecture under `lib/features/<feature>/`. Features inclu
   side-effect-free extension methods. They must not hold mutable state, perform I/O, or depend on external services.
 - **One-way dependency:** Imports flow inward toward the domain. Presentation imports domain; data imports
   domain and Isar. Domain imports nothing project-specific.
+- **Aggregate screens may compose providers:** `history`, `calendar`, `overview`, and `onboarding`
+  legitimately watch providers from multiple features (they render cross-feature aggregates).
+  What stays banned is data-model leakage (`data/models`, Isar annotations) and platform
+  branching (`dart:io`) inside notifiers — inject `PlatformDetector` instead.
 
 ### Riverpod 3.x + Isar Community Patterns
 - **Always** use `@riverpod` code generation — never manual state mutation.
