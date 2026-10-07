@@ -60,9 +60,11 @@ Feature-First Clean Architecture under `lib/features/<feature>/`. Features inclu
   `AppLogger.debug`, `AppLogger.info`, `AppLogger.warning`, `AppLogger.error`. Unhandled errors are also
   intercepted globally by `AppProviderObserver` (`lib/core/providers/app_provider_observer.dart`) and
   persisted to rotating on-device crash logs via `AppCrashReporter` (`lib/core/utils/crash_reporter.dart`).
-- **UI Colors:** Never hardcode raw colors (`Color(0x...)`, `Colors.*`). Use `AppColors`
-  (`lib/core/presentation/theme/app_colors.dart`) and `AppFeedbackTheme`
-  (`lib/core/presentation/theme/app_feedback_theme.dart`).
+- **UI Colors:** Never hardcode raw colors (`Color(0x...)`, `Colors.*`). Use `AppTheme`
+  (`lib/core/presentation/theme/app_theme.dart`), `AppFeedbackTheme`
+  (`lib/core/presentation/theme/app_feedback_theme.dart`), and `AppChartTheme`
+  (`lib/core/presentation/theme/app_chart_theme.dart`). There is no `AppColors`
+  class; `Color(0x...)` literals are only allowed inside those token definitions.
 - **Layout & Responsiveness:** Use `AppLayoutTokens` (`lib/core/presentation/theme/app_layout_tokens.dart`)
   via `context.layout`, `context.isPhone`, `context.isTablet`, `ClampedLayout`, and `AdaptiveNavigationScaffold`.
 - **Result Types:** Use `CommandResult` and `DataResult<T>` (`lib/core/errors/result.dart`) for standard
