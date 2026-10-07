@@ -18,17 +18,18 @@ abstract final class CsvImportCoordinator {
   ///
   /// Returns `null` when the user cancels, the file has no importable
   /// entries, or the import fails (a [SnackBar] is shown in those cases).
+  /// [pickCsvPath] and [confirmAnalysis] are test seams defaulting to the
+  /// native file picker and preview dialog.
   static Future<int?> pickAnalyzeConfirm(
     BuildContext context,
-    WidgetRef ref,
-  ) async {
+    WidgetRef ref, {
+    Future<String?> Function()? pickCsvPath,
+    Future<bool> Function(BuildContext context, CsvAnalysisSuccess outcome)?
+    confirmAnalysis,
+  }) async {
     final l10n = AppLocalizations.of(context)!;
     try {
-      final picked = await FilePicker.pickFile(
-        type: FileType.custom,
-        allowedExtensions: const ['csv'],
-      );
-      final path = picked?.path;
+      final path = await (pickCsvPath?.call() ?? _pickCsvPath());
       if (path == null) return null;
       if (!context.mounted) return null;
 
@@ -45,10 +46,9 @@ abstract final class CsvImportCoordinator {
           );
           return null;
         case CsvAnalysisSuccess(:final analysis):
-          final confirmed = await CsvImportPreviewDialog.show(
-            context,
-            analysis: analysis,
-          );
+          final confirmed =
+              await (confirmAnalysis?.call(context, outcome) ??
+                  CsvImportPreviewDialog.show(context, analysis: analysis));
           if (!confirmed || !context.mounted) return null;
           final (count, failure) = await service.confirmImport(
             analysis.validEntries,
@@ -79,6 +79,15 @@ abstract final class CsvImportCoordinator {
       }
       return null;
     }
+  }
+
+  /// Opens the native file picker restricted to CSV files.
+  static Future<String?> _pickCsvPath() async {
+    final picked = await FilePicker.pickFile(
+      type: FileType.custom,
+      allowedExtensions: const ['csv'],
+    );
+    return picked?.path;
   }
 
   /// Maps a CSV analysis failure to a localized message.
