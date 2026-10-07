@@ -5,6 +5,7 @@ import 'package:flutter_glucosa/core/domain/utils/glucose_converter.dart';
 import 'package:flutter_glucosa/features/glucose/domain/entities/glucose_reading.dart';
 import 'package:flutter_glucosa/features/settings/domain/entities/user_profile.dart';
 import 'package:flutter_glucosa/features/statistics/domain/services/period_comparison_calculator.dart';
+import 'package:flutter_glucosa/features/statistics/presentation/utils/period_range_label.dart';
 import 'package:flutter_glucosa/l10n/app_localizations.dart';
 
 /// Formatter generating a structured, clinical summary text for doctor sharing and patient consultations.
@@ -50,7 +51,12 @@ class ProgressSummaryFormatter {
     buffer.writeln(
       '🎯 ${l10n.doctorSummaryTargetRangeLabel}: $targetMinStr – $targetMaxStr ${unit.displayName} (${targetRange.preset.displayName})',
     );
-    buffer.writeln('⏱️ ${l10n.doctorSummaryPeriod(summary.label, windowDays)}');
+    final periodLabel = PeriodRangeLabel.format(
+      start: summary.start,
+      end: summary.end,
+      locale: l10n.localeName,
+    );
+    buffer.writeln('⏱️ ${l10n.doctorSummaryPeriod(periodLabel, windowDays)}');
     buffer.writeln('');
 
     // Glucose Metrics

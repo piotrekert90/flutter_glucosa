@@ -7,6 +7,7 @@ import 'package:flutter_glucosa/core/presentation/theme/app_feedback_theme.dart'
 import 'package:flutter_glucosa/features/glucose/domain/entities/glucose_reading.dart';
 import 'package:flutter_glucosa/features/statistics/domain/entities/period_comparison.dart';
 import 'package:flutter_glucosa/features/statistics/domain/services/period_comparison_calculator.dart';
+import 'package:flutter_glucosa/features/statistics/presentation/utils/period_range_label.dart';
 import 'package:flutter_glucosa/l10n/app_localizations.dart';
 
 /// Card widget presenting comparative clinical analysis between rolling time windows.
@@ -48,14 +49,24 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
         : AppFeedbackTheme.successForegroundLight;
     final l10n = AppLocalizations.of(context)!;
 
+    final locale = Localizations.localeOf(context).languageCode;
     final comparison =
         widget.comparisonOverride ??
         PeriodComparisonCalculator.compareRollingDays(
           readings: widget.readings,
           days: _selectedDays,
           targetRange: widget.targetRange,
-          locale: Localizations.localeOf(context).languageCode,
         );
+    final currentLabel = PeriodRangeLabel.format(
+      start: comparison.currentPeriod.start,
+      end: comparison.currentPeriod.end,
+      locale: locale,
+    );
+    final previousLabel = PeriodRangeLabel.format(
+      start: comparison.previousPeriod.start,
+      end: comparison.previousPeriod.end,
+      locale: locale,
+    );
 
     return Semantics(
       container: true,
@@ -127,14 +138,14 @@ class _PeriodComparisonCardState extends State<PeriodComparisonCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      comparison.currentPeriod.label,
+                      currentLabel,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: cs.primary,
                       ),
                     ),
                     Text(
-                      l10n.versusLabel(comparison.previousPeriod.label),
+                      l10n.versusLabel(previousLabel),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: cs.onSurfaceVariant,
                       ),

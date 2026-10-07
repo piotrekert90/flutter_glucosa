@@ -44,9 +44,10 @@ void main() {
     testWidgets(
       'renders clinical comparative metrics when comparison data is available',
       (tester) async {
-        const mockResult = GlucosePeriodComparisonResult(
+        final mockResult = GlucosePeriodComparisonResult(
           currentPeriod: GlucosePeriodSummary(
-            label: 'Last 7 Days',
+            start: DateTime(2026, 10, 8),
+            end: DateTime(2026, 10, 14, 23, 59, 59, 999),
             meanGlucoseMgDl: 110.0,
             glucoseSd: 15.0,
             tirPercentage: 85.0,
@@ -57,7 +58,8 @@ void main() {
             readingCount: 20,
           ),
           previousPeriod: GlucosePeriodSummary(
-            label: 'Prior 7 Days',
+            start: DateTime(2026, 10, 1),
+            end: DateTime(2026, 10, 7, 23, 59, 59, 999),
             meanGlucoseMgDl: 125.0,
             glucoseSd: 22.0,
             tirPercentage: 70.0,
@@ -80,8 +82,8 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.text('Last 7 Days'), findsOneWidget);
-        expect(find.text('vs Prior 7 Days'), findsOneWidget);
+        expect(find.text('8 Oct – 14 Oct'), findsOneWidget);
+        expect(find.text('vs 1 Oct – 7 Oct'), findsOneWidget);
 
         expect(find.text('Mean Glucose'), findsOneWidget);
         expect(find.text('110 mg/dL'), findsOneWidget);

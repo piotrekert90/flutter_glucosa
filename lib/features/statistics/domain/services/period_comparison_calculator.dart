@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-import 'package:intl/intl.dart';
 
 import '../../../../core/domain/value_objects/glucose_target_range.dart';
 import '../../../glucose/domain/entities/glucose_reading.dart';
@@ -15,7 +14,6 @@ class PeriodComparisonCalculator {
     int days = 7,
     GlucoseTargetRange targetRange = const GlucoseTargetRange.ada(),
     DateTime? now,
-    String? locale,
   }) {
     final referenceDate = now ?? DateTime.now();
     final endOfCurrent = DateTime(
@@ -62,22 +60,18 @@ class PeriodComparisonCalculator {
             .toList()
           ..sort((a, b) => a.createdAt.compareTo(b.createdAt));
 
-    final currentDateFormat = DateFormat('d MMM', locale);
-    final currentLabel =
-        '${currentDateFormat.format(startOfCurrent)} – ${currentDateFormat.format(endOfCurrent)}';
-    final previousLabel =
-        '${currentDateFormat.format(startOfPrevious)} – ${currentDateFormat.format(endOfPrevious)}';
-
     final currentSummary = _summarize(
       readings: currentEntries,
       targetRange: targetRange,
-      label: currentLabel,
+      start: startOfCurrent,
+      end: endOfCurrent,
     );
 
     final previousSummary = _summarize(
       readings: previousEntries,
       targetRange: targetRange,
-      label: previousLabel,
+      start: startOfPrevious,
+      end: endOfPrevious,
     );
 
     final hasComparisonData =
@@ -119,7 +113,8 @@ class PeriodComparisonCalculator {
   static GlucosePeriodSummary _summarize({
     required List<GlucoseReading> readings,
     required GlucoseTargetRange targetRange,
-    required String label,
+    required DateTime start,
+    required DateTime end,
   }) {
     if (readings.isEmpty) {
       return GlucosePeriodSummary(
@@ -131,7 +126,8 @@ class PeriodComparisonCalculator {
         readingCount: 0,
         hypoCount: 0,
         hyperCount: 0,
-        label: label,
+        start: start,
+        end: end,
       );
     }
 
@@ -177,7 +173,8 @@ class PeriodComparisonCalculator {
       readingCount: count,
       hypoCount: hypoCount,
       hyperCount: hyperCount,
-      label: label,
+      start: start,
+      end: end,
     );
   }
 }

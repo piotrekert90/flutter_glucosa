@@ -24,11 +24,14 @@ class GlucosePeriodSummary {
   /// Count of readings identified as hyperglycemic (> 180 mg/dL or range maximum).
   final int hyperCount;
 
-  /// Human-readable date range label (e.g. "Sep 24 – Oct 1").
-  final String label;
+  /// Inclusive start of the summarized period.
+  final DateTime start;
+
+  /// Inclusive end of the summarized period.
+  final DateTime end;
 
   /// Creates a [GlucosePeriodSummary].
-  const GlucosePeriodSummary({
+  GlucosePeriodSummary({
     required this.meanGlucoseMgDl,
     required this.glucoseSd,
     required this.tirPercentage,
@@ -37,7 +40,8 @@ class GlucosePeriodSummary {
     required this.readingCount,
     required this.hypoCount,
     required this.hyperCount,
-    required this.label,
+    required this.start,
+    required this.end,
   });
 }
 
@@ -68,7 +72,7 @@ class GlucosePeriodComparisonResult {
   final bool hasComparisonData;
 
   /// Creates a [GlucosePeriodComparisonResult].
-  const GlucosePeriodComparisonResult({
+  GlucosePeriodComparisonResult({
     required this.currentPeriod,
     required this.previousPeriod,
     required this.deltaMeanGlucose,

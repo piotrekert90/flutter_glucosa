@@ -85,6 +85,17 @@ void main() {
         expect(result.currentPeriod.readingCount, 2);
         expect(result.previousPeriod.readingCount, 3);
 
+        expect(result.currentPeriod.start, DateTime(2026, 10, 8));
+        expect(
+          result.currentPeriod.end,
+          DateTime(2026, 10, 14, 23, 59, 59, 999),
+        );
+        expect(result.previousPeriod.start, DateTime(2026, 10, 1));
+        expect(
+          result.previousPeriod.end,
+          DateTime(2026, 10, 7, 23, 59, 59, 999),
+        );
+
         expect(result.currentPeriod.meanGlucoseMgDl, 100.0);
         expect(result.previousPeriod.meanGlucoseMgDl, 140.0);
 
