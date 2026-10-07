@@ -29,4 +29,4 @@ If you believe you have discovered a security vulnerability in this project, ple
 ## Technical Debt
 
 - **Unencrypted local database:** Isar Community currently runs without database-level encryption, so anyone with physical access to an unlocked/rooted device could read stored health data. Native database encryption (key in Android Keystore / iOS Keychain) is planned.
-- **No telemetry opt-out yet:** Crashlytics/Analytics collection is currently always on. A user-facing opt-out toggle is planned.
+- **Diagnostics opt-out:** Firebase Crashlytics/Analytics collection can be disabled in Settings → Security & Privacy → "Share diagnostics" (persisted in SharedPreferences, applied at startup and at runtime).
