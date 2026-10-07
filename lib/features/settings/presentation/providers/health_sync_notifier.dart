@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/integrations/health/health_metric.dart';
 import '../../../../core/integrations/health/health_service_provider.dart';
+import '../../../../core/integrations/health/platform_detector.dart';
 import '../../../glucose/data/providers/glucose_health_sync_coordinator_provider.dart';
 import '../../../glucose/data/services/glucose_health_sync_coordinator.dart';
 import 'user_profile_notifier.dart';
@@ -49,8 +48,12 @@ class HealthSync extends _$HealthSync {
   /// When enabling, verifies API availability and requests permissions first;
   /// the profile flag is only set once preparation succeeds.
   /// [enable] Whether synchronization should be turned on.
-  /// [isAndroid] Platform override for testability; defaults to the real platform.
-  Future<HealthSyncReadiness> setEnabled(bool enable, {bool? isAndroid}) async {
+  /// [platformDetector] Platform probe override for testability; defaults
+  /// to the native platform implementation.
+  Future<HealthSyncReadiness> setEnabled(
+    bool enable, {
+    PlatformDetector? platformDetector,
+  }) async {
     if (!enable) {
       await ref
           .read(userProfileProvider.notifier)
@@ -59,7 +62,7 @@ class HealthSync extends _$HealthSync {
     }
     final service = ref.read(healthServiceProvider);
     if (!await service.isHealthApiAvailable()) {
-      return (isAndroid ?? Platform.isAndroid)
+      return (platformDetector ?? NativePlatformDetector()).isAndroid
           ? HealthSyncReadiness.needsInstall
           : HealthSyncReadiness.unavailable;
     }

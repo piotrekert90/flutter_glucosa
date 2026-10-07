@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_glucosa/core/domain/enums/glucose_unit.dart';
 import 'package:flutter_glucosa/core/domain/enums/hba1c_unit.dart';
 import 'package:flutter_glucosa/core/domain/enums/metric_type.dart';
@@ -59,7 +58,7 @@ void main() {
       final notifier = container.read(exportProvider.notifier);
 
       fakeExportService.countToReturn = 7;
-      final range = DateTimeRange(
+      final range = DateRangeFilter(
         start: DateTime(2026, 9, 1),
         end: DateTime(2026, 9, 30),
       );
@@ -69,10 +68,7 @@ void main() {
 
       expect(state.dateRange, range);
       expect(state.matchingRecordCount, 7);
-      expect(
-        fakeExportService.lastDateRange,
-        DateRangeFilter(start: range.start, end: range.end),
-      );
+      expect(fakeExportService.lastDateRange, range);
 
       // Clear range
       fakeExportService.countToReturn = 15;

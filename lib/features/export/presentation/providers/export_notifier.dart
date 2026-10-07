@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/domain/enums/metric_type.dart';
@@ -17,15 +16,13 @@ class ExportNotifier extends _$ExportNotifier {
   int _countRequestId = 0;
 
   Future<void> _updateMatchingRecordCount({
-    required DateTimeRange? dateRange,
+    required DateRangeFilter? dateRange,
     required Set<MetricType> metrics,
   }) async {
     final requestId = ++_countRequestId;
     final exportService = ref.read(exportServiceProvider);
     final count = await exportService.countRecords(
-      dateRange: dateRange != null
-          ? DateRangeFilter(start: dateRange.start, end: dateRange.end)
-          : null,
+      dateRange: dateRange,
       metrics: metrics,
     );
     if (requestId != _countRequestId) return;
@@ -48,7 +45,7 @@ class ExportNotifier extends _$ExportNotifier {
   /// Sets the date range filter and recalculates matching record count.
   ///
   /// [range] The target boundary dates or null to include all records.
-  Future<void> setDateRange(DateTimeRange? range) async {
+  Future<void> setDateRange(DateRangeFilter? range) async {
     final current = state.value ?? const ExportState();
 
     state = AsyncData(
@@ -119,11 +116,8 @@ class ExportNotifier extends _$ExportNotifier {
     try {
       final exportService = ref.read(exportServiceProvider);
       final profile = await ref.read(userProfileRepositoryProvider).get();
-      final dateRange = current.dateRange;
       await exportService.exportAndShare(
-        dateRange: dateRange != null
-            ? DateRangeFilter(start: dateRange.start, end: dateRange.end)
-            : null,
+        dateRange: current.dateRange,
         metrics: current.selectedMetrics,
         glucoseUnit: profile.preferredGlucoseUnit,
         hba1cUnit: profile.preferredHbA1cUnit,
@@ -154,7 +148,7 @@ class ExportNotifier extends _$ExportNotifier {
     }
     final now = DateTime.now();
     return setDateRange(
-      DateTimeRange(
+      DateRangeFilter(
         start: now.subtract(Duration(days: days)),
         end: now,
       ),

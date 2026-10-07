@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import '../../../../core/domain/enums/metric_type.dart';
+import '../../domain/models/date_range_filter.dart';
 
 /// Typed export failure allowing the UI to localize messages.
 enum ExportError {
@@ -14,7 +13,7 @@ enum ExportError {
 /// Presentation state for data export configuration and progress.
 class ExportState {
   /// Date range constraint for exported records, or null for all available records.
-  final DateTimeRange? dateRange;
+  final DateRangeFilter? dateRange;
 
   /// Set of metric types selected for inclusion in the export.
   final Set<MetricType> selectedMetrics;
@@ -50,7 +49,7 @@ class ExportState {
 
   /// Returns a copy of this state with updated properties.
   ExportState copyWith({
-    DateTimeRange? dateRange,
+    DateRangeFilter? dateRange,
     bool clearDateRange = false,
     Set<MetricType>? selectedMetrics,
     bool? isExporting,

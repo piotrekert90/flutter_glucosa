@@ -9,6 +9,7 @@ import '../../../../core/presentation/widgets/app_loading_indicator.dart';
 import '../../../../core/presentation/widgets/clamped_layout.dart';
 import '../../../glucose/presentation/utils/csv_import_coordinator.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../domain/models/date_range_filter.dart';
 import '../providers/export_notifier.dart';
 import '../providers/export_state.dart';
 
@@ -308,25 +309,28 @@ class _ExportContentState extends ConsumerState<_ExportContent> {
 
   Future<void> _pickCustomRange(BuildContext context) async {
     final now = DateTime.now();
+    final current = widget.state.dateRange;
     final picked = await showDateRangePicker(
       context: context,
       firstDate: DateTime(2000),
       lastDate: now,
-      initialDateRange:
-          widget.state.dateRange ??
-          DateTimeRange(
-            start: now.subtract(const Duration(days: 30)),
-            end: now,
-          ),
+      initialDateRange: current != null
+          ? DateTimeRange(start: current.start, end: current.end)
+          : DateTimeRange(
+              start: now.subtract(const Duration(days: 30)),
+              end: now,
+            ),
     );
 
     if (picked != null) {
       setState(() => _activePreset = _DatePreset.custom);
-      await ref.read(exportProvider.notifier).setDateRange(picked);
+      await ref
+          .read(exportProvider.notifier)
+          .setDateRange(DateRangeFilter(start: picked.start, end: picked.end));
     }
   }
 
-  String _formatCustomRange(BuildContext context, DateTimeRange range) {
+  String _formatCustomRange(BuildContext context, DateRangeFilter range) {
     final format = DateFormat.yMMMd(Localizations.localeOf(context).toString());
     return '${format.format(range.start)} - ${format.format(range.end)}';
   }
