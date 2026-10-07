@@ -56,7 +56,7 @@ final class HealthSyncProvider
   }
 }
 
-String _$healthSyncHash() => r'ce5d1c40631a8695a0c03642ac346bc6e9479b99';
+String _$healthSyncHash() => r'2556c344528d9f72ab28ffa2bb02009c99c07c58';
 
 /// Riverpod notifier encapsulating platform health-store sync orchestration.
 ///
