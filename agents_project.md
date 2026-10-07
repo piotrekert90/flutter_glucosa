@@ -75,10 +75,10 @@ Feature-First Clean Architecture under `lib/features/<feature>/`. Features inclu
   record-based domain operation returns.
 
 ### Security & Data Protection
-- **Local Persistence & Encryption Debt:** Isar Community (3.1.0+1) runs unencrypted within the local
-  application sandbox. Native database-level encryption is unsupported by the current engine and is documented
-  as conscious technical debt. The former `FieldCipher` field-level encryption utility was removed with its
-  `crypto` dependency; do not reference it.
+- **Local Persistence & Hardware Encryption:** Health data is persisted locally using Isar Community within
+  the sandboxed application directory, protected at rest by platform hardware encryption (Android File-Based
+  Encryption / iOS APFS Data Protection) with Android cloud backup explicitly disabled (`allowBackup="false"`).
+  Runtime access is guarded by hardware biometrics. FieldCipher and legacy crypto dependencies were removed.
 
 ### Resource Lifecycle & Disposal (concrete items)
 - Every `StreamSubscription` cancelled in `dispose()` or the corresponding Notifier's `ref.onDispose()`.
