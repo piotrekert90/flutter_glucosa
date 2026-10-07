@@ -9,6 +9,7 @@ import '../../../../core/domain/enums/hba1c_unit.dart';
 import '../../../../core/domain/enums/metric_type.dart';
 import '../../../../core/domain/enums/weight_unit.dart';
 import '../../../../core/domain/utils/glucose_converter.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../../blood_pressure/domain/repositories/blood_pressure_reading_repository.dart';
 import '../../../cholesterol/domain/repositories/cholesterol_reading_repository.dart';
 import '../../../glucose/domain/repositories/glucose_reading_repository.dart';
@@ -135,8 +136,10 @@ class ExportServiceImpl implements ExportService {
       if (await file.exists()) {
         try {
           await file.delete();
-        } catch (_) {
-          // File deletion may fail if held open by another process
+        } catch (e) {
+          // File deletion may fail if held open by another process;
+          // the export itself already succeeded, so only log it.
+          AppLogger.debug('Export temp file cleanup failed: $e');
         }
       }
     }
