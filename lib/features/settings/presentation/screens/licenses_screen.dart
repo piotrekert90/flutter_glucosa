@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../data/services/license_registry_source.dart';
 import '../../domain/entities/package_license.dart';
 import '../../domain/services/package_license_loader.dart';
 import '../../../../core/presentation/widgets/app_error_view.dart';
@@ -29,13 +30,17 @@ class _LicensesScreenState extends State<LicensesScreen> {
     _packageInfoFuture = widget.packageInfo != null
         ? Future.value(widget.packageInfo!)
         : PackageInfo.fromPlatform();
-    _licensesFuture = PackageLicenseLoader.loadLicenses();
+    _licensesFuture = PackageLicenseLoader.loadLicenses(
+      licenses: LicenseRegistrySource.watchLicenses(),
+    );
   }
 
   /// Recreates the load futures (retry entry point).
   void _reload() {
     setState(() {
-      _licensesFuture = PackageLicenseLoader.loadLicenses();
+      _licensesFuture = PackageLicenseLoader.loadLicenses(
+        licenses: LicenseRegistrySource.watchLicenses(),
+      );
     });
   }
 
